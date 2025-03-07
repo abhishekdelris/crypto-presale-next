@@ -7,7 +7,7 @@ function GuestPost() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="index.php" title="Home">Home</a></li>
+        <li><a href="index" title="Home">Home</a></li>
         <li>Guest Post</li>
       </ul>
     </div>

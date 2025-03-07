@@ -7,7 +7,7 @@
 //     <section class="brdcrumb">
 //     <div class="container">
 //         <ul class="mb-0">
-//             <li><a href="index.php" title="Home">Home</a></li>
+//             <li><a href="index" title="Home">Home</a></li>
 //             <li>Submit Coin</li>
 //         </ul>
 //     </div>

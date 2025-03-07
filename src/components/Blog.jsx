@@ -34,7 +34,7 @@ function Blog() {
               <h5 className="h6 threeline">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h5>
             </div>
           </div>
-        </div>
+        </div> 
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
@@ -144,16 +144,7 @@ function Blog() {
                 <span className="singleline d-block">By: Deepak Choudhary</span>
               </div>
               <h5 className="h6 threeline">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h5>
-            </div>
-          </div>
-        </div>
-        <div className="col">
-          <div className="blog_block mb-4">
-            <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
-            </div>
-            <div className="blog_content shadow-sm">
-              <div className="main_flex blog_font">
+              <div className="blog_block mb-4">
                 <span className="singleline d-block"> 21-02-2025</span>
                 <span className="singleline d-block">By: Deepak Choudhary</span>
               </div>

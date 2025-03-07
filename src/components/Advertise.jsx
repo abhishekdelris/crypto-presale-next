@@ -2398,7 +2398,7 @@ import React from 'react'
 function Advertise() {
   return (
     <>
-  {/*?php include_once('include/header.php') ?*/}
+  {/*?php include_once('include/header') ?*/}
   <style
     type="text/css"
     dangerouslySetInnerHTML={{
@@ -2410,7 +2410,7 @@ function Advertise() {
     <div className="container">
       <ul className="mb-0">
         <li>
-          <a href="index.php" title="Home">
+          <a href="index" title="Home">
             Home
           </a>
         </li>
@@ -8593,7 +8593,7 @@ function Advertise() {
       </div>
     </div>
   </section>
-  {/*?php include_once('include/footer.php') ?*/}
+  {/*?php include_once('include/footer') ?*/}
 </>
 
   )

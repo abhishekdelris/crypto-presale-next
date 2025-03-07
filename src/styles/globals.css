@@ -1211,3 +1211,60 @@ button.btn-close {
       border: 1px solid #082543;
   border-radius: 5px;
 }
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+  justify-content: center;
+  padding: 0;
+  margin-right: 15%;
+  margin-bottom: 1rem;
+  margin-left: 15%;
+}
+
+.radio-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+}
+.radio-toolbar input[type="radio"] {
+  display: none;
+}
+.radio-toolbar label {
+    display: inline-block;
+    border: 1px solid #061e37;
+    padding: 3px 15px;
+    cursor: pointer;
+    white-space: pre;
+    color: #061e37;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.radio-toolbar input[type="radio"]:checked+label {
+  background-color: #333;
+  color:#fff
+}
+
+.radio-toolbar {
+    display: flex
+;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  background: rgb(9 38 69 / 62%);
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+} */

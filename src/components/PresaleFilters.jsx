@@ -131,7 +131,7 @@ function PresaleFilters() {
           <label>Audit</label>
           <label className="switch">
             <input type="checkbox" />
-            <div className="slider round"></div>
+            <div className="slider round"></div>    
           </label>
           
         </div>
@@ -144,6 +144,22 @@ function PresaleFilters() {
           </label>
           
         </div>
+         <div class="filterblock">
+                            <label class="mb-1">Listings</label>
+                            <div class="radio-toolbar">
+                              <input type="radio" id="radio1" name="radios" value="all" checked />
+                              <label for="radio1">Show All</label>
+                              <input type="radio" id="radio2" name="radios" value="false" />
+                              <label for="radio2">Presale Live</label>
+                              <input type="radio" id="radio3" name="radios" value="true" />
+                              <label for="radio3">Presale Upcoming</label>
+                              <input type="radio" id="radio4" name="radios" value="true" />
+                              <label for="radio4">Fair Launch Live</label>
+                              <input type="radio" id="radio5" name="radios" value="true" />
+                              <label for="radio5">Fair Launch Upcoming</label>
+                            </div>
+                        </div>
+        
       </div>
     </div>
     </div>
@@ -151,3 +167,293 @@ function PresaleFilters() {
 }
 
 export default PresaleFilters;
+
+// import { useState } from "react";
+
+// const PresaleFilters = () => {
+//   const [audit, setAudit] = useState(false);
+//   const [kyc, setKyc] = useState(false);
+//   const [selectedListing, setSelectedListing] = useState("Presale Live");
+
+//   return (
+//     <div className="container p-3 bg-light rounded">
+//       <div className="row g-2">
+//         <div className="col-md-2">
+//           <label className="form-label">Chain</label>
+//           <select className="form-select">
+//             <option>All Chains</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Category</label>
+//           <select className="form-select">
+//             <option>All Categories</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Platform</label>
+//           <select className="form-select">
+//             <option>All Platforms</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Soft Cap</label>
+//           <select className="form-select">
+//             <option>All Chains</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Hard Cap</label>
+//           <select className="form-select">
+//             <option>All Chains</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Audit</label>
+//           <div className="form-check form-switch">
+//             <input
+//               className="form-check-input"
+//               type="checkbox"
+//               checked={audit}
+//               onChange={() => setAudit(!audit)}
+//             />
+//           </div>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">KYC</label>
+//           <div className="form-check form-switch">
+//             <input
+//               className="form-check-input"
+//               type="checkbox"
+//               checked={kyc}
+//               onChange={() => setKyc(!kyc)}
+//             />
+//           </div>
+//         </div>
+//         <div className="col-md-2">
+//           <label className="form-label">Audit Company</label>
+//           <select className="form-select">
+//             <option>Select Companies</option>
+//           </select>
+//         </div>
+//         <div className="col-md-2Fair">
+//           <label className="form-label">KYC Tier</label>
+//           <select className="form-select">
+//             <option>Select Tiers</option>
+//           </select>
+//         </div>
+//       </div>
+//       <div className="mt-3 d-flex gap-2">
+//         {["Show All", "Presale Live", "Presale Upcoming", "Fair Launch Live", "Fair Launch Upcoming"].map((item) => (
+//           <button
+//             key={item}
+//             className={`btn ${selectedListing === item ? "btn-dark" : "btn-outline-dark"}`}
+//             onClick={() => setSelectedListing(item)}
+//           >
+//             {item}
+//           </button>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PresaleFilters;
+
+
+
+// import { useState } from "react";
+// import Image from "next/image";
+
+// const PresaleFilters = () => {
+//   const [audit, setAudit] = useState(false);
+//   const [kyc, setKyc] = useState(false);
+//   const [selectedListing, setSelectedListing] = useState("all");
+
+//   // Dummy data for table
+//   const presaleData = [
+//     {
+//       id: 1,
+//       imgSrc: "/images/altcoin.webp",
+//       name: "LCAI",
+//       badge: "Warning",
+//       marketCap: "Presale",
+//       price: "-",
+//       hardcap: "9000",
+//       launch: "In 3 months",
+//     },
+//     {
+//       id: 2,
+//       imgSrc: "/images/altcoin.webp",
+//       name: "LCAI",
+//       badge: "Warning",
+//       marketCap: "Presale",
+//       price: "-",
+//       hardcap: "9000",
+//       launch: "In 3 months",
+//     },
+//   ];
+
+//   return (
+//     <div className="container mt-4">
+//       <div className="section-title text-center">
+//         <h4 className="fw-semibold">Best Crypto Presales 2024</h4>
+//         <p>
+//           Looking for the best and newest crypto presales and ICOs to invest in?
+//           You're in the right place at Cryptopresale.net. We list the most
+//           exciting upcoming and active crypto presales of 2024.
+//         </p>
+//       </div>
+
+//       {/* Filter Section */}
+//       <div className="filtertable p-3 bg-light rounded">
+//         <div className="row g-3">
+//           {/* Chain Dropdown */}
+//           <div className="col-md-2">
+//             <label>Chain</label>
+//             <select className="form-control">
+//               <option>All Chains</option>
+//             </select>
+//           </div>
+
+//           {/* Category Dropdown */}
+//           <div className="col-md-2">
+//             <label>Category</label>
+//             <select className="form-control">
+//               <option>All Categories</option>
+//             </select>
+//           </div>
+
+//           {/* Platform Dropdown */}
+//           <div className="col-md-2">
+//             <label>Platform</label>
+//             <select className="form-control">
+//               <option>All Platforms</option>
+//             </select>
+//           </div>
+
+//           {/* Soft Cap */}
+//           <div className="col-md-2">
+//             <label>Soft Cap</label>
+//             <select className="form-control">
+//               <option>All Chains</option>
+//             </select>
+//           </div>
+
+//           {/* Hard Cap */}
+//           <div className="col-md-2">
+//             <label>Hard Cap</label>
+//             <select className="form-control">
+//               <option>All Chains</option>
+//             </select>
+//           </div>
+
+//           {/* Audit Toggle */}
+//           <div className="col-md-2">
+//             <label>Audit</label>
+//             <div className="form-check form-switch">
+//               <input
+//                 className="form-check-input"
+//                 type="checkbox"
+//                 checked={audit}
+//                 onChange={() => setAudit(!audit)}
+//               />
+//             </div>
+//             <select className="form-control">
+//               <option>Select Companies</option>
+//             </select>
+//           </div>
+
+//           {/* KYC Toggle */}
+//           <div className="col-md-2">
+//             <label>KYC</label>
+//             <div className="form-check form-switch">
+//               <input
+//                 className="form-check-input"
+//                 type="checkbox"
+//                 checked={kyc}
+//                 onChange={() => setKyc(!kyc)}
+//               />
+//             </div>
+//             <select className="form-control">
+//               <option>Select Tiers</option>
+//             </select>
+//           </div>
+
+          
+//         </div>
+
+//         {/* Listings Filter */}
+//         <div className="mt-3 d-flex gap-2">
+//           {[
+//             { label: "Show All", value: "all" },
+//             { label: "Presale Live", value: "presale_live" },
+//             { label: "Presale Upcoming", value: "presale_upcoming" },
+//             { label: "Fair Launch Live", value: "fair_launch_live" },
+//             { label: "Fair Launch Upcoming", value: "fair_launch_upcoming" },
+//           ].map((item) => (
+//             <button
+//               key={item.value}
+//               className={`btn ${
+//                 selectedListing === item.value ? "btn-dark" : "btn-outline-dark"
+//               }`}
+//               onClick={() => setSelectedListing(item.value)}
+//             >
+//               {item.label}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
+
+//       {/* Table Section */}
+//       <div className="table-responsive mt-4">
+//         <table className="table table-bg table-striped">
+//           <thead>
+//             <tr>
+//               <th>#</th>
+//               <th>Coin</th>
+//               <th>Name</th>
+//               <th>Badges</th>
+//               <th>Market Cap</th>
+//               <th>Price</th>
+//               <th>Change 24h</th>
+//               <th>Launch</th>
+//               <th>Total Boosts</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {presaleData.map((item, index) => (
+//               <tr key={index}>
+//                 <td>{item.id}</td>
+//                 <td>
+//                   <Image src={item.imgSrc} width={30} height={30} alt="coin" />
+//                 </td>
+//                 <td>{item.name}</td>
+//                 <td>
+//                   <span className="badge rounded-pill bg-warning text-dark">
+//                     {item.badge}
+//                   </span>
+//                 </td>
+//                 <td>{item.marketCap}</td>
+//                 <td>{item.price}</td>
+//                 <td>
+//                   <span>Hardcap {item.hardcap}</span>
+//                 </td>
+//                 <td>{item.launch}</td>
+//                 <td>
+//                   <div className="d-flex align-items-center gap-2">
+//                     <span>{item.launch}</span>
+//                     <button className="btn btn-primary btn-sm">Boost</button>
+//                     <i className="fa-regular fa-star"></i>
+//                   </div>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PresaleFilters;

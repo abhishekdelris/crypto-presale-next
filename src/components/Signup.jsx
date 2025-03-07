@@ -36,7 +36,7 @@ function Signup() {
                                 <a href="" class="btn-main primary-btn w-75 text-center fw-bold py-3 btn-second_main shadow">Register</a>
                             </div>
                              <div class="col-xl-12 text-center">
-                                 <p>Already have an account? <a href="login.php" class="textclr fw-bold">Login Here.</a></p>
+                                 <p>Already have an account? <a href="login" class="textclr fw-bold">Login Here.</a></p>
                             </div>
                         </div>
                     </div>

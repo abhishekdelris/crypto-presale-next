@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -11,8 +12,54 @@ import FAQAccordion from "./FAQAccordion";
 import Favorite from "./Favorite";
 import Promoted from "./Promoted";
 import Coin from "./Coin";
+import MultiSlider from "./MultiSlider";
+// import OwlCarousel from "react-owl-carousel";
+// import 'owl.carousel/dist/assets/owl.carousel.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 function HomePage() {
+
+  const sliderOptions = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    responsive: {
+      0: { items: 1 },
+      600: { items: 1 },
+      1000: { items: 1 },
+    },
+  };
+
+    // Sample data for multiple sliders
+    const sliderData = [
+      {
+        title: "Featured Products",
+        slides: [
+          {
+            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            alt: "Product 1",
+            caption: "Premium Headphones",
+            description: "Noise cancelling with exceptional sound quality"
+          },
+          {
+            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            alt: "Product 2",
+            caption: "Wireless Earbuds",
+            description: "Long battery life with crystal clear audio"
+          },
+          {
+            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            alt: "Product 3",
+            caption: "Smart Watch",
+            description: "Track your fitness and stay connected"
+          }
+        ]
+      },
+     
+    ];
   // Responsive breakpoints
   const responsive = {
     superLargeDesktop: {
@@ -21,7 +68,7 @@ function HomePage() {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 6
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -29,7 +76,7 @@ function HomePage() {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
+      items: 2
     }
   };
 
@@ -165,99 +212,135 @@ function HomePage() {
             
     {/* <!-- end --> */}
     {/* <!-- second section --> */}
-    <section className="presalenew my-3">
-        <div className="container">
-            <div className="row">
-                <div className="col-xl-4">
-                    <div className="full_presaletable">
-                        <div className="main_flex topheader">
-                            <h5 className="mb-0 fw-bold">Top 3 Presale News</h5>
-                            <a href="" className="btn btn-link text-dark">Show All</a>
+    <section class="presalenew my-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="full_presaletable">
+                        <div class="main_flex topheader">
+                            <h5 class="mb-0 fw-bold">New Coins</h5>
+                            <a href="" class="btn btn-link text-dark">View More</a>
                         </div>
-                        <div className="block_Table p-2">
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">1</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                        <div class="block_Table p-2">
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>1 hour ago</span>
                             </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">2</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>1 hour ago</span>
                             </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">3</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>1 hour ago</span>
                             </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">4</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>1 hour ago</span>
                             </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">5</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>1 hour ago</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4">
+                    <div class="full_presaletable">
+                        <div class="main_flex topheader">
+                            <h5 class="mb-0 fw-bold">Trending Presales</h5>
+                            <a href="" class="btn btn-link text-dark">View More</a>
+                        </div>
+                        <div class="block_Table p-2">
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>Not Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <span>Promoted</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-4">
-                    <div className="full_presaletable">
-                        <div className="main_flex topheader">
-                            <h5 className="mb-0 fw-bold">Highlighted</h5>
-                            <a href="" className="btn btn-link text-dark">Your Coin Here</a>
+                {/* <div class="col-xl-4 rightslider">
+                      <div class="owl-slider">
+                    <div id="sliderhome" class="owl-carousel">
+                        <div class="item">
+                            <div class="blogimage">
+                            <img src="http://192.168.1.7/crypto-presale/images/blog.webp" class="w-100 h-auto"/>
+                            </div>
                         </div>
-                        <div className="block_Table p-2">
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">1</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                        <div class="item">
+                           <div class="blogimage">
+                            <img src="http://192.168.1.7/crypto-presale/images/blog.webp" class="w-100 h-auto"/>
                             </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">2</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">3</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">4</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">5</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
+                        </div>
+                        <div class="item">
+                           <div class="blogimage">
+                            <img src="http://192.168.1.7/crypto-presale/images/blog.webp" class="w-100 h-auto"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-4">
-                    <div className="full_presaletable">
-                        <div className="main_flex topheader">
-                            <h5 className="mb-0 fw-bold">Trending Presales</h5>
-                            <a href="" className="btn btn-link text-dark">View More</a>
-                        </div>
-                        <div className="block_Table p-2">
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">1</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">2</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">3</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">4</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                            <div className="main_flex mb-2">
-                                <h6><span className="border_circle">5</span> goodcrypto</h6>
-                                <button className="btn-main primary-btn small px-4 btn-second_main">See All</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> */}
+                 {/* <div className="col-xl-4 rightslider">
+      <OwlCarousel className="owl-theme" {...sliderOptions}>
+        <div className="item">
+          <div className="blogimage">
+            <Image
+              src="http://192.168.1.7/crypto-presale/images/blog.webp"
+              alt="Blog Image"
+              width={500}
+              height={300}
+              className="w-100 h-auto"
+            />
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="blogimage">
+            <Image
+              src="http://192.168.1.7/crypto-presale/images/blog.webp"
+              alt="Blog Image"
+              width={500}
+              height={300}
+              className="w-100 h-auto"
+            />
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="blogimage">
+            <Image
+              src="http://192.168.1.7/crypto-presale/images/blog.webp"
+              alt="Blog Image"
+              width={500}
+              height={300}
+              className="w-100 h-auto"
+            />
+          </div>
+        </div>
+      </OwlCarousel>
+    </div> */}
+      <div className="col-xl-4 rightslider">
+     
+      <MultiSlider sliders={sliderData} />
+    </div>
             </div>
         </div>
     </section>

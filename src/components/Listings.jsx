@@ -6,9 +6,9 @@ import Favorite from './Favorite'
 function Listings() {
   return (
     <>
-      <section class="brdcrumb">
-    <div class="container">
-        <ul class="mb-0">
+      <section className="brdcrumb">
+    <div className="container">
+        <ul className="mb-0">
             <li><a href="index.php" title="Home">Home</a></li>
             <li>Listings</li>
         </ul>

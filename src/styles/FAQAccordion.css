@@ -1,0 +1,50 @@
+/* Basic styling for the accordion container */
+.accordion-container {
+  margin-top: 20px;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+}
+
+
+
+.accordion-header .icon {
+  font-size: 20px;
+}
+
+.accordion-content {
+  padding: 10px;
+  /* background-color: #fafafa; */
+  /* border-top: 1px solid #ccc; */
+  font-size: 14px;
+  max-height: 0;
+  overflow: hidden;
+  transition: 1s ease-in-out;
+}
+
+.accordion-item.active .accordion-header {
+  /* Change background when active */
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 500px; /* Adjust as needed */
+}
+
+.accordion-content p {
+  color: #333;
+}
+
+.text-danger {
+  color: #dc3545; /* Red color for the answer */
+}
+
+/* Add some responsive styling */
+@media (max-width: 768px) {
+  .accordion-header {
+    font-size: 14px;
+  }
+  .accordion-content {
+    font-size: 12px;
+  }
+}

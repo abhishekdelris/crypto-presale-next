@@ -13,6 +13,7 @@ import Favorite from "./Favorite";
 import Promoted from "./Promoted";
 import Coin from "./Coin";
 import MultiSlider from "./MultiSlider";
+import blogImg from '../images/blog.webp'
 // import OwlCarousel from "react-owl-carousel";
 // import 'owl.carousel/dist/assets/owl.carousel.css';
 // import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -39,19 +40,19 @@ function HomePage() {
         title: "Featured Products",
         slides: [
           {
-            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            image: blogImg,
             alt: "Product 1",
             caption: "Premium Headphones",
             description: "Noise cancelling with exceptional sound quality"
           },
           {
-            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            image: blogImg, 
             alt: "Product 2",
             caption: "Wireless Earbuds",
             description: "Long battery life with crystal clear audio"
           },
           {
-            image: "http://192.168.1.7/crypto-presale/images/blog.webp",
+            image: blogImg,
             alt: "Product 3",
             caption: "Smart Watch",
             description: "Track your fitness and stay connected"

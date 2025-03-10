@@ -1,6 +1,7 @@
 // components/MultiSlider.jsx
 "use client"; // Add this for Next.js App Router (if you're using it)
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MultiSlider = ({ sliders }) => {
@@ -64,9 +65,11 @@ const MultiSlider = ({ sliders }) => {
             <div className="carousel-inner">
               {slider.slides.map((slide, slideIndex) => (
                 <div key={slideIndex} className={`carousel-item ${slideIndex === 0 ? "active" : ""}`}>
-                  <img
+                  <Image
                     src={slide.image}
                     className="d-block w-100"
+                    height={220}
+                    width={416}
                     alt={slide.alt || `Slide ${slideIndex + 1}`}
                   />
                   {/* {(slide.caption || slide.description) && (

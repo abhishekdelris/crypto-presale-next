@@ -137,7 +137,7 @@ function HomePage() {
               {carouselItems.map((item, index) => (
                 <div key={index} className="px-2">
                   <div className="cat_button text-center">
-                    <a href="" title={item.name} className="block">
+                    <a href="/" title={item.name} className="block">
                       <div className="bg_Cat flex justify-center items-center">
                         <Image
                           src={item.icon}

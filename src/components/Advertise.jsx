@@ -2410,7 +2410,7 @@ function Advertise() {
     <div className="container">
       <ul className="mb-0">
         <li>
-          <a href="index" title="Home">
+          <a href="/" title="Home">
             Home
           </a>
         </li>

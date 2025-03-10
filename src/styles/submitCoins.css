@@ -90,7 +90,7 @@
     font-size: 15px;
 }
 
-figure figcaption {
+.figure .figcaption {
     position: absolute;
     bottom: 0;
     color: #fff;
@@ -184,7 +184,7 @@ figure figcaption {
     color: transparent;
 }
 
-sup {
+.sup {
     top: 0em;
 }
 

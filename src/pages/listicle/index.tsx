@@ -8,11 +8,11 @@ const Home: NextPage = () => {
   return (
     <>
     <Header />
-    <Advertise />
-    {/* <NewTemplate /> */}
+    {/* <Advertise /> */}
+    <NewTemplate />
     <Footer />
     </>
   );
 };
 
-export default Home; 
+export default Home;

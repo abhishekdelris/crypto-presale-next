@@ -144,11 +144,11 @@ function Blog() {
                 <span className="singleline d-block">By: Deepak Choudhary</span>
               </div>
               <h5 className="h6 threeline">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h5>
-              <div className="blog_block mb-4">
+              {/* <div className="blog_block mb-4">
                 <span className="singleline d-block"> 21-02-2025</span>
                 <span className="singleline d-block">By: Deepak Choudhary</span>
               </div>
-              <h5 className="h6 threeline">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h5>
+              <h5 className="h6 threeline">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h5> */}
             </div>
           </div>
         </div>
@@ -251,9 +251,9 @@ function Blog() {
           </div>
         </div>
         <div className="col-xl-3">
-          <div className="position-sticky top-0 mb-3">
+          {/* <div className="position-sticky top-0 mb-3">
             <img src="images/add.webp" className="img-fluid" />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -137,12 +137,12 @@ function HomePage() {
                 <div key={index} className="px-2">
                   <div className="cat_button text-center">
                     <a href="" title={item.name} className="block">
-                      <div className="bg_Cat flex justify-center items-center mb-2">
+                      <div className="bg_Cat flex justify-center items-center">
                         <Image
                           src={item.icon}
                           loading="lazy"
-                          width={40}
-                          height={40}
+                          width={38}
+                          height={38}
                           alt={`${item.name} Icon`}
                           className="mx-auto"
                         />

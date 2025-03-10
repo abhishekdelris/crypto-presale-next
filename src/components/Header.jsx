@@ -119,7 +119,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaSearch } from "react-icons/fa"; // Using react-icons for FontAwesome
-import Logos from "../images/logo1.png";
+import Logos from "../images/presale.png";
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -178,7 +178,7 @@ export default function Header() {
                 <a className="nav-link" href="/submit_coin">Project Review</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/advertise">Listicle</a>
+                <a className="nav-link" href="/listicle">Listicle</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/blog">Press Release</a>

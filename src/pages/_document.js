@@ -8,6 +8,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* Add Owl Carousel CSS globally */}
+          
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"

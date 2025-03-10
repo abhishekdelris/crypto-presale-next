@@ -205,7 +205,7 @@ import React, { useState } from 'react';
 // If not, you should create one or use a different styling approach
 import Image from 'next/image';
 // import Avtar from "../images/avtar.webp";
-import '../styles/submitCoins.css';
+// import '../styles/submitCoins.css';
 
 function SubmitCoin() {
   // State to track current tab

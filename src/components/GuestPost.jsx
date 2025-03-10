@@ -7,7 +7,7 @@ function GuestPost() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="index" title="Home">Home</a></li>
+        <li><a href="/" title="Home">Home</a></li>
         <li>Guest Post</li>
       </ul>
     </div>
@@ -260,9 +260,9 @@ function GuestPost() {
           </div>
         </div>
         <div className="col-xl-3">
-          <div className="position-sticky top-0 mb-3">
+          {/* <div className="position-sticky top-0 mb-3">
             <img src="images/add.webp" className="img-fluid" />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

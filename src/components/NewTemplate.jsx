@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/changes.css";
+// import "../styles/changes.module.css";
 
 function NewTemplate() {
   return (
@@ -24,7 +24,7 @@ function NewTemplate() {
     </header> */}
 
     <main>
-        <section class="services1 container1">
+        <section class="services1 container1 mb-2">
             <h2>Core Services</h2>
             <div class="service-features1">
                 <div class="feature1">
@@ -55,7 +55,7 @@ function NewTemplate() {
                     <h3>Launch Your Project</h3>
                     <p>Start by adding your crypto project to CryptoRadar's database.</p>
                     <div class="price-tag1">FREE</div>
-                    <button class="action-btn1">Submit Now</button>
+                    <button class="btn-main primary-btn me-2 action-btn1">Submit Now</button>
                 </div>
             </div>
 
@@ -86,7 +86,7 @@ function NewTemplate() {
             </div>
         </section>
 
-        <section class="promotion-options1 container1">
+        <section class="promotion-options1 container1 mt-2">
             <h2>Marketing Solutions</h2>
             <div class="promotion-cards1">
                 <div class="promo-card1">
@@ -100,7 +100,7 @@ function NewTemplate() {
                         <div class="spec1">Mobile: 380×100</div>
                     </div>
                     <div class="promo-price1">$175 / per day</div>
-                    <button class="action-btn1">Reserve Spot</button>
+                    <button class="btn-main primary-btn me-2 action-btn1">Reserve Spot</button>
                 </div>
 
                 <div class="promo-card1 featured1">
@@ -114,7 +114,7 @@ function NewTemplate() {
                         <div class="spec1">Mobile: 640×160</div>
                     </div>
                     <div class="promo-price1">$650 / per day</div>
-                    <button class="action-btn1">Reserve Spot</button>
+                    <button class="btn-main primary-btn me-2 action-btn1">Reserve Spot</button>
                 </div>
 
                 <div class="promo-card1">
@@ -128,12 +128,12 @@ function NewTemplate() {
                         <div class="spec1">Custom Badge</div>
                     </div>
                     <div class="promo-price1">$350 / per day</div>
-                    <button class="action-btn1">Reserve Spot</button>
+                    <button class="btn-main primary-btn me-2 action-btn1">Reserve Spot</button>
                 </div>
             </div>
         </section>
 
-        <section class="discount-section1 container1">
+        <section class="discount-section1 container1 mt-2">
             <h2>Volume Discounts</h2>
             <div class="discount-tiers1">
                 <div class="discount-tier1">
@@ -183,7 +183,7 @@ function NewTemplate() {
             </div>
         </section>
 
-        <section class="premium-services1 container1">
+        <section class="premium-services1 container1 mb-2">
             <h2>Premium Services</h2>
             <div class="service-cards1">
                 <div class="service-card1">

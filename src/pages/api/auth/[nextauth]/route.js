@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { executeQuery } from "@/lib/db";
 
-const handler = NextAuth({
+const handler = NextAuth({   //[...nextauth]
   providers: [
     CredentialsProvider({
       name: "Credentials",

@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image';
+import googleImage from "../images/google.png";
 
 function Login() {
   return (
@@ -31,7 +33,7 @@ function Login() {
                                 <a href="" class="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main shadow">Login</a>
                             </div>
                             <div class="col-xl-12">
-                                 <a href="" class="btn-main primary-btn w-100  text-center fw-bold py-3 btn-border shadow mb-3"><img src="http://192.168.1.7/crypto-presale/images/google.png" width="24" /> &nbsp;Sign in with Google</a>
+                                 <a href="" class="btn-main primary-btn w-100  text-center fw-bold py-3 btn-border shadow mb-3"><Image src={googleImage} width="24" /> &nbsp;Sign in with Google</a>
                              </div>
                              <div class="col-xl-12 text-center">
                                  <p>Don’t have an account? <a href="/signup" class="textclr fw-bold">Register Here.</a></p>

@@ -16,7 +16,7 @@ export async function GET() {
     // Get total users count
     const totalUsersResult = await executeQuery({
       query: "SELECT COUNT(*) as count FROM users"
-    });
+    }); 
     const totalUsers = totalUsersResult[0].count;
 
     // Get new users in the last 7 days

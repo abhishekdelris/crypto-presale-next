@@ -1,5 +1,7 @@
 import React from 'react';
 // import "../styles/changes.module.css";
+import Image from 'next/image';
+import altcoinImage from "../images/altcoin.webp";
 
 function NewTemplate() {
   return (
@@ -156,27 +158,27 @@ function NewTemplate() {
             <h2>Projects We've Helped Launch</h2>
             <div class="project-showcase1">
                 <div class="showcase-item1">
-                    <img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" alt="LunarCoin" />
+                    <Image src={altcoinImage} alt="LunarCoin" />
                     <div class="project-name1">LUNAR</div>
                     <div class="project-category1">DeFi Platform</div>
                 </div>
                 <div class="showcase-item1">
-                    <img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" alt="NexusChain" />
+                    <Image src={altcoinImage} alt="NexusChain" />
                     <div class="project-name1">NEXUS</div>
                     <div class="project-category1">Smart Chain</div>
                 </div>
                 <div class="showcase-item1">
-                    <img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" alt="QuantumPaw" />
+                    <Image src={altcoinImage} alt="QuantumPaw" />
                     <div class="project-name1">QPAW</div>
                     <div class="project-category1">Meme Token</div>
                 </div>
                 <div class="showcase-item1">
-                    <img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" alt="Skynet" />
+                    <Image src={altcoinImage} alt="Skynet" />
                     <div class="project-name1">SKYNET</div>
                     <div class="project-category1">AI Protocol</div>
                 </div>
                 <div class="showcase-item1">
-                    <img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" alt="MetaVerse" />
+                    <Image src={altcoinImage} alt="MetaVerse" />
                     <div class="project-name1">META</div>
                     <div class="project-category1">Metaverse</div>
                 </div>

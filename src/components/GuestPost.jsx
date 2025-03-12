@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image';
+import blogImage from "../images/blog.webp";
 
 function GuestPost() {
   return (
@@ -24,7 +26,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -38,7 +40,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -52,7 +54,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -66,7 +68,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -80,7 +82,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -94,7 +96,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -108,7 +110,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -122,7 +124,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -136,7 +138,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -150,7 +152,7 @@ function GuestPost() {
         <div className="col">
           <div className="blog_block mb-4">
             <div className="blog_image">
-              <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" />
+              <Image src={blogImage} className="w-100 h-auto" />
             </div>
             <div className="blog_content shadow-sm">
               <div className="main_flex blog_font">
@@ -171,7 +173,7 @@ function GuestPost() {
           <div className="row g-0 card-group border mb-3 rounded-3 overflow-hidden">
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-12 px-0">
               <a href="#" title>
-                <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
+                <Image src={blogImage} className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
                 <span className="d-none">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</span>
               </a>
             </div>
@@ -201,7 +203,7 @@ function GuestPost() {
           <div className="row g-0 card-group border mb-3 rounded-3 overflow-hidden">
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-12 px-0">
               <a href="#" title>
-                <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
+                <Image src={blogImage} className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
                 <span className="d-none">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</span>
               </a>
             </div>
@@ -231,7 +233,7 @@ function GuestPost() {
           <div className="row g-0 card-group border mb-3 rounded-3 overflow-hidden">
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-12 px-0">
               <a href="#" title>
-                <img src="http://192.168.1.7/crypto-presale/images/blog.webp" className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
+                <Image src={blogImage} className="w-100 h-auto" alt="ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin" loading="lazy" width={690} height={383} />
                 <span className="d-none">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</span>
               </a>
             </div>

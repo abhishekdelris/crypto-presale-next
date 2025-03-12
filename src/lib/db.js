@@ -8,11 +8,13 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
-});
+}); 
 
 export async function executeQuery({ query, values = [] }) {
   try {
     const [result] = await pool.query(query, values);
+    console.log("database connected...!");
+    
     return result;
   } catch (error) {
     console.error('Database Error:', error);

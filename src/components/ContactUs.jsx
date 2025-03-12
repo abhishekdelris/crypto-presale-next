@@ -1,4 +1,8 @@
 import React from 'react'
+import Image from 'next/image';
+import phoneImage from "../images/phone.png";
+import emailImage from "../images/email.png";
+import mapsImage from "../images/maps.png";
 
 function ContactUs() {
   return (
@@ -26,7 +30,7 @@ function ContactUs() {
               <div className="contact-info-item">
                 {/* Icon Box Start */}
                 <div className="icon-box">
-                  <img src="http://192.168.1.7/crypto-presale/images/phone.png" alt />
+                  <Image src={phoneImage} alt />
                 </div>
                 {/* Icon Box End */}
                 {/* Contact Item Content Start */}
@@ -41,7 +45,7 @@ function ContactUs() {
               <div className="contact-info-item">
                 {/* Icon Box Start */}
                 <div className="icon-box">
-                  <img src="http://192.168.1.7/crypto-presale/images/email.png" alt />
+                  <Image src={emailImage} alt />
                 </div>
                 {/* Icon Box End */}
                 {/* Contact Item Content Start */}
@@ -60,7 +64,7 @@ function ContactUs() {
               <div className="contact-info-item">
                 {/* Icon Box Start */}
                 <div className="icon-box">
-                  <img src="http://192.168.1.7/crypto-presale/images/maps.png" alt />
+                  <Image src={mapsImage} alt />
                 </div>
                 {/* Icon Box End */}
                 {/* Contact Item Content Start */}

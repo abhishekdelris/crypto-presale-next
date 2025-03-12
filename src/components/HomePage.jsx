@@ -224,23 +224,23 @@ function HomePage() {
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>1 hour ago</span>
                             </div>
                             
@@ -256,23 +256,23 @@ function HomePage() {
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>Not Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><img src="http://192.168.1.7/crypto-presale/images/altcoin.webp" width="20" height="20"/></span> goodcrypto</h6>
+                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
                                 <span>Promoted</span>
                             </div>
                         </div>

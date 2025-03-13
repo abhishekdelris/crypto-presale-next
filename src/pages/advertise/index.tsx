@@ -8,8 +8,8 @@ const Home: NextPage = () => {
   return (
     <>
     <Header />
-    <Advertise />
-    {/* <NewTemplate /> */}
+    {/* <Advertise /> */}
+    <NewTemplate />
     <Footer />
     </>
   );

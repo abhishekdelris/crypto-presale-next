@@ -1,43 +1,43 @@
-// import bcrypt from "bcryptjs";
-// import { executeQuery } from "../../../lib/db"; // Adjust path as needed
+import bcrypt from "bcryptjs";
+import { executeQuery } from "../../../lib/db"; // Adjust path as needed
 
-// export default async function handler(req, res) {
-//   if (req.method !== "POST") {
-//     return res.status(405).json({ error: "Method Not Allowed" });
-//   }
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-//   try {
-//     const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-//     if (!name || !email || !password) {
-//       return res.status(400).json({ error: "Missing required fields" });
-//     }
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
 
-//     // Check if user exists
-//     const existingUsers = await executeQuery({
-//       query: "SELECT * FROM users WHERE email = ?",
-//       values: [email]
-//     });
+    // Check if user exists
+    const existingUsers = await executeQuery({
+      query: "SELECT * FROM users WHERE email = ?",
+      values: [email]
+    });
 
-//     if (existingUsers.length > 0) {
-//       return res.status(409).json({ error: "User already exists" });
-//     }
+    if (existingUsers.length > 0) {
+      return res.status(409).json({ error: "User already exists" });
+    }
 
-//     // Hash password
-//     const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-//     // Insert user
-//     await executeQuery({
-//       query: "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-//       values: [name, email, hashedPassword]
-//     });
+    // Insert user
+    await executeQuery({
+      query: "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+      values: [name, email, hashedPassword]
+    });
 
-//     return res.status(201).json({ success: true, message: "User registered successfully" });
-//   } catch (error) {
-//     console.error("Registration error:", error);
-//     return res.status(500).json({ error: "Failed to register user" });
-//   }
-// }
+    return res.status(201).json({ success: true, message: "User registered successfully" });
+  } catch (error) {
+    console.error("Registration error:", error);
+    return res.status(500).json({ error: "Failed to register user" });
+  }
+}
 
 
 // import dbConnect from "@/lib/dbConnect";
@@ -101,39 +101,39 @@
 // }
 
 
-import dbConnect from "../../../lib/db";
-import User from "../../../models/User";
-import bcrypt from "bcryptjs";
+// import dbConnect from "../../../lib/db";
+// import User from "../../../models/User";
+// import bcrypt from "bcryptjs";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method Not Allowed" });
-  }
+// export default async function handler(req, res) {
+//   if (req.method !== "POST") {
+//     return res.status(405).json({ error: "Method Not Allowed" });
+//   }
 
-  await dbConnect();
+//   await dbConnect();
 
-  try {
-    const { name, email, password } = req.body;
+//   try {
+//     const { name, email, password } = req.body;
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists" });
-    }
+//     // Check if user already exists
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       return res.status(400).json({ error: "Email already exists" });
+//     }
 
-    // Hash password before saving
-    const hashedPassword = await bcrypt.hash(password, 10);
+//     // Hash password before saving
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
+//     // Create new user
+//     const newUser = await User.create({
+//       name,
+//       email,
+//       password: hashedPassword,
+//     });
 
-    return res.status(201).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error("Registration error:", error);
-    return res.status(500).json({ error: "Registration failed" });
-  }
-}
+//     return res.status(201).json({ message: "User registered successfully" });
+//   } catch (error) {
+//     console.error("Registration error:", error);
+//     return res.status(500).json({ error: "Registration failed" });
+//   }
+// }

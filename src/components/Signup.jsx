@@ -62,7 +62,8 @@ function Signup() {
     password: '',
     confirmPassword: ''
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); 
+    const router = useRouter();
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

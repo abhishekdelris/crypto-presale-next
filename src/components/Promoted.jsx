@@ -14,7 +14,7 @@ function Promoted() {
                     <div className="table_block">
                         <div className="table_top main_flex">
                             <h6 className="h4 fw-semibold mb-0">Promoted</h6>
-                            <a href="" className="btn btn-link text-presale">Your coin here? Contact us!</a>
+                            <a href="/submit_coin" className="btn btn-link text-presale">Your coin here? Contact us!</a>
                         </div>
                         <div className="table_main">
                             <div className="table-responsive">

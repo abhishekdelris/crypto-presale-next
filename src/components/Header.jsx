@@ -175,7 +175,7 @@ export default function Header() {
                 <a className="nav-link" href="/listings">Best Crypto Presale</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/submit_coin">Project Review</a>
+                <a className="nav-link" href="/project_review">Project Review</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/listicle">Listicle</a>

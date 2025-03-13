@@ -204,7 +204,7 @@ import React, { useState } from 'react';
 // Assuming you have a CSS file at this location
 // If not, you should create one or use a different styling approach
 import Image from 'next/image';
-// import Avtar from "../images/avtar.webp";
+import avtarImage from "../images/avtar.webp";
 // import '../styles/submitCoins.css';
 
 function SubmitCoin() {
@@ -348,6 +348,12 @@ function SubmitCoin() {
                                 <div className="confirm-identity">
                                   <div className="ci-user">
                                     <div className="ci-user-picture">
+                                      {/* <Image 
+                                      src={formData.logo ? URL.createObjectURL(formData.logo) :avtarImage}
+                                      id="item-img-output" 
+                                        className="imgpreviewPrf img-fluid" 
+                                        alt="Logo preview" 
+                                      /> */}
                                       <img 
                                         src={formData.logo ? URL.createObjectURL(formData.logo) :  "http://192.168.1.7/crypto-presale/images/avtar.webp"} 
                                         id="item-img-output" 

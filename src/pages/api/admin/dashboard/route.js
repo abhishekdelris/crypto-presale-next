@@ -1,6 +1,8 @@
+"use server"
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { executeQuery } from "@/lib/db";
+// import { executeQuery } from "@/lib/db";
+import { executeQuery } from "../../../../lib/db";
 
 export async function GET() {
   try {

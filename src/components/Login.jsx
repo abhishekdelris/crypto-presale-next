@@ -192,7 +192,7 @@ function Login() {
     if (result?.error) {
       setError(result.error);
     } else {
-      router.push("/dashboard"); // Redirect to dashboard after login
+      router.push("/"); // Redirect to dashboard after login
     }
   };
 

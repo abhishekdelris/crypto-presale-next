@@ -143,7 +143,8 @@
 
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { executeQuery } from "@/lib/db";
+// import { executeQuery } from "@/lib/db";
+import { executeQuery } from "../../../../lib/db";
 
 // Get all users
 export async function GET() {

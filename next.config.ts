@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   
 
   reactStrictMode: true,
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    domains: ['yourdomain.com'], // If loading from external sources
+  },
 
   /* config options here */
   

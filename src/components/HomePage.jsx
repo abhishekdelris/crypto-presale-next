@@ -220,7 +220,7 @@ function HomePage() {
                     <div class="full_presaletable">
                         <div class="main_flex topheader">
                             <h5 class="mb-0 fw-bold">New Coins</h5>
-                            <a href="" class="btn btn-link text-dark">View More</a>
+                            <a href="/listings" class="btn btn-link text-dark">View More</a>
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
@@ -252,7 +252,7 @@ function HomePage() {
                     <div class="full_presaletable">
                         <div class="main_flex topheader">
                             <h5 class="mb-0 fw-bold">Trending Presales</h5>
-                            <a href="" class="btn btn-link text-dark">View More</a>
+                            <a href="/listings" class="btn btn-link text-dark">View More</a>
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">

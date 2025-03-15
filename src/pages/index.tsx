@@ -7,9 +7,9 @@ const Home: NextPage = () => {
   return (
     <>
  
-    <Header />
+    {/* <Header /> */}
     <HomePage />
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 };

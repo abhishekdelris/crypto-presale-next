@@ -1,214 +1,111 @@
-import React from 'react'
-import Image from 'next/image';
+"use client"
+import React, { useState } from "react";
+import Image from "next/image";
 import blogImage from "../images/blog.webp";
 
-function Project_review() {
+const blogPosts = [
+  {
+    id: 1,
+    author: "Deepak Choudhary",
+    date: "21-02-2025",
+    content: "ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin",
+  },
+  {
+    id: 2,
+    author: "Deepak Choudhary",
+    date: "21-02-2025",
+    content: "ARI Wallet Daily Quiz Answer 23 February 2025: Earn 15 ARI Coin",
+  },
+  {
+    id: 3,
+    author: "John Doe",
+    date: "22-02-2025",
+    content: "Exploring Blockchain's Future in Finance",
+  },
+  {
+    id: 4,
+    author: "Jane Smith",
+    date: "23-02-2025",
+    content: "Understanding Cryptocurrency Market Trends",
+  },
+];
+
+const Blog1 = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 2;
+
+  // Pagination logic
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+
   return (
     <>
-    <section className="brdcrumb">
+     <section className="brdcrumb">
      <div className="container">
        <ul className="mb-0">
          <li><a href="/" title="Home">Home</a></li>
-         <li>Guest Post</li>
+         <li>Project Review</li>
        </ul>
      </div>
    </section>
-  <div>
-  {/* Page Title */}
-  <h1 className="page-title">Guest Post</h1>
-  {/* Card Grid */}
-  <div className="card-grid">
-    {/* Card 1 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Card 2 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Card 3 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Card 4 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Card 5 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Card 6 */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    {/* Additional Cards */}
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-    <div className="card">
-      <Image src={blogImage} alt="ARI Wallet Daily Quiz" className="card-image" />
-      <div className="card-content">
-        <div className="card-date">
-          <span>21-02-2025</span>
-          <span>By Deepak Choudhary</span>
-        </div>
-        <h3 className="card-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h3>
-      </div>
-    </div>
-  </div>
-  {/* Featured Section */}
-  <div className="featured-section">
-    {/* Featured Card 1 */}
-    <div className="featured-card">
-      <div className="featured-card-header">
-        <Image src={blogImage} alt="Featured Quiz" className="featured-image" />
-        <div>
-          <h2 className="featured-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h2>
-          <p>By: Deepak Choudhary | 21-02-2025</p>
-        </div>
-      </div>
-      <div className="featured-content">
-        <p className="featured-description">ARI Wallet Daily Quiz Answer 22 February 2025: How to Earn Free ARI Coins. Are you looking for today's ARI Wallet Daily Quiz answer 22 February 2025? You're in the right place!</p>
-      </div>
-      <div className="interaction-bar">
-        <div className="like-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-            <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-          </svg>
-          0
-        </div>
-        <div className="share-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <circle cx={18} cy={5} r={3} />
-            <circle cx={6} cy={12} r={3} />
-            <circle cx={18} cy={19} r={3} />
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-          </svg>
-          Share
-        </div>
-      </div>
-    </div>
-    {/* Featured Card 2 */}
-    <div className="featured-card">
-      <div className="featured-card-header">
-        <Image src={blogImage} alt="Featured Quiz" className="featured-image" />
-        <div>
-          <h2 className="featured-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h2>
-          <p>By: Deepak Choudhary | 21-02-2025</p>
-        </div>
-      </div>
-      <div className="featured-content">
-        <p className="featured-description">ARI Wallet Daily Quiz Answer 22 February 2025: How to Earn Free ARI Coins. Are you looking for today's ARI Wallet Daily Quiz answer 22 February 2025? You're in the right place!</p>
-      </div>
-      <div className="interaction-bar">
-        <div className="like-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-            <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-          </svg>
-          0
-        </div>
-        <div className="share-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <circle cx={18} cy={5} r={3} />
-            <circle cx={6} cy={12} r={3} />
-            <circle cx={18} cy={19} r={3} />
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-          </svg>
-          Share
-        </div>
-      </div>
-    </div>
-    {/* Featured Card 3 */}
-    <div className="featured-card">
-      <div className="featured-card-header">
-        <Image src={blogImage} alt="Featured Quiz" className="featured-image" />
-        <div>
-          <h2 className="featured-title">ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin</h2>
-          <p>By: Deepak Choudhary | 21-02-2025</p>
-        </div>
-      </div>
-      <div className="featured-content">
-        <p className="featured-description">ARI Wallet Daily Quiz Answer 22 February 2025: How to Earn Free ARI Coins. Are you looking for today's ARI Wallet Daily Quiz answer 22 February 2025? You're in the right place!</p>
-      </div>
-      <div className="interaction-bar">
-        <div className="like-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z" />
-            <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-          </svg>
-          0
-        </div>
-        <div className="share-button">
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <circle cx={18} cy={5} r={3} />
-            <circle cx={6} cy={12} r={3} />
-            <circle cx={18} cy={19} r={3} />
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-          </svg>
-          Share
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    
+    <div className="container my-5">
+      <div className="row">
+        {/* Sidebar */}
+        <aside className="col-md-3">
+          <input type="text" className="form-control mb-3" placeholder="Search Keyword" />
+          <h5>Category</h5>
+          <ul className="list-unstyled">
+            <li>Blockchain</li>
+            <li>Cryptocurrency</li>
+            <li>Technology</li>
+          </ul>
+          <h5>Tags</h5>
+          <div>
+            <span className="badge bg-secondary">ethereum</span>
+            <span className="badge bg-secondary">bitcoin</span>
+            <span className="badge bg-secondary">tokens</span>
+          </div>
+        </aside>
 
+        {/* Blog List */}
+        <main className="col-md-9">
+          <div className="row">
+            {currentPosts.map((post) => (
+              <div key={post.id} className="col-md-6 mb-4">
+                <div className="blog-card">
+                  <Image src={blogImage} alt="blog" className="img-fluid rounded" />
+                  <div className="d-flex justify-content-between align-items-center mb-2 p-1">
+                    <a href="#" className="text-dark text-decoration-none fw-semibold me-2">
+                      By: {post.author}
+                    </a>
+                    <small className="text-body-secondary">{post.date}</small>
+                  </div>
+                  <p>{post.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <nav>
+            <ul className="pagination d-flex justify-content-center align-items-center">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+                  <button className="page-link" onClick={() => setCurrentPage(index + 1)}>
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </main>
+      </div>
+    </div>
     </>
-  )
-}
+  );
+};
 
-export default Project_review
+export default Blog1;

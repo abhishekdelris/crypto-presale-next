@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import Login from '../../components/Login'; 
+import ForgotPass from '../../components/ForgotPass'; 
 
 const Home: NextPage = () => {
   return (
    
-    <Login />
-  
+    <ForgotPass />
+   
   );
 };
 

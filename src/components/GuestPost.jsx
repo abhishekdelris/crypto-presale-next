@@ -294,7 +294,8 @@ function GuestPost() {
        </ul>
      </div>
    </section>
-  <div>
+ <section>
+ <div className='container'>
   {/* Page Title */}
   <h1 className="page-title">Guest Post</h1>
   {/* Card Grid */}
@@ -487,6 +488,7 @@ function GuestPost() {
     </div>
   </div>
 </div>
+ </section>
 
     </>
   )

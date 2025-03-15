@@ -150,7 +150,7 @@ function Blog() {
                 className="feature-image mb-3"
               />
               <h2 className="news-title">
-                'Very possible' Bitcoin consolidates for 8 months again: 10x
+                'Very possible' Bitcoin consolidates for 8 months again: 10x                                    
                 Research
               </h2>
               <p className="article-excerpt">
@@ -158,7 +158,7 @@ function Blog() {
                 repeating its 2024 price action, where it spent much of the year
                 consolidating after hitting a...
               </p>
-              <div className="d-flex align-items-center tag-row">
+              {/* <div className="d-flex align-items-center tag-row">
                 <div className="crypto-tag btc-tag">
                   <Image
                     src={blogImage}
@@ -173,10 +173,10 @@ function Blog() {
                 <span className="more-button">
                   6 more <i className="fas fa-chevron-down" />
                 </span>
-              </div>
+              </div> */}
               <div className="d-flex flex-column">
                 <span className="source">Cointelegraph</span>
-                <span className="time">17 minutes ago</span>
+                <span className="time">22 February 2025</span>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ function Blog() {
                 <h3 className="article-title">
                   VanEck Submits S-1 Filing To SEC For First AVAX ETF
                 </h3>
-                <div className="d-flex align-items-center tag-row">
+                {/* <div className="d-flex align-items-center tag-row">
                   <div className="crypto-tag avax-tag">
                     <Image
                       src={blogImage}
@@ -203,10 +203,10 @@ function Blog() {
                   <span className="more-button">
                     2 more <i className="fas fa-chevron-down" />
                   </span>
-                </div>
+                </div> */}
                 <div className="d-flex flex-column">
                   <span className="source">Bitcoinist</span>
-                  <span className="time">33 minutes ago</span>
+                  <span className="time">22 February 2025</span>
                 </div>
               </div>
               <div className="col-4">
@@ -224,7 +224,7 @@ function Blog() {
                   Dogecoin Can Still Go Parabolic If This Support Holds, Analyst
                   Says
                 </h3>
-                <div className="d-flex align-items-center tag-row">
+                {/* <div className="d-flex align-items-center tag-row">
                   <div className="crypto-tag btc-tag">
                     <Image
                       src={blogImage}
@@ -239,7 +239,7 @@ function Blog() {
                   <span className="more-button">
                     6 more <i className="fas fa-chevron-down" />
                   </span>
-                </div>
+                </div> */}
                 <div className="d-flex flex-column">
                   <span className="source">NewsBTC</span>
                   <span className="time">about 1 hour ago</span>
@@ -260,7 +260,7 @@ function Blog() {
                   Dogecoin's Pullback Nears Its End: Price Action Shows Signs Of
                   A Rebound
                 </h3>
-                <div className="d-flex align-items-center tag-row">
+                {/* <div className="d-flex align-items-center tag-row">
                   <div className="crypto-tag doge-tag">
                     <Image
                       src={blogImage}
@@ -275,7 +275,7 @@ function Blog() {
                   <span className="more-button">
                     1 more <i className="fas fa-chevron-down" />
                   </span>
-                </div>
+                </div> */}
                 <div className="d-flex flex-column">
                   <span className="source">Bitcoinist</span>
                   <span className="time">about 1 hour ago</span>
@@ -303,11 +303,11 @@ function Blog() {
         <Image src={blogImage} alt="VanEck AVAX ETF" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">VanEck Submits S-1 Filing To SEC For First AVAX ETF</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag btc-tag me-2">AVAX</span>
             <span className="percentage percentage-up">+0.8%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 7 mins</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">Bitcoinist</span>
             <span className="news-time">23 minutes ago</span>
@@ -321,11 +321,11 @@ function Blog() {
         <Image src={blogImage} alt="Dogecoin" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Dogecoin Can Still Go Parabolic If This Support Holds, Analyst Says</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag doge-tag me-2">DOGE</span>
             <span className="percentage percentage-up">+3.7%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 8 mins</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">NewsBTC</span>
             <span className="news-time">about 1 hour ago</span>
@@ -339,11 +339,11 @@ function Blog() {
         <Image src={blogImage} alt="Dogecoin Price" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Dogecoin's Pullback Nears Its End: Price Action Shows Signs Of A Rebound</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag doge-tag me-2">DOGE</span>
             <span className="percentage percentage-up">+3.2%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 1 week</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">Bitcoinist</span>
             <span className="news-time">about 1 hour ago</span>
@@ -358,11 +358,11 @@ function Blog() {
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">US Extradites Russia-Israel Citizen Linked to Lockbit Attacks</h5>
           <div className="d-flex flex-column">
-            <div className="d-flex align-items-center mb-2">
+            {/* <div className="d-flex align-items-center mb-2">
               <span className="coin-tag btc-tag me-2">BTC</span>
               <span className="percentage percentage-up">+2.7%</span>
               <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 10 weeks</span>
-            </div>
+            </div> */}
             <div className="d-flex justify-content-between">
               <span className="news-source">Bitcoin.com</span>
               <span className="news-time">about 1 hour ago</span>
@@ -377,11 +377,11 @@ function Blog() {
         <Image src={blogImage} alt="Crypto Gap" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Crypto faces 'starkest' gap between sentiment and fundamentals: BlackRock</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag btc-tag me-2">BTC</span>
             <span className="percentage percentage-up">+2.7%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 36 mins</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">CoinTelegraph</span>
             <span className="news-time">about 2 hours ago</span>
@@ -395,11 +395,11 @@ function Blog() {
         <Image src={blogImage} alt="Solana Pattern" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Solana Forms Classic Cup-And-Handle Pattern – Analyst Predicts A Breakout To $3,800</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag sol-tag me-2">SOL</span>
             <span className="percentage percentage-up">+1.6%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 36 mins</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">NewsBTC</span>
             <span className="news-time">about 2 hours ago</span>
@@ -413,11 +413,11 @@ function Blog() {
         <Image src={blogImage} alt="Bitcoin Demand" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Bitcoin Demand 'Seems Stuck' - Expert Reveals It's Too Early To Call It A Bear Market</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag btc-tag me-2">BTC</span>
             <span className="percentage percentage-up">+2.7%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 2 mins</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">Bitcoinist</span>
             <span className="news-time">about 7 hours ago</span>
@@ -430,11 +430,11 @@ function Blog() {
         <Image src={blogImage} alt="Arthur Hayes" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Arthur Hayes Predicts Bitcoin Surge To $250,000 By Year-End, Says Current Downtrend Is Clearing Out Deadwood: 'Short-Term Pain'</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag btc-tag me-2">BTC</span>
             <span className="percentage percentage-up">+2.7%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 2 weeks</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">Benzinga</span>
             <span className="news-time">about 3 hours ago</span>
@@ -447,11 +447,11 @@ function Blog() {
         <Image src={blogImage} alt="Coinbase" className="news-image" />
         <div className="card-body p-3">
           <h5 className="news-title1 mb-2">Coinbase Scores Big as Vermont Drops Case—Is This the End of Staking Crackdowns?</h5>
-          <div className="d-flex align-items-center mb-2">
+          {/* <div className="d-flex align-items-center mb-2">
             <span className="coin-tag btc-tag me-2">COIN</span>
             <span className="percentage percentage-down">-6.4%</span>
             <span className="ms-2 text-muted"><i className="fa-regular fa-eye" /> 7 hours</span>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
             <span className="news-source">Bitcoin.com</span>
             <span className="news-time">about 3 hours ago</span>

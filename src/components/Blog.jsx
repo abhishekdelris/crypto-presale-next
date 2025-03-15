@@ -183,7 +183,7 @@ function Blog() {
           {/* Right Column News */}
           <div className="col-lg-6">
             {/* News Item 1 */}
-            <div className="row mb-4">
+            <div className="row mb-4 manage_box_border">
               <div className="col-8">
                 <h3 className="article-title">
                   VanEck Submits S-1 Filing To SEC For First AVAX ETF
@@ -204,12 +204,13 @@ function Blog() {
                     2 more <i className="fas fa-chevron-down" />
                   </span>
                 </div> */}
+                 
                 <div className="d-flex flex-column">
                   <span className="source">Bitcoinist</span>
                   <span className="time">22 February 2025</span>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-4 mb-2">
                 <Image
                   src={blogImage}
                   alt="AVAX ETF News"
@@ -218,7 +219,7 @@ function Blog() {
               </div>
             </div>
             {/* News Item 2 */}
-            <div className="row mb-4">
+            <div className="row mb-4 manage_box_border">
               <div className="col-8">
                 <h3 className="article-title">
                   Dogecoin Can Still Go Parabolic If This Support Holds, Analyst
@@ -245,7 +246,7 @@ function Blog() {
                   <span className="time">about 1 hour ago</span>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-4 mb-2">
                 <Image
                   src={blogImage}
                   alt="Dogecoin News"
@@ -254,7 +255,7 @@ function Blog() {
               </div>
             </div>
             {/* News Item 3 */}
-            <div className="row mb-4">
+            <div className="row mb-4 manage_box_border">
               <div className="col-8">
                 <h3 className="article-title">
                   Dogecoin's Pullback Nears Its End: Price Action Shows Signs Of
@@ -281,7 +282,7 @@ function Blog() {
                   <span className="time">about 1 hour ago</span>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-4 mb-2">
                 <Image
                   src={blogImage}
                   alt="Dogecoin Pullback"

@@ -24,7 +24,7 @@ function ForgotPass() {
                             <div class="col-xl-12 main_flex">
 
                                  
-                                <a href="" class="btn btn-link">Back to login</a>
+                                <a href="/login" class="btn btn-link">Back to login</a>
                             </div>
                             <div class="col-xl-12">
                                 <a href="" class="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main shadow">Email Password Reset Link</a>

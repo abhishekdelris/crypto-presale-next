@@ -73,7 +73,7 @@ function Blog1() {
                   {index + 1}
                 </button>
               </li>
-            ))}
+            ))} 
           </ul>
         </nav>
       </div>

@@ -28,11 +28,35 @@ const blogPosts = [
     date: "23-02-2025",
     content: "Understanding Cryptocurrency Market Trends",
   },
+  {
+    id: 5,
+    author: "Deepak Choudhary",
+    date: "21-02-2025",
+    content: "ARI Wallet Daily Quiz Answer 22 February 2025: Earn 10 ARI Coin",
+  },
+  {
+    id: 6,
+    author: "Deepak Choudhary",
+    date: "21-02-2025",
+    content: "ARI Wallet Daily Quiz Answer 23 February 2025: Earn 15 ARI Coin",
+  },
+  {
+    id: 7,
+    author: "John Doe",
+    date: "22-02-2025",
+    content: "Exploring Blockchain's Future in Finance",
+  },
+  {
+    id: 8,
+    author: "Jane Smith",
+    date: "23-02-2025",
+    content: "Understanding Cryptocurrency Market Trends",
+  },
 ];
 
-const Blog1 = () => {
+const ProjectReview = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 2;
+  const postsPerPage = 4;
 
   // Pagination logic
   const indexOfLastPost = currentPage * postsPerPage;
@@ -108,4 +132,4 @@ const Blog1 = () => {
   );
 };
 
-export default Blog1;
+export default ProjectReview;

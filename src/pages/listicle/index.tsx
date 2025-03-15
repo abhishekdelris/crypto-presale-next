@@ -5,8 +5,8 @@ import Blog1 from '../../components/Blog1';
 const Home: NextPage = () => {
   return (
 <>
-<Blog1 />
-{/* <Listicle /> */}
+{/* <Blog1 /> */}
+<Listicle />
 </>
     
    

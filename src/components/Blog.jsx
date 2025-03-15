@@ -175,7 +175,7 @@ function Blog() {
                 </span>
               </div> */}
               <div className="d-flex flex-column">
-                <span className="source">Cointelegraph</span>
+                <span className="source">Deepak Choudhary</span>
                 <span className="time">22 February 2025</span>
               </div>
             </div>

@@ -12,7 +12,7 @@ function Favorite() {
                             <h5 className="h3">Your Favorite Coin Missing?</h5>
                             <p>Can't find your coin? List your favorite coin now!
                                 Get your community to vote for your coin and gain exposure.</p>
-                            <a href="" className="btn-main primary-btn shadow">Submit Coin</a>
+                            <a href="/submit_coin" className="btn-main primary-btn shadow">Submit Coin</a>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@ function Favorite() {
                             <h5 className="h3">View New Listings</h5><br/>
                             <p>Click the button below to view the New Listings!images
                                 These coins were just submitted.</p><br/>
-                            <a href="" className="btn-main primary-btn shadow">View New Listings</a>
+                            <a href="/listings" className="btn-main primary-btn shadow">View New Listings</a>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ function Blog() {
   {/* main section */}
  
   <section className="blogsection mt-4">
-    <div className="container">
+    <div className="container"> 
       <div className="row">
         <div className="col-xl-12">
           <div className="row g-0 card-group border mb-3 rounded-3 overflow-hidden">
@@ -110,6 +110,9 @@ function Blog() {
             </div>
           </div>
         </div>        
+      </div>
+      <div className='d-flex justify-content-center align-items-center m-5'>
+        <button className='btn btn-secondary'>View More</button>
       </div>
     </div>
   </section>

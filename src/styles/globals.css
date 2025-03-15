@@ -1307,3 +1307,18 @@ button.btn-close {
   background-color: #1e88e5;
   color: white;
 }
+
+.detailscontent .alert {
+  width: fit-content;
+}
+
+.detailsimage {
+  background: #d1e8ff;
+  width: 150px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  max-height: 125px;
+}

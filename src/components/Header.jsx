@@ -127,6 +127,7 @@ export default function Header() {
     <header className="ftco-section">
       <nav className="navbar navbar-expand-lg bg-gradient py-3">
         <div className="container">
+     
           {/* Mobile Navbar Toggle */}
           <button
             className="navbar-toggler"
@@ -143,7 +144,7 @@ export default function Header() {
 
           {/* Logo */}
           <div className="logo me-4">
-            <a href="/" className="text-decoration-none">
+            <Link href="/" className="text-decoration-none">
               <Image
                 src={Logos}
                 alt="Logo"
@@ -151,7 +152,7 @@ export default function Header() {
                 height={53}
                 priority
               />
-            </a>
+            </Link>
           </div>
 
           {/* Navbar Links */}
@@ -169,22 +170,22 @@ export default function Header() {
               </form>
 
               <li className="nav-item">
-                <a className="nav-link" href="/listings">Presales</a>
+                <Link className="nav-link" href="/listings">Presales</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/listings">Best Crypto Presale</a>
+                <Link className="nav-link" href="/listings">Best Crypto Presale</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/project_review">Project Review</a>
+                <Link className="nav-link" href="/project_review">Project Review</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/listicle">Listicle</a>
+                <Link className="nav-link" href="/listicle">Listicle</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/blog">Press Release</a>
+                <Link className="nav-link" href="/blog">Press Release</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/guestpost">Guest Post</a>
+                <Link className="nav-link" href="/guestpost">Guest Post</Link>
               </li>
             </ul>
           </div>
@@ -200,9 +201,9 @@ export default function Header() {
           </form>
 
           {/* Sign In/Register Button */}
-          <a href="/login" className="btn-main primary-btn me-2">
+          <Link href="/login" className="btn-main primary-btn me-2">
             <span>Sign In/Register</span>
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

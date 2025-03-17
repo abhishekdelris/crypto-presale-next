@@ -14,6 +14,7 @@ import Promoted from "./Promoted";
 import Coin from "./Coin";
 import MultiSlider from "./MultiSlider";
 import blogImg from '../images/blog.webp'
+import Link from 'next/link';
 // import OwlCarousel from "react-owl-carousel";
 // import 'owl.carousel/dist/assets/owl.carousel.css';
 // import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -224,23 +225,23 @@ function HomePage() {
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                                <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>1 hour ago</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>1 hour ago</span>
                             </div>
                             
@@ -256,23 +257,23 @@ function HomePage() {
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>Not Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>Promoted</span>
                             </div>
                             <div class="main_flex mb-2">
-                                <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6>
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
                                 <span>Promoted</span>
                             </div>
                         </div>

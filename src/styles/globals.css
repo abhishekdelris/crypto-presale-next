@@ -1519,3 +1519,7 @@ button.btn-close {
 .manage_box_border{
   border-bottom: 1px solid #dee2e6;
 }   
+.text_customization {
+  text-decoration: none;
+  color: #212529;
+}

@@ -56,6 +56,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import googleImage from '../images/google.png';
+import Link from 'next/link';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -137,7 +138,7 @@ function Login() {
                     <p className="mb-0">
                       <input type="checkbox" /> Remember Me
                     </p>
-                    <a href="" className="btn btn-link">Forgot Password</a>
+                    <Link href="" className="btn btn-link">Forgot Password</Link>
                   </div>
                   <div className="col-xl-12">
                     <button type="submit" className="btn-main primary-btn w-100 text-center fw-bold mb-2 py-3 btn-second_main shadow">
@@ -146,12 +147,12 @@ function Login() {
                   </div>
                 </form>
                 <div className="col-xl-12">
-                  <a href="" className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-border shadow mb-3">
+                  <Link href="" className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-border shadow mb-3">
                     <Image src={googleImage} width="24" alt="Google Sign In" /> &nbsp;Sign in with Google
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-xl-12 text-center">
-                  <p>Don’t have an account? <a href="/signup" className="textclr fw-bold">Register Here.</a></p>
+                  <p>Don’t have an account? <Link href="/signup" className="textclr fw-bold">Register Here.</Link></p>
                 </div>
               </div>
             </div>

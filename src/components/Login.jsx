@@ -138,7 +138,7 @@ function Login() {
                     <p className="mb-0">
                       <input type="checkbox" /> Remember Me
                     </p>
-                    <Link href="" className="btn btn-link">Forgot Password</Link>
+                    <Link href="/forgotPassword" className="btn btn-link">Forgot Password</Link>
                   </div>
                   <div className="col-xl-12">
                     <button type="submit" className="btn-main primary-btn w-100 text-center fw-bold mb-2 py-3 btn-second_main shadow">

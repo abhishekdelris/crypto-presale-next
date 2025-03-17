@@ -126,6 +126,7 @@
 import React from "react";
 import Image from 'next/image';
 import blogImage from "../images/blog.webp";
+import Link from "next/link";
 
 function Blog() {
   return (
@@ -149,10 +150,12 @@ function Blog() {
                 alt="Crypto News"
                 className="feature-image mb-3"
               />
+              <Link href={"/blog/Very possible' Bitcoin consolidates for 8 months again: 10x Research"} className='text_customization'>
               <h2 className="news-title">
                 'Very possible' Bitcoin consolidates for 8 months again: 10x                                    
                 Research
               </h2>
+              </Link>
               <p className="article-excerpt">
                 10x Research's head crypto researcher isn't ruling out Bitcoin
                 repeating its 2024 price action, where it spent much of the year

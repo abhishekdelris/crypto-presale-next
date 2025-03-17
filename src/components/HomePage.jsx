@@ -273,30 +273,11 @@ function HomePage() {
                           className="mx-auto"
                         />   Coin Name
                       </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Coin Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Coin Name
-                      </div></li>
+                     
 
               </ul>
               <div className='d-flex justify-content-center my-2'>
-              <button className="btn-main primary-btn small px-4 btn-second_main">View More Coins</button>
+              <Link href="/listings"><button className="btn-main primary-btn small px-4 btn-second_main">View More Coins</button></Link>
               </div>
             </div>
           </div>

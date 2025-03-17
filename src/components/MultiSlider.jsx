@@ -68,7 +68,7 @@ const MultiSlider = ({ sliders }) => {
                   <Image
                     src={slide.image}
                     className="d-block w-100 rounded-3"
-                    height={300}
+                    height={190}
                     width={416}
                     alt={slide.alt || `Slide ${slideIndex + 1}`}
                   />

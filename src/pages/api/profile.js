@@ -1,6 +1,6 @@
 // 5. Example of a protected API route (pages/api/profile.js)
 import { withAuth } from '../../middleware/withAuth';
-import { getUserById } from '../../lib/user';
+import { getUserById } from '../../lib/auth';
 
 async function handler(req, res) {
   try {

@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import React from 'react';
 import Carousel from 'react-multi-carousel';
@@ -113,7 +113,198 @@ function HomePage() {
 
   return (
     <>
-    <section className="coin_bg">
+     <section className='py-4'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-xl-8 border-end border-secondary'>
+            <div className='topsliderview'>
+            <MultiSlider sliders={sliderData} />
+            </div>
+            <div className='row'>
+              <div className='col-xl-6'>
+              <div class="full_presaletable">
+                        <div class="main_flex topheader">
+                            <h5 class="mb-0 fw-bold">New Coins</h5>
+                            <Link href="/listings" class="btn btn-link text-dark">View More</Link>
+                        </div>
+                        <div class="block_Table p-2">
+                            <div class="main_flex mb-2">
+                                <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>1 hour ago</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>1 hour ago</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>1 hour ago</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>1 hour ago</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>1 hour ago</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+              </div>
+              <div className='col-xl-6'>
+              <div class="full_presaletable">
+                        <div class="main_flex topheader">
+                            <h5 class="mb-0 fw-bold">Trending Presales</h5>
+                            <Link href="/listings" class="btn btn-link text-dark">View More</Link>
+                        </div>
+                        <div class="block_Table p-2">
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>Not Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'><h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>Promoted</span>
+                            </div>
+                            <div class="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'> <h6 class="mb-0"><span class="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+                                <span>Promoted</span>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+
+            </div>
+          </div>
+          <div className='col-xl-4'>
+            <div className='boxcoin p-3 rounded-3 h-100'>
+          <div className="section-title">
+              <h2 className="h4 mb-4">Boost Your Business to New Heights</h2>
+            </div>
+            <div className='coinsblock'>
+              <ul>
+                <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Coin Name
+                      </div></li>
+
+              </ul>
+              <div className='d-flex justify-content-center my-2'>
+              <button className="btn-main primary-btn small px-4 btn-second_main">View More Coins</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+     </section>
+
+    <section className="coin_bg d-none">
       <div className="container">
         <div className="row">
           <div className="col-xl-12">
@@ -214,7 +405,7 @@ function HomePage() {
             
     {/* <!-- end --> */}
     {/* <!-- second section --> */}
-    <section class="presalenew my-3">
+    <section class="presalenew my-3 d-none">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4">
@@ -362,3 +553,4 @@ function HomePage() {
 }
 
 export default HomePage
+

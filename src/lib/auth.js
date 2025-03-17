@@ -42,8 +42,8 @@ export async function createUser(userData) {
   
   // Insert user
   const result = await executeQuery({
-    query: 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-    values: [name, email, hashedPassword]
+    query: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+    values: [username, email, hashedPassword]
   });
   
   const userId = result.insertId;
@@ -73,7 +73,7 @@ export async function addUserRole(userId, roleName) {
   return await executeQuery({
     query: `
       INSERT INTO user_roles (user_id, role_id)
-      SELECT ?, id FROM roles WHERE name = ?
+      SELECT ?, id FROM roles WHERE username = ?
     `,
     values: [userId, roleName]
   });

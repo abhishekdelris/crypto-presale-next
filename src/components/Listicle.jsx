@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import blogImage from "../images/blog.webp";
+import Link from "next/link";
 
 const articles = [
   { id: 1, title: "How a Simple Joke Helped Create a New Meme Coin", author: "Andrey Mastyk", date: "March 12, 2025" },
@@ -29,7 +30,7 @@ function Listicle() {
       <section className="brdcrumb">
         <div className="container">
           <ul className="mb-0">
-            <li><a href="/" title="Home">Home</a></li>
+            <li><Link href="/" title="Home">Home</Link></li>
             <li>Listicle</li>
           </ul>
         </div>

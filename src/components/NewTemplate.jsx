@@ -2,28 +2,19 @@ import React from 'react';
 // import "../styles/changes.module.css";
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
+import Link from 'next/link';
 
 function NewTemplate() {
   return (
     <div>
-       {/* <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="logo.png" alt="CryptoGabbar Logo" />
-                <span>CRYPTO Gabbar</span>
-            </div>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search coins..." />
-            </div>
-            <div class="header-actions">
-                <button class="primary-btn">Submit Project</button>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
-    </header> */}
+         <section className="brdcrumb">
+    <div className="container">
+      <ul className="mb-0">
+        <li><Link href="/" title="Home">Home</Link></li>
+        <li>Core Services</li>
+      </ul>
+    </div>
+  </section>
 
     <main>
         <section class="services1 container1 mb-2">
@@ -221,41 +212,7 @@ function NewTemplate() {
         </section>
     </main>
 
-    {/* <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-logo">
-                    <img src="logo.png" alt="CryptoRadar Logo" />
-                    <span>CRYPTO Gabbar</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#">Coins</a>
-                    <a href="#">New Listings</a>
-                    <a href="#">Submit Project</a>
-                    <a href="#">Services</a>
-                    <a href="#">Advertise</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Contact Us</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="copyright">© 2025 Crypto Gabbar - All Rights Reserved</div>
-                <div class="legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Cookie Policy</a>
-                </div>
-                <div class="dmca">
-                    <img src="dmca.png" alt="DMCA Protected" />
-                </div>
-            </div>
-        </div>
-    </footer> */}
+    
     </div>
   )
 }

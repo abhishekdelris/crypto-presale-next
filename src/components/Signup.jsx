@@ -54,6 +54,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -123,7 +124,7 @@ function Signup() {
                       <button type="submit" className="btn-main primary-btn w-75 text-center fw-bold py-3 btn-second_main shadow">Register</button>
                     </div>
                     <div className="col-xl-12 text-center">
-                      <p>Already have an account? <a href="/login" className="textclr fw-bold">Login Here.</a></p>
+                      <p>Already have an account? <Link href="/login" className="textclr fw-bold">Login Here.</Link></p>
                     </div>
                   </div>
                 </form>

@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 function Footer() {
   return (
@@ -11,20 +12,20 @@ function Footer() {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 col-lg-3 mb-md-0 mb-4">
-                    <h2 className="footer-heading"><a href="#" className="logo">Crypto Presale</a></h2>
+                    <h2 className="footer-heading"><Link href="#" className="logo">Crypto Presale</Link></h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
                 <div className="col-md-6 col-lg-4 mb-md-0 mb-4">
                     <h2 className="footer-heading">Categories</h2>
                         <ul className="footermenu">
-                        <li> <a href="/">Home</a> </li>
-                        <li><a className="d-block" href="listings">New listings</a></li>
-                        <li><a className="d-block" href="submit_coin">Submit Coin</a></li>
-                        <li><a className="d-block" href="update_request">Update Request</a></li>
-                        <li><a className="d-block " href="contactus">Contact Us</a></li>
-                        <li><a className="d-block" href="advertise">Advertise</a></li>
-                        <li><a className="d-block" href="blog">Blog</a></li>
+                        <li> <Link href="/">Home</Link> </li>
+                        <li><Link className="d-block" href="listings">New listings</Link></li>
+                        <li><Link className="d-block" href="submit_coin">Submit Coin</Link></li>
+                        <li><Link className="d-block" href="update_request">Update Request</Link></li>
+                        <li><Link className="d-block " href="contactus">Contact Us</Link></li>
+                        <li><Link className="d-block" href="advertise">Advertise</Link></li>
+                        <li><Link className="d-block" href="blog">Blog</Link></li>
                       
                 
                     </ul>
@@ -32,10 +33,10 @@ function Footer() {
                 <div className="col-md-6 col-lg-2 mb-md-0 mb-4">
                     <h2 className="footer-heading">Follow us</h2>
                     <ul className="ftco-footer-social p-0 main_flex_Gap">
-                        <li className="ftco-animate"><a href="#" title="Twitter"><FontAwesomeIcon icon={faTwitter} /></a></li>
-                        <li className="ftco-animate"><a href="#" title="Facebook"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-                        <li className="ftco-animate"><a href="#" title="Instagram"><FontAwesomeIcon icon={faInstagram} /></a></li>
-                        <li className="ftco-animate"><a href="#" title="Linkedin"><FontAwesomeIcon icon={faLinkedinIn} /></a></li>
+                        <li className="ftco-animate"><Link href="#" title="Twitter"><FontAwesomeIcon icon={faTwitter} /></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Facebook"><FontAwesomeIcon icon={faFacebookF} /></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Instagram"><FontAwesomeIcon icon={faInstagram} /></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Linkedin"><FontAwesomeIcon icon={faLinkedinIn} /></Link></li>
                     </ul>
                 </div>
                 <div className="col-md-6 col-lg-3 mb-md-0 mb-4">

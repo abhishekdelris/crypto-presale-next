@@ -3,6 +3,7 @@ import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
 import vactorbg from "../images/vector-row-bg.webp"
 import PresaleFilters from "./PresaleFilters";
+import Link from 'next/link';
 
 function Promoted() {
   return (
@@ -14,7 +15,7 @@ function Promoted() {
                     <div className="table_block">
                         <div className="table_top main_flex">
                             <h6 className="h4 fw-semibold mb-0">Promoted</h6>
-                            <a href="/submit_coin" className="btn btn-link text-presale">Your coin here? Contact us!</a>
+                            <Link href="/submit_coin" className="btn btn-link text-presale">Your coin here? Contact us!</Link>
                         </div>
                         <div className="table_main">
                             <div className="table-responsive">

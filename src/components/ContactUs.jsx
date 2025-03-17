@@ -3,6 +3,7 @@ import Image from 'next/image';
 import phoneImage from "../images/phone.png";
 import emailImage from "../images/email.png";
 import mapsImage from "../images/maps.png";
+import Link from 'next/link';
 
 function ContactUs() {
   return (
@@ -11,7 +12,7 @@ function ContactUs() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="/" title="Home">Home</a></li>
+        <li><Link href="/" title="Home">Home</Link></li>
         <li>Contact Us</li>
       </ul>
     </div>
@@ -98,7 +99,7 @@ function ContactUs() {
                 <textarea className="form-control" rows={4} placeholder="Messages" defaultValue={""} />
               </div>
               <div className="col-xl-12">
-                <a href className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main">Submit</a>
+                <Link href="/" className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main">Submit</Link>
               </div>
             </div>
           </div>

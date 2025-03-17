@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Update_request() {
@@ -7,7 +8,7 @@ function Update_request() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="/" title="Home">Home</a></li>
+        <li><Link href="/" title="Home">Home</Link></li>
         <li>Update Request</li>
       </ul>
     </div>
@@ -41,7 +42,7 @@ function Update_request() {
                 <p className="mb-0">Add a comment or additional information for the Coinsniper team.</p>
                 <textarea className="form-control" rows={3} placeholder="Add comment" defaultValue={""} />
                 <div className="checkbox my-2"><input type="checkbox" /> I agree to the Terms and Conditions*</div>
-                <a href className="btn-main primary-btn btn-second_main shadow">Submit Update Request</a>
+                <Link href className="btn-main primary-btn btn-second_main shadow">Submit Update Request</Link>
               </div>
             </div>
           </div>

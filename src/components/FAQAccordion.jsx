@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import contactusimg from '../images/contact-us.png'; // Adjust path as needed.
+import Link from 'next/link';
 // import '../styles/FAQAccordion.module.css';
 
 const FAQAccordion = () => {
@@ -85,7 +86,7 @@ const FAQAccordion = () => {
               <div className="contact_faq">
                 <h5>You have different questions?</h5>
                 <p>Our team will answer all your questions. We ensure a quick response.</p>
-                <a href="/contactus" className="btn-main primary-btn shadow">Contact Us</a>
+                <Link href="/contactus" className="btn-main primary-btn shadow">Contact Us</Link>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import avtarImg from "../images/altcoin.webp";
+import Link from 'next/link';
 
 function Profile_details() {
   return (
@@ -9,7 +10,7 @@ function Profile_details() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="index.php" title="Home">Home</a></li>
+        <li><Link href="/" title="Home">Home</Link></li>
         <li>Details Page</li>
       </ul>
     </div>
@@ -154,7 +155,7 @@ function Profile_details() {
             <div className="contact_faq">
               <h5>You have different questions?</h5>
               <p>Our team will answer all your questions. we ensure a quick response.</p>
-              <a href className="btn-main primary-btn shadow">Contact Us</a>
+              <Link href="/" className="btn-main primary-btn shadow">Contact Us</Link>
             </div>
           </div>
         </div>
@@ -168,7 +169,7 @@ function Profile_details() {
           <div className="table_block">
             <div className="table_top main_flex">
               <h6 className="h4 fw-semibold mb-0">Promoted</h6>
-              <a href className="btn btn-link text-presale">Your coin here? Contact us!</a>
+              <Link href="/" className="btn btn-link text-presale">Your coin here? Contact us!</Link>
             </div>
             <div className="table_main">
               <div className="table-responsive">

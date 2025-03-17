@@ -204,6 +204,7 @@ import React, { useState } from 'react';
 // Assuming you have a CSS file at this location
 // If not, you should create one or use a different styling approach
 import Image from 'next/image';
+import Link from 'next/link';
 // import avtarImage from "../images/avtar.webp";
 // import '../styles/submitCoins.css';
 
@@ -287,7 +288,7 @@ function SubmitCoin() {
       <section className="brdcrumb">
         <div className="container">
           <ul className="mb-0">
-            <li><a href="/" title="Home">Home</a></li>
+            <li><Link href="/" title="Home">Home</Link></li>
             <li>Submit Coin</li>
           </ul>
         </div>
@@ -363,14 +364,14 @@ function SubmitCoin() {
                                     </div>
                                   </div>
                                   <div className="ci-user-btn mt-4">
-                                    <a href="#" onClick={(e) => e.preventDefault()} className="userEditeBtn btn-main primary-btn small px-4 btn-second_main">
+                                    <Link href="#" onClick={(e) => e.preventDefault()} className="userEditeBtn btn-main primary-btn small px-4 btn-second_main">
                                       <input 
                                         type="file" 
                                         className="item-img file center-block filepreviewprofile" 
                                         onChange={handleLogoUpload}
                                       />
                                       Click to upload image
-                                    </a>
+                                    </Link>
                                   </div>
                                 </div>
                               </div>

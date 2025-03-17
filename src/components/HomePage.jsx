@@ -138,7 +138,7 @@ function HomePage() {
               {carouselItems.map((item, index) => (
                 <div key={index} className="px-2">
                   <div className="cat_button text-center">
-                    <a href="/" title={item.name} className="block">
+                    <Link href="/" title={item.name} className="block">
                       <div className="bg_Cat flex justify-center items-center">
                         <Image
                           src={item.icon}
@@ -150,7 +150,7 @@ function HomePage() {
                         />
                       </div>
                       {item.name}
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -221,7 +221,7 @@ function HomePage() {
                     <div class="full_presaletable">
                         <div class="main_flex topheader">
                             <h5 class="mb-0 fw-bold">New Coins</h5>
-                            <a href="/listings" class="btn btn-link text-dark">View More</a>
+                            <Link href="/listings" class="btn btn-link text-dark">View More</Link>
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">
@@ -253,7 +253,7 @@ function HomePage() {
                     <div class="full_presaletable">
                         <div class="main_flex topheader">
                             <h5 class="mb-0 fw-bold">Trending Presales</h5>
-                            <a href="/listings" class="btn btn-link text-dark">View More</a>
+                            <Link href="/listings" class="btn btn-link text-dark">View More</Link>
                         </div>
                         <div class="block_Table p-2">
                             <div class="main_flex mb-2">

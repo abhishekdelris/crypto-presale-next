@@ -172,6 +172,7 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import googleImage from "../images/google.png";
+import Link from "next/link";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -235,7 +236,7 @@ function Login() {
                     <p className="mb-0">
                       <input type="checkbox" /> Remember Me
                     </p>
-                    <a href="/forgotPassword" className="btn btn-link">Forgot Password</a>
+                    <Link href="/forgotPassword" className="btn btn-link">Forgot Password</Link>
                   </div>
                   <div className="col-xl-12">
                     <button type="submit" className="btn-main primary-btn w-100 text-center fw-bold mb-2 py-3 btn-second_main shadow">
@@ -252,7 +253,7 @@ function Login() {
                   </button>
                 </div>
                 <div className="col-xl-12 text-center">
-                  <p>Don’t have an account? <a href="/signup" className="textclr fw-bold">Register Here.</a></p>
+                  <p>Don’t have an account? <Link href="/signup" className="textclr fw-bold">Register Here.</Link></p>
                 </div>
               </div>
             </div>

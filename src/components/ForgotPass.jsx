@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import googleImage from "../images/google.png";
+import Link from 'next/link';
 
 function ForgotPass() {
   return (
@@ -24,10 +25,10 @@ function ForgotPass() {
                             <div class="col-xl-12 main_flex">
 
                                  
-                                <a href="/login" class="btn btn-link">Back to login</a>
+                                <Link href="/login" class="btn btn-link">Back to login</Link>
                             </div>
                             <div class="col-xl-12">
-                                <a href="" class="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main shadow">Email Password Reset Link</a>
+                                <Link href="" class="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main shadow">Email Password Reset Link</Link>
                             </div>
                            
                         </div>

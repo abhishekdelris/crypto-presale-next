@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import blogImage from "../images/blog.webp";
+import Link from "next/link";
 
 const blogPosts = [
   {
@@ -69,7 +70,7 @@ const ProjectReview = () => {
      <section className="brdcrumb">
      <div className="container">
        <ul className="mb-0">
-         <li><a href="/" title="Home">Home</a></li>
+         <li><Link href="/" title="Home">Home</Link></li>
          <li>Project Review</li>
        </ul>
      </div>
@@ -102,9 +103,9 @@ const ProjectReview = () => {
                 <div className="blog-card">
                   <Image src={blogImage} alt="blog" className="img-fluid rounded" />
                   <div className="d-flex justify-content-between align-items-center mb-2 p-1">
-                    <a href="#" className="text-dark text-decoration-none fw-semibold me-2">
+                    <Link href="#" className="text-dark text-decoration-none fw-semibold me-2">
                       By: {post.author}
-                    </a>
+                    </Link>
                     <small className="text-body-secondary">{post.date}</small>
                   </div>
                   <p>{post.content}</p>

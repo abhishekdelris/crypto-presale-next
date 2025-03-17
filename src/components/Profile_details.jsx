@@ -1,7 +1,9 @@
 import React from 'react'
 import Image from 'next/image';
-import avtarImg from "../images/altcoin.webp";
+import hori_add from "../images/hori_add.jpeg";
+// import halfbannner from "../images/halfbanner.webp";
 import Link from 'next/link';
+import FAQAccordion from './FAQAccordion';
 
 function Profile_details() {
   return (
@@ -20,15 +22,15 @@ function Profile_details() {
     <div className="container">
       <div className="row">
         <div className="col-xl-6 my-2">
-          <img src="images/halfbanner.webp" className="img-fluid advertisement_border" width={730} height={110} />
+          <img src="./halfbannner" className="img-fluid advertisement_border" width={730} height={110} />
         </div>
         <div className="col-xl-6 my-2">
-          <img src="images/halfbanner.webp" className="img-fluid advertisement_border" width={730} height={110} />
+          <img src="./halfbannner" className="img-fluid advertisement_border" width={730} height={110} />
         </div>
         <div className="col-xl-12 mb-4">
-          <img src="images/hori_add.webp" className="img-fluid advertisement_border" width={1920} height={150} />
+          <Image src={hori_add} className="img-fluid advertisement_border" width={1920} height={150} />
         </div>
-        <div className="col-xl-9">
+        <div className="col-xl-9"> 
           <div className="d-flex gap-2">
             <div className="detailsimage">
               <img src="images/altcoin.webp" />
@@ -100,7 +102,7 @@ function Profile_details() {
   </section>
   {/* faq section */}
   <section className="pt-2">
-    <div className="container">
+    {/* <div className="container">
       <div className="row">
         <div className="col-xl-12">
           <div className="advertisementimage mb-3">
@@ -160,7 +162,8 @@ function Profile_details() {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
+    <FAQAccordion />
   </section>
   <section className="tablesection pt-4">
     <div className="container mb-4">

@@ -5,6 +5,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
+import horiImage from "../images/hori_add.jpeg";
 import vactorbg from "../images/vector-row-bg.webp"
 import PresaleFilters from "./PresaleFilters";
 import contactusimg from "../images/contact-us.png";
@@ -41,19 +42,19 @@ function HomePage() {
         title: "Featured Products",
         slides: [
           {
-            image: blogImg,
+            image: horiImage,
             alt: "Product 1",
             caption: "Premium Headphones",
             description: "Noise cancelling with exceptional sound quality"
           },
           {
-            image: blogImg, 
+            image: horiImage, 
             alt: "Product 2",
             caption: "Wireless Earbuds",
             description: "Long battery life with crystal clear audio"
           },
           {
-            image: blogImg,
+            image: horiImage,
             alt: "Product 3",
             caption: "Smart Watch",
             description: "Track your fitness and stay connected"

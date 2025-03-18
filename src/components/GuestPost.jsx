@@ -579,6 +579,7 @@ export default GuestPost
 //     // Or for a regular link:
 //     window.location.href = `/guestpost/${slug}/${post.id}`;
 //   };
+  
 
 //   return (
 //     <>

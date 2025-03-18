@@ -475,5 +475,192 @@ function Blog() {
 
 export default Blog;
 
+// import React, { useState, useEffect } from "react";
+// import Image from 'next/image';
+// import blogImage from "../images/blog.webp";
+// import Link from "next/link";
+// import axios from 'axios';
 
+// function Blog() {
+//   const [featuredArticle, setFeaturedArticle] = useState(null);
+//   const [sidebarArticles, setSidebarArticles] = useState([]);
+//   const [latestArticles, setLatestArticles] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
+//   useEffect(() => {
+//     const fetchArticles = async () => {
+//       try {
+//         setLoading(true);
+//         const response = await axios.get('/api/blog/blogs_News');
+//         const data = await response?.data?.data;
+
+//         if (!data || data.length === 0) {
+//           throw new Error("No articles found.");
+//         }
+
+//         setFeaturedArticle(data[0]);
+//         setSidebarArticles(data.slice(1, 4));
+//         setLatestArticles(data.slice(4));
+//       } catch (err) {
+//         console.error("Error fetching news:", err);
+//         setError(err.message || "Failed to load news data.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchArticles();
+//   }, []);
+
+//   // Format date function
+//   const formatDate = (dateString) => {
+//     if (!dateString) return "Unknown Date";
+//     const date = new Date(dateString);
+//     const now = new Date();
+//     const diffHours = Math.floor((now - date) / (1000 * 60 * 60));
+
+//     if (diffHours < 1) {
+//       return "just now";
+//     } else if (diffHours < 24) {
+//       return `about ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+//     } else {
+//       return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+//     }
+//   };
+
+//   if (loading) {
+//     return (
+//       <div className="container mt-5 text-center">
+//         <div className="spinner-border" role="status">
+//           <span className="visually-hidden">Loading...</span>
+//         </div>
+//         <p className="mt-3">Loading latest crypto news...</p>
+//       </div>
+//     );
+//   }
+
+//   if (error) {
+//     return (
+//       <div className="container mt-5">
+//         <div className="alert alert-danger" role="alert">
+//           {error}
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <>
+//       {/* Breadcrumb */}
+//       <section className="brdcrumb">
+//         <div className="container">
+//           <ul className="mb-0">
+//             <li><Link href="/" title="Home">Home</Link></li>
+//             <li>Blog</li>
+//           </ul>
+//         </div>
+//       </section>
+      
+//       {/* Featured Article */}
+//       <div className="container mt-4">
+//         <h1>Latest Crypto News</h1>
+//         <div className="row">
+//           {featuredArticle && (
+//             <div className="col-lg-6 mb-4">
+//               <div className="news-card1">
+//                 <Image
+//                   src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${featuredArticle?.image}`|| blogImage}
+//                   alt={featuredArticle?.title || "Featured Image"}
+//                   className="feature-image mb-3"
+//                   width={600}
+//                   height={400}
+//                 />
+//                 <Link href={`/blog/${encodeURIComponent(featuredArticle?.slug || featuredArticle?.title)}`} className="link-customize">
+//                   <h2 className="news-title">{featuredArticle?.title}</h2>
+//                 </Link>
+                              
+//                 <div className="d-flex flex-column">
+//                   <span className="source">{featuredArticle?.author || "Unknown Author"}</span>
+//                   <span className="time">{featuredArticle?.date}</span>
+//                 </div>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* Sidebar Articles */}
+//           <div className="col-lg-6">
+//             {sidebarArticles.map((article, index) => (
+//               <div className="row mb-4 manage_box_border" key={index}>
+//                 <div className="col-8">
+//                   <h3 className="article-title">
+//                     <Link href={`/blog/${encodeURIComponent(article?.slug || article?.title)}`} className="link-customize">
+//                       {article?.title}
+//                     </Link>
+//                   </h3>
+//                   {article?.tags?.[0] && (
+//                     <div className="d-flex align-items-center tag-row">
+//                       <div className={`crypto-tag ${article?.tags[0].toLowerCase()}-tag`}>
+//                         <span>{article?.tags[0]}</span>
+//                       </div>
+//                       {article?.priceChange && (
+//                         <span className={`percentage ${article?.priceChange > 0 ? 'text-success' : 'text-danger'}`}>
+//                           {article?.priceChange > 0 ? '+' : ''}{article?.priceChange}%
+//                         </span>
+//                       )}
+//                     </div>
+//                   )}
+//                   <div className="d-flex flex-column">
+//                     <span className="source">{article?.author || "Unknown Source"}</span>
+//                     <span className="time">{article?.date}</span>
+//                   </div>
+//                 </div>
+//                 <div className="col-4 mb-2">
+//                   <Image
+//                     src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${article?.image}` || blogImage}
+//                     alt={article?.title}
+//                     className="news-thumbnail"
+//                     width={150}
+//                     height={100}
+//                   />
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Latest Articles */}
+//       <div className="container mt-4 mb-5">
+//         <div className="row g-4">
+//           {latestArticles.map((article, index) => (
+//             <div className="col-md-4" key={index}>
+//               <div className="news-card bg-white">
+//                 <Image 
+//                   src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${article?.image}` || blogImage} 
+//                   alt={article?.title} 
+//                   className="news-image"
+//                   width={400}
+//                   height={250}
+//                 /> 
+//                 <div className="card-body p-3">
+//                   <h5 className="news-title1 mb-2">
+//                     <Link href={`/blog/${encodeURIComponent(article?.slug || article?.title)}`} className="link-customize">
+//                       {article?.title}
+//                     </Link>
+//                   </h5>
+//                   <div className="d-flex justify-content-between">
+//                     <span className="news-source">{article?.author || "Unknown Source"}</span>
+//                     <span className="news-time">{article?.date}</span>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Blog;

@@ -276,7 +276,7 @@ function HomePage() {
                      
 
               </ul>
-              <div className='d-flex justify-content-center my-2'>
+              <div className='d-flex justify-content-center my-1'>
               <Link href="/listings"><button className="btn-main primary-btn small px-4 btn-second_main">View More Coins</button></Link>
               </div>
             </div>

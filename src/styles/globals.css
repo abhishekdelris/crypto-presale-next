@@ -1643,3 +1643,9 @@ button.btn-close {
   background: #d2e8ff;
   border: 1px solid;
 }
+
+.link-customize {
+  color: #1a3a5f;
+  text-decoration: none;
+}
+

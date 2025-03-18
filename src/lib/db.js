@@ -308,3 +308,36 @@ export async function setupDatabase() {
 // }
 
 // export default dbConnect;
+
+
+
+// // File: lib/db.js
+// import mysql from 'mysql2/promise';
+
+// // Database connection configuration
+// const dbConfig = {
+//   host: process.env.DB_HOST || 'localhost',
+//   user: process.env.DB_USER || 'root',
+//   password: process.env.DB_PASSWORD || '',
+//   database: process.env.DB_NAME || 'your_database_name',
+// };
+
+// // Function to execute SQL queries
+// export async function executeQuery(query, params = []) {
+//   try {
+//     // Create a connection
+//     const connection = await mysql.createConnection(dbConfig);
+    
+//     // Execute the query
+//     const [results] = await connection.execute(query, params);
+    
+//     // Close the connection
+//     await connection.end();
+    
+//     // Return the results
+//     return results;
+//   } catch (error) {
+//     console.error('Database Error:', error);
+//     throw error;
+//   }
+// }

@@ -3,11 +3,10 @@ import withTM from 'next-transpile-modules';
 
 const nextConfig: NextConfig = {
   
-
   reactStrictMode: true,
   images: {
-    formats: ['image/webp', 'image/avif'],
-    domains: ['yourdomain.com'], // If loading from external sources
+    domains: ['d3iuzwoiyg9qa8.cloudfront.net'],
+  
   },
 
   /* config options here */

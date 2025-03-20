@@ -88,9 +88,11 @@ function Login() {
       const response = await axios.post('/api/auth/login', { email, password });
      console.log("response...",response);
      
-      if (response.data.success) {
+      if (response.data.success && response.data.token) {
         // Redirect to dashboard or home page on successful login
         localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('userToken', response.data.token);
+        window.dispatchEvent(new Event('login-event'));
         router.push('/');
 
       }

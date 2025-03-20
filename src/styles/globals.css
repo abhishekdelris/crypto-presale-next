@@ -880,10 +880,12 @@ li.ftco-animate a:hover {
   color: #04182d !important;
 }
 .footer-04 {
+  
   background: url('../images/footer_bg.jpg');
      padding-bottom: 0;
   background-size: cover;
   background-position: center;
+  
 }
 
 .footer-04 .border-top {
@@ -1647,5 +1649,25 @@ button.btn-close {
 .link-customize {
   color: #1a3a5f;
   text-decoration: none;
+}
+
+
+
+/* Ensuring Full-Screen Layout */
+html, body, #__next, .layout121 {
+  height: 100vh;
+  margin: 0;
+}
+
+/* Flexbox for Layout */
+.layout121 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+/* Main Content Area to Fill Space */
+.content121 {
+  flex: 1;
+  /* padding: 20px; Optional padding */
 }
 

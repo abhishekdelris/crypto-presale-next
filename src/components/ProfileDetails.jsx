@@ -5,7 +5,7 @@ import hori_add from "../images/hori_add.jpeg";
 import Link from 'next/link';
 import FAQAccordion from './FAQAccordion';
 
-function Profile_details() {
+function ProfileDetails() {
   return (
     <>
 <div>
@@ -272,4 +272,4 @@ function Profile_details() {
   )
 }
 
-export default Profile_details
+export default ProfileDetails

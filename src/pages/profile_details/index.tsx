@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import ProflieDetails from '../../components/Profile_details'; 
+import ProflieDetails from '../../components/ProfileDetails'; 
 
 
 const Home: NextPage = () => {

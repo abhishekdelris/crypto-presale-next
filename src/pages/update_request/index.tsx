@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import UpdateRequest from '../../components/Update_request'; 
+import UpdateRequest from '../../components/UpdateRequest'; 
 
 const Home: NextPage = () => {
   return (

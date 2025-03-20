@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Blog_details() {
+function BlogDetails() {
   return (
     <> 
 <div>
@@ -309,4 +309,4 @@ function Blog_details() {
   )
 }
 
-export default Blog_details
+export default BlogDetails

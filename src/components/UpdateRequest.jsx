@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-function Update_request() {
+function UpdateRequest() {
   return (
     <>
       <div>
@@ -56,4 +56,4 @@ function Update_request() {
   )
 }
 
-export default Update_request
+export default UpdateRequest

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import ProjectReview from '../../components/Project_review'; 
+import ProjectReview from '../../components/ProjectReview'; 
 
 
 const Home: NextPage = () => {

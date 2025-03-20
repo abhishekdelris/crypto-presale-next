@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
-import NewTemplate from '@/components/NewTemplate';
+import Services from '@/components/Services';
 
 const Home: NextPage = () => {
   return (
-  
-    <NewTemplate />
+   
+    <Services />
    
   );
 };

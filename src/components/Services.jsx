@@ -4,7 +4,7 @@ import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
 import Link from 'next/link';
 
-function NewTemplate() {
+function Services() {
   return (
     <div>
          <section className="brdcrumb">
@@ -217,4 +217,4 @@ function NewTemplate() {
   )
 }
 
-export default NewTemplate
+export default Services

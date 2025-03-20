@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import type { NextPage } from 'next';
-import GuestPostSlug from '../../../components/GuestPostSlug';
+import BlogSlug from '../../../components/BlogSlug';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     return <p>Loading...</p>;
   }
 
-  return <GuestPostSlug slug={slug} id={id} />;
+  return <BlogSlug slug={slug} id={id} />;
 };
 
 export default Home;

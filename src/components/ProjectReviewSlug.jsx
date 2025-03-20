@@ -5,7 +5,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function PostDetail( {slug, id}) {
+function PostDetail4( {slug, id}) {
   const router = useRouter();
   // const { slug, id } = router.query;
   
@@ -19,8 +19,10 @@ function PostDetail( {slug, id}) {
 
     const fetchPostDetail = async () => {
       try {
-        const response = await axios.get(`/api/guestPost/${id}`);
+        const response = await axios.get(`/api/project_preview/${id}`);
         if (response.data.success) {
+          console.log("data........",response);
+          
           setPost(response.data.data);
         } else {
           setError("Failed to fetch post details");
@@ -42,7 +44,7 @@ function PostDetail( {slug, id}) {
       const correctSlug = createSlug(post.title);
       if (correctSlug !== slug) {
         // Redirect to the correct URL if the slug is wrong
-        router.replace(`/guestpost/${correctSlug}/${id}`, undefined, { shallow: true });
+        router.replace(`/project_review/${correctSlug}/${id}`, undefined, { shallow: true });
       }
     }
   }, [post, slug, id, router]);
@@ -70,7 +72,7 @@ function PostDetail( {slug, id}) {
               <Link href="/" title="Home">Home</Link>
             </li>
             <li>
-              <Link href="/guestpost" title="Guest Post">Guest Post</Link>
+              <Link href="/project_review" title="Guest Post">Project Review</Link>
             </li>
             <li>{post.title}</li>
           </ul>
@@ -83,7 +85,7 @@ function PostDetail( {slug, id}) {
           
           <div className="post-meta">
             <span>By: {post.author}</span>
-            <span>Published: {post.date}</span>
+            <span className='ms-4'>Published: {post.date}</span>
           </div>
           
           <div className="post-featured-image">
@@ -93,11 +95,12 @@ function PostDetail( {slug, id}) {
               width={800}
               height={400}
               layout="responsive"
+              className='rounded mt-2'
             />
           </div>
           
           <div 
-            className="post-content"
+            className="post-content mt-4"
             dangerouslySetInnerHTML={{ __html: post.description }}
           />
           
@@ -144,4 +147,4 @@ function PostDetail( {slug, id}) {
   );
 }
 
-export default PostDetail;
+export default PostDetail4;

@@ -20,12 +20,12 @@ function Footer() {
                     <h2 className="footer-heading">Categories</h2>
                         <ul className="footermenu">
                         <li> <Link href="/">Home</Link> </li>
-                        <li><Link className="d-block" href="listings">New listings</Link></li>
-                        <li><Link className="d-block" href="submit_coin">Submit Coin</Link></li>
-                        <li><Link className="d-block" href="update_request">Update Request</Link></li>
-                        <li><Link className="d-block " href="contactus">Contact Us</Link></li>
-                        <li><Link className="d-block" href="advertise">Advertise</Link></li>
-                        <li><Link className="d-block" href="blog">Blog</Link></li>
+                        <li><Link className="d-block" href="/listings">New listings</Link></li>
+                        <li><Link className="d-block" href="/submit_coin">Submit Coin</Link></li>
+                        <li><Link className="d-block" href="/update_request">Update Request</Link></li>
+                        <li><Link className="d-block " href="/contactus">Contact Us</Link></li>
+                        <li><Link className="d-block" href="/advertise">Advertise</Link></li>
+                        <li><Link className="d-block" href="/blog">Blog</Link></li>
                       
                 
                     </ul>

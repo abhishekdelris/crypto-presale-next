@@ -71,9 +71,11 @@
 
 import { verifyPassword, getUserByEmail } from '../../../lib/auth';
 import { generateToken } from '../../../lib/jwt';
-import cookie from 'cookie';
+// import cookie from 'cookie';
 
 export default async function handler(req, res) {
+
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -103,6 +105,7 @@ export default async function handler(req, res) {
       email: user.email,
       name: user.name
     });
+    const cookie = await import('cookie');
 
     // Set HTTP-only cookie
     res.setHeader('Set-Cookie', cookie.serialize('auth', token, {

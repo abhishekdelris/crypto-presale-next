@@ -438,7 +438,13 @@ export default function Header() {
                 <Link className="nav-link" href="/listings">Presales</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/listings">Best Crypto Presale</Link>
+                <Link className="nav-link" href="/ICO">ICO</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/IDO">IDO</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/IEO">IEO</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/project_review">Project Review</Link>
@@ -477,7 +483,8 @@ export default function Header() {
             </button>
           ) : (
             <Link href="/login" className="btn-main primary-btn me-2">
-              <span>Sign In/Register</span>
+              <span>Login</span>       
+              {/* Sign In/Register */}
             </Link>
           )}
         </div>

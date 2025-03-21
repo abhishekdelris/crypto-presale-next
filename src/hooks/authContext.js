@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
   const checkLoginStatus = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3000/api/auth/me', {
+      const response = await axios.get('/api/auth/me', {
         withCredentials: true
       });
       
@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/auth/logout',
+        url: '/api/auth/logout',
         withCredentials: true
       });
       

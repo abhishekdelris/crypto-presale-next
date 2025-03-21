@@ -385,12 +385,25 @@ import Image from "next/image";
 import { FaBars, FaSearch } from "react-icons/fa";
 import Logos from "../images/presale.png";
 import { useAuth } from '../hooks/authContext';
+import Topbanner from "../images/topbanner.png"
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
 
   return (
+    <>
+    <section className="topbar_changes">
+    <div className="container">
+            <div className="topbar-inner">
+                <div><Image src={Topbanner} alt="" height={40} width={40}/> <span className="sponsored">Ad</span></div>
+                <p>BTCBULL: New Meme Coin Rewards Holders with Bitcoin - Raises Over $3 Mil!</p>
+                <button className="btn btn-rounded" style={{backgroundcolor: "#ffffff"}}>
+                    Buy $BTCBULL Now
+                </button>
+            </div>
+        </div>
+        </section>
     <header className="ftco-section">
       <nav className="navbar navbar-expand-lg bg-gradient py-3">
         <div className="container">
@@ -490,5 +503,6 @@ export default function Header() {
         </div>
       </nav>
     </header>
+    </>
   );
 }

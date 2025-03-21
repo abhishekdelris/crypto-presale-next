@@ -569,6 +569,7 @@ input[type="checkbox"] {
 }
 .main_flex_Gap{
    display: flex;
+   justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
@@ -1671,3 +1672,18 @@ html, body, #__next, .layout121 {
   /* padding: 20px; Optional padding */
 }
 
+.topbar_changes {
+  background-color: gold;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.topbar-inner p{
+  display: flex;
+  align-items: center;
+}

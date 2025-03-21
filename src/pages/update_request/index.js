@@ -1,7 +1,7 @@
-import UpdateRequest from '../../components/UpdateRequest'; 
+import PresalePricingTab from '../../components/SubmitListing'; 
 
 const Home = () => {
-  return <UpdateRequest />;
+  return <PresalePricingTab />;
 };
 
 export default Home;

@@ -42,7 +42,7 @@ function UpdateRequest() {
                 <p className="mb-0">Add a comment or additional information for the Coinsniper team.</p>
                 <textarea className="form-control" rows={3} placeholder="Add comment" defaultValue={""} />
                 <div className="checkbox my-2"><input type="checkbox" /> I agree to the Terms and Conditions*</div>
-                <Link href className="btn-main primary-btn btn-second_main shadow">Submit Update Request</Link>
+                <Link href="/" className="btn-main primary-btn btn-second_main shadow">Submit Update Request</Link>
               </div>
             </div>
           </div>

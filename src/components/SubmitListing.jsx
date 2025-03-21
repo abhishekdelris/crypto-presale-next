@@ -1261,7 +1261,7 @@ export default function SubmitListingForm() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-4">
      
 
       {/* Tabs Navigation */}

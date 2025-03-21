@@ -396,7 +396,7 @@ export default function Header() {
     <section className="topbar_changes">
     <div className="container">
             <div className="topbar-inner">
-                <div><Image src={Topbanner} alt="" height={40} width={40}/> <span className="sponsored">Ad</span></div>
+                <div><Image src={Topbanner} alt="" height={60} width={60}/> <span className="sponsored">Ad</span></div>
                 <p>BTCBULL: New Meme Coin Rewards Holders with Bitcoin - Raises Over $3 Mil!</p>
                 <button className="btn btn-rounded" style={{backgroundcolor: "#ffffff"}}>
                     Buy $BTCBULL Now

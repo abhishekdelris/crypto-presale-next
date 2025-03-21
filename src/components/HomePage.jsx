@@ -119,8 +119,15 @@ function HomePage() {
       <div className='container'>
         <div className='row'>
           <div className='col-xl-8 border-end border-secondary'>
-            <div className='topsliderview'>
-            <MultiSlider sliders={sliderData} /> 
+            <div className='topsliderview row'>
+              <div className='mainimage col-xl-12 mb-2'>
+                <Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' />
+              </div>
+              <div className='col-xl-6 mb-2'><Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' /></div>
+              <div className='col-xl-6 mb-2'><Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' /></div>
+
+
+            {/* <MultiSlider sliders={sliderData} />  */}
             </div>
             <div className='row'>
               <div className='col-xl-6'>

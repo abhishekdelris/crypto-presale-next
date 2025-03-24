@@ -67,7 +67,7 @@ function Header({ local_varaiable, ThemeChanger }) {
 	};
 
 	useEffect(() => {
-		document.addEventListener("fullscreenchange", handleFullscreenChange);
+		document.addEventListener("fullscreenchange", handleFullscreenChange); 
 
 		return () => {
 			document.removeEventListener("fullscreenchange", handleFullscreenChange);

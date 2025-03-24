@@ -148,7 +148,7 @@ export const IconClick = (actionfunction) => {
 	localStorage.setItem("spruhanavstyles", "icon-click");
 	localStorage.removeItem("spruhaverticalstyles");
 	const Sidebar = document.querySelector(".main-menu");
-	if (Sidebar) {
+	if (Sidebar) { 
 		Sidebar.style.marginInline = "0px";
 	}
 };

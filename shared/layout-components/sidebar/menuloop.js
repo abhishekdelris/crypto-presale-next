@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 function Menuloop({ MENUITEMS, toggleSidemenu, level }) {
-	function icontextCloseFn() {
+	function icontextCloseFn() { 
 		let html = document.documentElement;
 		if (html.getAttribute("data-toggled") === "icon-text-close") {
 			html.removeAttribute("data-icon-text");

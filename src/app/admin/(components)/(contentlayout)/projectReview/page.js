@@ -11,7 +11,7 @@ const Dashboard = () => {
 			<Seo title={"Dashboard"} />
 			<PageHeader title="Welcome To Dashboard" item="Home" active_item="Project Dashboard" />
 			{/* <!--Row--> */}
-			<Row className="row-sm">
+			<Row className="row-sm d-none">
 				<Col sm={12} lg={12} xl={8}>
 					<Row className=" row-sm  mt-lg-3">
 						<Col sm={12} lg={12} xl={12}>
@@ -801,9 +801,316 @@ const Dashboard = () => {
 				</Col>
 				{/* <!-- col end --> */}
 			</Row>
+			<Row className="row-sm">
+				<div className="col-xl-12">
+					<div className="custom-card mg-b-20 card">
+			<div className="card-body">
+  <div className="row">
+    {/* Title Field */}
+	<div className="col-xl-12 mb-3"><div><label class="main-content-label mb-2">Project Review</label></div></div>
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="title" className="field-required">Title:</label>
+      <input className="form-control" name="title" type="text" id="title" />
+    </div>
+    {/* Alias Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="alias" className="field-required">Alias:</label> <small className="text-danger">No numbers and special characters are allowed, only lowercase
+        letters are allowed.</small>
+      <input placeholder="eg. abc-xyz-bcd" className="form-control" name="alias" type="text" id="alias" />
+    </div>
+    {/* H1 title Field */}
+    <div className="form-group col-sm-6">
+      <label htmlFor="h1_title" className="field-required">H1 Title:</label>
+      <input className="form-control" name="h1_title" type="text" id="h1_title" />
+    </div>
+    {/* H2 title Field */}
+    <div className="form-group col-sm-6">
+      <label htmlFor="h2_title" className="field-required">H2 Title:</label>
+      <input className="form-control" name="h2_title" type="text" id="h2_title" />
+    </div>
+    {/*img_alt_title Field */}
+    <div className="form-group col-sm-6">
+      <label htmlFor="img_alt_title" className="field-required">Image Alt Title:</label>
+      <input className="form-control" name="img_alt_title" type="text" id="img_alt_title" />
+    </div>
+    {/* Status Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="is_gabbar" className="field-required">News Type:</label>
+      <select className="form-control" id="is_gabbar" name="is_gabbar"><option value selected="selected">Select News Type</option><option value={1}>Gabbar News</option><option value={2}>Press Release</option><option value={3}>Sponsored</option><option value={4}>Guest News</option><option value={5}>Blog</option><option value={6}>Price Prediction</option></select>
+    </div>
+    {/* tags Field */}
+    {/* 
+<div class="form-group col-sm-12 col-xl-6">
+    <input type="hidden" name="old_tag" value="">
+    <label for="tags_count">Category:</label><small class="text-primary"></small>
+    <select class="form-control tag_select " multiple="multiple" name="tags[]"></select>
+    </div>
+
+ */}
+    {/* Created By Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="created_by">Created By:</label>
+      <select name="created_by" className="form-control">
+        <option value>Select Author</option>
+        <option value selected>
+          Rohit Khandelwal
+        </option>
+        <option value selected>
+          Sudeep Saxena
+        </option>
+        <option value selected>
+          Simran Mishra
+        </option>
+        <option value selected>
+          Rohit Tripathi
+        </option>
+        <option value selected>
+          Lokesh Gupta
+        </option>
+        <option value selected>
+          Mukta Agrawal
+        </option>
+        <option value selected>
+          Anubhav Tulsyan
+        </option>
+        <option value selected>
+          Sourabh Parihar
+        </option>
+        <option value selected>
+          Dharmendra Vishwakarma
+        </option>
+        <option value selected>
+          Indrapal Prajapati
+        </option>
+        <option value selected>
+          Shristy Malviya
+        </option>
+        <option value selected>
+          Deepak Choudhary
+        </option>
+        <option value selected>
+          Sakshi Jain
+        </option>
+        <option value={30}>
+          Aman ji
+        </option>
+        <option value selected>
+          chainwire
+        </option>
+        <option value selected>
+          Coinzilla
+        </option>
+        <option value selected>
+          Cointraffic
+        </option>
+        <option value selected>
+          1xBit
+        </option>
+        <option value selected>
+          sakshi modi
+        </option>
+        <option value selected>
+          Divya Vilekar
+        </option>
+        <option value selected>
+          Akansha Vyas
+        </option>
+      </select>
+    </div>
+    {/* author Field */}
+    <div className="form-group col-sm-12 col-xl-3">
+      <label htmlFor="author_name">Author Name:</label>
+      <select name="author_id" className="form-control ">
+        <option value>Select Author</option>
+        <option value={2}>
+          Rohit Khandelwal</option>
+        <option value={3}>
+          Sudeep Saxena</option>
+        <option value={5}>
+          Simran Mishra</option>
+        <option value={6}>
+          Rohit Tripathi</option>
+        <option value={7}>
+          Lokesh Gupta</option>
+        <option value={34}>
+          Mukta Agrawal</option>
+        <option value={35}>
+          Anubhav Tulsyan</option>
+        <option value={49}>
+          Sourabh Parihar</option>
+        <option value={50}>
+          Dharmendra Vishwakarma</option>
+        <option value={51}>
+          Indrapal Prajapati</option>
+        <option value={52}>
+          Shristy Malviya</option>
+        <option value={53}>
+          Deepak Choudhary</option>
+        <option value={54}>
+          Sakshi Jain</option>
+        <option value={73}>
+          Aman ji</option>
+        <option value={102}>
+          chainwire</option>
+        <option value={104}>
+          Coinzilla</option>
+        <option value={105}>
+          Cointraffic</option>
+        <option value={106}>
+          1xBit</option>
+        <option value={111}>
+          sakshi modi</option>
+        <option value={112}>
+          Divya Vilekar</option>
+        <option value={113}>
+          Akansha Vyas</option>
+      </select>
+    </div>
+    {/* Title Field */}
+    <div className="form-group col-sm-12 col-xl-3">
+      <label htmlFor="author">Author Name:</label> <span className="text-danger">(When Author is not available in dropdown)</span>
+      <input className="form-control" name="author" type="text" id="author" />
+    </div>
+    {/* Status Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="is_rss_feed" className="field-required">Is Rss Feed:</label>
+      <select className="form-control" id="is_rss_feed" name="is_rss_feed"><option value selected="selected">Is Rss Feed</option><option value={1}>Yes</option><option value={0}>No</option><option value={2}>Review</option></select>
+    </div>
+    {/* Rss Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <label htmlFor="dynamic_rss_feed">Dynamic Rss feed :</label>
+      <input type="checkbox" name="dynamic_rss_feed[]" defaultValue={1} /><span className="mx-2"><b>Daily Hunt</b></span>
+      <input type="checkbox" name="dynamic_rss_feed[]" defaultValue={2} /><span className="mx-2"><b>CMC</b></span>
+      <input type="checkbox" name="dynamic_rss_feed[]" defaultValue={3} /><span className="mx-2"><b>Suncrypto</b></span>
+      <input type="checkbox" name="dynamic_rss_feed[]" defaultValue={4} /><span className="mx-2"><b>Binance</b></span>
+    </div>
+    {/* Image Field */}
+    <div className="form-group col-sm-12 col-xl-6">
+      <div className="form-label font-weight-normal">Coin  / Token Image<span className="text-danger">*</span></div>
+      <div className="custom-file ">
+        <label htmlFor="image" className="custom-file-label">Coin  / Token Image:</label>
+        <input className="custom-file-input" id="image" name="image" type="file" />
+      </div>
+      <div id="img-preview">
+      </div>
+    </div>
+    <div className="form-group col-sm-12 col-xl-3">
+      <label htmlFor="channel_id" className="field-required">Select Channel:</label>
+      <select name="channel_id" className="form-control">
+        <option value>Select Channel</option>
+        <option value={1}>
+          Coin Gabbar</option>
+        <option value={2}>
+          Chainwire</option>
+        <option value={3}>
+          Coinzilla</option>
+      </select>
+    </div>
+    {/* Publishedat Field */}
+    <div className="form-group col-sm-12 col-xl-3">
+      <label htmlFor="publishedAt" className="field-required">Published at:</label>
+      <input className="form-control" type="datetime-local" name="publishedAt" defaultValue="2025-03-24T14:39" />
+    </div>
+    {/* Description Field */}
+    <div className="form-group col-sm-12">
+      <label htmlFor="description">Description:</label>
+      </div>
+    {/* article Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="article">Article:</label>
+      <input className="form-control" name="article" type="text" id="article" />
+    </div>
+    {/* breadcrumbs Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="breadcrumbs">Breadcrumbs:</label>
+      <input className="form-control" name="breadcrumbs" type="text" id="breadcrumbs" />
+    </div>
+    {/* course info Field */}
+    {/* data set Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="data_set">Data set:</label>
+      <input className="form-control" name="data_set" type="text" id="data_set" />
+    </div>
+    {/* discussion forum Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="discussion_forum">Discussion forum:</label>
+      <input className="form-control" name="discussion_forum" type="text" id="discussion_forum" />
+    </div>
+    {/* faq Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="faq">Faq:</label>
+      <input className="form-control" name="faq" type="text" id="faq" />
+    </div>
+    {/* image metadata Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="image_metadata">Image metadata:</label>
+      <input className="form-control" name="image_metadata" type="text" id="image_metadata" />
+    </div>
+    {/* image metadata Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="new_article">New article:</label>
+      <input className="form-control" name="new_article" type="text" id="new_article" />
+    </div>
+    {/* paywalled content Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="paywalled_content">Paywalled content:</label>
+      <input className="form-control" name="paywalled_content" type="text" id="paywalled_content" />
+    </div>
+    {/* profile Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="profile">Profile:</label>
+      <input className="form-control" name="profile" type="text" id="profile" />
+    </div>
+    {/* organization Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="organization">Organization:</label>
+      <input className="form-control" name="organization" type="text" id="organization" />
+    </div>
+    {/* review snippets Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="review_snippets">Review snippets:</label>
+      <input className="form-control" name="review_snippets" type="text" id="review_snippets" />
+    </div>
+    {/*  sitelinks Field */}
+    <div className="form-group col-sm-12 col-lg-6 col-xl-3">
+      <label htmlFor="sitelinks">Site links:</label>
+      <input className="form-control" name="sitelinks" type="text" id="sitelinks" />
+    </div>
+    {/*  video Field */}
+    <div className="form-group col-sm-12">
+      <label htmlFor="video">Video:</label>
+      <input className="form-control" name="video" type="text" id="video" />
+    </div>
+    {/* Seo Title Field */}
+    <div className="form-group col-sm-12">
+      <label htmlFor="seo_title" className="field-required">Seo Title:</label>
+      <input className="form-control" name="seo_title" type="text" id="seo_title" />
+    </div>
+    {/* Meta Keywords Field */}
+    <div className="form-group col-sm-12">
+      <label htmlFor="meta_keywords" className="field-required">Meta Keywords:</label>
+      <input className="form-control" name="meta_keywords" type="text" id="meta_keywords" />
+    </div>
+    {/* Meta Description Field */}
+    <div className="form-group col-sm-12">
+      <label htmlFor="meta_description" className="field-required">Meta Description:</label>
+      <textarea className="form-control" name="meta_description" cols={50} rows={10} id="meta_description" defaultValue={""} />
+    </div>
+    <link rel="stylesheet" type="text/css" href="http://192.168.1.7/kol-backend/public/assets/css/select2.min.css" />
+    <style type="text/css" dangerouslySetInnerHTML={{__html: "\n    span.select2-selection.select2-selection--single {\n        width: 100%;\n    }\n" }} />
+    {/*  */}
+  </div>
+  <button type="button" class="btn btn-primary my-2 btn-icon-text d-inline-flex align-items-center">Submit</button>
+</div>
+</div>
+				</div>
+			</Row>
 			{/* <!-- Row end --> */}
 		</Fragment>
 	);
 };
 
 export default Dashboard;
+
+
+

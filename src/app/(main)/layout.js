@@ -39,11 +39,13 @@ export default function RootLayout({ children }) {
   />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
       </head>
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className='layout121'>
       <AuthProvider>
         <Header />
-        
+        <main className='content121'>
         {children}
+        </main>
+        
         <Footer />
      
       

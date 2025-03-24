@@ -13,7 +13,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Sidebar = ({ local_varaiable, ThemeChanger }) => {
 
-	let {basePath} = nextConfig;
+	let {basePath} = nextConfig; 
 
 		const [menuitems, setMenuitems] = useState(MENUITEMS);
 
@@ -671,10 +671,10 @@ const Sidebar = ({ local_varaiable, ThemeChanger }) => {
 		{/* Start::main-sidebar-header  */}
 			<div className="main-sidebar-header">
 				
-				<Link scroll={false} className="header-logo" href={"/dashboard"}>
+				<Link scroll={false} className="header-logo" href={"#"}>
 						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-logo.png`} alt="logo" className="desktop-logo" />
 						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-logo.png`} alt="logo" className="toggle-logo" />
-						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-dark.png`} alt="logo" className="desktop-dark" />
+						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/logo.png`} alt="logo" className="desktop-dark" />
 						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-dark.png`} alt="logo" className="toggle-dark" />
 						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-white.png`} alt="logo" className="desktop-white" />
 						<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-white.png`} alt="logo" className="toggle-white" />

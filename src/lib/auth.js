@@ -1,5 +1,7 @@
 import { executeQuery } from './db';
 import bcrypt from 'bcryptjs';
+import { verify } from 'jsonwebtoken';
+
 
 export async function getUserByEmail(email) {
   const users = await executeQuery({
@@ -88,4 +90,44 @@ export async function removeUserRole(userId, roleName) {
     `,
     values: [userId, roleName]
   });
+}
+
+
+export async function verifyAuth(request) {
+  try {
+    // Get the authorization header
+    const authHeader = request.headers.get('authorization');
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return { isAuthenticated: false };
+    }
+
+    const token = authHeader.split(' ')[1];
+    
+    // Verify the token
+    const decoded = verify(token, process.env.JWT_SECRET);
+    
+    // Get the user from the database
+    const admin = await executeQuery({
+      query: 'SELECT id, username, email, role FROM admins WHERE id = ?',
+      values: [decoded.id]
+    });
+    
+    if (!admin || admin.length === 0) {
+      return { isAuthenticated: false };
+    }
+    
+    return {
+      isAuthenticated: true,
+      user: {
+        id: admin[0].id,
+        email: admin[0].email,
+        username: admin[0].username,
+        role: admin[0].role
+      }
+    };
+  } catch (error) {
+    console.error('Auth verification error:', error);
+    return { isAuthenticated: false };
+  }
 }

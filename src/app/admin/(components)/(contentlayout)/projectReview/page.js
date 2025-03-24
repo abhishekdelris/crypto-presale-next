@@ -1,11 +1,17 @@
 "use client";
-import React, { Fragment } from "react";
+import React, {useState, Fragment } from "react";
 import { Card, Col, Row, ProgressBar, Button, Form, Dropdown, Table, Pagination, Container } from "react-bootstrap";
 import Link from "next/link";
 import { BudgetTask, MobileAppDesign, ProjectBudget, TASKS, WebsiteAppDesign, WebsiteDesign } from "../../../../../../shared/data/dashboard/dashboarddata";
 import PageHeader from "../../../../../../shared/layout-components/page-header/page-header";
 import Seo from "../../../../../../shared/layout-components/seo/seo";
+import dynamic from 'next/dynamic';
+
+// Dynamically import CKEditor for client-side only
+const CKEditor = dynamic(() => import('@ckeditor/ckeditor5-react').then(mod => mod.CKEditor), { ssr: false });
+const ClassicEditor = dynamic(() => import('@ckeditor/ckeditor5-build-classic'), { ssr: false });
 const Dashboard = () => {
+	const [editorData, setEditorData] = useState('');
 	return (
 		<Fragment>
 			<Seo title={"Dashboard"} />
@@ -807,7 +813,7 @@ const Dashboard = () => {
 			<div className="card-body">
   <div className="row">
     {/* Title Field */}
-	<div className="col-xl-12 mb-3"><div><label class="main-content-label mb-2">Project Review</label></div></div>
+	<div className="col-xl-12 mb-3"><div><label className="main-content-label mb-2">Project Review</label></div></div>
     <div className="form-group col-sm-12 col-xl-6">
       <label htmlFor="title" className="field-required">Title:</label>
       <input className="form-control" name="title" type="text" id="title" />
@@ -840,10 +846,10 @@ const Dashboard = () => {
     </div>
     {/* tags Field */}
     {/* 
-<div class="form-group col-sm-12 col-xl-6">
+<div className="form-group col-sm-12 col-xl-6">
     <input type="hidden" name="old_tag" value="">
-    <label for="tags_count">Category:</label><small class="text-primary"></small>
-    <select class="form-control tag_select " multiple="multiple" name="tags[]"></select>
+    <label for="tags_count">Category:</label><small className="text-primary"></small>
+    <select className="form-control tag_select " multiple="multiple" name="tags[]"></select>
     </div>
 
  */}
@@ -1014,6 +1020,14 @@ const Dashboard = () => {
     {/* Description Field */}
     <div className="form-group col-sm-12">
       <label htmlFor="description">Description:</label>
+	  <CKEditor
+        editor={ClassicEditor}
+        data={editorData}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setEditorData(data);
+        }}
+      />
       </div>
     {/* article Field */}
     <div className="form-group col-sm-12 col-lg-6 col-xl-3">
@@ -1100,7 +1114,7 @@ const Dashboard = () => {
     <style type="text/css" dangerouslySetInnerHTML={{__html: "\n    span.select2-selection.select2-selection--single {\n        width: 100%;\n    }\n" }} />
     {/*  */}
   </div>
-  <button type="button" class="btn btn-primary my-2 btn-icon-text d-inline-flex align-items-center">Submit</button>
+  <button type="button" className="btn btn-primary my-2 btn-icon-text d-inline-flex align-items-center">Submit</button>
 </div>
 </div>
 				</div>

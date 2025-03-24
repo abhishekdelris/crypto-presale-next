@@ -1,6 +1,6 @@
 // File: pages/guest-post/[slug]/[id].js
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ function GuestPostSlug( {slug, id}) {
     // Only fetch when we have the ID
     if (!id) return;
 
-    const fetchPostDetail = async () => {
+    const fetchPostDetail = async () => { 
       try {
         const response = await axios.get(`/api/guestPost/${id}`);
         if (response.data.success) {

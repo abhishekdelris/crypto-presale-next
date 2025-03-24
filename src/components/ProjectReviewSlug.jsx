@@ -1,6 +1,6 @@
 // File: pages/guest-post/[slug]/[id].js
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ function PostDetail4( {slug, id}) {
   
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     // Only fetch when we have the ID

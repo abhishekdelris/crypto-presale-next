@@ -18,7 +18,7 @@
 
 //   const handleInputChange = (e) => {
 //     const { name, value } = e.target;
-//     setFormData({
+//     setFormData({ 
 //       ...formData,
 //       [name]: value,
 //     });
@@ -1227,27 +1227,26 @@
 // };
 
 // export default PresaleForm;
-
 "use client";
 import React, { useState } from "react";
 
 export default function SubmitListingForm() {
   const [activeTab, setActiveTab] = useState("listing");
   const [formData, setFormData] = useState({
-    totalSupply: "",
-    presaleQty: "",
-    startDate: "",
-    endDate: "",
-    softCap: "",
-    hardCap: "",
-    personalCap: "",
-    buyLink: "",
-    fundingStage: "",
-    launchpad: "",
-    country: "",
-    price: "",
-    currency: "USD",
-    fees: "",
+    totalSupply: "1000000",
+    presaleQty: "500000",
+    startDate: "2025-04-01",
+    endDate: "2025-04-30",
+    softCap: "100 ETH",
+    hardCap: "500 ETH",
+    personalCap: "5 ETH",
+    buyLink: "https://example.com/buy",
+    fundingStage: "Pre-seed",
+    launchpad: "LaunchX",
+    country: "United States",
+    price: "0.05",
+    currency: "ETH",
+    fees: "2.5",
   });
 
   const handleChange = (e) => {
@@ -1262,104 +1261,100 @@ export default function SubmitListingForm() {
 
   return (
     <div className="container mt-5 mb-4">
-     
-
       {/* Tabs Navigation */}
-     <div className="contact-us-form">
-     <h2 className="text-center">Submit New Listing</h2>
-      <ul className="nav nav-tabs d-flex justify-content-center">
-        <li className="nav-item">
-          <button
-            className={`nav-link ${activeTab === "listing" ? "active" : ""}`}
-            onClick={() => setActiveTab("listing")}
-          >
-            Listing Details
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${activeTab === "pricing" ? "active" : ""}`}
-            onClick={() => setActiveTab("pricing")}
-          >
-            Pricing Details
-          </button>
-        </li>
-      </ul>
+      <div className="contact-us-form">
+        <h2 className="text-center">Update Listing</h2>
+        <ul className="nav nav-tabs d-flex justify-content-center">
+          <li className="nav-item">
+            <button
+              className={`nav-link ${activeTab === "listing" ? "active" : ""}`}
+              onClick={() => setActiveTab("listing")}
+            >
+              Listing Details
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              className={`nav-link ${activeTab === "pricing" ? "active" : ""}`}
+              onClick={() => setActiveTab("pricing")}
+            >
+              Pricing Details
+            </button>
+          </li>
+        </ul>
 
-      {/* Form Content */}
-      <form onSubmit={handleSubmit} className="mt-4">
-        {activeTab === "listing" && (
-          <div className="row">
-            {[
-              "totalSupply",
-              "presaleQty",
-              "startDate",
-              "endDate",
-              "softCap",
-              "hardCap",
-              "personalCap",
-              "buyLink",
-              "fundingStage",
-              "launchpad",
-              "country",
-            ].map((field) => (
-              <div className="col-md-6 mb-3" key={field}>
-                <label className="form-label text-capitalize">
-                  {field.replace(/([A-Z])/g, " $1")}
-                </label>
-                <input
-                  type={
-                    field === "startDate" || field === "endDate"
-                      ? "date"
-                      : "text"
-                  }
-                  className="form-control"
-                  name={field}
-                  value={formData[field]}
-                  onChange={handleChange}
-                  required
-                />
+        {/* Form Content */}
+        <form onSubmit={handleSubmit} className="mt-4">
+          {activeTab === "listing" && (
+            <div className="row">
+              {[
+                "totalSupply",
+                "presaleQty",
+                "startDate",
+                "endDate",
+                "softCap",
+                "hardCap",
+                "personalCap",
+                "buyLink",
+                "fundingStage",
+                "launchpad",
+                "country",
+              ].map((field) => (
+                <div className="col-md-6 mb-3" key={field}>
+                  <label className="form-label text-capitalize">
+                    {field.replace(/([A-Z])/g, " $1")}
+                  </label>
+                  <input
+                    type={
+                      field === "startDate" || field === "endDate"
+                        ? "date"
+                        : "text"
+                    }
+                    className="form-control"
+                    name={field}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              ))}
+
+              <div className="d-flex justify-content-between">
+                <div></div>
+                <button className="btn btn-primary" type="submit">
+                  Next
+                  <i className="bi bi-arrow-right ms-2"></i>
+                </button>
               </div>
-            ))}
-           <div className="d-flex justify-content-between">
-          <div></div>
-                 <button className="btn btn-primary" type="submit">
-                   Next
-                   <i className="bi bi-arrow-right ms-2"></i>
-                 </button>
-           </div>
-          </div>
-        )}
+            </div>
+          )}
 
-        {activeTab === "pricing" && (
-          <div className="row">
-            {[
-              { label: "Price", name: "price", type: "number" },
-              { label: "Currency", name: "currency", type: "text" },
-              { label: "Fees", name: "fees", type: "number" },
-            ].map(({ label, name, type }) => (
-              <div className="col-md-6 mb-3" key={name}>
-                <label className="form-label">{label}</label>
-                <input
-                  type={type}
-                  className="form-control"
-                  name={name}
-                  value={formData[name]}
-                  onChange={handleChange}
-                  required
-                />
+          {activeTab === "pricing" && (
+            <div className="row">
+              {[
+                { label: "Price", name: "price", type: "number" },
+                { label: "Currency", name: "currency", type: "text" },
+                { label: "Fees", name: "fees", type: "number" },
+              ].map(({ label, name, type }) => (
+                <div className="col-md-6 mb-3" key={name}>
+                  <label className="form-label">{label}</label>
+                  <input
+                    type={type}
+                    className="form-control"
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              ))}
 
-              </div>
-             
-            ))}
-             <button type="submit" className="btn btn-primary">
-          Submit Listing
-        </button>
-          </div>
-        )}
-
-       
-      </form>
+              <button type="submit" className="btn btn-primary">
+                Submit Listing
+              </button>
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@
 //   return (
 //     <div>
 //      <section class="py-4 loginform">
-//       <div class="container">
+//       <div class="container"> 
 //         <div class="row">
 //             <div class="col-lg-6 offset-lg-3">
 //                 <div class="contact-us-form">
@@ -53,7 +53,7 @@
 "use client"
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 function Signup() {

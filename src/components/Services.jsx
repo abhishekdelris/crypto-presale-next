@@ -13,7 +13,7 @@ function Services() {
         <li><Link href="/" title="Home">Home</Link></li>
         <li>Core Services</li>
       </ul>
-    </div>
+    </div> 
   </section>
 
     <main>

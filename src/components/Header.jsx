@@ -14,7 +14,7 @@
 //             <div className="row">
 //               <div className="col-md-6 text-center">
 //                 <Link className="navbar-brand" href="/">
-//                   Crypto <span>Presale</span>
+//                   Crypto <span>Presale</span>  
 //                 </Link>
 //               </div> 
 //               <div className="col-md-6 d-flex justify-content-end mb-md-0 mb-3">
@@ -379,6 +379,7 @@
 // }
 
 // Header.jsx
+"use client"
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -496,7 +497,7 @@ export default function Header() {
             </button>
           ) : (
             <Link href="/login" className="btn-main primary-btn me-2">
-              <span>Login</span>       
+              <span>Sign In/Register</span>       
               {/* Sign In/Register */}
             </Link>
           )}

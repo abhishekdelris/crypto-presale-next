@@ -6,7 +6,7 @@ function BlogDetails() {
 <div>
   {/* Main Content */}
   <div className="container my-4">
-    <div className="row">
+    <div className="row"> 
       {/* Main Article */}
       <div className="col-lg-8">
         <div className="article-header">

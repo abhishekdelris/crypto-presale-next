@@ -14,7 +14,7 @@ const FAQAccordion = () => {
 
   // FAQ Data Array
   const faqData = [
-    {
+    { 
       question: "What are crypto presales?",
       answer: "Crypto presales, also known as Initial Coin Offerings (ICOs), token presales, or early-stage token sales, offer investors a chance to purchase a cryptocurrency's tokens before a public launch. These early investment opportunities, often available at a lower price, aim to fund project development and marketing efforts. They are pivotal for both project teams, seeking capital to bring their visions to life, and for investors, looking for potential high returns from the ground floor of innovative blockchain projects."
     },

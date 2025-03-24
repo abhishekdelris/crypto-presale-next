@@ -17,7 +17,7 @@ function Favorite() {
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-5">
+                <div className="col-xl-5"> 
                     <div className="listing_box ">
                         <div className="contentview">
                             <h5 className="h3">View New Listings</h5><br/>

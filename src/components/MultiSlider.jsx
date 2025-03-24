@@ -22,7 +22,7 @@ const MultiSlider = ({ sliders }) => {
         // Initialize all carousels
         const carousels = document.querySelectorAll('.carousel');
         carousels.forEach((carousel) => {
-          new Carousel(carousel, {
+          new Carousel(carousel, { 
             interval: 5000,
             wrap: true
           });

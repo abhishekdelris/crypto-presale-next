@@ -15,7 +15,7 @@ function UpdateRequest() {
   </section>
   <section className="py-4 loginform">
     <div className="container">
-      <div className="row">
+      <div className="row"> 
         <div className="col-lg-6 offset-lg-3">
           <div className="contact-us-form">
             <div className="row">

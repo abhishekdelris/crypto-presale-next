@@ -16,7 +16,7 @@ export default function QuizCard({ title, author, date, image }) {
         <div className="text-sm text-gray-600 mb-1">
           {date} · By: {author}
         </div>
-        <h3 className="font-bold text-lg">{title}</h3>
+        <h3 className="font-bold text-lg">{title}</h3> 
       </div>
     </Link>
   );

@@ -17,7 +17,7 @@ export default function CoinTracker({ coin = 'bitcoin' }) {
         const response = await axios.get(
           `https://api.coingecko.com/api/v3/coins/${coin}/market_chart`,
           {
-            params: {
+            params: { 
               vs_currency: 'usd',
               days,
             },

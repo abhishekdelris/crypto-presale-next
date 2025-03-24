@@ -16,7 +16,7 @@ function Coin() {
                   <tr>
                     <th>#</th>
                     <th>Coin</th>
-                    <th>Name</th>
+                    <th>Name</th> 
 
                     <th> Stage</th>
                     <th> Price</th>

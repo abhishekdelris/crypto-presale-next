@@ -25,7 +25,7 @@
 //                                 <input type="password" class="form-control" placeholder="Password" name="" />
 //                             </div>
 //                             <div class="col-xl-12 main_flex">
-
+ 
 //                                 <p class="mb-0"><input type="checkbox" /> Remember Me</p>
 //                                 <a href="" class="btn btn-link">Forgot Password</a>
 //                             </div>
@@ -54,7 +54,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import googleImage from '../images/google.png';
 import Link from 'next/link';
 

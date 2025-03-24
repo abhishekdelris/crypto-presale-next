@@ -20,7 +20,7 @@ function ContactUs() {
   {/* contact section */}
   <section className="contact_block_new py-4">
     <div className="container">
-      <div className="row">
+      <div className="row"> 
         <div className="col-xl-6">
           <h1>Get in <span>touch</span> with us</h1>
           <p>We'd love to hear from you! Whether you have questions, need support, or want to discuss a project, feel free to reach out.</p>

@@ -1,6 +1,6 @@
 // 9. Protected route component (components/ProtectedRoute.js)
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
 
 export default function ProtectedRoute({ children }) {

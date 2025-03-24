@@ -26,7 +26,7 @@
 //   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
 //   return (
-//     <>
+//     <> 
 //       <section className="brdcrumb">
 //         <div className="container">
 //           <ul className="mb-0">
@@ -112,7 +112,7 @@ function Listicle() {
       setLoading(true);
       const config = {
         method: 'get',
-        url: '/api/listicle/showAllPost',
+        url: '/api/listicle',
         headers: {}
       };
       

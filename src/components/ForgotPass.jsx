@@ -9,7 +9,7 @@ function ForgotPass() {
     <section class="py-4 loginform">
       <div class="container">
         <div class="row">
-            <div class="col-lg-6 offset-lg-3">
+            <div class="col-lg-6 offset-lg-3"> 
                 <div class="contact-us-form">
                         <div class="row">
                             <div class="col-xl-12 text-center">

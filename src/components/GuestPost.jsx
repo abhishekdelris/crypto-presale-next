@@ -14,7 +14,7 @@
 //       </ul>
 //     </div>
 //   </section>
-//   {/* main section */}
+//   {/* main section */} 
 //   <section className="my-4 ">
 //     <div className="container">
 //       <div className="row">
@@ -496,7 +496,7 @@
 // }
 
 // export default GuestPost
-
+"use client"
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -538,7 +538,7 @@ function GuestPost() {
     // Fetch posts when the component mounts
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("/api/guestPost/guestPost");
+        const response = await axios.get("/api/guestPost");
         if (response.data.success) {
           setPosts(response.data.data);
         } else {

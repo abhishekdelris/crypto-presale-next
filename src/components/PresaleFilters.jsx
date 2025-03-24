@@ -25,7 +25,7 @@ function PresaleFilters() {
       chain: false,
       category: false,
       platform: false,
-      audit: false,
+      audit: false, 
       kyc: false,
     });
   };

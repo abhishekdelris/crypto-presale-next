@@ -12,7 +12,7 @@
 //         <li>Blog</li>
 //       </ul>
 //     </div>
-//   </section>
+//   </section> 
 //   {/* main section */}
 
 //   <section className="blogsection mt-4">
@@ -474,7 +474,7 @@
 // }
 
 // export default Blog;
-
+"use client"
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 import blogImage from "../images/blog.webp";
@@ -492,7 +492,7 @@ function Blog() {
     const fetchArticles = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/blog/blogs_News');
+        const response = await axios.get('/api/blog');
         const data = await response?.data?.data;
 
         if (!data || data.length === 0) {

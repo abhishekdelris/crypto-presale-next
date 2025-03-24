@@ -9,7 +9,7 @@ function Footer() {
     <>
      <footer className="footer-04">
         
-        <div className="container">
+        <div className="container"> 
             <div className="row">
                 <div className="col-md-6 col-lg-3 mb-md-0 mb-4">
                     <h2 className="footer-heading"><Link href="#" className="logo">Crypto Presale</Link></h2>
@@ -33,10 +33,10 @@ function Footer() {
                 <div className="col-md-6 col-lg-2 mb-md-0 mb-4">
                     <h2 className="footer-heading">Follow us</h2>
                     <ul className="ftco-footer-social p-0 main_flex_Gap">
-                        <li className="ftco-animate"><Link href="#" title="Twitter"><FontAwesomeIcon icon={faTwitter} /></Link></li>
-                        <li className="ftco-animate"><Link href="#" title="Facebook"><FontAwesomeIcon icon={faFacebookF} /></Link></li>
-                        <li className="ftco-animate"><Link href="#" title="Instagram"><FontAwesomeIcon icon={faInstagram} /></Link></li>
-                        <li className="ftco-animate"><Link href="#" title="Linkedin"><FontAwesomeIcon icon={faLinkedinIn} /></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Twitter"><i className="fa-brands fa-x-twitter"></i></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Facebook"><i className="fa-brands fa-facebook-f"></i></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Instagram"><i className="fa-brands fa-instagram"></i></Link></li>
+                        <li className="ftco-animate"><Link href="#" title="Linkedin"><i className="fa-brands fa-linkedin-in"></i></Link></li>
                     </ul>
                 </div>
                 <div className="col-md-6 col-lg-3 mb-md-0 mb-4">

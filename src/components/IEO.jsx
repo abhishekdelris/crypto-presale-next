@@ -1,19 +1,16 @@
 "use client"
-import React from 'react'
+import React,{useState} from 'react'
 import altcoinImage from "../images/altcoin.webp";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 function IEO() {
-    const router = useRouter();
-    const handleNavigation = (tab) => {
-        if (tab === 'All') {
-          router.push('/');
-        } else {
-          router.push(`/${tab.toLowerCase().replace(' ', '-')}`);
-        }
-      };
+      const [selectedOption, setSelectedOption] = useState('option1');
+       
+         const handleSelectChange = (event) => {
+           setSelectedOption(event.target.value);
+         };
   return (
     <>
     <section className="brdcrumb">
@@ -22,7 +19,7 @@ function IEO() {
            <li><Link href="/" title="Home">Home</Link></li>
            <li>Crypto IEO</li>
          </ul>
-       </div>
+       </div> 
      </section>
      {/* Main Content */}
      <div className="container py-4">
@@ -77,14 +74,18 @@ function IEO() {
            />
          </div>
          <div className="col-md-3">
-           <select className="form-select">
-             <option selected>Select Type</option>
-           </select>
+         <select value={selectedOption} onChange={handleSelectChange} className="form-select">
+      <option value="option1">selected Date</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
          </div>
          <div className="col-md-3">
-           <select className="form-select">
-             <option selected>Select Date</option>
-           </select>
+         <select value={selectedOption} onChange={handleSelectChange} className="form-select">
+      <option value="option1">selected Date</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
          </div>
          <div className="col-md-1">
            <button className="btn btn-primary w-100">

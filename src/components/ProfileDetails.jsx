@@ -18,7 +18,7 @@ function ProfileDetails() {
     </div>
   </section>
   {/*  */}
-  <section className="pt-4 pb-2">
+  <section className="pt-4 pb-2"> 
     <div className="container">
       <div className="row">
         <div className="col-xl-6 my-2">

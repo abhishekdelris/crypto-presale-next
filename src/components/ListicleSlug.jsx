@@ -1,6 +1,6 @@
 // File: pages/guest-post/[slug]/[id].js
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ function ListicleSlug( {slug, id}) {
       try {
         const response = await axios.get(`/api/listicle/${id}`);
         if (response.data.success) {
-          setPost(response.data.data);
+          setPost(response.data.data); 
         } else {
           setError("Failed to fetch post details");
         }

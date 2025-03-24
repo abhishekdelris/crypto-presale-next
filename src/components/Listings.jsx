@@ -23,6 +23,6 @@ function Listings() {
    <Favorite />
     </>
   )
-}
+} 
 
 export default Listings

@@ -19,7 +19,7 @@
 //   },
 //   {
 //     id: 3,
-//     author: "John Doe",
+//     author: "John Doe", 
 //     date: "22-02-2025",
 //     content: "Exploring Blockchain's Future in Finance",
 //   },
@@ -160,7 +160,7 @@ const ProjectReview = () => {
         setLoading(true);
         const config = {
           method: 'get',
-          url: '/api/project_preview/showAllPost',
+          url: '/api/project_preview',
           headers: {}
         };
         

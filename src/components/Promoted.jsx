@@ -11,7 +11,7 @@ function Promoted() {
           <section className="tablesection pt-4">
         <div className="container mb-4">
             <div className="row">
-                <div className="col-xl-12">
+                <div className="col-xl-12"> 
                     <div className="table_block">
                         <div className="table_top main_flex">
                             <h6 className="h4 fw-semibold mb-0">Featured</h6>

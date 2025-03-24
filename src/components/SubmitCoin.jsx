@@ -14,7 +14,7 @@
 // // </section>
 // // <section class="py-4 loginform submitcoin">
 // //     <div class="container">
-// //         <div class="row">
+// //         <div class="row"> 
 // //             <div class="col-lg-8 offset-lg-2">
 // //                 <div class="contact-us-form">
 // //                     <div class="row">
@@ -296,7 +296,7 @@ function SubmitCoin() {
       <section className="py-4 loginform submitcoin">
         <div className="container">
           <div className="row">
-            <div className="col-lg-8 offset-lg-2">
+            <div className="col-lg-10 offset-lg-1">
               <div className="contact-us-form">
                 <div className="row">
                   <div className="col-xl-12 text-center">
@@ -330,6 +330,20 @@ function SubmitCoin() {
                           className={`nav-link tab-pills ${currentTab === 3 ? 'active' : ''}`} 
                           href="#" 
                           onClick={(e) => { e.preventDefault(); setCurrentTab(3); }}
+                        >
+                         Listing Details
+                        </a>
+                        <a 
+                          className={`nav-link tab-pills ${currentTab === 4 ? 'active' : ''}`} 
+                          href="#" 
+                          onClick={(e) => { e.preventDefault(); setCurrentTab(4); }}
+                        >
+                          Pricing Details
+                        </a>
+                        <a 
+                          className={`nav-link tab-pills ${currentTab === 5 ? 'active' : ''}`} 
+                          href="#" 
+                          onClick={(e) => { e.preventDefault(); setCurrentTab(5); }}
                         >
                           Finish
                         </a>
@@ -522,7 +536,7 @@ function SubmitCoin() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> 
 
                       {/* Tab 2: Address Details */}
                       <div className={`tab ${currentTab === 1 ? 'd-block' : 'd-none'}`}>
@@ -645,8 +659,17 @@ function SubmitCoin() {
                         </div>
                       </div>
 
+                       {/* Tab 4: Finish */}
+                       <div className={`tab ${currentTab === 3 ? 'd-block' : 'd-none'}`}>
+                       <div className="row"><div className="col-md-6 mb-3"><label className="form-label text-capitalize">total Supply</label><input className="form-control" required type="text" defaultValue name="totalSupply" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">presale Qty</label><input className="form-control" required type="text" defaultValue name="presaleQty" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">start Date</label><input className="form-control" required type="date" defaultValue name="startDate" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">end Date</label><input className="form-control" required type="date" defaultValue name="endDate" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">soft Cap</label><input className="form-control" required type="text" defaultValue name="softCap" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">hard Cap</label><input className="form-control" required type="text" defaultValue name="hardCap" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">personal Cap</label><input className="form-control" required type="text" defaultValue name="personalCap" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">buy Link</label><input className="form-control" required type="text" defaultValue name="buyLink" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">funding Stage</label><input className="form-control" required type="text" defaultValue name="fundingStage" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">launchpad</label><input className="form-control" required type="text" defaultValue name="launchpad" /></div><div className="col-md-6 mb-3"><label className="form-label text-capitalize">country</label><input className="form-control" required type="text" defaultValue name="country" /></div><div className="d-flex justify-content-between"><div /><button className="btn btn-primary" type="submit">Next<i className="bi bi-arrow-right ms-2" /></button></div></div>
+</div>
+
+                       {/* Tab 4: Finish */}
+                      <div className={`tab ${currentTab === 4 ? 'd-block' : 'd-none'}`}>
+                     <div className="row"><div className="col-md-6 mb-3"><label className="form-label">Price</label><input className="form-control" required type="number" defaultValue name="price" /></div><div className="col-md-6 mb-3"><label className="form-label">Currency</label><input className="form-control" required type="text" defaultValue="USD" name="currency" /></div><div className="col-md-6 mb-3"><label className="form-label">Fees</label><input className="form-control" required type="number" defaultValue name="fees" /></div></div>
+</div>     
                       {/* Tab 4: Finish */}
-                      <div className={`tab ${currentTab === 3 ? 'd-block' : 'd-none'}`}>
+                      <div className={`tab ${currentTab === 5 ? 'd-block' : 'd-none'}`}>
                         <div className="text-center">
                           <p>All Set! Please submit to continue.</p>
                           <p>Thank you for submitting your coin to our platform.</p>

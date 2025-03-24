@@ -1,16 +1,22 @@
-import React from 'react'
+"use client"
+import React,{useState} from 'react'
 import altcoinImage from "../images/altcoin.webp";
 import Image from 'next/image';
 import Link from 'next/link';
 
 function ICO() {
+  const [selectedOption, setSelectedOption] = useState('option1');
+
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   return (
     <>
      <section className="brdcrumb">
         <div className="container">
           <ul className="mb-0">
             <li><Link href="/" title="Home">Home</Link></li>
-            <li>Crypto ICO</li>
+            <li>Crypto ICO</li> 
           </ul>
         </div>
       </section>
@@ -57,14 +63,19 @@ function ICO() {
             />
           </div>
           <div className="col-md-3">
-            <select className="form-select">
-              <option selected>Select Type</option>
-            </select>
+          <select value={selectedOption} onChange={handleSelectChange} className="form-select">
+      <option value="option1">selected Date</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
+           
           </div>
           <div className="col-md-3">
-            <select className="form-select">
-              <option selected>Select Date</option>
-            </select>
+          <select value={selectedOption} onChange={handleSelectChange} className="form-select">
+      <option value="option1">selected Date</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
           </div>
           <div className="col-md-1">
             <button className="btn btn-primary w-100">

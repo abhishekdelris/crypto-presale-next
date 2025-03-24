@@ -1,6 +1,6 @@
 // 8. Login component (components/LoginForm.js)
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
 
 export default function LoginForm() {

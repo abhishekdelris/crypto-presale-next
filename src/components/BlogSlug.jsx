@@ -1,6 +1,6 @@
 // File: pages/guest-post/[slug]/[id].js
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ function BlogSlug( {slug, id}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     // Only fetch when we have the ID
     if (!id) return;
 

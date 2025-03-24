@@ -33,7 +33,6 @@
     "cookie": "^1.0.2",
     "croppie": "^2.6.5",
     "eslint": "^9.9.0",
-    "firebase": "^10.13.0",
     "font-awesome": "^4.7.0",
     "html-truncate": "^1.2.2",
     "iron-session": "^8.0.4",

@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import { Alert, Button, Card, Col, Nav, OverlayTrigger, Row, Tab, Tooltip, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useAuth } from '../../hooks/admin_authContext';
 
 export default function Home() {
+
+  const { login } = useAuth();
 
   const [passwordshow, setpasswordshow] = useState(false);
   const [passwordshow1, setpasswordshow1] = useState(false);
@@ -48,8 +51,17 @@ export default function Home() {
     },
   });
 
-  const onSubmit = (data) => {
-    // console.log(data)
+  const onSubmit = async (data) => {
+    try {
+      await login(email, password);
+      console.log("login successful.....!");
+      return RouteChange();
+     
+      
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    }
+    console.log(data)
     if (data.email == "adminnextjs@gmail.com" && data.password == "1234567890") {
       return RouteChange();
     }

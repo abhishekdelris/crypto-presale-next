@@ -1,5 +1,5 @@
-import { verifyPassword, getUserByEmail } from '../../../../lib/auth';
-import { generateToken } from '../../../../lib/jwt';
+import { verifyPassword, getUserByEmail } from '@/lib/auth';
+import { generateToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 

@@ -20,6 +20,14 @@ export async function GET() {
       date: formatDate(post.created_at || new Date()),
       likes: post.likes_counts || 0,
       slug: post.alias || "abc",
+      seo: post.is_seo_check || 0,
+      gabbarnews : post.is_seo_check || 0,
+      lan : post.lang || "en",
+      is_new_blog : post.is_news_blog || 0,
+      publishedAt : formatDate(post.publishedAt || new Date()),
+      uploadedAt : formatDate(post.created_at || new Date()),
+      createdby : formatDate(post.created_by || new Date()),
+      urlToImage  : post.urlToImage                                    
     }));
     
     // Return the formatted posts

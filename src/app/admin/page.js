@@ -53,7 +53,8 @@ export default function Home() {
 
   const onSubmit = async (data) => {
     try {
-      await login(email, password);
+      console.log("login data...........!",data)
+      await login(data?.email, data?.password);
       console.log("login successful.....!");
       return RouteChange();
      

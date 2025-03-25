@@ -7,30 +7,30 @@ export const MENUITEMS = [
 	{
 		path: "/admin/dashboard", title: "Dashboard", icon: "ti-home", type: "link", active: false, selected: false, dirchange: false
 	},
-	{
-		menutitle: "Content",
-	},
-	{
-		path: "/admin/guestPost", title: "Guest Post", icon: "ti-pencil-alt", type: "link", active: false, selected: false, dirchange: false
-	},
-	{
-		path: "/admin/pressRelease", title: "Press Release", icon: "ti-announcement", type: "link", active: false, selected: false, dirchange: false
-	},
-	{
-		path: "/admin/listicle", title: "Listicle", icon: "ti-list", type: "link", active: false, selected: false, dirchange: false
-	},
-	{
-		path: "/admin/projectReview", title: "Project Review", icon: "ti-check-box", type: "link", active: false, selected: false, dirchange: false
-	},
+	// {
+	// 	menutitle: "Content",
+	// },
+	// {
+	// 	path: "/admin/guestPost", title: "Guest Post", icon: "ti-pencil-alt", type: "link", active: false, selected: false, dirchange: false
+	// },
+	// {
+	// 	path: "/admin/pressRelease", title: "Press Release", icon: "ti-announcement", type: "link", active: false, selected: false, dirchange: false
+	// },
+	// {
+	// 	path: "/admin/listicle", title: "Listicle", icon: "ti-list", type: "link", active: false, selected: false, dirchange: false
+	// },
+	// {
+	// 	path: "/admin/projectReview", title: "Project Review", icon: "ti-check-box", type: "link", active: false, selected: false, dirchange: false
+	// },
 	{
 		menutitle: "OTHER PAGES",
 	},
 	{
 		title: "Content", icon: "ti-menu", type: "sub", active: false, selected: false, dirchange: false, children: [
-			{ path: "admin/guestPost", type: "sub", active: false, selected: false, dirchange: false, title: "Guest Post" }, 
-			{ path: "admin/pressRelease", type: "sub", active: false, selected: false, dirchange: false, title: "Press Release" }, 
-			{ path: "admin/listicle", type: "sub", active: false, selected: false, dirchange: false, title: "Listicle" }, 
-			{ path: "admin/projectReview", type: "sub", active: false, selected: false, dirchange: false, title: "Project Review" }, 
+			{ path: "/admin/guestPost", type: "link", active: false, selected: false, dirchange: false, title: "Guest Post" }, 
+			{ path: "/admin/pressRelease", type: "link", active: false, selected: false, dirchange: false, title: "Press Release" }, 
+			{ path: "/admin/listicle", type: "link", active: false, selected: false, dirchange: false, title: "Listicle" }, 
+			{ path: "/admin/projectReview", type: "link", active: false, selected: false, dirchange: false, title: "Project Review" }, 
 			
 			
 			// {
@@ -52,6 +52,12 @@ export const MENUITEMS = [
 			
 		],
 	},
+	// {
+	// 	title: "Content", icon: "ti-menu", type: "sub", active: false, selected: false, dirchange: false, children: [
+	// 		{ path: "admin/guestPost", type: "link", active: false, selected: false, dirchange: false, title: "404 Error " },
+			
+	// 	],
+	// },
 	
 	
 	

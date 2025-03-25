@@ -68,3 +68,16 @@ function formatDate(dateString) {
   
   return `${day}-${month}-${year}`;
 }
+
+
+export async function DELETE(request, { params }) {
+  // const { id } = params;
+  
+  try {
+      // Implement your delete logic here
+      // This could be a database call or an external API call
+      return NextResponse.json({ message: 'Post deleted successfully' }, { status: 200 });
+  } catch (error) {
+      return NextResponse.json({ message: 'Failed to delete post' }, { status: 500 });
+  }
+}

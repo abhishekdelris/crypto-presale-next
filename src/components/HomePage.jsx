@@ -21,7 +21,12 @@ function HomePage() {
           <div className='col-xl-8 border-end border-secondary'>
             <div className='topsliderview row'>
               <div className='mainimage col-xl-12 mb-2'>
-                <Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' />
+              <Image 
+  src={horiImage} 
+  alt='topbanner' 
+  className='img-fluid rounded-3 banner-setup' 
+
+/>
               </div>
               <div className='col-xl-6 mb-2'><Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' /></div>
               <div className='col-xl-6 mb-2'><Image src={horiImage} alt='topbanner' className='img-fluid rounded-3' /></div>
@@ -68,6 +73,12 @@ function HomePage() {
                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
                                 <span>1 hour ago</span>
                             </div>
+                            <div className="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+                                <span>1 hour ago</span>
+                            </div>
+                            
                         </div>
                     </div>
               </div>
@@ -100,6 +111,12 @@ function HomePage() {
                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
                                 <span>Promoted</span>
                             </div>
+                            
+                            <div className="main_flex mb-2">
+                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+                                <span>Promoted</span>
+                            </div>
                             <div className="main_flex mb-2">
                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
@@ -119,6 +136,26 @@ function HomePage() {
             <div className='coinsblock'>
               <ul>
                 <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Project Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
+                        <Image
+                          src={altcoinImage}
+                          loading="lazy"
+                          width={38}
+                          height={38}
+                          alt={`alt Icon`}
+                          className="mx-auto"
+                        />   Project Name
+                      </div></li>
+                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
                         <Image
                           src={altcoinImage}
                           loading="lazy"

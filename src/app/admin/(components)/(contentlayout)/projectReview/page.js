@@ -5,11 +5,11 @@ import Link from "next/link";
 import { BudgetTask, MobileAppDesign, ProjectBudget, TASKS, WebsiteAppDesign, WebsiteDesign } from "../../../../../../shared/data/dashboard/dashboarddata";
 import PageHeader from "../../../../../../shared/layout-components/page-header/page-header";
 import Seo from "../../../../../../shared/layout-components/seo/seo";
+const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 import dynamic from 'next/dynamic';
 
-// Dynamically import CKEditor for client-side only
-const CKEditor = dynamic(() => import('@ckeditor/ckeditor5-react').then(mod => mod.CKEditor), { ssr: false });
-const ClassicEditor = dynamic(() => import('@ckeditor/ckeditor5-build-classic'), { ssr: false });
+import "suneditor/dist/css/suneditor.min.css";
+
 const Dashboard = () => {
 	const [editorData, setEditorData] = useState('');
 	return (
@@ -1018,17 +1018,12 @@ const Dashboard = () => {
       <input className="form-control" type="datetime-local" name="publishedAt" defaultValue="2025-03-24T14:39" />
     </div>
     {/* Description Field */}
-    <div className="form-group col-sm-12">
-      <label htmlFor="description">Description:</label>
-	  <CKEditor
-        editor={ClassicEditor}
-        data={editorData}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          setEditorData(data);
-        }}
-      />
-      </div>
+    <div className="ql-wrapper ql-wrapper-demo mb-3">
+								<label className='fw-medium form-label'>Post Description</label>
+								<div>
+									<SunEditor />
+								</div>
+							</div>
     {/* article Field */}
     <div className="form-group col-sm-12 col-lg-6 col-xl-3">
       <label htmlFor="article">Article:</label>

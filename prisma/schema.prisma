@@ -1,0 +1,806 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admins {
+  id           Int          @id @default(autoincrement())
+  username     String       @db.VarChar(255)
+  email        String       @unique(map: "email") @db.VarChar(255)
+  password     String       @db.VarChar(255)
+  role         admins_role? @default(admin)
+  created_at   DateTime?    @default(now()) @db.Timestamp(0)
+  created_by   Int?
+  admins       admins?      @relation("adminsToadmins", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admins_ibfk_1")
+  other_admins admins[]     @relation("adminsToadmins")
+
+  @@index([created_by], map: "created_by")
+}
+
+model assign_role {
+  id                   Int       @id @default(autoincrement())
+  user_id              Int
+  role_id              Int
+  hierarch_manager_id  Int
+  hierarch_teamlead_id Int
+  team_type            String?   @db.VarChar(100)
+  is_active            Int       @default(1)
+  created_at           DateTime? @db.Timestamp(0)
+  updated_at           DateTime? @db.Timestamp(0)
+  deleted_at           DateTime? @db.Timestamp(0)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model author_models {
+  id                      BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id                 BigInt?
+  dispaly_name            String?   @db.VarChar(150)
+  email                   String?   @db.VarChar(100)
+  slug                    String?   @db.VarChar(150)
+  twitter_id              String?   @db.VarChar(255)
+  telegram_id             String?   @db.VarChar(255)
+  reddit_id               String?   @db.VarChar(255)
+  work_profile            String?
+  personal_profile        String?
+  project_associated_with String?
+  hobbies                 String?
+  about_us                String?   @db.Text
+  h2_title                String?   @db.VarChar(100)
+  seo_title               String?   @db.VarChar(255)
+  meta_keywords           String?   @db.VarChar(255)
+  meta_description        String?   @db.Text
+  is_disclaimer           Boolean?  @default(false)
+  invested_coins          String?   @db.LongText
+  user_type               Int?      @default(0) @db.TinyInt
+  on_time                 Int       @default(0)
+  is_approved             Int       @default(0)
+  order_by                Int       @default(0)
+  is_active               Boolean?  @default(false)
+  status                  Int
+  created_at              DateTime? @db.Timestamp(0)
+  updated_at              DateTime? @db.Timestamp(0)
+  deleted_at              DateTime? @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model contact_us {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(100)
+  email         String    @db.VarChar(250)
+  inquiry_type  String    @db.VarChar(50)
+  message       String    @db.Text
+  file          String?   @db.VarChar(100)
+  replied       Boolean   @default(false)
+  is_gt_inquiry Boolean?  @default(false)
+  url_any       String?   @db.VarChar(255)
+  website_url   String?   @db.VarChar(100)
+  twitter_id    String?   @db.VarChar(100)
+  telegram_id   String?   @db.VarChar(100)
+  project_name  String?   @db.VarChar(100)
+  subject       String?   @db.VarChar(100)
+  description   String?   @db.LongText
+  other         String?   @db.LongText
+  other2        String?   @db.LongText
+  created_at    DateTime  @default(now()) @db.Timestamp(0)
+  updated_at    DateTime  @default(now()) @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crypto_news {
+  id                 Int       @id @default(autoincrement()) @db.UnsignedInt
+  author_id          Int       @default(0)
+  author_name        String?   @db.VarChar(255)
+  author             String?   @db.Char(250)
+  user_id            Int       @default(1)
+  is_gabbar          Int?      @default(0)
+  is_analysis        Int       @default(0)
+  is_featured        Int       @default(0)
+  channel_id         Int       @default(1)
+  created_by         Int       @default(0)
+  is_home            Int       @default(0)
+  title              String?   @unique(map: "title_2") @db.VarChar(500)
+  alias              String?   @unique(map: "alias_2") @db.VarChar(500)
+  interlink_id       Int?
+  h1_title           String?   @db.VarChar(155)
+  h2_title           String?   @db.VarChar(150)
+  short_desc         String?   @db.Text
+  description        String?   @db.LongText
+  url                String?   @db.Char(250)
+  image              String?   @db.VarChar(150)
+  img_alt_title      String?   @db.VarChar(155)
+  is_thumb           Int       @default(0)
+  urlToImage         String?   @db.Text
+  word_file          String?   @db.VarChar(100)
+  key_takeaways_json String?   @db.LongText
+  lang               String?   @default("'en'") @db.Char(5)
+  tags               String?   @db.Text
+  status             Int       @default(1) @db.SmallInt
+  twitter_post       Int       @default(0) @db.SmallInt
+  is_active          Int       @default(1)
+  coin_id            Int?      @default(0)
+  unique_name        String?   @db.VarChar(255)
+  is_rss_feed        Int       @default(0)
+  is_news_blog       Int       @default(0)
+  is_paid            Int       @default(0)
+  is_organic         Int       @default(0)
+  is_cryptotax       Boolean   @default(false)
+  is_seo_check       Boolean   @default(false)
+  publishedAt        Int?
+  focus_keyword      String?   @db.VarChar(100)
+  seo_title          String?   @db.VarChar(255)
+  meta_keywords      String?   @db.Text
+  meta_description   String?   @db.Text
+  likes_counts       Int       @default(0)
+  other_status       Int       @default(0)
+  article            String?   @db.VarChar(100)
+  breadcrumbs        String?   @db.VarChar(100)
+  course_info        String?   @db.VarChar(100)
+  data_set           String?   @db.VarChar(100)
+  discussion_forum   String?   @db.VarChar(100)
+  events             String?   @db.VarChar(100)
+  faq                String?   @db.VarChar(100)
+  image_metadata     String?   @db.VarChar(100)
+  project_name       String?   @db.VarChar(255)
+  project_website    String?   @db.VarChar(255)
+  new_article        String?   @db.VarChar(100)
+  paywalled_content  String?   @db.VarChar(100)
+  product            String?   @db.VarChar(100)
+  profile            String?   @db.VarChar(100)
+  organization       String?   @db.VarChar(100)
+  review_snippets    String?   @db.VarChar(100)
+  sitelinks          String?   @db.VarChar(100)
+  video              String?   @db.VarChar(100)
+  dynamic_rss_feed   String?   @db.VarChar(50)
+  dataset_level      String?   @db.VarChar(100)
+  dataset_json       String?   @db.VarChar(255)
+  update_status      Int       @default(0)
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @updatedAt @db.Timestamp(0)
+  deleted_at         DateTime? @db.Timestamp(0)
+
+  @@index([alias], map: "alias")
+  @@index([author], map: "author")
+  @@index([author_id], map: "author_id")
+  @@index([coin_id], map: "coin_id")
+  @@index([created_at], map: "created_at")
+  @@index([id], map: "id")
+  @@index([is_active], map: "is_active")
+  @@index([is_analysis], map: "is_analysis")
+  @@index([is_analysis], map: "is_analysis_2")
+  @@index([is_gabbar], map: "is_gabbar")
+  @@index([is_news_blog], map: "is_news_blog")
+  @@index([is_rss_feed], map: "is_rss_feed")
+  @@index([lang], map: "lang")
+  @@index([publishedAt], map: "publishedAt")
+  @@index([status], map: "status")
+  @@index([title], map: "title")
+  @@index([unique_name], map: "unique_name")
+}
+
+model crypto_news_draft {
+  id                 Int       @id @default(autoincrement()) @db.UnsignedInt
+  author_id          Int?
+  author_name        String?   @db.VarChar(255)
+  author             String?   @db.Char(250)
+  user_id            Int?
+  is_gabbar          Int?
+  is_analysis        Int?
+  is_featured        Int?      @default(0)
+  channel_id         Int?
+  created_by         Int?
+  title              String?   @db.VarChar(500)
+  alias              String?   @db.VarChar(500)
+  h1_title           String?   @db.VarChar(100)
+  h2_title           String?   @db.VarChar(100)
+  h3_title           String?   @db.VarChar(100)
+  h4_title           String?   @db.VarChar(100)
+  h5_title           String?   @db.VarChar(100)
+  h6_title           String?   @db.VarChar(100)
+  short_desc         String?   @db.Text
+  description        String?   @db.LongText
+  url                String?   @db.Char(250)
+  image              String?   @db.VarChar(150)
+  is_thumb           Int?
+  urlToImage         String?   @db.Text
+  word_file          String?   @db.VarChar(100)
+  key_takeaways_json String?   @db.LongText
+  lang               String?   @db.Char(5)
+  tags               String?   @db.Text
+  status             Int?      @db.SmallInt
+  twitter_post       Int?      @db.SmallInt
+  is_active          Int?
+  coin_id            Int?
+  unique_name        String?   @db.VarChar(255)
+  is_rss_feed        Int?
+  is_news_blog       Int?
+  is_paid            Int?
+  is_organic         Int?
+  is_cryptotax       Boolean?
+  is_seo_check       Boolean?
+  publishedAt        Int?
+  focus_keyword      String?   @db.VarChar(100)
+  seo_title          String?   @db.VarChar(255)
+  meta_keywords      String?   @db.Text
+  meta_description   String?   @db.Text
+  likes_counts       Int?
+  other_status       Int?
+  article            String?   @db.VarChar(100)
+  breadcrumbs        String?   @db.VarChar(100)
+  course_info        String?   @db.VarChar(100)
+  data_set           String?   @db.VarChar(100)
+  discussion_forum   String?   @db.VarChar(100)
+  events             String?   @db.VarChar(100)
+  faq                String?   @db.VarChar(100)
+  image_metadata     String?   @db.VarChar(100)
+  project_name       String?   @db.VarChar(255)
+  project_website    String?   @db.VarChar(255)
+  new_article        String?   @db.VarChar(100)
+  paywalled_content  String?   @db.VarChar(100)
+  product            String?   @db.VarChar(100)
+  profile            String?   @db.VarChar(100)
+  organization       String?   @db.VarChar(100)
+  review_snippets    String?   @db.VarChar(100)
+  sitelinks          String?   @db.VarChar(100)
+  video              String?   @db.VarChar(100)
+  dynamic_rss_feed   String?   @db.VarChar(50)
+  dataset_level      String?   @db.VarChar(100)
+  dataset_json       String?   @db.VarChar(255)
+  interlink_url      String?   @db.VarChar(255)
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+  deleted_at         DateTime? @db.Timestamp(0)
+}
+
+model crypto_news_replies {
+  id          Int       @id @default(autoincrement()) @db.UnsignedInt
+  news_id     Int
+  user_id     Int
+  user_name   String?   @db.VarChar(100)
+  parent_id   Int
+  body_html   String    @db.Text
+  status      String    @db.VarChar(255)
+  views_count Int       @default(0)
+  reply_count Int       @default(0)
+  publishedAt Int
+  is_active   Int       @default(1)
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  deleted_at  DateTime? @db.Timestamp(0)
+}
+
+model crypto_news_views {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  news_id    Int
+  user_id    Int?
+  ip_address String?   @db.VarChar(100)
+  view_count Int       @default(0)
+  is_active  Int       @default(1)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  updated_at DateTime? @default(now()) @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+
+  @@index([ip_address], map: "ip_address")
+  @@index([is_active], map: "is_active")
+  @@index([news_id], map: "news_id")
+  @@index([user_id], map: "user_id")
+}
+
+model faqs {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  type       Int?
+  question   String    @db.VarChar(255)
+  long_desc  String    @db.Text
+  is_active  Int
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
+model gsc_console_data {
+  id            Int       @id @default(autoincrement())
+  data_slug     String?   @db.LongText
+  query         String?   @db.VarChar(255)
+  data_url      String?   @map("data-url") @db.LongText
+  author_id     Int?
+  category_type String    @db.VarChar(110)
+  impresion     Int?
+  ctr           Decimal?  @db.Decimal(8, 4)
+  position      Decimal?  @db.Decimal(8, 4)
+  total_view    Int
+  total_users   Int
+  avg_count     String?   @db.VarChar(112)
+  click         Int?
+  dimention     String?   @db.VarChar(111)
+  created_at    DateTime  @default(now()) @db.Timestamp(0)
+  gsc_date      DateTime? @db.Date
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@index([author_id], map: "author_id")
+  @@index([category_type], map: "category_type")
+  @@index([click], map: "click")
+  @@index([ctr], map: "ctr")
+  @@index([dimention], map: "dimention")
+  @@index([gsc_date], map: "gsc_date")
+  @@index([impresion], map: "impresion")
+}
+
+model gsc_query_upload_data {
+  id           Int       @id @default(autoincrement())
+  query        String?   @db.VarChar(110)
+  keyword_type Int?
+  category     String?   @db.VarChar(50)
+  page_count   Int?      @default(0)
+  clicks       Int?      @default(0)
+  impression   Int
+  ctr          Decimal?  @db.Decimal(8, 4)
+  position     Decimal?  @db.Decimal(8, 4)
+  created_at   DateTime  @default(now()) @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
+
+  @@index([category], map: "category")
+  @@index([query], map: "query")
+}
+
+model gsc_source_data {
+  id                    Int       @id @default(autoincrement())
+  date                  DateTime? @db.Date
+  sessionSource         String?   @db.VarChar(110)
+  category_type         String    @db.VarChar(100)
+  pagePath              String    @db.Text
+  views                 Int?
+  activeUsers           Int
+  sessions              Int
+  engagedSessions       Int
+  averageEngagementTime String    @db.VarChar(255)
+  eventsPerSession      Decimal   @db.Decimal(8, 4)
+  engagementRate        Decimal   @db.Decimal(8, 4)
+  eventCount            String    @db.VarChar(110)
+  created_at            DateTime  @default(now()) @db.Timestamp(0)
+
+  @@index([activeUsers], map: "activeUsers")
+}
+
+model gsc_source_data_copy {
+  id                    Int       @id @default(autoincrement())
+  date                  DateTime? @db.Date
+  views                 Int
+  sessionSource         String?   @db.VarChar(100)
+  category_type         String?   @db.VarChar(100)
+  pagePath              String?   @db.Text
+  activeUsers           Int
+  sessions              Int
+  engagedSessions       Int
+  averageEngagementTime String    @db.VarChar(255)
+  eventsPerSession      Decimal   @db.Decimal(8, 4)
+  engagementRate        Decimal   @db.Decimal(8, 4)
+  eventCount            String    @db.VarChar(255)
+  created_at            DateTime  @default(now()) @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model hierarchy_management {
+  id                 Int       @id @default(autoincrement())
+  is_perent          Int       @default(0)
+  user_id            Int
+  role_id            Int
+  user_role_id       Int
+  department_lead_id Int
+  teamlead_id        Int
+  viewer_id          Int?
+  department_id      Int
+  sub_department_id  Int
+  order_by           Int
+  flag               Int
+  team_type          Int
+  date_of_joining    DateTime? @db.Date
+  remarks            String?   @db.VarChar(255)
+  is_active          Int       @default(1)
+  created_at         DateTime  @default(now()) @db.DateTime(0)
+  updated_at         DateTime  @db.DateTime(0)
+  deleted_at         DateTime? @db.Timestamp(0)
+
+  @@index([department_id], map: "department_id")
+  @@index([department_lead_id], map: "department_lead_id")
+  @@index([teamlead_id], map: "teamlead_id")
+  @@index([viewer_id], map: "viewer_id")
+}
+
+model news_likes {
+  id            Int       @id @default(autoincrement())
+  news_id       Int?
+  ip_address    String?   @db.VarChar(255)
+  user_id       Int?
+  news_reply_id Int       @default(0)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+
+  @@index([ip_address], map: "ip_address")
+  @@index([news_id], map: "news_id")
+  @@index([user_id], map: "user_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model password_resets {
+  email      String
+  token      String
+  created_at DateTime? @db.Timestamp(0)
+
+  @@index([email], map: "password_resets_email_index")
+  @@ignore
+}
+
+model permission_role {
+  permission_id Int @db.UnsignedInt
+  role_id       Int @db.UnsignedInt
+
+  @@id([permission_id, role_id])
+  @@index([permission_id], map: "permission_role_permission_id_index")
+  @@index([role_id], map: "permission_role_role_id_index")
+}
+
+model permission_roles {
+  id                Int       @id @default(autoincrement())
+  role_id           Int
+  user_permision_id Int
+  created_at        DateTime  @default(now()) @db.Timestamp(0)
+  deleted_at        DateTime? @db.Timestamp(0)
+}
+
+model permissions {
+  id                  Int       @id @default(autoincrement()) @db.UnsignedInt
+  key                 String
+  table_name          String?
+  permission_group_id Int?      @db.UnsignedInt
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  @@index([key], map: "permissions_key_index")
+}
+
+model personal_access_tokens {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  tokenable_type String    @db.VarChar(255)
+  tokenable_id   BigInt    @db.UnsignedBigInt
+  name           String    @db.VarChar(255)
+  token          String    @unique(map: "personal_access_tokens_token_unique") @db.VarChar(64)
+  abilities      String?   @db.Text
+  last_used_at   DateTime? @db.Timestamp(0)
+  expires_at     DateTime? @db.Timestamp(0)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+
+  @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
+}
+
+model roles {
+  id       Int    @id @default(autoincrement())
+  username String @unique(map: "username") @db.VarChar(50)
+}
+
+model user_permission {
+  id         Int       @id @default(autoincrement())
+  title      String    @db.VarChar(255)
+  type       Int?
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  id                      Int          @id @default(autoincrement()) @db.UnsignedInt
+  role_id                 Int?         @default(3)
+  wa_id                   String?      @db.VarChar(100)
+  is_upload               Int          @default(0)
+  name                    String
+  dob                     DateTime?    @db.Date
+  username                String?      @db.VarChar(255)
+  email                   String
+  is_email_verified       Int?         @default(0) @db.TinyInt
+  email_send_count        Int          @default(0)
+  avatar                  String?      @default("users/default.png")
+  newsletter              Int?         @default(0)
+  password                String
+  remember_token          String?      @db.VarChar(100)
+  status                  Int?         @default(0)
+  token                   String?      @db.VarChar(250)
+  token_expired           DateTime?    @db.DateTime(0)
+  about                   String?      @db.Text
+  address                 String?      @db.VarChar(100)
+  country                 String?      @db.VarChar(100)
+  state                   String?      @db.VarChar(100)
+  city                    String?      @db.VarChar(100)
+  pincode                 String?      @db.VarChar(50)
+  skills                  String?      @db.VarChar(250)
+  referral_code           String?      @db.VarChar(255)
+  referral_code_by        String?      @db.VarChar(255)
+  facebook_url            String?      @db.VarChar(255)
+  is_facebook_verify      Boolean      @default(false)
+  instagram_url           String?      @db.VarChar(255)
+  is_instagram_verify     Boolean      @default(false)
+  telegram_url            String?      @db.VarChar(255)
+  is_telegram_verify      Boolean      @default(false)
+  twitter_url             String?      @db.VarChar(255)
+  is_twitter_verify       Boolean      @default(false)
+  reddit_url              String?      @db.VarChar(255)
+  is_reddit_verify        Boolean      @default(false)
+  linkedin_url            String?      @db.VarChar(255)
+  is_linkedin_verify      Int          @default(0)
+  discord_url             String?      @db.VarChar(255)
+  is_discord_verify       Int          @default(0)
+  mobile_number           BigInt?
+  is_mobile_verified      Int?         @default(0) @db.TinyInt
+  otp                     Int?
+  otp_expired             DateTime?    @db.DateTime(0)
+  country_code            Bytes?       @db.VarBinary(10)
+  country_id              Int?         @db.UnsignedInt
+  state_id                Int?         @db.UnsignedInt
+  ico_alert               Int          @default(0)
+  airdrop_alert           Int          @default(0)
+  event_alert             Int          @default(0)
+  ip_address              String?      @db.VarChar(100)
+  continentName           String?      @db.VarChar(150)
+  latitude                String?      @db.VarChar(100)
+  longitude               String?      @db.VarChar(100)
+  mediaType               String?      @db.VarChar(100)
+  mediaId                 String?      @db.VarChar(255)
+  added_by                Int?
+  is_active               Int          @default(1)
+  is_forget               Int          @default(0) @db.TinyInt
+  fcm_token               String?      @db.VarChar(255)
+  device_type             String?      @db.VarChar(100)
+  widget_key              String?      @db.VarChar(255)
+  user_left_reason        String?      @db.VarChar(100)
+  wallet_address          String?      @db.LongText
+  gender                  users_gender
+  qualification           String?      @db.VarChar(255)
+  user_from               Int          @default(0) @db.TinyInt
+  profile_completion      Int?         @default(0)
+  is_claim                Int          @default(0)
+  other_status            Int          @default(0)
+  project_desc            String?      @db.Text
+  marketing_services_desc String?      @db.Text
+  total_giveaway_won      Float?       @default(0)
+  dark_mode               Boolean      @default(false)
+  active_status           Boolean      @default(false)
+  messenger_color         String?      @db.VarChar(20)
+  is_temporary            Int          @default(0)
+  backend_mobile_number   String?      @db.VarChar(50)
+  update_status           Int          @default(0)
+  created_at              DateTime?    @db.Timestamp(0)
+  updated_at              DateTime?    @db.Timestamp(0)
+  deleted_at              DateTime?    @db.Timestamp(0)
+  api_token               String?      @db.VarChar(80)
+
+  @@index([airdrop_alert], map: "airdrop_alert")
+  @@index([country_id], map: "country_id")
+  @@index([created_at], map: "created_at")
+  @@index([deleted_at], map: "deleted_at")
+  @@index([device_type], map: "device_type")
+  @@index([event_alert], map: "event_alert")
+  @@index([fcm_token], map: "fcm_token")
+  @@index([ico_alert], map: "ico_alert")
+  @@index([is_email_verified], map: "is_email_verified")
+  @@index([is_mobile_verified], map: "is_mobile_verified")
+  @@index([is_upload], map: "is_upload")
+  @@index([mediaId], map: "mediaId")
+  @@index([mediaType], map: "mediaType")
+  @@index([mobile_number], map: "mobile_number")
+  @@index([password], map: "password")
+  @@index([referral_code], map: "referral_code")
+  @@index([referral_code_by], map: "referral_code_by")
+  @@index([role_id], map: "role_id")
+  @@index([state_id], map: "state_id")
+  @@index([updated_at], map: "updated_at")
+  @@index([username], map: "username")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crypto_coins_icos {
+  id                      Int       @id @default(autoincrement())
+  user_id                 BigInt?   @default(1)
+  ico_ido_id              Int?
+  submit_ico_id           Int?
+  type                    Boolean
+  ico_ido_type            Int       @default(0)
+  title                   String?   @db.VarChar(100)
+  h1_title                String?   @db.VarChar(100)
+  h2_title                String?   @db.VarChar(100)
+  h3_title                String?   @db.VarChar(100)
+  h4_title                String?   @db.VarChar(100)
+  h5_title                String?   @db.VarChar(100)
+  h6_title                String?   @db.VarChar(100)
+  name                    String?   @db.VarChar(100)
+  alias                   String?   @db.VarChar(255)
+  slug                    String?   @unique(map: "slug") @db.VarChar(150)
+  interlink_id            Int?
+  country                 String?   @db.VarChar(50)
+  email                   String?   @db.VarChar(50)
+  image                   String?   @db.VarChar(150)
+  img_alt_title           String?   @db.VarChar(155)
+  ico_project_id          Int
+  ico_project_type_id     Int
+  website                 String?   @db.VarChar(150)
+  social_media_url        String?   @db.VarChar(255)
+  twitter                 String?   @db.VarChar(150)
+  instagram               String?   @db.VarChar(150)
+  medium                  String?   @db.VarChar(150)
+  reddit                  String?   @db.VarChar(150)
+  telegram                String?   @db.VarChar(150)
+  telegram_group          String?   @db.VarChar(100)
+  discord                 String?   @db.VarChar(200)
+  chat_url                String?   @db.VarChar(255)
+  white_paper_url         String?   @db.VarChar(150)
+  social_media_image      String?   @db.VarChar(255)
+  start_time              String?   @db.VarChar(150)
+  end_time                String?   @db.VarChar(100)
+  start_end_tba           String?   @db.VarChar(50)
+  total_coin              String    @db.VarChar(50)
+  quantity_of_coin        String    @db.VarChar(50)
+  total_supply_percent    String?   @db.VarChar(255)
+  ico_price               String?   @db.VarChar(50)
+  accept_type             String?   @db.VarChar(50)
+  show_hide_price         Boolean   @default(false)
+  fund_asking_for         String?   @db.VarChar(255)
+  where_to_buy            String?   @db.Text
+  timezone                String?   @db.Char(10)
+  description             String?   @db.Text
+  featured                Int?      @db.TinyInt
+  status                  Int?      @default(0) @db.TinyInt
+  affiliate               String?   @db.VarChar(1000)
+  hide                    Int?      @db.SmallInt
+  crypto_market_id        Int?
+  coin_name               String?   @db.VarChar(100)
+  participate_links       String?   @db.Text
+  whitepaper              String?   @db.VarChar(255)
+  soft_cap                String?   @db.VarChar(50)
+  personal_cap            String?   @db.VarChar(50)
+  hard_cap                String?   @db.VarChar(50)
+  likes_counts            Int       @default(0)
+  youtube_link            String?   @db.VarChar(255)
+  linkedin                String?   @db.VarChar(100)
+  plan                    String?   @db.VarChar(50)
+  other_status            Int       @default(0)
+  article                 String?   @db.VarChar(100)
+  breadcrumbs             String?   @db.VarChar(100)
+  course_info             String?   @db.VarChar(100)
+  data_set                String?   @db.VarChar(100)
+  discussion_forum        String?   @db.VarChar(100)
+  events                  String?   @db.VarChar(100)
+  faq                     String?   @db.VarChar(100)
+  image_metadata          String?   @db.VarChar(100)
+  new_article             String?   @db.VarChar(100)
+  paywalled_content       String?   @db.VarChar(100)
+  product                 String?   @db.VarChar(100)
+  profile                 String?   @db.VarChar(100)
+  organization            String?   @db.VarChar(100)
+  review_snippets         String?   @db.VarChar(100)
+  sitelinks               String?   @db.VarChar(100)
+  video                   String?   @db.VarChar(100)
+  user_contact_type       String?   @db.VarChar(50)
+  user_contact            String?   @db.VarChar(100)
+  is_guest                Boolean   @default(false)
+  is_assign_cubs          Int       @default(0)
+  fund_stage              String?   @db.VarChar(100)
+  launchpad               Int?
+  total_amount            Float?
+  wallet_address          String?   @db.VarChar(100)
+  trasaction_id           String?   @db.VarChar(100)
+  market_email            String?   @db.VarChar(100)
+  coin_token              String?   @db.VarChar(100)
+  ticker                  String?   @db.VarChar(100)
+  blockchain              String?   @db.VarChar(100)
+  coin_token_address      String?   @db.VarChar(100)
+  private_sale_start_date DateTime? @db.Date
+  private_sale_end_date   DateTime? @db.Date
+  private_sale_token_sold Float?    @db.Float
+  private_sale_rate       Float?    @db.Float
+  private_sale_goal       Int?
+  private_sale_where_buy  String?   @db.VarChar(100)
+  pre_sale_start_date     DateTime? @db.Date
+  pre_sale_end_date       DateTime? @db.Date
+  pre_sale_token_sold     Float?    @db.Float
+  pre_sale_rate           Float?    @db.Float
+  pre_sale_goal           Int?
+  pre_sale_where_buy      String?   @db.VarChar(100)
+  public_sale_start_date  DateTime? @db.Date
+  public_sale_end_date    DateTime? @db.Date
+  public_sale_token_sold  Float?    @db.Float
+  public_sale_rate        Float?    @db.Float
+  public_sale_goal        Int?
+  public_sale_where_buy   String?   @db.VarChar(100)
+  ico_sale_start_date     DateTime? @db.Date
+  ico_sale_end_date       DateTime? @db.Date
+  ico_sale_token_sold     Float?    @db.Float
+  ico_sale_rate           Float?    @db.Float
+  ico_sale_goal           Int?
+  ico_sale_where_buy      String?   @db.VarChar(100)
+  ido_sale_start_date     DateTime? @db.Date
+  ido_sale_end_date       DateTime? @db.Date
+  ido_sale_token_sold     Float?    @db.Float
+  ido_sale_rate           Float?    @db.Float
+  ido_sale_goal           Int?
+  ido_sale_where_buy      String?   @db.VarChar(100)
+  ieo_sale_start_date     DateTime? @db.Date
+  ieo_sale_end_date       DateTime? @db.Date
+  ieo_sale_token_sold     Float?    @db.Float
+  ieo_sale_rate           Float?    @db.Float
+  ieo_sale_goal           Int?
+  ieo_sale_where_buy      String?   @db.VarChar(100)
+  package                 String?   @db.VarChar(250)
+  contract_address        String?   @db.VarChar(255)
+  other_launchpad         String?   @db.VarChar(255)
+  category_id             Int?
+  sub_category_id         Int?
+  seo_title               String?   @db.VarChar(255)
+  meta_keywords           String?   @db.Text
+  meta_description        String?   @db.VarChar(255)
+  platform_json           String?   @db.VarChar(100)
+  is_active               Int       @default(1)
+  is_review               Int?      @default(0)
+  approved_by             Int?
+  approved_time           DateTime? @db.DateTime(0)
+  one_usdt                String?   @db.VarChar(30)
+  project_website         String    @db.VarChar(255)
+  project_name            String    @db.VarChar(255)
+  update_status           Int       @default(0)
+ created_at  DateTime @default(now()) @db.Timestamp(0)
+updated_at  DateTime @updatedAt @db.Timestamp(0)
+  deleted_at             DateTime @updatedAt @db.Timestamp(0)
+
+ @@map("crypto_coins_icos") // Map to actual database table
+  @@index([crypto_market_id], map: "crypto_market_id")
+  @@index([slug], map: "slug_2")
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crypto_coins_icos_details {
+  id                          Int       @id @default(autoincrement())
+  crypto_coins_icos_id        Int
+  detail_ico_ido_type         Int?
+  detail_total_supply         String?   @db.VarChar(50)
+  detail_qty_of_coin          String?   @db.VarChar(50)
+  detail_ico_price            String?   @db.VarChar(30)
+  detail_where_to_buy         String?   @db.Text
+  detail_start_date           String?   @db.VarChar(50)
+  detail_end_date             String?   @db.VarChar(50)
+  detail_fund_asking_for      String?   @db.VarChar(255)
+  detail_launchpad            Int?
+  detail_ico_project_type_id  Int?
+  detail_accept_type          String?   @db.VarChar(50)
+  detail_is_review            Int?
+  detail_token_for_sale       String?   @db.VarChar(100)
+  detail_percentage_of_supply String?   @db.VarChar(100)
+  detail_ico_stage            Int?
+  detail_one_usdt             String?   @db.VarChar(100)
+  detail_soft_cap             String?   @db.VarChar(100)
+  detail_hard_cap             String?   @db.VarChar(100)
+  detail_personal_cap         String?   @db.VarChar(100)
+  is_input                    Int       @default(0)
+  deleted_at                  DateTime? @db.Timestamp(0)
+  created_at                  DateTime  @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime  @default(now()) @db.Timestamp(0)
+}
+
+enum admins_role {
+  admin
+  super_admin
+}
+
+enum users_gender {
+  MALE
+  FEMALE
+  OTHER
+}

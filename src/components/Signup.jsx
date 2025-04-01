@@ -4,7 +4,7 @@
 //   return (
 //     <div>
 //      <section class="py-4 loginform">
-//       <div class="container">
+//       <div class="container"> 
 //         <div class="row">
 //             <div class="col-lg-6 offset-lg-3">
 //                 <div class="contact-us-form">
@@ -53,7 +53,8 @@
 "use client"
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -62,7 +63,8 @@ function Signup() {
     password: '',
     confirmPassword: ''
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); 
+    const router = useRouter();
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -122,7 +124,7 @@ function Signup() {
                       <button type="submit" className="btn-main primary-btn w-75 text-center fw-bold py-3 btn-second_main shadow">Register</button>
                     </div>
                     <div className="col-xl-12 text-center">
-                      <p>Already have an account? <a href="/login" className="textclr fw-bold">Login Here.</a></p>
+                      <p>Already have an account? <Link href="/login" className="textclr fw-bold">Login Here.</Link></p>
                     </div>
                   </div>
                 </form>

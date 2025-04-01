@@ -22,7 +22,7 @@ const MultiSlider = ({ sliders }) => {
         // Initialize all carousels
         const carousels = document.querySelectorAll('.carousel');
         carousels.forEach((carousel) => {
-          new Carousel(carousel, {
+          new Carousel(carousel, { 
             interval: 5000,
             wrap: true
           });
@@ -67,8 +67,8 @@ const MultiSlider = ({ sliders }) => {
                 <div key={slideIndex} className={`carousel-item ${slideIndex === 0 ? "active" : ""}`}>
                   <Image
                     src={slide.image}
-                    className="d-block w-100"
-                    height={220}
+                    className="d-block w-100 rounded-3"
+                    height={190}
                     width={416}
                     alt={slide.alt || `Slide ${slideIndex + 1}`}
                   />

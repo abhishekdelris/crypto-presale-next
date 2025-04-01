@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Favorite() {
@@ -12,17 +13,17 @@ function Favorite() {
                             <h5 className="h3">Your Favorite Coin Missing?</h5>
                             <p>Can't find your coin? List your favorite coin now!
                                 Get your community to vote for your coin and gain exposure.</p>
-                            <a href="" className="btn-main primary-btn shadow">Submit Coin</a>
+                            <Link href="/submit_coin" className="btn-main primary-btn shadow">Submit Coin</Link>
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-5">
+                <div className="col-xl-5"> 
                     <div className="listing_box ">
                         <div className="contentview">
                             <h5 className="h3">View New Listings</h5><br/>
                             <p>Click the button below to view the New Listings!images
                                 These coins were just submitted.</p><br/>
-                            <a href="" className="btn-main primary-btn shadow">View New Listings</a>
+                            <Link href="/listings" className="btn-main primary-btn shadow">View New Listings</Link>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import phoneImage from "../images/phone.png";
 import emailImage from "../images/email.png";
 import mapsImage from "../images/maps.png";
+import Link from 'next/link';
 
 function ContactUs() {
   return (
@@ -11,7 +12,7 @@ function ContactUs() {
   <section className="brdcrumb">
     <div className="container">
       <ul className="mb-0">
-        <li><a href="/" title="Home">Home</a></li>
+        <li><Link href="/" title="Home">Home</Link></li>
         <li>Contact Us</li>
       </ul>
     </div>
@@ -19,7 +20,7 @@ function ContactUs() {
   {/* contact section */}
   <section className="contact_block_new py-4">
     <div className="container">
-      <div className="row">
+      <div className="row"> 
         <div className="col-xl-6">
           <h1>Get in <span>touch</span> with us</h1>
           <p>We'd love to hear from you! Whether you have questions, need support, or want to discuss a project, feel free to reach out.</p>
@@ -98,7 +99,7 @@ function ContactUs() {
                 <textarea className="form-control" rows={4} placeholder="Messages" defaultValue={""} />
               </div>
               <div className="col-xl-12">
-                <a href className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main">Submit</a>
+                <Link href="/" className="btn-main primary-btn w-100 text-center fw-bold py-3 btn-second_main">Submit</Link>
               </div>
             </div>
           </div>

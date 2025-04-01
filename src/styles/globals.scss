@@ -1,0 +1,234 @@
+//assets
+@import "../../public/assets/css/icons.css";
+@import "../../public/assets/css/styles.css";
+@import "../../public/assets/scss/variables";
+@import "simplebar-react/dist/simplebar.min.css";
+
+
+.productdesc {
+  .swiper-slide:not(.swiper-slide-active) {
+    height: 120px !important;
+  }
+}
+.productdetails-leftsection {
+  position: sticky;
+  top: 0;
+}
+
+// ik
+.tabs {
+  display: flex;
+  border-bottom: 0.0005px solid var(--header-border-color) !important;
+  
+  margin-bottom: 10px;
+}
+
+.tab-button {
+  padding: 0.5em 1em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.tab-button.active {
+  font-weight: bold;
+  border-bottom: 2px solid #007bff; /* Active tab indicator color */
+}
+
+pre {
+  background: #f8f9fa;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.show-code {
+  display: block;
+}
+
+.sun-editor .se-wrapper .se-wrapper-code {
+  background-color: #191919 !important;
+  color: #fff;
+}
+
+.tooltip-warning.bs-tooltip-bottom .tooltip-arrow:before {
+  border-bottom-color: rgb(var(--warning-rgb)) !important;
+}
+
+.tooltip-primary.bs-tooltip-bottom .tooltip-arrow:before {
+  border-bottom-color: rgb(var(--primary-rgb)) !important;
+}
+
+.tooltip-info.bs-tooltip-bottom .tooltip-arrow:before {
+  border-bottom-color: rgb(var(--info-rgb)) !important;
+}
+
+ .tooltip-secondary.bs-tooltip-bottom .tooltip-arrow:before {
+     border-bottom-color: rgb(var(--secondary-rgb)) !important;
+ }
+@media (min-width: 768px) {
+  .gap-md-8 {
+    gap: 8rem !important;
+  }
+}
+
+[data-bg-img="bgimg1"] {
+  --menu-bg: url(../public/assets/images/menu-bg-images/bg-img1.jpg) !important;
+}
+[data-bg-img="bgimg2"] {
+  --menu-bg: url(../public/assets/images/menu-bg-images/bg-img2.jpg) !important;
+}
+[data-bg-img="bgimg3"] {
+  --menu-bg: url(../public/assets/images/menu-bg-images/bg-img3.jpg) !important;
+}
+[data-bg-img="bgimg4"] {
+  --menu-bg: url(../public/assets/images/menu-bg-images/bg-img4.jpg) !important;
+}
+[data-bg-img="bgimg5"] {
+  --menu-bg: url(../public/assets/images/menu-bg-images/bg-img5.jpg) !important;
+}
+
+#chartjs-chart {
+  height: 300px !important;
+}
+[dir="rtl"] {
+  .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow,
+  .bs-tooltip-start .tooltip-arrow {
+    inset-inline-end: auto;
+    inset-inline-start: calc(-1 * var(--bs-tooltip-arrow-height));
+  }
+  .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before,
+  .bs-tooltip-start .tooltip-arrow::before {
+    inset-inline-start: 0;
+    border-inline-start-color: transparent;
+    inset-inline-end: -1px;
+    border-inline-end-color: var(--bs-tooltip-bg);
+  }
+
+  .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow,
+  .bs-tooltip-end .tooltip-arrow {
+    inset-inline-start: auto;
+    inset-inline-end: calc(-1 * var(--bs-tooltip-arrow-height));
+  }
+  .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before,
+  .bs-tooltip-end .tooltip-arrow::before {
+    inset-inline-end: 0;
+    border-inline-end-color: transparent;
+    inset-inline-start: -1px;
+    border-inline-start-color: var(--bs-tooltip-bg);
+  }
+  .form-floating > .form-control-plaintext ~ label,
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label,
+  .form-floating > .form-select ~ label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(1.25rem);
+  }
+  .form-select.is-invalid:not([multiple]):not([size]),
+  .form-select.is-invalid:not([multiple])[size="1"],
+  .was-validated .form-select:invalid:not([multiple]):not([size]),
+  .was-validated .form-select:invalid:not([multiple])[size="1"] {
+    background-position: left 0.75rem center, center left 2.25rem;
+  }
+}
+.tooltip.tooltip-secondary.bs-tooltip-auto[data-popper-placement^="bottom"]
+  .tooltip-arrow::before,
+.tooltip.tooltip-secondary.bs-tooltip-end .tooltip-arrow::before {
+  border-bottom-color: transparent;
+}
+
+@media screen and (max-width: 600px) {
+  #line-chart-datalabels,
+  #zoom-chart {
+    .apexcharts-title-text {
+      display: none;
+    }
+  }
+}
+[data-theme-mode="dark"] {
+  .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle {
+    fill: $form-control-bg;
+    color: $form-control-bg;
+  }
+  .react-datepicker-popper[data-placement^="bottom"]
+    .react-datepicker__triangle {
+    fill: $form-control-bg;
+    color: $form-control-bg;
+  }
+  .react-datepicker-popper .react-datepicker__triangle {
+    stroke: $default-border;
+  }
+  .navbar-dark,
+  .navbar[data-bs-theme="dark"] {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+}
+
+@media screen and (max-width: 697px) {
+  .profile-tab.tab-menu-heading {
+    .nav-item {
+      width: 100%;
+    }
+  }
+}
+.main-header-center {
+  .Select2__control {
+    min-height: 42px;
+  }
+}
+[data-header-styles="color"] {
+  .main-header-center {
+    .Select2__menu div,
+    .Select2__menu li,
+    .Select2__menu .Select2__single-value {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .Select2__input-container {
+      color: #fff;
+    }
+    .Select2__single-value {
+      color: #fff !important;
+    }
+  }
+}
+
+[data-menu-styles="color"],[data-menu-styles="gradient"] {
+  .app-sidebar {
+
+    .side-menu__item {
+      &.active,
+      &:hover {
+          color: #fff;
+          .side-menu__label,.side-menu__angle {
+              color: #fff;
+          }
+          .side-menu__icon {
+              fill: #fff;
+              color: #fff;
+          }
+      }
+    }
+  }
+}
+.signpages {
+  .card {
+    .row {
+      margin-inline: 0 !important;
+    }
+  }
+}
+[dir="rtl"] {
+  .custom-dropdown-menu {
+    inset: 0px 0 auto auto !important;
+  }
+}
+[data-header-styles="color"] .main-header-center .btn, [data-header-styles="gradient"] .main-header-center .btn {
+  background-color: #fff !important;
+  color: var(--primary-color) !important;
+}
+
+.Select2__single-value {
+  color: #8f8fb1 !important;
+}
+

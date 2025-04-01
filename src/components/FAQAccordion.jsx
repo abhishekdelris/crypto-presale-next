@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import contactusimg from '../images/contact-us.png'; // Adjust path as needed.
+import Link from 'next/link';
 // import '../styles/FAQAccordion.module.css';
 
 const FAQAccordion = () => {
@@ -13,7 +14,7 @@ const FAQAccordion = () => {
 
   // FAQ Data Array
   const faqData = [
-    {
+    { 
       question: "What are crypto presales?",
       answer: "Crypto presales, also known as Initial Coin Offerings (ICOs), token presales, or early-stage token sales, offer investors a chance to purchase a cryptocurrency's tokens before a public launch. These early investment opportunities, often available at a lower price, aim to fund project development and marketing efforts. They are pivotal for both project teams, seeking capital to bring their visions to life, and for investors, looking for potential high returns from the ground floor of innovative blockchain projects."
     },
@@ -85,7 +86,7 @@ const FAQAccordion = () => {
               <div className="contact_faq">
                 <h5>You have different questions?</h5>
                 <p>Our team will answer all your questions. We ensure a quick response.</p>
-                <a href="/contactus" className="btn-main primary-btn shadow">Contact Us</a>
+                <Link href="/contactus" className="btn-main primary-btn shadow">Contact Us</Link>
               </div>
             </div>
           </div>

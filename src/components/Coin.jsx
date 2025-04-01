@@ -16,12 +16,12 @@ function Coin() {
                   <tr>
                     <th>#</th>
                     <th>Coin</th>
-                    <th>Name</th>
-                    <th>Badges</th>
-                    <th> Market Cap</th>
+                    <th>Name</th> 
+
+                    <th> Stage</th>
                     <th> Price</th>
                     <th> Change 24h</th>
-                    <th> Launch</th>
+
                     <th> Total Boosts</th>
                   </tr>
                 </thead>
@@ -37,24 +37,20 @@ function Coin() {
                       />{" "}
                     </td>
                     <td>LCAI</td>
-                    <td>
-                      <span className="badge rounded-pill bg-warning text-dark">
-                        Warning
-                      </span>
-                    </td>
+
                     <td>Presale</td>
-                    <td>-</td>
+                    <td>10.20 M (USDT)</td>
                     <td>
                       <span>Hardcap 9000</span>
                     </td>
-                    <td> In 3 months</td>
+
                     <td>
                       <div className="main_flex_Gap">
                         <span> In 3 months</span>
                         <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Boost
+                          Hodl
                         </button>
-                        <i className="fa-regular fa-star" />
+                        <i className="fa-regular fa-star"></i>
                       </div>
                     </td>
                   </tr>
@@ -69,24 +65,20 @@ function Coin() {
                       />
                     </td>
                     <td>LCAI</td>
-                    <td>
-                      <span className="badge rounded-pill bg-warning text-dark">
-                        Warning
-                      </span>
-                    </td>
-                    <td>Presale</td>
-                    <td>-</td>
+
+                    <td>IEO</td>
+                    <td>10.20 M (USDT)</td>
                     <td>
                       <span>Hardcap 9000</span>
                     </td>
-                    <td> In 3 months</td>
+
                     <td>
                       <div className="main_flex_Gap">
                         <span> In 3 months</span>
                         <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Boost
+                          Hodl
                         </button>
-                        <i className="fa-regular fa-star" />
+                        <i className="fa-regular fa-star"></i>
                       </div>
                     </td>
                   </tr>
@@ -101,24 +93,21 @@ function Coin() {
                       />
                     </td>
                     <td>LCAI</td>
-                    <td>
-                      <span className="badge rounded-pill bg-warning text-dark">
-                        Warning
-                      </span>
-                    </td>
-                    <td>Presale</td>
-                    <td>-</td>
+
+                    <td>IDO</td>
+                    <td>10.20 M (USDT)</td>
                     <td>
                       <span>Hardcap 9000</span>
                     </td>
-                    <td> In 3 months</td>
+
                     <td>
                       <div className="main_flex_Gap">
                         <span> In 3 months</span>
                         <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Boost
+                          Hodl
                         </button>
-                        <i className="fa-regular fa-star" />
+                        {/* Hodl or Fuel */}
+                        <i className="fa-regular fa-star"></i>
                       </div>
                     </td>
                   </tr>
@@ -133,24 +122,20 @@ function Coin() {
                       />
                     </td>
                     <td>LCAI</td>
-                    <td>
-                      <span className="badge rounded-pill bg-warning text-dark">
-                        Warning
-                      </span>
-                    </td>
-                    <td>Presale</td>
-                    <td>-</td>
+
+                    <td>ICO</td>
+                    <td>10.20 M (USDT)</td>
                     <td>
                       <span>Hardcap 9000</span>
                     </td>
-                    <td> In 3 months</td>
+
                     <td>
                       <div className="main_flex_Gap">
                         <span> In 3 months</span>
                         <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Boost
+                          Hodl
                         </button>
-                        <i className="fa-regular fa-star" />
+                        <i className="fa-regular fa-star"></i>
                       </div>
                     </td>
                   </tr>

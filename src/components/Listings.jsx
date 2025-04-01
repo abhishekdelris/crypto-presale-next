@@ -2,6 +2,7 @@ import React from 'react'
 import Promoted from './Promoted'
 import FAQAccordion from './FAQAccordion'
 import Favorite from './Favorite'
+import Link from 'next/link'
 
 function Listings() {
   return (
@@ -9,7 +10,7 @@ function Listings() {
       <section className="brdcrumb">
     <div className="container">
         <ul className="mb-0">
-            <li><a href="/" title="Home">Home</a></li>
+            <li><Link href="/" title="Home">Home</Link></li>
             <li>Listings</li>
         </ul>
     </div>
@@ -22,6 +23,6 @@ function Listings() {
    <Favorite />
     </>
   )
-}
+} 
 
 export default Listings

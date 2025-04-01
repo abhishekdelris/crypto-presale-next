@@ -25,7 +25,7 @@ function PresaleFilters() {
       chain: false,
       category: false,
       platform: false,
-      audit: false,
+      audit: false, 
       kyc: false,
     });
   };
@@ -77,7 +77,7 @@ function PresaleFilters() {
               </div>
 
               {/* Category Filter */}
-              <div className="filterblock">
+              {/* <div className="filterblock">
                 <label>Category</label>
                 <div className="dropdown" onClick={(e) => e.stopPropagation()}>
                   <button 
@@ -110,6 +110,17 @@ function PresaleFilters() {
                     </ul>
                   )}
                 </div>
+              </div> */}
+               {/* Soft Cap Filter */}
+               <div className="filterblock">
+                <label>Stage</label>
+                <select className="form-control">
+                  <option>All Stage</option>
+                  <option>Presale</option>
+                  <option>ICO</option>
+                  <option>IDO</option>
+                  <option>IEO</option>
+                </select>
               </div>
 
               {/* Platform Filter */}
@@ -147,7 +158,7 @@ function PresaleFilters() {
                   )}
                 </div>
               </div>
-
+              
               {/* Soft Cap Filter */}
               <div className="filterblock">
                 <label>Soft Cap</label>
@@ -171,7 +182,7 @@ function PresaleFilters() {
               </div>
 
               {/* Audit Filter */}
-              <div className="filterblock">
+              <div className="filterblock d-none">
                 <div className="d-flex align-items-center gap-2">
                   <label>Audit </label>
                   <label className="switch"> 
@@ -213,7 +224,7 @@ function PresaleFilters() {
               </div>
 
               {/* KYC Filter */}
-              <div className="filterblock">
+              <div className="filterblock d-none">
                 <div className="d-flex align-items-center gap-2">
                   <label>KYC </label>
                   <label className="switch"> 
@@ -255,7 +266,7 @@ function PresaleFilters() {
               </div>
 
               {/* Listings Filter */}
-              <div className="filterblock">
+              <div className="filterblock d-none">
                 <label className="mb-1">Listings</label>
                 <div className="radio-toolbar">
                   <input type="radio" id="radio1" name="radios" value="all" defaultChecked />

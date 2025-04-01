@@ -1,5 +1,5 @@
 // 'use client'
-
+import { revalidateTag } from 'next/cache';
 import React from 'react';
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
@@ -12,7 +12,32 @@ import Coin from "./Coin";
 import Link from 'next/link';
 import ImageUploader from './ImageUploader';
 
-function HomePage() {
+
+
+// This is a Server Component that fetches data
+async function fetchFeturedData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/featured?skip=0&limit=5", {   //&type=ongoing
+      next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+    })
+   
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    const datainfor = await response.json();
+   
+    return datainfor;
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+}
+
+export default async function HomePage() {
+  const feturedData = await fetchFeturedData(); 
+
+  
 
     return ( 
     <> 
@@ -273,7 +298,7 @@ function HomePage() {
     
     {/* <!-- end --> */}
     {/* <!-- third section --> */}
-    <Promoted />
+    <Promoted feturedData={feturedData}/>
     <PresaleFilters />
    <Coin />
     <FAQAccordion />
@@ -287,5 +312,5 @@ function HomePage() {
   )
 }
 
-export default HomePage
+
 

@@ -54,16 +54,27 @@ export async function POST(request) {
       }
     });
 
-    const cookieStore = cookies();
-    cookieStore.set({
+    // const cookieStore = cookies();
+    // cookieStore.set({
+    //   name: 'auth',
+    //   value: token,
+    //   // httpOnly: true,
+    //   // secure: process.env.NODE_ENV === 'development',
+    //   // sameSite: 'strict',
+    //   // maxAge: 60 * 60 * 24 * 7, // 1 week
+    //   // path: '/'
+    // });
+
+    response.cookies.set({
       name: 'auth',
       value: token,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 7, // 1 week
-      path: '/'
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7 // 1 week
     });
+    
 
     return response;
   } catch (error) {

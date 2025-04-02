@@ -92,6 +92,193 @@ model contact_us {
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crypto_coins_icos {
+  id                      Int                @id @default(autoincrement()) @db.UnsignedInt
+  user_id                 BigInt?            @default(1)
+  ico_ido_id              Int?
+  submit_ico_id           Int?
+  type                    Boolean
+  ico_ido_type            Int                @default(0)
+  title                   String?            @db.VarChar(100)
+  h1_title                String?            @db.VarChar(100)
+  h2_title                String?            @db.VarChar(100)
+  h3_title                String?            @db.VarChar(100)
+  h4_title                String?            @db.VarChar(100)
+  h5_title                String?            @db.VarChar(100)
+  h6_title                String?            @db.VarChar(100)
+  name                    String?            @db.VarChar(100)
+  alias                   String?            @db.VarChar(255)
+  slug                    String?            @unique(map: "slug") @db.VarChar(150)
+  interlink_id            Int?
+  country                 String?            @db.VarChar(50)
+  email                   String?            @db.VarChar(50)
+  image                   String?            @db.VarChar(150)
+  img_alt_title           String?            @db.VarChar(155)
+  ico_project_id          Int
+  ico_project_type_id     Int
+  website                 String?            @db.VarChar(150)
+  social_media_url        String?            @db.VarChar(255)
+  twitter                 String?            @db.VarChar(150)
+  instagram               String?            @db.VarChar(150)
+  medium                  String?            @db.VarChar(150)
+  reddit                  String?            @db.VarChar(150)
+  telegram                String?            @db.VarChar(150)
+  telegram_group          String?            @db.VarChar(100)
+  discord                 String?            @db.VarChar(200)
+  chat_url                String?            @db.VarChar(255)
+  white_paper_url         String?            @db.VarChar(150)
+  social_media_image      String?            @db.VarChar(255)
+  start_time              String?            @db.VarChar(150)
+  end_time                String?            @db.VarChar(100)
+  start_end_tba           String?            @db.VarChar(50)
+  total_coin              String             @db.VarChar(50)
+  quantity_of_coin        String             @db.VarChar(50)
+  total_supply_percent    String?            @db.VarChar(255)
+  ico_price               String?            @db.VarChar(50)
+  accept_type             String?            @db.VarChar(50)
+  show_hide_price         Boolean            @default(false)
+  fund_asking_for         String?            @db.VarChar(255)
+  where_to_buy            String?            @db.Text
+  timezone                String?            @db.Char(10)
+  description             String?            @db.Text
+  featured                Int?               @db.TinyInt
+  status                  Int?               @default(0) @db.TinyInt
+  affiliate               String?            @db.VarChar(1000)
+  hide                    Int?               @db.SmallInt
+  crypto_market_id        Int?
+  coin_name               String?            @db.VarChar(100)
+  participate_links       String?            @db.Text
+  whitepaper              String?            @db.VarChar(255)
+  soft_cap                String?            @db.VarChar(50)
+  personal_cap            String?            @db.VarChar(50)
+  hard_cap                String?            @db.VarChar(50)
+  likes_counts            Int                @default(0)
+  youtube_link            String?            @db.VarChar(255)
+  linkedin                String?            @db.VarChar(100)
+  plan                    String?            @db.VarChar(50)
+  other_status            Int                @default(0)
+  article                 String?            @db.VarChar(100)
+  breadcrumbs             String?            @db.VarChar(100)
+  course_info             String?            @db.VarChar(100)
+  data_set                String?            @db.VarChar(100)
+  discussion_forum        String?            @db.VarChar(100)
+  events                  String?            @db.VarChar(100)
+  faq                     String?            @db.VarChar(100)
+  image_metadata          String?            @db.VarChar(100)
+  new_article             String?            @db.VarChar(100)
+  paywalled_content       String?            @db.VarChar(100)
+  product                 String?            @db.VarChar(100)
+  profile                 String?            @db.VarChar(100)
+  organization            String?            @db.VarChar(100)
+  review_snippets         String?            @db.VarChar(100)
+  sitelinks               String?            @db.VarChar(100)
+  video                   String?            @db.VarChar(100)
+  user_contact_type       String?            @db.VarChar(50)
+  user_contact            String?            @db.VarChar(100)
+  is_guest                Boolean            @default(false)
+  is_assign_cubs          Int                @default(0)
+  fund_stage              String?            @db.VarChar(100)
+  launchpad               Int?
+  total_amount            Float?
+  wallet_address          String?            @db.VarChar(100)
+  trasaction_id           String?            @db.VarChar(100)
+  market_email            String?            @db.VarChar(100)
+  coin_token              String?            @db.VarChar(100)
+  ticker                  String?            @db.VarChar(100)
+  blockchain              String?            @db.VarChar(100)
+  coin_token_address      String?            @db.VarChar(100)
+  private_sale_start_date DateTime?          @db.Date
+  private_sale_end_date   DateTime?          @db.Date
+  private_sale_token_sold Float?             @db.Float
+  private_sale_rate       Float?             @db.Float
+  private_sale_goal       Int?
+  private_sale_where_buy  String?            @db.VarChar(100)
+  pre_sale_start_date     DateTime?          @db.Date
+  pre_sale_end_date       DateTime?          @db.Date
+  pre_sale_token_sold     Float?             @db.Float
+  pre_sale_rate           Float?             @db.Float
+  pre_sale_goal           Int?
+  pre_sale_where_buy      String?            @db.VarChar(100)
+  public_sale_start_date  DateTime?          @db.Date
+  public_sale_end_date    DateTime?          @db.Date
+  public_sale_token_sold  Float?             @db.Float
+  public_sale_rate        Float?             @db.Float
+  public_sale_goal        Int?
+  public_sale_where_buy   String?            @db.VarChar(100)
+  ico_sale_start_date     DateTime?          @db.Date
+  ico_sale_end_date       DateTime?          @db.Date
+  ico_sale_token_sold     Float?             @db.Float
+  ico_sale_rate           Float?             @db.Float
+  ico_sale_goal           Int?
+  ico_sale_where_buy      String?            @db.VarChar(100)
+  ido_sale_start_date     DateTime?          @db.Date
+  ido_sale_end_date       DateTime?          @db.Date
+  ido_sale_token_sold     Float?             @db.Float
+  ido_sale_rate           Float?             @db.Float
+  ido_sale_goal           Int?
+  ido_sale_where_buy      String?            @db.VarChar(100)
+  ieo_sale_start_date     DateTime?          @db.Date
+  ieo_sale_end_date       DateTime?          @db.Date
+  ieo_sale_token_sold     Float?             @db.Float
+  ieo_sale_rate           Float?             @db.Float
+  ieo_sale_goal           Int?
+  ieo_sale_where_buy      String?            @db.VarChar(100)
+  package                 String?            @db.VarChar(250)
+  contract_address        String?            @db.VarChar(255)
+  other_launchpad         String?            @db.VarChar(255)
+  category_id             Int?
+  sub_category_id         Int?
+  seo_title               String?            @db.VarChar(255)
+  meta_keywords           String?            @db.Text
+  meta_description        String?            @db.VarChar(255)
+  platform_json           String?            @db.VarChar(100)
+  is_active               Int                @default(1)
+  is_review               Int?               @default(0)
+  approved_by             Int?
+  approved_time           DateTime?          @db.DateTime(0)
+  one_usdt                String?            @db.VarChar(30)
+  project_website         String             @db.VarChar(255)
+  project_name            String             @db.VarChar(255)
+  update_status           Int                @default(0)
+  created_at              DateTime?          @db.Timestamp(0)
+  updated_at              DateTime?          @db.Timestamp(0)
+  deleted_at              DateTime?          @db.Timestamp(0)
+  trending_presale        trending_presale[]
+
+  @@index([crypto_market_id], map: "crypto_market_id")
+  @@index([slug], map: "slug_2")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crypto_coins_icos_details {
+  id                          Int       @id @default(autoincrement())
+  crypto_coins_icos_id        Int
+  detail_ico_ido_type         Int?
+  detail_total_supply         String?   @db.VarChar(50)
+  detail_qty_of_coin          String?   @db.VarChar(50)
+  detail_ico_price            String?   @db.VarChar(30)
+  detail_where_to_buy         String?   @db.Text
+  detail_start_date           String?   @db.VarChar(50)
+  detail_end_date             String?   @db.VarChar(50)
+  detail_fund_asking_for      String?   @db.VarChar(255)
+  detail_launchpad            Int?
+  detail_ico_project_type_id  Int?
+  detail_accept_type          String?   @db.VarChar(50)
+  detail_is_review            Int?
+  detail_token_for_sale       String?   @db.VarChar(100)
+  detail_percentage_of_supply String?   @db.VarChar(100)
+  detail_ico_stage            Int?
+  detail_one_usdt             String?   @db.VarChar(100)
+  detail_soft_cap             String?   @db.VarChar(100)
+  detail_hard_cap             String?   @db.VarChar(100)
+  detail_personal_cap         String?   @db.VarChar(100)
+  is_input                    Int       @default(0)
+  deleted_at                  DateTime? @db.Timestamp(0)
+  created_at                  DateTime  @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime  @default(now()) @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model crypto_news {
   id                 Int       @id @default(autoincrement()) @db.UnsignedInt
   author_id          Int       @default(0)
@@ -161,7 +348,7 @@ model crypto_news {
   dataset_json       String?   @db.VarChar(255)
   update_status      Int       @default(0)
   created_at         DateTime? @db.Timestamp(0)
-  updated_at         DateTime? @updatedAt @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
   deleted_at         DateTime? @db.Timestamp(0)
 
   @@index([alias], map: "alias")
@@ -256,6 +443,16 @@ model crypto_news_draft {
   updated_at         DateTime? @db.Timestamp(0)
   deleted_at         DateTime? @db.Timestamp(0)
 }
+
+model HighlightedItem {
+  id          Int      @id @default(autoincrement())
+  name        String
+  img         String
+  title       String
+  description String
+  created_at  DateTime @default(now())
+}
+
 
 model crypto_news_replies {
   id          Int       @id @default(autoincrement()) @db.UnsignedInt
@@ -486,6 +683,165 @@ model roles {
   username String @unique(map: "username") @db.VarChar(50)
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model trending_presale {
+  id                      Int                @id @default(autoincrement()) @db.UnsignedInt
+  user_id                 BigInt?            @default(1)
+  ico_ido_id              Int?
+  submit_ico_id           Int?
+  type                    Boolean?
+  ico_ido_type            Int                @default(0)
+  title                   String?            @db.VarChar(100)
+  h1_title                String?            @db.VarChar(100)
+  h2_title                String?            @db.VarChar(100)
+  h3_title                String?            @db.VarChar(100)
+  h4_title                String?            @db.VarChar(100)
+  h5_title                String?            @db.VarChar(100)
+  h6_title                String?            @db.VarChar(100)
+  name                    String?            @db.VarChar(100)
+  alias                   String?            @db.VarChar(255)
+  slug                    String?            @db.VarChar(150)
+  interlink_id            Int?
+  country                 String?            @db.VarChar(50)
+  email                   String?            @db.VarChar(50)
+  image                   String?            @db.VarChar(150)
+  img_alt_title           String?            @db.VarChar(155)
+  ico_project_id          Int?
+  ico_project_type_id     Int?
+  website                 String?            @db.VarChar(150)
+  social_media_url        String?            @db.VarChar(255)
+  twitter                 String?            @db.VarChar(150)
+  instagram               String?            @db.VarChar(150)
+  medium                  String?            @db.VarChar(150)
+  reddit                  String?            @db.VarChar(150)
+  telegram                String?            @db.VarChar(150)
+  telegram_group          String?            @db.VarChar(100)
+  discord                 String?            @db.VarChar(200)
+  chat_url                String?            @db.VarChar(255)
+  white_paper_url         String?            @db.VarChar(150)
+  social_media_image      String?            @db.VarChar(255)
+  start_time              String?            @db.VarChar(150)
+  end_time                String?            @db.VarChar(100)
+  start_end_tba           String?            @db.VarChar(50)
+  total_coin              String?            @db.VarChar(50)
+  quantity_of_coin        String?            @db.VarChar(50)
+  total_supply_percent    String?            @db.VarChar(255)
+  ico_price               String?            @db.VarChar(50)
+  accept_type             String?            @db.VarChar(50)
+  show_hide_price         Boolean            @default(false)
+  fund_asking_for         String?            @db.VarChar(255)
+  where_to_buy            String?            @db.Text
+  timezone                String?            @db.Char(10)
+  description             String?            @db.Text
+  featured                Int?               @db.TinyInt
+  is_promoted             Int?               @db.TinyInt
+  status                  Int?               @default(0) @db.TinyInt
+  affiliate               String?            @db.VarChar(1000)
+  hide                    Int?               @db.SmallInt
+  crypto_market_id        Int?
+  coin_name               String?            @db.VarChar(100)
+  participate_links       String?            @db.Text
+  whitepaper              String?            @db.VarChar(255)
+  soft_cap                String?            @db.VarChar(50)
+  personal_cap            String?            @db.VarChar(50)
+  hard_cap                String?            @db.VarChar(50)
+  likes_counts            Int                @default(0)
+  youtube_link            String?            @db.VarChar(255)
+  linkedin                String?            @db.VarChar(100)
+  plan                    String?            @db.VarChar(50)
+  other_status            Int                @default(0)
+  article                 String?            @db.VarChar(100)
+  breadcrumbs             String?            @db.VarChar(100)
+  course_info             String?            @db.VarChar(100)
+  data_set                String?            @db.VarChar(100)
+  discussion_forum        String?            @db.VarChar(100)
+  events                  String?            @db.VarChar(100)
+  faq                     String?            @db.VarChar(100)
+  image_metadata          String?            @db.VarChar(100)
+  new_article             String?            @db.VarChar(100)
+  paywalled_content       String?            @db.VarChar(100)
+  product                 String?            @db.VarChar(100)
+  profile                 String?            @db.VarChar(100)
+  organization            String?            @db.VarChar(100)
+  review_snippets         String?            @db.VarChar(100)
+  sitelinks               String?            @db.VarChar(100)
+  video                   String?            @db.VarChar(100)
+  user_contact_type       String?            @db.VarChar(50)
+  user_contact            String?            @db.VarChar(100)
+  is_guest                Boolean            @default(false)
+  is_assign_cubs          Int                @default(0)
+  fund_stage              String?            @db.VarChar(100)
+  launchpad               Int?
+  total_amount            Float?
+  wallet_address          String?            @db.VarChar(100)
+  trasaction_id           String?            @db.VarChar(100)
+  market_email            String?            @db.VarChar(100)
+  coin_token              String?            @db.VarChar(100)
+  ticker                  String?            @db.VarChar(100)
+  blockchain              String?            @db.VarChar(100)
+  coin_token_address      String?            @db.VarChar(100)
+  private_sale_start_date DateTime?          @db.Date
+  private_sale_end_date   DateTime?          @db.Date
+  private_sale_token_sold Float?             @db.Float
+  private_sale_rate       Float?             @db.Float
+  private_sale_goal       Int?
+  private_sale_where_buy  String?            @db.VarChar(100)
+  pre_sale_start_date     DateTime?          @db.Date
+  pre_sale_end_date       DateTime?          @db.Date
+  pre_sale_token_sold     Float?             @db.Float
+  pre_sale_rate           Float?             @db.Float
+  pre_sale_goal           Int?
+  pre_sale_where_buy      String?            @db.VarChar(100)
+  public_sale_start_date  DateTime?          @db.Date
+  public_sale_end_date    DateTime?          @db.Date
+  public_sale_token_sold  Float?             @db.Float
+  public_sale_rate        Float?             @db.Float
+  public_sale_goal        Int?
+  public_sale_where_buy   String?            @db.VarChar(100)
+  ico_sale_start_date     DateTime?          @db.Date
+  ico_sale_end_date       DateTime?          @db.Date
+  ico_sale_token_sold     Float?             @db.Float
+  ico_sale_rate           Float?             @db.Float
+  ico_sale_goal           Int?
+  ico_sale_where_buy      String?            @db.VarChar(100)
+  ido_sale_start_date     DateTime?          @db.Date
+  ido_sale_end_date       DateTime?          @db.Date
+  ido_sale_token_sold     Float?             @db.Float
+  ido_sale_rate           Float?             @db.Float
+  ido_sale_goal           Int?
+  ido_sale_where_buy      String?            @db.VarChar(100)
+  ieo_sale_start_date     DateTime?          @db.Date
+  ieo_sale_end_date       DateTime?          @db.Date
+  ieo_sale_token_sold     Float?             @db.Float
+  ieo_sale_rate           Float?             @db.Float
+  ieo_sale_goal           Int?
+  ieo_sale_where_buy      String?            @db.VarChar(100)
+  package                 String?            @db.VarChar(250)
+  contract_address        String?            @db.VarChar(255)
+  other_launchpad         String?            @db.VarChar(255)
+  category_id             Int?
+  sub_category_id         Int?
+  seo_title               String?            @db.VarChar(255)
+  meta_keywords           String?            @db.Text
+  meta_description        String?            @db.VarChar(255)
+  platform_json           String?            @db.VarChar(100)
+  is_active               Int                @default(1)
+  is_review               Int?               @default(0)
+  approved_by             Int?
+  approved_time           DateTime?          @db.DateTime(0)
+  one_usdt                String?            @db.VarChar(30)
+  project_website         String?            @db.VarChar(255)
+  project_name            String?            @db.VarChar(255)
+  update_status           Int                @default(0)
+  created_at              DateTime?          @db.Timestamp(0)
+  updated_at              DateTime?          @db.Timestamp(0)
+  deleted_at              DateTime?          @db.Timestamp(0)
+  ico_id                  Int?               @db.UnsignedInt
+  crypto_coins_icos       crypto_coins_icos? @relation(fields: [ico_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_trending_presale_ico")
+
+  @@index([ico_id], map: "fk_trending_presale_ico")
+}
+
 model user_permission {
   id         Int       @id @default(autoincrement())
   title      String    @db.VarChar(255)
@@ -603,195 +959,6 @@ model users {
   @@index([state_id], map: "state_id")
   @@index([updated_at], map: "updated_at")
   @@index([username], map: "username")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model crypto_coins_icos {
-  id                      Int       @id @default(autoincrement())
-  user_id                 BigInt?   @default(1)
-  ico_ido_id              Int?
-  submit_ico_id           Int?
-  type                    Boolean
-  ico_ido_type            Int       @default(0)
-  title                   String?   @db.VarChar(100)
-  h1_title                String?   @db.VarChar(100)
-  h2_title                String?   @db.VarChar(100)
-  h3_title                String?   @db.VarChar(100)
-  h4_title                String?   @db.VarChar(100)
-  h5_title                String?   @db.VarChar(100)
-  h6_title                String?   @db.VarChar(100)
-  name                    String?   @db.VarChar(100)
-  alias                   String?   @db.VarChar(255)
-  slug                    String?   @unique(map: "slug") @db.VarChar(150)
-  interlink_id            Int?
-  country                 String?   @db.VarChar(50)
-  email                   String?   @db.VarChar(50)
-  image                   String?   @db.VarChar(150)
-  img_alt_title           String?   @db.VarChar(155)
-  ico_project_id          Int
-  ico_project_type_id     Int
-  website                 String?   @db.VarChar(150)
-  social_media_url        String?   @db.VarChar(255)
-  twitter                 String?   @db.VarChar(150)
-  instagram               String?   @db.VarChar(150)
-  medium                  String?   @db.VarChar(150)
-  reddit                  String?   @db.VarChar(150)
-  telegram                String?   @db.VarChar(150)
-  telegram_group          String?   @db.VarChar(100)
-  discord                 String?   @db.VarChar(200)
-  chat_url                String?   @db.VarChar(255)
-  white_paper_url         String?   @db.VarChar(150)
-  social_media_image      String?   @db.VarChar(255)
-  start_time              String?   @db.VarChar(150)
-  end_time                String?   @db.VarChar(100)
-  start_end_tba           String?   @db.VarChar(50)
-  total_coin              String    @db.VarChar(50)
-  quantity_of_coin        String    @db.VarChar(50)
-  total_supply_percent    String?   @db.VarChar(255)
-  ico_price               String?   @db.VarChar(50)
-  accept_type             String?   @db.VarChar(50)
-  show_hide_price         Boolean   @default(false)
-  fund_asking_for         String?   @db.VarChar(255)
-  where_to_buy            String?   @db.Text
-  timezone                String?   @db.Char(10)
-  description             String?   @db.Text
-  featured                Int?      @db.TinyInt
-  status                  Int?      @default(0) @db.TinyInt
-  affiliate               String?   @db.VarChar(1000)
-  hide                    Int?      @db.SmallInt
-  crypto_market_id        Int?
-  coin_name               String?   @db.VarChar(100)
-  participate_links       String?   @db.Text
-  whitepaper              String?   @db.VarChar(255)
-  soft_cap                String?   @db.VarChar(50)
-  personal_cap            String?   @db.VarChar(50)
-  hard_cap                String?   @db.VarChar(50)
-  likes_counts            Int       @default(0)
-  youtube_link            String?   @db.VarChar(255)
-  linkedin                String?   @db.VarChar(100)
-  plan                    String?   @db.VarChar(50)
-  other_status            Int       @default(0)
-  article                 String?   @db.VarChar(100)
-  breadcrumbs             String?   @db.VarChar(100)
-  course_info             String?   @db.VarChar(100)
-  data_set                String?   @db.VarChar(100)
-  discussion_forum        String?   @db.VarChar(100)
-  events                  String?   @db.VarChar(100)
-  faq                     String?   @db.VarChar(100)
-  image_metadata          String?   @db.VarChar(100)
-  new_article             String?   @db.VarChar(100)
-  paywalled_content       String?   @db.VarChar(100)
-  product                 String?   @db.VarChar(100)
-  profile                 String?   @db.VarChar(100)
-  organization            String?   @db.VarChar(100)
-  review_snippets         String?   @db.VarChar(100)
-  sitelinks               String?   @db.VarChar(100)
-  video                   String?   @db.VarChar(100)
-  user_contact_type       String?   @db.VarChar(50)
-  user_contact            String?   @db.VarChar(100)
-  is_guest                Boolean   @default(false)
-  is_assign_cubs          Int       @default(0)
-  fund_stage              String?   @db.VarChar(100)
-  launchpad               Int?
-  total_amount            Float?
-  wallet_address          String?   @db.VarChar(100)
-  trasaction_id           String?   @db.VarChar(100)
-  market_email            String?   @db.VarChar(100)
-  coin_token              String?   @db.VarChar(100)
-  ticker                  String?   @db.VarChar(100)
-  blockchain              String?   @db.VarChar(100)
-  coin_token_address      String?   @db.VarChar(100)
-  private_sale_start_date DateTime? @db.Date
-  private_sale_end_date   DateTime? @db.Date
-  private_sale_token_sold Float?    @db.Float
-  private_sale_rate       Float?    @db.Float
-  private_sale_goal       Int?
-  private_sale_where_buy  String?   @db.VarChar(100)
-  pre_sale_start_date     DateTime? @db.Date
-  pre_sale_end_date       DateTime? @db.Date
-  pre_sale_token_sold     Float?    @db.Float
-  pre_sale_rate           Float?    @db.Float
-  pre_sale_goal           Int?
-  pre_sale_where_buy      String?   @db.VarChar(100)
-  public_sale_start_date  DateTime? @db.Date
-  public_sale_end_date    DateTime? @db.Date
-  public_sale_token_sold  Float?    @db.Float
-  public_sale_rate        Float?    @db.Float
-  public_sale_goal        Int?
-  public_sale_where_buy   String?   @db.VarChar(100)
-  ico_sale_start_date     DateTime? @db.Date
-  ico_sale_end_date       DateTime? @db.Date
-  ico_sale_token_sold     Float?    @db.Float
-  ico_sale_rate           Float?    @db.Float
-  ico_sale_goal           Int?
-  ico_sale_where_buy      String?   @db.VarChar(100)
-  ido_sale_start_date     DateTime? @db.Date
-  ido_sale_end_date       DateTime? @db.Date
-  ido_sale_token_sold     Float?    @db.Float
-  ido_sale_rate           Float?    @db.Float
-  ido_sale_goal           Int?
-  ido_sale_where_buy      String?   @db.VarChar(100)
-  ieo_sale_start_date     DateTime? @db.Date
-  ieo_sale_end_date       DateTime? @db.Date
-  ieo_sale_token_sold     Float?    @db.Float
-  ieo_sale_rate           Float?    @db.Float
-  ieo_sale_goal           Int?
-  ieo_sale_where_buy      String?   @db.VarChar(100)
-  package                 String?   @db.VarChar(250)
-  contract_address        String?   @db.VarChar(255)
-  other_launchpad         String?   @db.VarChar(255)
-  category_id             Int?
-  sub_category_id         Int?
-  seo_title               String?   @db.VarChar(255)
-  meta_keywords           String?   @db.Text
-  meta_description        String?   @db.VarChar(255)
-  platform_json           String?   @db.VarChar(100)
-  is_active               Int       @default(1)
-  is_review               Int?      @default(0)
-  approved_by             Int?
-  approved_time           DateTime? @db.DateTime(0)
-  one_usdt                String?   @db.VarChar(30)
-  project_website         String    @db.VarChar(255)
-  project_name            String    @db.VarChar(255)
-  update_status           Int       @default(0)
- created_at  DateTime @default(now()) @db.Timestamp(0)
-updated_at  DateTime @updatedAt @db.Timestamp(0)
-  deleted_at             DateTime @updatedAt @db.Timestamp(0)
-
- @@map("crypto_coins_icos") // Map to actual database table
-  @@index([crypto_market_id], map: "crypto_market_id")
-  @@index([slug], map: "slug_2")
-  @@ignore
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model crypto_coins_icos_details {
-  id                          Int       @id @default(autoincrement())
-  crypto_coins_icos_id        Int
-  detail_ico_ido_type         Int?
-  detail_total_supply         String?   @db.VarChar(50)
-  detail_qty_of_coin          String?   @db.VarChar(50)
-  detail_ico_price            String?   @db.VarChar(30)
-  detail_where_to_buy         String?   @db.Text
-  detail_start_date           String?   @db.VarChar(50)
-  detail_end_date             String?   @db.VarChar(50)
-  detail_fund_asking_for      String?   @db.VarChar(255)
-  detail_launchpad            Int?
-  detail_ico_project_type_id  Int?
-  detail_accept_type          String?   @db.VarChar(50)
-  detail_is_review            Int?
-  detail_token_for_sale       String?   @db.VarChar(100)
-  detail_percentage_of_supply String?   @db.VarChar(100)
-  detail_ico_stage            Int?
-  detail_one_usdt             String?   @db.VarChar(100)
-  detail_soft_cap             String?   @db.VarChar(100)
-  detail_hard_cap             String?   @db.VarChar(100)
-  detail_personal_cap         String?   @db.VarChar(100)
-  is_input                    Int       @default(0)
-  deleted_at                  DateTime? @db.Timestamp(0)
-  created_at                  DateTime  @default(now()) @db.Timestamp(0)
-  updated_at                  DateTime  @default(now()) @db.Timestamp(0)
 }
 
 enum admins_role {

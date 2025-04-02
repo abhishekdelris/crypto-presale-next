@@ -8,26 +8,27 @@ import contactusimg from '../images/contact-us.png'; // Adjust path as needed.
 import Link from 'next/link';
 // import '../styles/FAQAccordion.module.css';
 
-const FAQAccordion = () => {
+const FAQAccordion = ({faqData}) => {
   // State to track which accordion is open
   const [openAccordion, setOpenAccordion] = useState(null);
-
+  const data  = faqData.faqs || [];
   // FAQ Data Array
-  const faqData = [
-    { 
-      question: "What are crypto presales?",
-      answer: "Crypto presales, also known as Initial Coin Offerings (ICOs), token presales, or early-stage token sales, offer investors a chance to purchase a cryptocurrency's tokens before a public launch. These early investment opportunities, often available at a lower price, aim to fund project development and marketing efforts. They are pivotal for both project teams, seeking capital to bring their visions to life, and for investors, looking for potential high returns from the ground floor of innovative blockchain projects."
-    },
-    {
-      question: "How do crypto presales work?",
-      answer: "Crypto presales typically involve a project team creating a detailed whitepaper outlining their blockchain concept, technology, and token economics. Investors can purchase tokens at a discounted rate during a specified period before the public launch. The process usually includes steps like token allocation, pricing strategy, minimum and maximum investment limits, and a clear roadmap for token utility and project development."
-    },
-    {
-      question: "Are crypto presales worth it?",
-      answer: "Crypto presales can be potentially lucrative but come with significant risks. Pros include early access to innovative projects, potential for high returns, and supporting emerging blockchain technologies. Cons involve high volatility, potential for scams, and the risk of project failure. Investors should conduct thorough research, understand the project's fundamentals, team background, and have a high-risk tolerance."
-    }
-  ];
-
+  // const faqData = [ 
+  //   { 
+  //     question: "What are crypto presales?",
+  //     answer: "Crypto presales, also known as Initial Coin Offerings (ICOs), token presales, or early-stage token sales, offer investors a chance to purchase a cryptocurrency's tokens before a public launch. These early investment opportunities, often available at a lower price, aim to fund project development and marketing efforts. They are pivotal for both project teams, seeking capital to bring their visions to life, and for investors, looking for potential high returns from the ground floor of innovative blockchain projects."
+  //   },
+  //   {
+  //     question: "How do crypto presales work?",
+  //     answer: "Crypto presales typically involve a project team creating a detailed whitepaper outlining their blockchain concept, technology, and token economics. Investors can purchase tokens at a discounted rate during a specified period before the public launch. The process usually includes steps like token allocation, pricing strategy, minimum and maximum investment limits, and a clear roadmap for token utility and project development."
+  //   },
+  //   {
+  //     question: "Are crypto presales worth it?",
+  //     answer: "Crypto presales can be potentially lucrative but come with significant risks. Pros include early access to innovative projects, potential for high returns, and supporting emerging blockchain technologies. Cons involve high volatility, potential for scams, and the risk of project failure. Investors should conduct thorough research, understand the project's fundamentals, team background, and have a high-risk tolerance."
+  //   }
+  // ];
+  //  console.log("faqs.......",faqData);
+   
   // Toggle Accordion
   const toggleAccordion = (index) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -44,7 +45,7 @@ const FAQAccordion = () => {
             </div>
             
             <div className="accordion-container">
-              {faqData.map((faq, index) => (
+              {data.map((faq, index) => (
                 <div 
                   key={index} 
                   className={`accordion-item ${openAccordion === index ? 'active' : ''}`}
@@ -65,7 +66,8 @@ const FAQAccordion = () => {
                       className="accordion-content"
                       aria-hidden={openAccordion !== index}
                     >
-                      <p className=''>{faq.answer}</p>
+                      <p className=''
+                       dangerouslySetInnerHTML={{ __html: faq.long_desc }} />
                     </div>
                   )}
                 </div>

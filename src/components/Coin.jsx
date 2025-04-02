@@ -4,7 +4,45 @@ import altcoinImage from "../images/altcoin.webp";
 import vactorbg from "../images/vector-row-bg.webp";
 import PresaleFilters from "./PresaleFilters";
 
-function Coin() {
+function Coin({CoinData}) {
+
+  const data = CoinData.data || [];
+  function formatNumber(num) {
+    if (num >= 1e9) return (num / 1e9).toFixed(2).replace(/\.00$/, "") + "B";
+    if (num >= 1e6) return (num / 1e6).toFixed(2).replace(/\.00$/, "") + "M";
+    if (num >= 1e3) return (num / 1e3).toFixed(2).replace(/\.00$/, "") + "K";
+    return num?.toString() || "N/A";
+  }
+
+  function calculateSingleDateDifference(startDate, endDate) {
+    if (!startDate || !endDate) return "N/A";
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    if (end < start) return "Invalid date range";
+
+    const totalDays = Math.floor((end - start) / (1000 * 60 * 60 * 24));
+    if (totalDays >= 30) return `${Math.floor(totalDays / 30)} months`;
+    if (totalDays >= 7) return `${Math.floor(totalDays / 7)} weeks`;
+    return `${totalDays} days`;
+  }
+
+
+  const handleTypeValue = (num) => {
+    switch (num) {
+      case 0:
+        return "ICO";
+      case 1:
+        return "IDO";
+      case 2:
+        return "IEO";
+      case 3:
+        return "Presale";
+      default:
+        return "Presale";
+    }
+  };
+
   return (
     <section className="tablesection pt-4">
       <div className="container mb-4">
@@ -26,119 +64,47 @@ function Coin() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <Image
-                        src={altcoinImage}
-                        alt="coins"
-                        height={30}
-                        width={30}
-                      />{" "}
-                    </td>
-                    <td>LCAI</td>
-
-                    <td>Presale</td>
-                    <td>10.20 M (USDT)</td>
-                    <td>
-                      <span>Hardcap 9000</span>
-                    </td>
-
-                    <td>
-                      <div className="main_flex_Gap">
-                        <span> In 3 months</span>
-                        <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Hodl
-                        </button>
-                        <i className="fa-regular fa-star"></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <Image
-                        src={altcoinImage}
-                        alt="coins"
-                        height={30}
-                        width={30}
-                      />
-                    </td>
-                    <td>LCAI</td>
-
-                    <td>IEO</td>
-                    <td>10.20 M (USDT)</td>
-                    <td>
-                      <span>Hardcap 9000</span>
-                    </td>
-
-                    <td>
-                      <div className="main_flex_Gap">
-                        <span> In 3 months</span>
-                        <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Hodl
-                        </button>
-                        <i className="fa-regular fa-star"></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <Image
-                        src={altcoinImage}
-                        alt="coins"
-                        height={30}
-                        width={30}
-                      />
-                    </td>
-                    <td>LCAI</td>
-
-                    <td>IDO</td>
-                    <td>10.20 M (USDT)</td>
-                    <td>
-                      <span>Hardcap 9000</span>
-                    </td>
-
-                    <td>
-                      <div className="main_flex_Gap">
-                        <span> In 3 months</span>
-                        <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Hodl
-                        </button>
-                        {/* Hodl or Fuel */}
-                        <i className="fa-regular fa-star"></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <Image
-                        src={altcoinImage}
-                        alt="coins"
-                        height={30}
-                        width={30}
-                      />
-                    </td>
-                    <td>LCAI</td>
-
-                    <td>ICO</td>
-                    <td>10.20 M (USDT)</td>
-                    <td>
-                      <span>Hardcap 9000</span>
-                    </td>
-
-                    <td>
-                      <div className="main_flex_Gap">
-                        <span> In 3 months</span>
-                        <button className="btn-main primary-btn small px-4 btn-second_main">
-                          Hodl
-                        </button>
-                        <i className="fa-regular fa-star"></i>
-                      </div>
-                    </td>
-                  </tr>
+                  {
+                    data.length > 0  ? data.map((coin,index) => (
+                      <tr key={coin.id || index}>
+                      <td>{index+1}</td>
+                      <td>
+                         <Image
+                                                src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${coin.image}` || altcoinImage}
+                                                alt={coin.img_alt_title || "ICO Project"}
+                                                width={32}
+                                                height={32}
+                                                className="project-icon me-2"
+                                              />
+                      </td>
+                      <td>{coin.name}</td>
+  
+                      <td>{handleTypeValue(coin.ico_ido_type)}</td>
+                      <td>
+                              {coin.ico_price
+                                ? `${coin.ico_price} (${coin.accept_type || "USDT"})`
+                                : "N/A"}
+                            </td>
+                            <td>Hardcap {formatNumber(coin.hard_cap)}</td>
+                            <td>
+                              <div className="main_flex_Gap">
+                                <span>
+                                  {calculateSingleDateDifference(
+                                    coin.start_time,
+                                    coin.end_time
+                                  )}
+                                </span>
+                                <button className="btn-main primary-btn small px-4 btn-second_main">
+                                  Hodl
+                                </button>
+                                <i className="fa-regular fa-star"></i>
+                              </div>
+                            </td>
+                    </tr>
+                    )
+                  ) : ""
+                  }
+                
                 </tbody>
               </table>
             </div>

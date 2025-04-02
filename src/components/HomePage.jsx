@@ -13,7 +13,94 @@ import Link from 'next/link';
 import ImageUploader from './ImageUploader';
 
 
+async function fetchHighlightedData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/trending_presale?page=1&limit=12", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+} 
 
+async function fetchTrendingData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/trending_presale?page=1&limit=6", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+} 
+
+async function fetchFaqData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/faqs?page=2&limit=4", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+}
+async function fetchCOINData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?skip=0&limit=15", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+}
+
+async function fetchTopCoinData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?skip=0&limit=6&type=upcoming", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+  
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
+  }
+}
 // This is a Server Component that fetches data
 async function fetchFeturedData() {
   try {
@@ -34,11 +121,52 @@ async function fetchFeturedData() {
   }
 }
 
+
+
 export default async function HomePage() {
   const feturedData = await fetchFeturedData(); 
+  const CoinData = await fetchCOINData();
+  const topCoinData = await fetchTopCoinData();
+  const faqData = await fetchFaqData();
+  const trendingData = await fetchTrendingData();
+  const highlightedData = await fetchHighlightedData();
+    // console.log("CoinData.......",faqData);
 
-  
+    const tradeData = trendingData.trending || []; 
+    const highlightData = highlightedData.trending || [];
+    const sortedData = topCoinData.data.sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return dateB - dateA; // Descending order - newest first
+    });
 
+      
+      // Format the time difference between now and created_at
+  const getTimeAgo = (timestamp) => {
+    if (!timestamp) return 'Unknown time';
+    
+    const now = new Date();
+    const created = new Date(timestamp);
+    const diffInMs = now - created;
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
+    } else if (diffInMinutes < 24 * 60) {
+      const hours = Math.floor(diffInMinutes / 60);
+      return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    } else {
+      const days = Math.floor(diffInMinutes / (60 * 24));
+      return `${days} day${days !== 1 ? 's' : ''} ago`;
+    }
+  };
+
+  function formatNumber(num) {
+    if (num >= 1e9) return (num / 1e9).toFixed(2).replace(/\.00$/, "") + "B";
+    if (num >= 1e6) return (num / 1e6).toFixed(2).replace(/\.00$/, "") + "M";
+    if (num >= 1e3) return (num / 1e3).toFixed(2).replace(/\.00$/, "") + "K";
+    return num?.toString() || "N/A";
+  }
     return ( 
     <> 
      <section className='py-4'>
@@ -68,43 +196,28 @@ export default async function HomePage() {
                             <Link href="/listings" className="btn btn-link text-dark">View More</Link>
                         </div>
                         <div className="block_Table p-2">
-                            <div className="main_flex mb-2">
-                            {/* <CoinTracker coin="bitcoin" /> */}
-                                {/* <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
-                                <span>Coin Ticker </span>
-                                <span>1 hour ago</span> */}
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>1 hour ago</span>
-                            </div>
                             
+                            {
+        sortedData.map((coin, index) => (
+          <div className="main_flex mb-2" key={coin.id || index}>
+            <Link href={`/profile_details/${coin.id}`} className="text_customization">
+              <h6 className="mb-0">
+                <span className="border_circle">
+                  <Image
+                                         src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${coin.image}` || altcoinImage}
+                                         alt={coin.img_alt_title || "ICO Project"}
+                                         width={32}
+                                         height={32}
+                                         className="project-icon me-2"
+                                       />
+                </span> 
+                {coin.name || coin.ticker || 'goodcrypto'}
+              </h6>
+            </Link>
+            <span>{getTimeAgo(coin.created_at)}</span>
+          </div>
+        ))
+      }
                         </div>
                     </div>
               </div>
@@ -115,39 +228,24 @@ export default async function HomePage() {
                             <Link href="/listings" className="btn btn-link text-dark">View More</Link>
                         </div>
                         <div className="block_Table p-2">
-                        <div className="main_flex mb-2">
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+                       { tradeData.map((data, index) => (
+                            <div className="main_flex mb-2" key={data.id || index}>
+                            <Link href={`/profile_details/${data.id}`} className='text_customization'>
+                            <h6 className="mb-0"><span className="border_circle">
+                            <Image
+                                         src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${data.image}` || altcoinImage}
+                                         alt={data.img_alt_title || "ICO Project"}
+                                         width={32}
+                                         height={32}
+                                         className="project-icon me-2"
+                                       />
+                                       </span> {data.name}</h6></Link>
                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Promoted</span>
+                                <span>{data.is_promoted===1 ? "Promoted" : formatNumber(data.total_coin)}</span>
                             </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Promoted</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Not Promoted</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Promoted</span>
-                            </div>
+                          ))
+                          }
                             
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Promoted</span>
-                            </div>
-                            <div className="main_flex mb-2">
-                            <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-                           {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-                                <span>Promoted</span>
-                            </div>
                         </div>
                     </div>
               </div>
@@ -164,128 +262,21 @@ export default async function HomePage() {
             </div>
             <div className='coinsblock'>
               <ul>
-                <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
+                 
+              {
+        highlightData.map((coin, index) => (
+                <li key={coin.id || index}><div className="bg_Cat flex justify-center items-center rounded-3">
+                  <Image
+                                         src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${coin.image}` || altcoinImage}
+                                         alt={coin.img_alt_title || "ICO Project"}
+                                         width={38}
+                                         height={38}
+                                       className="mx-auto rounded-circle"
+                                       />
+                           <label className='m-2' style={{fontSize : "14px"}}>{coin.name}</label>
                       </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                      <li><div className="bg_Cat flex justify-center items-center rounded-3">
-                        <Image
-                          src={altcoinImage}
-                          loading="lazy"
-                          width={38}
-                          height={38}
-                          alt={`alt Icon`}
-                          className="mx-auto"
-                        />   Project Name
-                      </div></li>
-                     
-
+                      ))}
+                   
               </ul>
               
             </div>
@@ -295,18 +286,18 @@ export default async function HomePage() {
       </div>
      </section>
      
-    
+     
     {/* <!-- end --> */}
     {/* <!-- third section --> */}
     <Promoted feturedData={feturedData}/>
     <PresaleFilters />
-   <Coin />
-    <FAQAccordion />
+   <Coin CoinData={CoinData}/>
+    <FAQAccordion  faqData={faqData}/>
     {/* <!-- faq section --> */}
     
     {/* <!--  --> */}
     <Favorite />
-    <ImageUploader />
+    {/* <ImageUploader /> */}
     
    </>
   )
@@ -314,3 +305,39 @@ export default async function HomePage() {
 
 
 
+// <div className="main_flex mb-2">
+//                             {/* <CoinTracker coin="bitcoin" /> */}
+//                                 {/* <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
+//                                 <span>Coin Ticker </span>
+//                                 <span>1 hour ago</span> */}
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>
+//                             <div className="main_flex mb-2">
+//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
+//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
+//                                 <span>1 hour ago</span>
+//                             </div>

@@ -42,11 +42,15 @@ export function AuthProvider({ children }) {
   // Handle logout
   const logout = async () => {
     try {
+      // localStorage.removeItem('userToken');
+      //   setIsLoggedIn(false);
+      //   setUser(null);
       const response = await axios({
         method: 'post',
         url: '/api/auth/logout',
         withCredentials: true
       });
+      console.log("response....",response.data);
       
       if (response.data) {
         localStorage.removeItem('userToken');

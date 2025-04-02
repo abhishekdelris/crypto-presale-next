@@ -54,6 +54,9 @@
         "eslint no-lone-blocks": "off",
         "react/no-unescaped-entities": "off",
         "eslint no-mixed-spaces-and-tabs": "smart-tabs"
+        // "eslint no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+        // "no-mixed-spaces-and-tabs": 2  
+        // "no-mixed-spaces-and-tabs": 1 
     }
   }
   

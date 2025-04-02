@@ -274,14 +274,15 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ListicleClient from "./listicle-client";
-
+import { revalidateTag } from 'next/cache';
 // This is a Server Component that fetches data
 async function getArticles() {
   try {
     // Using fetch API for server-side data fetching
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/listicle`, {
       // Adding cache options
-      next: { revalidate: 3600 } // Revalidate every hour
+      cache: 'no-store', 
+      next: { revalidate: 60 } // Revalidate every hour
     });
     
     if (!response.ok) {

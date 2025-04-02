@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function ClientSideICO({ icoData }) {
   const [selectedOption, setSelectedOption] = useState('option1');
-  const router = useRouter();
+  const router = useRouter(); 
   const [visibleData, setVisibleData] = useState(15);
 
 

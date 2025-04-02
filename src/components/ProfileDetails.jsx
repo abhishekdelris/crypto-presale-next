@@ -3,7 +3,7 @@ import Image from 'next/image';
 import hori_add from "../images/hori_add.jpeg";
 // import halfbannner from "../images/halfbanner.webp";
 import Link from 'next/link';
-import FAQAccordion from './FAQAccordion';
+// import FAQAccordion from './FAQAccordion';
 
 function ProfileDetails() {
   return (
@@ -163,7 +163,7 @@ function ProfileDetails() {
         </div>
       </div>
     </div> */}
-    <FAQAccordion />
+    {/* <FAQAccordion /> */}
   </section>
   <section className="tablesection pt-4">
     <div className="container mb-4">

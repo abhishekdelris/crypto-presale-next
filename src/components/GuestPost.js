@@ -784,7 +784,7 @@ async function fetchPosts() {
   try {
     // In App Router, you need to use the full URL
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/guestPost", { 
-      next: { revalidate: 3600 } // Optional: Revalidate every hour
+      cache: 'no-store',// Optional: Revalidate every hour
     });
     
     if (!response.ok) {

@@ -10,7 +10,7 @@ import '../../styles/ico.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { AuthProvider } from '../../hooks/authContext';
- 
+import "@/app/api/cron/route"; // Import cron job so it starts
 
 
 export const metadata = {

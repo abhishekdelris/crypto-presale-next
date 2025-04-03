@@ -39,7 +39,7 @@ const nextConfig = {
     unoptimized: true,
     loader: "imgix",
     path: "/",
-  },
+  }
 };
 
 module.exports = nextConfig;

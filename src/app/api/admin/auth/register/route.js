@@ -37,10 +37,9 @@
 //   }
 // }
 
-
-import { executeQuery } from '@/lib/db';
-import { hash } from 'bcrypt';
-import { NextResponse } from 'next/server';
+import { executeQuery } from "@/lib/db";
+import { hash } from "bcrypt";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -49,20 +48,20 @@ export async function POST(request) {
     // Validate required fields
     if (!username || !email || !password) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
     // Check if super admin exists when creating one
-    if (role === 'super_admin') {
+    if (role === "super_admin") {
       const existingSuperAdmin = await executeQuery({
         query: 'SELECT id FROM admins WHERE role = "super_admin"'
       });
-      
+
       if (existingSuperAdmin.length > 0) {
         return NextResponse.json(
-          { error: 'Super admin already exists' },
+          { error: "Super admin already exists" },
           { status: 400 }
         );
       }
@@ -70,13 +69,13 @@ export async function POST(request) {
 
     // Check if email already exists
     const existingAdmin = await executeQuery({
-      query: 'SELECT id FROM admins WHERE email = ?',
+      query: "SELECT id FROM admins WHERE email = ?",
       values: [email]
     });
-    
+
     if (existingAdmin.length > 0) {
       return NextResponse.json(
-        { error: 'Email already registered' },
+        { error: "Email already registered" },
         { status: 400 }
       );
     }
@@ -86,18 +85,19 @@ export async function POST(request) {
 
     // Create admin
     await executeQuery({
-      query: 'INSERT INTO admins (username, email, password, role) VALUES (?, ?, ?, ?)',
-      values: [username, email, hashedPassword, role || 'admin']
+      query:
+        "INSERT INTO admins (username, email, password, role) VALUES (?, ?, ?, ?)",
+      values: [username, email, hashedPassword, role || "admin"]
     });
 
     return NextResponse.json(
-      { message: 'Admin registered successfully' },
+      { message: "Admin registered successfully" },
       { status: 201 }
     );
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

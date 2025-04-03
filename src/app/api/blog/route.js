@@ -8,7 +8,7 @@
 //     const guestPosts = await executeQuery({
 //       query: "SELECT * FROM `crypto_news` WHERE is_gabbar = 2 ORDER BY created_at DESC"
 //     });
-    
+
 //     // Format the data to match your frontend component's needs
 //     const formattedPosts = guestPosts.map(post => ({
 //       id: post.id,
@@ -20,7 +20,7 @@
 //       likes: post.likes_counts || 0,
 //       slug: post.alias || "abc",
 //     }));
-    
+
 //     // Return the formatted posts
 //     return NextResponse.json({
 //       success: true,
@@ -32,7 +32,7 @@
 //       {
 //         success: false,
 //         message: 'Failed to fetch guest posts'
-//       }, 
+//       },
 //       { status: 500 }
 //     );
 //   }
@@ -44,12 +44,12 @@
 //   const day = String(date.getDate()).padStart(2, '0');
 //   const month = String(date.getMonth() + 1).padStart(2, '0');
 //   const year = date.getFullYear();
-  
+
 //   return `${day}-${month}-${year}`;
 // }
 
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
 // Initialize Prisma client
 const prisma = new PrismaClient();
@@ -62,34 +62,34 @@ export async function GET() {
         is_gabbar: 2
       },
       orderBy: {
-        created_at: 'desc'
+        created_at: "desc"
       }
-    }); 
-    
+    });
+
     // Format the data to match your frontend component's needs
     const formattedPosts = guestPosts.map(post => ({
       id: post.id,
       title: post.title,
-      description: post.description || post.short_description || '',
-      image: post.image || '/images/blog.webp', // Fallback to default image if none exists
-      author: post.author || 'Deepak Choudhary',
+      description: post.description || post.short_description || "",
+      image: post.image || "/images/blog.webp", // Fallback to default image if none exists
+      author: post.author || "Deepak Choudhary",
       date: formatDate(post.created_at || new Date()),
       likes: post.likes_counts || 0,
-      slug: post.alias || "abc",
+      slug: post.alias || "abc"
     }));
-    
+
     // Return the formatted posts
     return NextResponse.json({
       success: true,
       data: formattedPosts
     });
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    console.error("Error fetching blog posts:", error);
     return NextResponse.json(
-      { 
+      {
         success: false,
-        message: 'Failed to fetch blog posts'
-      }, 
+        message: "Failed to fetch blog posts"
+      },
       { status: 500 }
     );
   } finally {
@@ -101,9 +101,9 @@ export async function GET() {
 // Helper function to format dates in DD-MM-YYYY format
 function formatDate(dateString) {
   const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
-  
+
   return `${day}-${month}-${year}`;
 }

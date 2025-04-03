@@ -1,7 +1,7 @@
-import { verifyPassword, getUserByEmail } from '../../../../lib/auth';
-import { generateToken } from '../../../../lib/jwt';
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { verifyPassword, getUserByEmail } from "../../../../lib/auth";
+import { generateToken } from "../../../../lib/jwt";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -11,7 +11,7 @@ export async function POST(request) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: "Email and password are required" },
         { status: 400 }
       );
     }
@@ -20,7 +20,7 @@ export async function POST(request) {
     const user = await getUserByEmail(email);
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
@@ -29,7 +29,7 @@ export async function POST(request) {
     const isValid = await verifyPassword(password, user.password);
     if (!isValid) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
@@ -44,7 +44,7 @@ export async function POST(request) {
     // Create a new response
     const response = NextResponse.json({
       success: true,
-      message: 'Login successful',
+      message: "Login successful",
       token: token,
       user: {
         id: user.id,
@@ -56,21 +56,18 @@ export async function POST(request) {
 
     // Set HTTP-only cookie
     cookies().set({
-      name: 'auth',
+      name: "auth",
       value: token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
       maxAge: 60 * 60 * 24 * 7, // 1 week
-      path: '/'
+      path: "/"
     });
 
     return response;
   } catch (error) {
-    console.error('Login error:', error);
-    return NextResponse.json(
-      { error: 'Failed to log in' },
-      { status: 500 }
-    );
+    console.error("Login error:", error);
+    return NextResponse.json({ error: "Failed to log in" }, { status: 500 });
   }
 }

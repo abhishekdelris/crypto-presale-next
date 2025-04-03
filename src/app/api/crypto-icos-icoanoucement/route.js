@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
-import { executeQuery } from '../../../lib/db';
+import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
+import { executeQuery } from "../../../lib/db";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +15,7 @@ const prisma = new PrismaClient();
 
 //     // Build where conditions
 //     const whereConditions = {};
-    
+
 //     if (ico_ido_type !== undefined && !isNaN(ico_ido_type)) {
 //       whereConditions.ico_ido_type = ico_ido_type;
 //     }
@@ -41,7 +41,7 @@ const prisma = new PrismaClient();
 //       orderBy: {
 //         updated_at: 'desc'
 //       }
-//     //   include: { 
+//     //   include: {
 //     //     crypto_coins_ico_details: true
 //     //   }
 //     });
@@ -77,8 +77,6 @@ const prisma = new PrismaClient();
 //   }
 // }
 
-
-
 // export async function GET() {
 //     try {
 //       // const guestPosts = await executeQuery({
@@ -91,7 +89,7 @@ const prisma = new PrismaClient();
 //             //   orderBy: {
 //             //     created_at: 'desc'
 //             //   }
-//             // }); 
+//             // });
 //             const guestPosts = await prisma.$queryRaw`SELECT * FROM crypto_coins_icos WHERE ico_ido_type = 1 ORDER BY created_at DESC`;
 
 //       // if (!coinIcos.length) {
@@ -100,12 +98,12 @@ const prisma = new PrismaClient();
 //       //     message: 'No data found for ico_ido_type 1',
 //       //   });
 //       // }
-  
+
 //       return NextResponse.json({
 //         success: true,
 //         data: guestPosts,
 //       });
-  
+
 //     } catch (error) {
 //       console.error('Error fetching data:', error);
 //       return NextResponse.json({
@@ -114,8 +112,6 @@ const prisma = new PrismaClient();
 //       });
 //     }
 //   }
-  
-
 
 // export async function GET() {
 //   try {
@@ -150,9 +146,6 @@ const prisma = new PrismaClient();
 //     });
 //   }
 // }
-
-
-
 
 // Fix BigInt serialization
 // BigInt.prototype.toJSON = function () {
@@ -214,7 +207,7 @@ const prisma = new PrismaClient();
 // }
 
 // Fix BigInt serialization
-BigInt.prototype.toJSON = function () {
+BigInt.prototype.toJSON = function() {
   return this.toString();
 };
 
@@ -222,10 +215,14 @@ export async function GET(request) {
   try {
     // Extract URL parameters
     const { searchParams } = new URL(request.url);
-    const skip = searchParams.get('skip') ? parseInt(searchParams.get('skip')) : null;
-    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : null;
-    const ico_ido_type = parseInt(searchParams.get('ico_ido_type'));
-    const type = searchParams.get('type');
+    const skip = searchParams.get("skip")
+      ? parseInt(searchParams.get("skip"))
+      : null;
+    const limit = searchParams.get("limit")
+      ? parseInt(searchParams.get("limit"))
+      : null;
+    const ico_ido_type = parseInt(searchParams.get("ico_ido_type"));
+    const type = searchParams.get("type");
 
     let query = `SELECT * FROM crypto_coins_icos WHERE 1=1`;
     const params = [];
@@ -237,15 +234,15 @@ export async function GET(request) {
     }
 
     // Apply type filter (ongoing, upcoming, ended)
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = new Date().toISOString().split("T")[0];
 
-    if (type === 'ongoing') {
+    if (type === "ongoing") {
       query += ` AND start_time <= ? AND end_time >= ?`;
       params.push(currentDate, currentDate);
-    } else if (type === 'upcoming') {
+    } else if (type === "upcoming") {
       query += ` AND start_time > ?`;
       params.push(currentDate);
-    } else if (type === 'ended') {
+    } else if (type === "ended") {
       query += ` AND end_time < ?`;
       params.push(currentDate);
     }
@@ -265,14 +262,17 @@ export async function GET(request) {
     // Return response
     return NextResponse.json({
       success: true,
-      data: coinIcos,
+      data: coinIcos
     });
   } catch (error) {
     console.error("API Error:", error);
-    return NextResponse.json({
-      success: false,
-      message: "An error occurred while fetching ICO/IDO data",
-      error: error.message,
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: "An error occurred while fetching ICO/IDO data",
+        error: error.message
+      },
+      { status: 500 }
+    );
   }
 }

@@ -12,10 +12,10 @@
 //     for (const field of requiredFields) {
 //       if (!postData[field]) {
 //         return NextResponse.json(
-//           { 
-//             success: false, 
-//             message: `Missing required field: ${field}` 
-//           }, 
+//           {
+//             success: false,
+//             message: `Missing required field: ${field}`
+//           },
 //           { status: 400 }
 //         );
 //       }
@@ -24,40 +24,40 @@
 //     // Prepare the SQL query with all the specified fields
 //     const query = `
 //       INSERT INTO crypto_news (
-//         title, 
-//         alias, 
-//         h1_title, 
-//         h2_title, 
-//         img_alt_title,  
-//         created_by, 
-//         author_name, 
-//         is_rss_feed, 
-//         dynamic_rss_feed, 
-//         image, 
-//         channel_id, 
-//         publishedAt, 
-//         description, 
-//         article, 
-//         breadcrumbs, 
-//         data_set, 
-//         discussion_forum, 
-//         faq, 
-//         image_metadata, 
-//         new_article, 
-//         paywalled_content, 
-//         profile, 
-//         organization, 
-//         review_snippets, 
-//         sitelinks, 
-//         video, 
-//         seo_title, 
-//         meta_keywords, 
+//         title,
+//         alias,
+//         h1_title,
+//         h2_title,
+//         img_alt_title,
+//         created_by,
+//         author_name,
+//         is_rss_feed,
+//         dynamic_rss_feed,
+//         image,
+//         channel_id,
+//         publishedAt,
+//         description,
+//         article,
+//         breadcrumbs,
+//         data_set,
+//         discussion_forum,
+//         faq,
+//         image_metadata,
+//         new_article,
+//         paywalled_content,
+//         profile,
+//         organization,
+//         review_snippets,
+//         sitelinks,
+//         video,
+//         seo_title,
+//         meta_keywords,
 //         meta_description,
 //         created_at,
 //         is_gabbar
 //       ) VALUES (
-//         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-//         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+//         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+//         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
 //         ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(),
 //          ?
 //       )
@@ -70,7 +70,7 @@
 //       postData.h1_title || null,
 //       postData.h2_title || null,
 //       postData.img_alt_title || null,
-    
+
 //       postData.created_by || null,
 //       postData.author_name || null,
 //       postData.is_rss_feed || 0,
@@ -154,14 +154,14 @@
 //       discussion_forum, events, faq, image_metadata, project_name, project_website,
 //       new_article, paywalled_content, product, profile, organization, review_snippets,
 //       sitelinks, video, dynamic_rss_feed, dataset_level, dataset_json, update_status
-    
+
 //     )
 //     VALUES (
 //       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
 //       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
 //     )
 //   `;
-  
+
 //   const values = [
 //     postData.author_id || 0,
 //     postData.author_name || null,
@@ -230,10 +230,9 @@
 //     JSON.stringify(postData.dataset_json) || null,
 //     postData.update_status || 0
 //   ];
-  
+
 // console.log("value....",values);
 // console.log("query.....",query);
-
 
 //     const result = await executeQuery({ query, values });
 
@@ -248,7 +247,6 @@
 //     return NextResponse.json({ success: false, message: 'Failed to insert content', error: error.message }, { status: 500 });
 //   }
 // }
-
 
 // app/api/insert-crypto-news/route.js
 
@@ -372,7 +370,7 @@
 //     return NextResponse.json({
 //       success: true,
 //       message: 'Content inserted successfully',
-//       filename: `/uploads/${filename}`, 
+//       filename: `/uploads/${filename}`,
 //       data: newEntry
 //     });
 //   } catch (error) {
@@ -383,8 +381,6 @@
 //     );
 //   }
 // }
-
-
 
 // import { NextResponse } from 'next/server';
 // import { PrismaClient } from '@prisma/client';
@@ -401,10 +397,10 @@
 //   try {
 //     // Parse the form data
 //     const formData = await request.formData();
-    
+
 //     // Extract file
 //     const file = formData.get('image');
-    
+
 //     // Convert form data entries to an object
 //     const postDataEntries = Array.from(formData.entries());
 //     const postData = postDataEntries.reduce((acc, [key, value]) => {
@@ -424,23 +420,17 @@
 //       return acc;
 //     }, {});
 
-  
-
-
-
-
 //   try {
-   
-    
+
 //     if (!file) {
 //       return NextResponse.json({ error: "No file provided" }, { status: 400 });
 //     }
-    
+
 //     const buffer = Buffer.from(await file.arrayBuffer());
 //     const fileExtension = file.name.split(".").pop();
 //     const randomKey = crypto.randomBytes(16).toString("hex");
 //     const key = `uploads/${randomKey}.${fileExtension}`;
-    
+
 //     // Upload to S3
 //     await s3Client.send(
 //       new PutObjectCommand({
@@ -450,7 +440,7 @@
 //         ContentType: file.type,
 //       })
 //     );
-    
+
 //     // Generate presigned URL for immediate access
 //     const url = await getSignedUrl(
 //       s3Client,
@@ -460,7 +450,7 @@
 //       }),
 //       { expiresIn: 3600 } // URL expires in 1 hour
 //     );
-    
+
 //     return NextResponse.json({ success: true, url, key });
 //   } catch (error) {
 //     console.error("Error uploading to S3:", error);
@@ -497,9 +487,9 @@
 
 //     if (missingFields.length > 0) {
 //       return NextResponse.json(
-//         { 
-//           success: false, 
-//           message: `Missing required fields: ${missingFields.join(', ')}` 
+//         {
+//           success: false,
+//           message: `Missing required fields: ${missingFields.join(', ')}`
 //         },
 //         { status: 400 }
 //       );
@@ -544,7 +534,7 @@
 //         is_organic: postData.is_organic || 0,
 //         is_cryptotax: postData.is_cryptotax || true,
 //         is_seo_check: postData.is_seo_check || true,
-//         publishedAt: postData.publishedAt 
+//         publishedAt: postData.publishedAt
 //         ? Math.floor(new Date(postData.publishedAt).getTime() / 1000)
 //         : Math.floor(Date.now() / 1000),
 //         focus_keyword: postData.focus_keyword || null,
@@ -575,7 +565,7 @@
 //         dataset_level: postData.dataset_level || null,
 //         dataset_json: postData.dataset_json ? JSON.stringify(postData.dataset_json) : null,
 //         update_status: postData.update_status || 0
-     
+
 //     };
 
 //     // Insert data into the crypto_news table using Prisma
@@ -592,10 +582,10 @@
 //   } catch (error) {
 //     console.error('Error in content creation:', error);
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'Failed to insert content', 
-//         error: error.message 
+//       {
+//         success: false,
+//         message: 'Failed to insert content',
+//         error: error.message
 //       },
 //       { status: 500 }
 //     );
@@ -604,7 +594,6 @@
 //     await prisma.$disconnect();
 //   }
 // }
-
 
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
@@ -851,7 +840,6 @@ export async function POST(request) {
   }
 }
 
-
 // export async function POST(request) {
 //   try {
 //     // Parse the form data
@@ -879,9 +867,9 @@ export async function POST(request) {
 //     // Write file to uploads directory
 //     fs.writeFileSync(filePath, buffer);
 
-//     return NextResponse.json({ 
-//       message: 'File uploaded successfully', 
-//       filename: `/uploads/${filename}` 
+//     return NextResponse.json({
+//       message: 'File uploaded successfully',
+//       filename: `/uploads/${filename}`
 //     }, { status: 200 });
 
 //   } catch (error) {

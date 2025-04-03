@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import fs from 'fs';
-import path from 'path';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import fs from "fs";
+import path from "path";
 
 const prisma = new PrismaClient();
 
@@ -17,9 +17,9 @@ export async function PUT(request, { params }) {
 
     if (!existingContent) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Content not found' 
+        {
+          success: false,
+          message: "Content not found"
         },
         { status: 404 }
       );
@@ -30,53 +30,52 @@ export async function PUT(request, { params }) {
       where: { id },
       data: {
         title: body.title,
-        alias: body.alias,        
+        alias: body.alias,
         // Add other fields you want to be updatable
-    h1_title: body.h1_title,
-    h2_title:  body.h2_title,
-    img_alt_title:  body.img_alt_title,
-    is_gabbar:  body.is_gabbar,
-    created_by:  body.created_by,
-    author_name:  body.author_name,
-    is_rss_feed:  body.is_rss_feed, 
-    dynamic_rss_feed:  body.dynamic_rss_feed,
-    image:  body.image,
-    channel_id:  body.channel_id,
-    publishedAt:  body.publishedAt,
-    description:  body.description,
-    article:  body.article,
-    breadcrumbs:  body.breadcrumbs,
-    data_set:  body.data_set,
-    discussion_forum:  body.discussion_forum,
-    faq:  body.faq,
-    image_metadata:  body.image_metadata,
-    new_article:  body.new_article,
-    paywalled_content:  body.paywalled_content,
-    profile: body.profile,
-    organization:  body.organization,
-    review_snippets:  body.review_snippets,
-    sitelinks:  body.sitelinks,
-    video:  body.video,
-    seo_title:  body.seo_title,
-    meta_keywords:  body.meta_keywords,   
-    meta_description:  body.meta_description,
+        h1_title: body.h1_title,
+        h2_title: body.h2_title,
+        img_alt_title: body.img_alt_title,
+        is_gabbar: body.is_gabbar,
+        created_by: body.created_by,
+        author_name: body.author_name,
+        is_rss_feed: body.is_rss_feed,
+        dynamic_rss_feed: body.dynamic_rss_feed,
+        image: body.image,
+        channel_id: body.channel_id,
+        publishedAt: body.publishedAt,
+        description: body.description,
+        article: body.article,
+        breadcrumbs: body.breadcrumbs,
+        data_set: body.data_set,
+        discussion_forum: body.discussion_forum,
+        faq: body.faq,
+        image_metadata: body.image_metadata,
+        new_article: body.new_article,
+        paywalled_content: body.paywalled_content,
+        profile: body.profile,
+        organization: body.organization,
+        review_snippets: body.review_snippets,
+        sitelinks: body.sitelinks,
+        video: body.video,
+        seo_title: body.seo_title,
+        meta_keywords: body.meta_keywords,
+        meta_description: body.meta_description,
         updated_at: new Date() // Assuming you have an updated_at field
       }
     });
 
     return NextResponse.json({
       success: true,
-      message: 'Content updated successfully',
+      message: "Content updated successfully",
       data: updatedContent
     });
-
   } catch (error) {
-    console.error('Error in content update:', error);
+    console.error("Error in content update:", error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Failed to update content', 
-        error: error.message || 'Unknown error'
+      {
+        success: false,
+        message: "Failed to update content",
+        error: error.message || "Unknown error"
       },
       { status: 500 }
     );
@@ -84,7 +83,6 @@ export async function PUT(request, { params }) {
     await prisma.$disconnect();
   }
 }
-
 
 // import { NextResponse } from 'next/server';
 // import { PrismaClient } from '@prisma/client';
@@ -97,10 +95,10 @@ export async function PUT(request, { params }) {
 //   try {
 //     // Parse the form data
 //     const formData = await request.formData();
-    
+
 //     // Extract file
 //     const file = formData.get('image');
-    
+
 //     // Convert form data entries to an object
 //     const updateDataEntries = Array.from(formData.entries());
 //     const updateData = updateDataEntries.reduce((acc, [key, value]) => {
@@ -130,9 +128,9 @@ export async function PUT(request, { params }) {
 
 //     if (!existingContent) {
 //       return NextResponse.json(
-//         { 
-//           success: false, 
-//           message: 'Content not found' 
+//         {
+//           success: false,
+//           message: 'Content not found'
 //         },
 //         { status: 404 }
 //       );
@@ -177,8 +175,8 @@ export async function PUT(request, { params }) {
 //       ...(updateData.dynamic_rss_feed && { dynamic_rss_feed: JSON.stringify(updateData.dynamic_rss_feed) }),
 //       ...(updateData.image && { image: updateData.image }),
 //       ...(updateData.channel_id && { channel_id: Number(updateData.channel_id) }),
-//       ...(updateData.publishedAt && { 
-//         publishedAt: Math.floor(new Date(updateData.publishedAt).getTime() / 1000) 
+//       ...(updateData.publishedAt && {
+//         publishedAt: Math.floor(new Date(updateData.publishedAt).getTime() / 1000)
 //       }),
 //       ...(updateData.description && { description: updateData.description }),
 //       ...(updateData.article && { article: updateData.article }),
@@ -215,10 +213,10 @@ export async function PUT(request, { params }) {
 //   } catch (error) {
 //     console.error('Error in content update:', error);
 //     return NextResponse.json(
-//       { 
-//         success: false, 
-//         message: 'Failed to update content', 
-//         error: error.message 
+//       {
+//         success: false,
+//         message: 'Failed to update content',
+//         error: error.message
 //       },
 //       { status: 500 }
 //     );
@@ -239,9 +237,9 @@ export async function GET(request, { params }) {
 
     if (!content) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Content not found' 
+        {
+          success: false,
+          message: "Content not found"
         },
         { status: 404 }
       );
@@ -251,14 +249,13 @@ export async function GET(request, { params }) {
       success: true,
       data: content
     });
-
   } catch (error) {
-    console.error('Error fetching content:', error);
+    console.error("Error fetching content:", error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Failed to fetch content', 
-        error: error.message || 'Unknown error'
+      {
+        success: false,
+        message: "Failed to fetch content",
+        error: error.message || "Unknown error"
       },
       { status: 500 }
     );
@@ -266,8 +263,6 @@ export async function GET(request, { params }) {
     await prisma.$disconnect();
   }
 }
-
-
 
 export async function DELETE(request, { params }) {
   try {
@@ -280,9 +275,9 @@ export async function DELETE(request, { params }) {
 
     if (!existingContent) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Content not found' 
+        {
+          success: false,
+          message: "Content not found"
         },
         { status: 404 }
       );
@@ -295,16 +290,15 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json({
       success: true,
-      message: 'Content deleted successfully'
+      message: "Content deleted successfully"
     });
-
   } catch (error) {
-    console.error('Error in content deletion:', error);
+    console.error("Error in content deletion:", error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Failed to delete content', 
-        error: error.message || 'Unknown error'
+      {
+        success: false,
+        message: "Failed to delete content",
+        error: error.message || "Unknown error"
       },
       { status: 500 }
     );

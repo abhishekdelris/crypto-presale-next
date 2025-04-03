@@ -18,7 +18,7 @@
 
 //     // Get user from database
 //     const user = await getUserByEmail(email);
-//     if (!user) {                                           
+//     if (!user) {
 //       return NextResponse.json(
 //         { error: 'Invalid credentials' },
 //         { status: 401 }
@@ -75,12 +75,11 @@
 //   }
 // }
 
-
 // app/api/auth/login/route.js
-import { executeQuery } from '@/lib/db';
-import { compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
-import { NextResponse } from 'next/server';
+import { executeQuery } from "@/lib/db";
+import { compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -88,32 +87,32 @@ export async function POST(request) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: "Email and password are required" },
         { status: 400 }
       );
     }
 
     // Find admin by email
     const admins = await executeQuery({
-      query: 'SELECT * FROM admins WHERE email = ?',
+      query: "SELECT * FROM admins WHERE email = ?",
       values: [email]
     });
-    
+
     if (admins.length === 0) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
 
     const admin = admins[0];
-    
+
     // Compare password
     const passwordMatch = await compare(password, admin.password);
-    
+
     if (!passwordMatch) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
@@ -127,21 +126,21 @@ export async function POST(request) {
         username: admin.username
       },
       process.env.JWT_SECRET,
-      { expiresIn: '8h' }
+      { expiresIn: "8h" }
     );
 
     // Remove password from response
     const { password: _, ...adminData } = admin;
 
     return NextResponse.json({
-      message: 'Login successful',
+      message: "Login successful",
       token,
       admin: adminData
     });
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

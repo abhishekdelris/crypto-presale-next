@@ -38,10 +38,10 @@
 
 // export async function POST() {
 //   const session = await getIronSession(cookies(), sessionOptions);
-  
+
 //   // Clear all session data
 //   session.destroy();
-  
+
 //   return NextResponse.json(
 //     { success: true, message: 'Logged out successfully' },
 //     { status: 200 }
@@ -49,15 +49,15 @@
 // }
 
 // app/api/auth/logout/route.js
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export async function POST() {
   // Clear the auth cookie using Next.js built-in cookies API
-  cookies().delete('auth');
-  
+  cookies().delete("auth");
+
   return NextResponse.json(
-    { success: true, message: 'Logged out successfully' },
+    { success: true, message: "Logged out successfully" },
     { status: 200 }
   );
 }

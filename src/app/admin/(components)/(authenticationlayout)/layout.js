@@ -6,22 +6,19 @@ import store from "../../../../../shared/redux/store";
 import Authenticationswitcher from "../../../../../shared/layout-components/switcher/authenticationswitcher";
 
 const Authenticationlayout = ({ children }) => {
-	
-	return (
-		
-		<Fragment>
-			<Provider store={store}>
-				<HelmetProvider>
-					<Helmet>
-						<body className='error-1'></body>
-					</Helmet>
-					{children}
-					<Authenticationswitcher />
-				</HelmetProvider>
-			</Provider>
-		</Fragment>
-		
-	);
+  return (
+    <Fragment>
+      <Provider store={store}>
+        <HelmetProvider>
+          <Helmet>
+            <body className="error-1" />
+          </Helmet>
+          {children}
+          <Authenticationswitcher />
+        </HelmetProvider>
+      </Provider>
+    </Fragment>
+  );
 };
 
 export default Authenticationlayout;

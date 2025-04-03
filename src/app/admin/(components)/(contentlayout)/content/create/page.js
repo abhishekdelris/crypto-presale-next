@@ -34,7 +34,7 @@ import RichTextEditor from "../../../../../../components/RichTextEditor";
 
 const Create = () => {
   const { submitGuestPost, isLoading } = useGuestPostSubmit();
-  const [selectedFile,setSelectedFile] = useState('');
+  const [selectedFile, setSelectedFile] = useState("");
   // const route = useRouter();
   // Initial form state
   const [formData, setFormData] = useState({
@@ -66,7 +66,7 @@ const Create = () => {
     sitelinks: "",
     video: "",
     seo_title: "",
-    meta_keywords: "",   
+    meta_keywords: "",
     meta_description: ""
   });
 
@@ -79,7 +79,7 @@ const Create = () => {
   //     const reader = new FileReader();
   //     reader.onloadend = () => {
   //       setPreviewUrl(reader.result);
-        
+
   //       // Save to localStorage
   //       if (reader.result) {
   //         localStorage.setItem('uploadedImage', reader.result);
@@ -110,17 +110,17 @@ const Create = () => {
   //         }
   //         return { ...prevData, [name]: checked };
   //         default:
-  //           return { 
-  //             ...prevData, 
-  //             [name]: (name === 'is_gabbar' || name === 'channel_id' || name === 'is_rss_feed' || name === 'created_by' ) ? Number(value) : value 
+  //           return {
+  //             ...prevData,
+  //             [name]: (name === 'is_gabbar' || name === 'channel_id' || name === 'is_rss_feed' || name === 'created_by' ) ? Number(value) : value
   //           };
   //     }
   //   });
   // };
 
   // Handle SunEditor content change
-  const handleEditorChange = (content) => {
-    setFormData((prev) => ({
+  const handleEditorChange = content => {
+    setFormData(prev => ({
       ...prev,
       description: content
     }));
@@ -134,7 +134,7 @@ const Create = () => {
   //   const requiredFields = [
   //     "title",
   //     "alias",
-     
+
   //   ];
 
   //   const missingFields = requiredFields.filter((field) => !formData[field]);
@@ -146,7 +146,7 @@ const Create = () => {
   //     return;
   //   }
   //   console.log("submitcontent..................!",formData);
-    
+
   //   // Submit the form data
   //   const formData12 = new FormData();
   //   formData12.append('file', selectedFile);
@@ -154,10 +154,10 @@ const Create = () => {
   //   await submitGuestPost(formData);
   // };
 
-// new data for hanlde img upload
+  // new data for hanlde img upload
 
   // Image change handler
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
       // Create preview URL
@@ -174,10 +174,10 @@ const Create = () => {
   };
 
   // Other input change handler remains the same
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value, type, files, checked } = e.target;
 
-    setFormData((prevData) => {
+    setFormData(prevData => {
       switch (type) {
         case "file":
           return { ...prevData, [name]: files[0] };
@@ -189,28 +189,32 @@ const Create = () => {
               ...prevData,
               dynamic_rss_feed: checked
                 ? [...currentFeeds, value]
-                : currentFeeds.filter((feed) => feed !== value)
+                : currentFeeds.filter(feed => feed !== value)
             };
           }
           return { ...prevData, [name]: checked };
         default:
-          return { 
-            ...prevData, 
-            [name]: (name === 'is_gabbar' || name === 'channel_id' || name === 'is_rss_feed' || name === 'created_by') 
-              ? Number(value) 
-              : value 
+          return {
+            ...prevData,
+            [name]:
+              name === "is_gabbar" ||
+              name === "channel_id" ||
+              name === "is_rss_feed" ||
+              name === "created_by"
+                ? Number(value)
+                : value
           };
       }
     });
   };
 
   // Form submission handler
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // Validate required fields
     const requiredFields = ["title", "alias"];
-    const missingFields = requiredFields.filter((field) => !formData[field]);
+    const missingFields = requiredFields.filter(field => !formData[field]);
 
     if (missingFields.length > 0) {
       toast.error(
@@ -221,9 +225,7 @@ const Create = () => {
 
     // Submit the form data
     await submitGuestPost(formData);
-    
   };
-
 
   // Reset form handler
   const handleReset = () => {
@@ -447,7 +449,7 @@ const Create = () => {
                         { value: "2", label: "CMC" },
                         { value: "3", label: "Suncrypto" },
                         { value: "4", label: "Binance" }
-                      ].map((feed) => (
+                      ].map(feed =>
                         <div key={feed.value} className="form-check">
                           <input
                             type="checkbox"
@@ -467,7 +469,7 @@ const Create = () => {
                             {feed.label}
                           </label>
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                   {/* Image Field */}
@@ -487,26 +489,24 @@ const Create = () => {
                         id="image"
                         name="image"
                         onChange={handleFileChange}
-                        accept="image/*" 
+                        accept="image/*"
                       />
                     </div>
-                    
+
                     <div id="img-preview">
-                       {/* Image Preview */}
-        {formData.imagePreview && (
-          <div className="mt-2">
-            <img 
-              src={formData.imagePreview} 
-              alt="Preview" 
-              style={{ 
-                maxWidth: '200px', 
-                maxHeight: '200px', 
-                objectFit: 'contain' 
-              }} 
-            />
-          </div>
-        )}
-     
+                      {/* Image Preview */}
+                      {formData.imagePreview &&
+                        <div className="mt-2">
+                          <img
+                            src={formData.imagePreview}
+                            alt="Preview"
+                            style={{
+                              maxWidth: "200px",
+                              maxHeight: "200px",
+                              objectFit: "contain"
+                            }}
+                          />
+                        </div>}
                     </div>
                   </div>
                   <div className="form-group col-sm-12 col-xl-3">

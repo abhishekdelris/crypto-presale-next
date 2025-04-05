@@ -356,28 +356,7 @@ export async function POST(request) {
     const file = formData.get("image");
 
     // Convert form data entries to an object with proper type handling
-    const postData = Array.from(formData.entries()).reduce((acc, [key, value]) => {
-      // Skip file field as we'll handle it separately
-      if (key === "image") return acc;
-
-      
-      return acc;
-    }, {});
-
-    // Validate required fields
-    const requiredFields = ["title", "alias"];
-    const missingFields = requiredFields.filter(field => !postData[field]);
-
-    // if (missingFields.length > 0) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: `Missing required fields: ${missingFields.join(", ")}`
-    //     },
-    //     { status: 400 }
-    //   );
-    // }
-
+    const postData = Object.fromEntries(formData.entries());
     
 
     // Handle file upload

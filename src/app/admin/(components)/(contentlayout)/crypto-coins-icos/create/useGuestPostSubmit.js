@@ -143,7 +143,7 @@ export const useGuestPostSubmit = () => {
       
       if (response.data.success) {
         toast.success('Content created successfully!');
-        router.push("/admin/crypto_coins");
+        router.push("/admin/crypto-coins-icos");
         return response.data;
       } else {
         toast.error(response.data.message || 'Failed to create content');

@@ -4,4 +4,4 @@ const Home = () => {
   return <ICOPage />;
 };
 
-export default Home;
+export default Home; 

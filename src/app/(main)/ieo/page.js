@@ -3,4 +3,4 @@ const Home = () => {
   return <IEOPage />;
 };
 
-export default Home;
+export default Home; 

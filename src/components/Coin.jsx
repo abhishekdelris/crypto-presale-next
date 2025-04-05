@@ -49,7 +49,7 @@ function Coin({CoinData}) {
         <div className="row">
           <div className="table_main">
             <div className="table-responsive">
-              <table className="table table-bg table-striped">
+              <table className="table table-bg table-striped table-manage">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -87,7 +87,19 @@ function Coin({CoinData}) {
                             </td>
                             <td>Hardcap {formatNumber(coin.hard_cap)}</td>
                             <td>
-                              <div className="main_flex_Gap">
+                            <div className="row">
+                                <div className="col-sm-4"><span>
+                                  {calculateSingleDateDifference(
+                                    coin.start_time,
+                                    coin.end_time
+                                  )}
+                                </span></div>
+                                <div className="col-sm-4"><button className="btn-main primary-btn small px-4 btn-second_main">
+                                  Hodl
+                                </button></div>
+                                <div className="col-sm-4"><i className="fa-regular fa-star"></i></div>
+                              </div>
+                              {/* <div className="main_flex_Gap">
                                 <span>
                                   {calculateSingleDateDifference(
                                     coin.start_time,
@@ -98,7 +110,7 @@ function Coin({CoinData}) {
                                   Hodl
                                 </button>
                                 <i className="fa-regular fa-star"></i>
-                              </div>
+                              </div> */}
                             </td>
                     </tr>
                     )

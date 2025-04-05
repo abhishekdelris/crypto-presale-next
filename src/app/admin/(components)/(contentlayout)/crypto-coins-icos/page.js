@@ -34,7 +34,7 @@ const Content = () => {
         try {
             const config = {
                 method: 'get',
-                url: '/api/admin/content',
+                url: '/api/admin/crypto_coins',
             };
 
             const response = await axios.request(config);
@@ -79,7 +79,7 @@ const Content = () => {
     };
     
     const handleAddPost = () => {
-        router.push("/admin/content/create");
+        router.push("/admin/crypto-coins-icos/create");
     }
 
     const openDeleteModal = (post) => {
@@ -95,37 +95,59 @@ const Content = () => {
      )
    : posts;
   
-    const getPostType = (gabbarnews) => {
-        switch (gabbarnews) {
+    const handleType = (type) => {
+        switch (type) {
+          case 0:
+            return "ICO / Token";
           case 1:
-            return "Gabbar News";
+            return "IDO / Token";
           case 2:
-            return "Press Release";
+            return "IEO / Token";
           case 3:
-            return "Sponsored";
-          case 4:
-            return "Guest News";
-          case 5:
-            return "Blog";
-          case 6:
-            return "Price Prediction";
+            return "Presale / Token";
+         
           default:
-            return "Gabbar News";
+            return "ICO / Token";
         }
       };
-      const handleCreatedBy = (data) => {
-                      switch (data) {
-                        case 1:
-                           return "Rohit Khandelwal";
-                        case 2:
-                            return "Sudeep Saxena";
-                        case 3:
-                           return "Akansha Vyas";
-                        default:
-                            return "Akansha Vyas";
-                      }
+     
+      function formatISODate(isoDateString) {
+        // Create a Date object from the ISO timestamp
+        const date = new Date(isoDateString);
+      
+        // Array of month names
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ];
+      
+        // Get individual date components
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+      
+        // Handle hours and minutes
+        let hours = date.getHours();
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const ampm = hours >= 12 ? "PM" : "AM";
+      
+        // Convert to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // handle midnight (0 hours)
+      
+        // Combine into final format
+        return `${day} ${month} ${year} ${hours}:${minutes} ${ampm}`;
       }
-
        // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -194,20 +216,22 @@ const Content = () => {
   <table className="table even-tbl table-responsive border" id="cryptoNews-table">
     <thead>
       <tr>
-        <th>Url to Image</th>
+        <th>Coin / Token Image</th>
         <th>Thumb</th>
-        <th>Author</th>
-        <th>CREATED BY</th>
-        <th>Title</th>
+        <th>Type</th>
+        <th>Coin / Token Name</th>
+        <th>URL Slug</th>
         {/* <th>Alias</th> */}
         {/* <th>Description</th> */}
         {/* <th>Url (if no link put N/A)</th> */}
+        <th>Coin / Token Code</th>
+        <th>Total Coin / Token</th>
+
         <th>Uploaded At</th>
-        <th>Published at</th>
-        <th>{/* Language */}Lan</th>
-        <th>Gabbar News</th>
-        <th>Is News/Blog</th>
-        <th>SEO Check</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Guest</th>
+        <th>Is Review</th>
         <th colSpan={3}>Action</th>
       </tr>
     </thead>
@@ -216,24 +240,24 @@ const Content = () => {
                 <tr key={post.id}>
                     <td><Image src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
                     <td><Image src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td>{post.author}</td>       
-        <td className="text-left text-nowrap">{handleCreatedBy(post.createdby)}</td>
+                    <td>{handleType(post.type)}</td>       
+        <td className="text-left text-nowrap">{post.name}</td>
         <td className="text-left">
           <Link href={`/admin/content/${post.slug}/${post.id}`} >{post.title}</Link>
         </td>
-       
-        <td>{post.publishedAt}</td>
-        <td>{post.uploadedAt}</td>
-        <td>{post.lan}</td>
+        <td>{post.alias}</td>
+        <td>{post.total_coin}</td>
+        <td>{formatISODate(post.updated_at)}</td>
+        <td>{post.start_time}</td>
         <td>
-      <span className="text-green">{getPostType(post.gabbarnews)}</span>
+      <span className="text-green">{post.end_time}</span>
     </td>
         <td>
-            {post.is_new_blog===0 ? "News" : "Blog"}
+            {post.is_guest===1 ? "Yes" : "No"}
           
         </td>
         <td>
-          <strong className="text-green"> {post.seo===1 ? "Yes" : "No"} </strong>
+          <strong className="text-green"> {post.is_review===1 ? "Yes" : "No"} </strong>
         </td>
       
         <td>

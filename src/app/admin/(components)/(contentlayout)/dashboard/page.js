@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment } from "react";
+import React, {useState, useEffect, Fragment } from "react";
 import {
   Card,
   Col,
@@ -17,7 +17,7 @@ import {
   BudgetTask,
   MobileAppDesign,
   ProjectBudget,
-  TASKS,
+  
   WebsiteAppDesign,
   WebsiteDesign
 } from "../../../../../../shared/data/dashboard/dashboarddata";
@@ -25,6 +25,23 @@ import PageHeader from "../../../../../../shared/layout-components/page-header/p
 import Seo from "../../../../../../shared/layout-components/seo/seo";
 import altImgCoin from "@/images/altcoin.webp";
 const Dashboard = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const handleTrendingData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/trending_presale?page=1&limit=7");
+      const result = await response.json();  // Await response.json()
+      console.log("this is data.........",result);
+      setTasks(result.trending); // Set the data in state
+    } catch (error) {
+      console.warn("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleTrendingData();
+  }, []); // Only run once when the component mounts
+
   return (
     <Fragment>
       <Seo title={"Dashboard"} />
@@ -405,7 +422,7 @@ const Dashboard = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {TASKS.map((items, index) =>
+                        {tasks.map((items, index) =>
                           <tr key={index} data-index={index}>
                             <td>
                               {index + 1}

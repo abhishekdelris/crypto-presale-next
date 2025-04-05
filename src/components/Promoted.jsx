@@ -260,14 +260,14 @@ function Promoted({ feturedData }) {
               </div>
               <div className="table_main">
                 <div className="table-responsive">
-                  <table className="table table-bg table-striped">
+                  <table className="table table-bg table-striped table-manage">
                     <thead>
                       <tr>
                         <th>#</th>
                         <th>Coin</th>
                         <th>Name</th>
                         <th>Stage</th>
-                        <th>Price</th>
+                         <th>Price</th>
                         <th>Hardcap</th>
                         <th>Duration</th>
                       </tr>
@@ -299,7 +299,19 @@ function Promoted({ feturedData }) {
                             </td>
                             <td>Hardcap {formatNumber(item.hard_cap)}</td>
                             <td>
-                              <div className="main_flex_Gap">
+                              <div className="row">
+                                <div className="col-sm-4"><span>
+                                  {calculateSingleDateDifference(
+                                    item.start_time,
+                                    item.end_time
+                                  )}
+                                </span></div>
+                                <div className="col-sm-4"><button className="btn-main primary-btn small px-4 btn-second_main">
+                                  Hodl
+                                </button></div>
+                                <div className="col-sm-4"><i className="fa-regular fa-star"></i></div>
+                              </div>
+                              {/* <div className="main_flex_Gap">
                                 <span>
                                   {calculateSingleDateDifference(
                                     item.start_time,
@@ -310,7 +322,7 @@ function Promoted({ feturedData }) {
                                   Hodl
                                 </button>
                                 <i className="fa-regular fa-star"></i>
-                              </div>
+                              </div> */}
                             </td>
                           </tr>
                         ))

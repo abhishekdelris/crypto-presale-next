@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
 export default function ClientSideICO({ icoData }) {
   const [selectedOption, setSelectedOption] = useState('option1');
@@ -155,8 +156,11 @@ const paginatedData = sortedData.slice(0, visibleData);
                   <td>{ico.ico_price ? `${ico.ico_price} (${ico.accept_type || "USDT"})` : "N/A"}</td>
                   <td>{ico.fund_asking_for ? `${formatNumber(ico.fund_asking_for)} (${ico.accept_type || "USDT"})` : "N/A"}</td>
                   <td>
-                    <div className="info-circle">
-                      <i className="bi bi-info" />
+                  <div className="info-circle">
+                  <Link href={`/crypto-ico-details/${ico.slug}`}>
+                      <i class="fa-solid fa-arrow-up-right-from-square hyperlink"></i>
+                      {/* <i className="bi bi-info" /> */}
+                       </Link>
                     </div>
                   </td>
                 </tr>

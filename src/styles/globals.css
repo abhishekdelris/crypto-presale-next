@@ -1726,3 +1726,7 @@ html, body, #__next, .layout121 {
   font-size: x-small;
     font-weight: 600;
 }
+
+.table-manage {
+  overflow: hidden;
+}

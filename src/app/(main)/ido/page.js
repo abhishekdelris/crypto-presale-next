@@ -4,4 +4,4 @@ const Home = () => {
   return <IDOPage />;
 };
 
-export default Home; 
+export default Home;  

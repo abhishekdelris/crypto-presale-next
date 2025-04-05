@@ -38,7 +38,7 @@ export default function ContentEditPage() {
   
   const [formData, setFormData] = useState({
     title: '',
-    description: '<p>This is a <strong>sample description</strong> with some <u>formatted text</u>!</p>',
+    description: '',
     alias: '',
     h1_title: '',
     h2_title: '',

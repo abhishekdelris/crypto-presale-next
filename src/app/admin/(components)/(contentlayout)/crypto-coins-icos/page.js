@@ -30,7 +30,7 @@ const Content = () => {
         fetchPosts();
     }, []);
 
-    const fetchPosts = async () => {
+    const fetchPosts = async () => { 
         try {
             const config = {
                 method: 'get',
@@ -52,18 +52,18 @@ const Content = () => {
     
 
     const handleView = (post) => {
-        router.push(`/admin/content/${post.slug}/${post.id}`);
+        router.push(`/admin/crypto-coins-icos/${post.slug}`);
     };
 
     const handleEdit = (post) => {
-        router.push(`/admin/content/edit/${post.id}`);
+        router.push(`/admin/crypto-coins-icos/edit/${post.id}`);
     };
 
     const handleDeleteConfirm = async () => {
         if (!postToDelete) return;
 
         try {
-            await axios.delete(`/api/admin/content/${postToDelete.id}`);
+            await axios.delete(`/api/admin/crypto-coins-icos/${postToDelete.id}`);
             
             // Remove the post from the local state
             setPosts(posts.filter(post => post.id !== postToDelete.id));

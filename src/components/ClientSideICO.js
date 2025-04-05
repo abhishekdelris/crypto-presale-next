@@ -70,7 +70,7 @@ const paginatedData = sortedData.slice(0, visibleData);
     <>
       {/* Filter Tabs */}
       <div className="btn-group mb-4">
-        <button className="btn btn-light tab-button" onClick={() => router.push("/ido")}>All</button>
+        <button className="btn btn-light tab-button" onClick={() => router.push("/crypto-token-ico-ido-ieo-presale")}>All</button>
         <button className="btn btn-light tab-button active-tab">
           Crypto ICO
         </button>

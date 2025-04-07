@@ -83,55 +83,44 @@ export default function CryptoCoinEditPage() {
     meta_description: '',
     imagePreview : '',
     // Tab 2 data - Various sale types
-    privateSale: {
+  
       private_sale_start_date: '',
       private_sale_end_date: '',
       private_sale_rate: '',
       private_sale_goal: '',
       private_sale_token_sold: '',
-      private_sale_where_buy: ''
-    },
-    preSale: {
+      private_sale_where_buy: '',
       pre_sale_start_date: '',
       pre_sale_end_date: '',
       pre_sale_rate: '',
       fundraisingGoal: '',
       pre_sale_token_sold: '',
-      pre_sale_where_buy: ''
-    },
-    publicSale: {
+      pre_sale_where_buy: '',
       public_sale_start_date: '',
       public_sale_end_date: '',
       public_sale_rate: '',
       public_sale_goal: '',
       public_sale_token_sold: '',
-      public_sale_where_buy: ''
-    },
-    icoSale: {
+      public_sale_where_buy: '',
       ico_sale_start_date: '',
       ico_sale_end_date: '',
       ico_sale_rate: '',
       ico_sale_goal: '',
       ico_sale_token_sold: '',
-      ico_sale_where_buy: ''
-    },
-    idoSale: {
+      ico_sale_where_buy: '',
       ido_sale_start_date: '',
       ido_sale_end_date: '',
       ido_sale_rate: '',
       ido_sale_goal: '',
       ido_sale_token_sold: '',
-      ido_sale_where_buy: ''
-    },
-    ieoSale: {
+      ido_sale_where_buy: '',
       ieo_sale_start_date: '',
       ieo_sale_end_date: '',
       ieo_sale_rate: '',
       ieo_sale_goal: '',
       ieo_sale_token_sold: '',
-      ieo_sale_where_buy: ''
-    },
-    
+      ieo_sale_where_buy: '',
+   
     // Tab 3 data
     article: '',
     discussion_forum: '',
@@ -146,33 +135,33 @@ export default function CryptoCoinEditPage() {
     organization: '',
     sitelinks: '',
     
-    // Tab 4 data
-    one_usdt: '',
-    total_supply_percent2: '',
-    quantity_of_coin: '',
-    ico_price2: '',
-    where_to_buy2: '',
-    dateStart: '',
-    dateEnd: '',
-    fund_asking_forFor: '',
-    selectProjectType: '',
-    selectIcoIdo: '',
-    selectProjectType2: '',
-    selectaccept_type: '',
-    selectis_review: '',
-    tokenForSale: '',
-    percentageForSupply: '',
-    privateSaleSelect: '',
-    one_usdtValue: '',
-    soft_cap2: '',
-    hard_cap2: '',
-    personal_cap2: ''
+     // Tab 4 data
+     one_usdt: '',
+     detail_total_supply: '',
+     detail_qty_of_coin: '',
+     detail_ico_price: '',
+     detail_where_to_buy: '',
+     detail_start_date: '',
+     detail_end_date: '',
+     detail_fund_asking_for: '',
+     detail_accept_type: '',
+     detail_ico_ido_type: '',
+     detail_accept_type: '',
+     selectaccept_type: '',
+     detail_is_review: '',
+     detail_token_for_sale: '',
+     detail_percentage_of_supply: '',
+     privateSaleSelect: '',
+     detail_one_usdt: '',
+     detail_soft_cap: '',
+     detail_hard_cap: '',
+     detail_personal_cap: ''
   });
 
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const router = useRouter();
-  const { slug } = params;
+  const { id } = params;
 
   useEffect(() => {
     async function fetchContent() {
@@ -185,7 +174,7 @@ export default function CryptoCoinEditPage() {
       } catch (error) {
         toast.error('Failed to fetch content');
         setLoading(false);
-        router.push('/admin/content');
+        router.push('/admin/crypto-coins-icos');
       }
     }
 
@@ -194,44 +183,67 @@ export default function CryptoCoinEditPage() {
     } 
   }, [id, router]);
   
-    // State to track multiple sets of fields
-    const [fieldSets, setFieldSets] = useState([0]);
-    const [nextId, setNextId] = useState(1);
+      // State to track form data for each field set
+  const [fieldSets, setFieldSets] = useState([{ id: 0, ...formData }]);
+  const [nextId, setNextId] = useState(1);
+
   
+     // Function to add a new field set
+  const addNewFieldSet = () => {
+    setFieldSets([...fieldSets, { id: nextId, ...formData }]);
+    setNextId(nextId + 1);
+  };
   
-    const addNewFieldSet = () => {
-      setFieldSets([...fieldSets, nextId]);
-      setNextId(nextId + 1);
-    };
-  
-    const removeFieldSet = (index) => {
-      const updatedFieldSets = fieldSets.filter((_, i) => i !== index);
-      setFieldSets(updatedFieldSets);
-    };
+     // Function to remove a field set
+  const removeFieldSet = (index) => {
+    const updatedFieldSets = fieldSets.filter((_, i) => i !== index);
+    setFieldSets(updatedFieldSets);
+  };
   
   
     const handleChange = (e) => {
-      const { name, value } = e.target;
+      const { name, value } = e.target; 
       setFormData(prev => ({
         ...prev,
         [name]: value
       }));
+
+      // Create a copy of the fieldSets array
+    const updatedFieldSets = [...fieldSets];
+    
+    // Update the specific field in the correct field set
+    updatedFieldSets[index] = {
+      ...updatedFieldSets[index],
+      [name]: value
+    };
+    
+    setFieldSets(updatedFieldSets);
     };
 
+    // Navigation functions
+  const next = () => {
+    if (activeTab < 4) {
+      setActiveTab(activeTab + 1);
+    }
+  };
+
+  const back = () => {
+    if (activeTab > 0) {
+      setActiveTab(activeTab - 1);
+    }
+  };
     // if (loading) {
     //   return <div>Loading...</div>;
     // }
   
 
-  // Handle SunEditor content change
-  const handleEditorChange = (content) => {
+   // Handle SunEditor content change
+   const handleEditorChange = (content) => {
     setFormData((prev) => ({
       ...prev,
       description: content
     }));
   };
-
-
 // Image change handler
 const handleFileChange = (e) => {
 const file = e.target.files[0];
@@ -250,13 +262,16 @@ if (file) {
 };
 
 
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
       await axios.put(`/api/admin/crypto_coins/${id}`, formData);
       toast.success('Crypto Coin updated successfully');
-      router.push(`/admin/content/${formData.alias}/${id}`);
+      router.push(`/admin/crypto-coins-icos/${formData.alias}/${id}`);
     } catch (error) {
       toast.error('Failed to update content');
     }
@@ -270,9 +285,10 @@ if (file) {
       <PageHeader
         title="Crypto Coins"
         item="Crypto Coins"
-        active_item="Edit"
+        active_item="Edit" 
       />
       {/* <ToastContainer /> */}
+
 
       <Row className="row-sm">
         <div className="col-xl-12">
@@ -344,7 +360,7 @@ if (file) {
                             </label>
                             <select
                               name="coin_token"
-                              value={formData.coin_token}
+                              value={formData.coin_token ? formData.coin_token : ''}
                               onChange={handleChange}
                               className="form-select"
                             >
@@ -564,12 +580,7 @@ if (file) {
                               name="imageAltTitle"
                               className="form-control"
                             />
-                            <button
-                              type="button"
-                              className="btn btn-primary mt-2"
-                            >
-                              Browse
-                            </button>
+                          
                           </div>
                         </div>
 
@@ -630,7 +641,7 @@ if (file) {
                               value={formData.website}
                               onChange={handleChange}
                               className="form-control"
-                              placeholder="https://akptoken.com/..."
+                              placeholder="https://testfiled.com/..."
                               required
                             />
                           </div>
@@ -643,7 +654,7 @@ if (file) {
                             <input
                               type="text"
                               name="twitter"
-                              placeholder="https://twitter.com/@akptoken"
+                              placeholder="https://twitter.com/"
                               className="form-control"
                             />
                           </div>
@@ -654,7 +665,7 @@ if (file) {
                             <input
                               type="text"
                               name="telegramGroup"
-                              placeholder="https://t.me/akp_token"
+                              placeholder="https://testfiled.com/"
                               className="form-control"
                             />
                           </div>
@@ -668,7 +679,7 @@ if (file) {
                             <input
                               type="text"
                               name="telegramChannel"
-                              placeholder="https://t.me/akppartitoken"
+                              placeholder="https://t.me/testfiled"
                               className="form-control"
                             />
                           </div>
@@ -688,7 +699,7 @@ if (file) {
                             <input
                               type="text"
                               name="discord"
-                              className="form-control"
+                               className="form-control"
                             />
                           </div>
                           <div className="col-md-6">
@@ -747,12 +758,7 @@ if (file) {
                               onChange={handleFileChange}
                               className="form-control"
                             />
-                            <button
-                              type="button"
-                              className="btn btn-primary mt-2"
-                            >
-                              Browse
-                            </button>
+                           
                           </div>
                         </div>
 
@@ -1014,24 +1020,25 @@ if (file) {
                             Description
                           </label>
                           <div>
-                            <SunEditor
-                              onChange={handleEditorChange}
-                              defaultValue={formData.description}
-                              setOptions={{
-                                height: 300,
-                                placeholder: "Enter your text here!!!",
-                                buttonList: [
-                                  ["undo", "redo"],
-                                  ["font", "fontSize"],
-                                  ["bold", "underline", "italic", "strike"],
-                                  ["fontColor", "hiliteColor"],
-                                  ["removeFormat"],
-                                  ["outdent", "indent"],
-                                  ["align", "list"],
-                                  ["link", "image"]
-                                ]
-                              }}
-                            />
+                          <SunEditor
+                        onChange={handleEditorChange} 
+                      
+                        defaultValue={formData.description}
+                        setOptions={{
+                          height: 300,
+                          placeholder: "Enter your text here!!!",
+                          buttonList: [
+                            ["undo", "redo"],
+                            ["font", "fontSize"],
+                            ["bold", "underline", "italic", "strike"],
+                            ["fontColor", "hiliteColor"],
+                            ["removeFormat"],
+                            ["outdent", "indent"],
+                            ["align", "list"],
+                            ["link", "image"]
+                          ]
+                        }}
+                      />
                           </div>
                         </div>
                         <div className="row ">
@@ -1144,18 +1151,18 @@ if (file) {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="button" className="btn">
                             Cancel
                           </button>
                         </div>
                       </div>
                     )}
 
-                    {/* Tab 2, 3, and 4 would go here, following the same pattern */}
-                    {activeTab === 2 && (
+                   {/* Tab 2, 3, and 4 would go here, following the same pattern */}
+                   {activeTab === 2 && (
                       <div className="mb-4">
                         <div className="row mb-3">
                           <div lassName="col-md-12">
@@ -1167,8 +1174,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.privateSale.start_time}
+                              name="private_sale_start_date"
+                              value={formData.private_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1177,8 +1184,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.privateSale.end_time}
+                              name="private_sale_end_date"
+                              value={formData.private_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1187,8 +1194,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.privateSale.tokenSold}
+                              name="private_sale_token_sold"
+                              value={formData.private_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1197,8 +1204,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.privateSale.rate}
+                              name="private_sale_rate"
+                              value={formData.private_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1209,8 +1216,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.privateSale.fundraisingGoal}
+                              name="private_sale_goal"
+                              value={formData.private_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1219,8 +1226,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.privateSale.where_to_buy}
+                              name="private_sale_where_buy"
+                              value={formData.private_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1237,8 +1244,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.preSale.start_time}
+                              name="pre_sale_start_date"
+                              value={formData.pre_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1247,8 +1254,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.preSale.end_time}
+                              name="pre_sale_end_date"
+                              value={formData.pre_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1257,8 +1264,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.preSale.tokenSold}
+                              name="pre_sale_token_sold"
+                              value={formData.pre_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1267,8 +1274,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.preSale.rate}
+                              name="pre_sale_rate"
+                              value={formData.pre_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1279,8 +1286,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.preSale.fundraisingGoal}
+                              name="pre_sale_goal"
+                              value={formData.pre_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1289,8 +1296,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.preSale.where_to_buy}
+                              name="pre_sale_where_buy"
+                              value={formData.pre_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1307,8 +1314,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.publicSale.start_time}
+                              name="public_sale_start_date"
+                              value={formData.public_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1317,8 +1324,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.publicSale.end_time}
+                              name="public_sale_end_date"
+                              value={formData.public_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1327,8 +1334,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.publicSale.tokenSold}
+                              name="public_sale_token_sold"
+                              value={formData.public_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1337,8 +1344,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.publicSale.rate}
+                              name="public_sale_rate"
+                              value={formData.public_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1349,8 +1356,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.publicSale.fundraisingGoal}
+                              name="public_sale_goal"
+                              value={formData.public_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1359,8 +1366,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.publicSale.where_to_buy}
+                              name="public_sale_where_buy"
+                              value={formData.public_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1377,8 +1384,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.icoSale.start_time}
+                              name="ico_sale_start_date"
+                              value={formData.ico_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1387,8 +1394,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.icoSale.end_time}
+                              name="ico_sale_end_date"
+                              value={formData.ico_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1397,8 +1404,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.icoSale.tokenSold}
+                              name="ico_sale_token_sold"
+                              value={formData.ico_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1407,8 +1414,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.icoSale.rate}
+                              name="ico_sale_rate"
+                              value={formData.ico_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1419,8 +1426,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.icoSale.fundraisingGoal}
+                              name="ico_sale_goal"
+                              value={formData.ico_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1429,8 +1436,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.icoSale.where_to_buy}
+                              name="ico_sale_where_buy"
+                              value={formData.ico_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1447,8 +1454,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.idoSale.start_time}
+                              name="ido_sale_start_date"
+                              value={formData.ido_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1457,8 +1464,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.idoSale.end_time}
+                              name="ido_sale_end_date"
+                              value={formData.ido_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1467,8 +1474,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.idoSale.tokenSold}
+                              name="ido_sale_token_sold"
+                              value={formData.ido_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1477,8 +1484,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.idoSale.rate}
+                              name="ido_sale_rate"
+                              value={formData.ido_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1489,8 +1496,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.idoSale.fundraisingGoal}
+                              name="ido_sale_goal"
+                              value={formData.ido_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1499,8 +1506,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.idoSale.where_to_buy}
+                              name="ido_sale_where_buy"
+                              value={formData.ido_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1517,8 +1524,8 @@ if (file) {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.ieoSale.start_time}
+                              name="ieo_sale_start_date"
+                              value={formData.ieo_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1527,8 +1534,8 @@ if (file) {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.ieoSale.end_time}
+                              name="ieo_sale_end_date"
+                              value={formData.ieo_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1537,8 +1544,8 @@ if (file) {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.ieoSale.tokenSold}
+                              name="ieo_sale_token_sold"
+                              value={formData.ieo_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1547,8 +1554,8 @@ if (file) {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.ieoSale.rate}
+                              name="ieo_sale_rate"
+                              value={formData.ieo_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1559,8 +1566,8 @@ if (file) {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.ieoSale.fundraisingGoal}
+                              name="ieo_sale_goal"
+                              value={formData.ieo_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1569,8 +1576,8 @@ if (file) {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.ieoSale.where_to_buy}
+                              name="ieo_sale_where_buy"
+                              value={formData.ieo_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -1578,10 +1585,10 @@ if (file) {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="button" className="btn " onClick={back}>
                             Back
                           </button>
                         </div>
@@ -1770,10 +1777,10 @@ if (file) {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="reset" className="btn " onClick={back}>
                             Back
                           </button>
                         </div>
@@ -1812,10 +1819,10 @@ if (file) {
                                 <div className="col-md-2">
                                   <input
                                     type="number"
-                                    name="total_supply_percent2"
+                                    name="detail_total_supply"
                                     placeholder="Total Supply"
                                     value={
-                                      fieldSets[index]?.total_supply_percent2 ||
+                                      fieldSets[index]?.detail_total_supply ||
                                       ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -1825,9 +1832,9 @@ if (file) {
                                 <div className="col-md-3">
                                   <input
                                     type="number"
-                                    name="quantity_of_coin"
+                                    name="detail_qty_of_coin"
                                     value={
-                                      fieldSets[index]?.quantity_of_coin || ""
+                                      fieldSets[index]?.detail_qty_of_coin || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Quantity of coin"
@@ -1837,8 +1844,8 @@ if (file) {
                                 <div className="col-md-3">
                                   <input
                                     type="text"
-                                    name="ico_price2"
-                                    value={fieldSets[index]?.ico_price2 || ""}
+                                    name="detail_ico_price"
+                                    value={fieldSets[index]?.detail_ico_price || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="ICO Price"
                                     className="form-control"
@@ -1847,9 +1854,9 @@ if (file) {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="where_to_buy2"
+                                    name="detail_where_to_buy"
                                     value={
-                                      fieldSets[index]?.where_to_buy2 || ""
+                                      fieldSets[index]?.detail_where_to_buy || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Where to Buy"
@@ -1862,8 +1869,8 @@ if (file) {
                                 <div className="col-md-2">
                                   <input
                                     type="date"
-                                    name="dateStart"
-                                    value={fieldSets[index]?.dateStart || ""}
+                                    name="detail_start_date"
+                                    value={fieldSets[index]?.detail_start_date || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                   />
@@ -1871,8 +1878,8 @@ if (file) {
                                 <div className="col-md-2">
                                   <input
                                     type="date"
-                                    name="dateEnd"
-                                    value={fieldSets[index]?.dateEnd || ""}
+                                    name="detail_end_date"
+                                    value={fieldSets[index]?.detail_end_date || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                   />
@@ -1880,9 +1887,9 @@ if (file) {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="fund_asking_forFor"
+                                    name="detail_fund_asking_for"
                                     value={
-                                      fieldSets[index]?.fund_asking_forFor || ""
+                                      fieldSets[index]?.detail_fund_asking_for || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Where to Buy"
@@ -1891,9 +1898,9 @@ if (file) {
                                 </div>
                                 <div className="col-md-4">
                                   <select
-                                    name="selectProjectType"
+                                    name="detail_accept_type"
                                     value={
-                                      fieldSets[index]?.selectProjectType ||
+                                      fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -1911,9 +1918,9 @@ if (file) {
                               <div className="row mb-3">
                                 <div className="col-md-2">
                                   <select
-                                    name="selectIcoIdo"
+                                    name="detail_ico_ido_type"
                                     value={
-                                      fieldSets[index]?.selectIcoIdo ||
+                                      fieldSets[index]?.detail_ico_ido_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -1928,9 +1935,9 @@ if (file) {
                                 </div>
                                 <div className="col-md-2">
                                   <select
-                                    name="selectProjectType2"
+                                    name="detail_accept_type"
                                     value={
-                                      fieldSets[index]?.selectProjectType2 ||
+                                      fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -1962,9 +1969,9 @@ if (file) {
                                 </div>
                                 <div className="col-md-2">
                                   <select
-                                    name="selectis_review"
+                                    name="detail_is_review"
                                     value={
-                                      fieldSets[index]?.selectis_review ||
+                                      fieldSets[index]?.detail_is_review ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -1980,8 +1987,8 @@ if (file) {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="tokenForSale"
-                                    value={fieldSets[index]?.tokenForSale || ""}
+                                    name="detail_token_for_sale"
+                                    value={fieldSets[index]?.detail_token_for_sale || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Token For Sale"
@@ -1993,9 +2000,9 @@ if (file) {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="percentageForSupply"
+                                    name="detail_percentage_of_supply"
                                     value={
-                                      fieldSets[index]?.percentageForSupply ||
+                                      fieldSets[index]?.detail_percentage_of_supply ||
                                       ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -2023,9 +2030,9 @@ if (file) {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="one_usdtValue"
+                                    name="detail_one_usdt"
                                     value={
-                                      fieldSets[index]?.one_usdtValue || ""
+                                      fieldSets[index]?.detail_one_usdt || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
@@ -2038,8 +2045,8 @@ if (file) {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="soft_cap2"
-                                    value={fieldSets[index]?.soft_cap2 || ""}
+                                    name="detail_soft_cap"
+                                    value={fieldSets[index]?.detail_soft_cap || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Soft Cap 2"
@@ -2048,8 +2055,8 @@ if (file) {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="hard_cap2"
-                                    value={fieldSets[index]?.hard_cap2 || ""}
+                                    name="detail_hard_cap"
+                                    value={fieldSets[index]?.detail_hard_cap || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Hard Cap 2"
@@ -2058,9 +2065,9 @@ if (file) {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="personal_cap2"
+                                    name="detail_personal_cap"
                                     value={
-                                      fieldSets[index]?.personal_cap2 || ""
+                                      fieldSets[index]?.detail_personal_cap || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
@@ -2098,6 +2105,9 @@ if (file) {
                         <div className="mb-3">
                           <button type="submit" className="btn btn-primary">
                             Submit
+                          </button>
+                          <button type="button" className="btn btn-secodry" onClick={back}>
+                            Back
                           </button>
                         </div>
                       </div>

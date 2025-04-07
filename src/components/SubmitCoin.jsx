@@ -277,7 +277,7 @@ function SubmitCoin() {
     }
   };
 
-  const back = () => {
+  const back = () => { 
     if (currentTab > 0) {
       setCurrentTab(currentTab - 1);
     }

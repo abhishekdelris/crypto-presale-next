@@ -63,15 +63,15 @@ export default function Home() {
       setError(err.message || 'Login failed');
     }
     console.log(data)
-    if (data.email == "adminnextjs@gmail.com" && data.password == "1234567890") {
-      return RouteChange();
-    }
-    else {
-      reset();
-      setError("the auction details does not matched");
-      // setValue("email", "adminnextjs@gmail.com")
-      // setValue("password", "1234567890")
-    }
+    // if (data.email == "adminnextjs@gmail.com" && data.password == "1234567890") {
+    //   return RouteChange();
+    // }
+    // else {
+    //   reset();
+    //   setError("the auction details does not matched");
+    //   // setValue("email", "adminnextjs@gmail.com")
+    //   // setValue("password", "1234567890")
+    // }
   };
 
   return (

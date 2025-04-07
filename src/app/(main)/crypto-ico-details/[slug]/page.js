@@ -18,6 +18,7 @@ async function fetchCryptoDetails(slug) {
     }
     
     const data = await response.json();
+    console.log("this is a slug data...",data.data);
     
     return {
       success: true,

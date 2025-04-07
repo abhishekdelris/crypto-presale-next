@@ -124,8 +124,10 @@ export const useGuestPostSubmit = () => {
           if (key === 'dynamic_rss_feed' && Array.isArray(formData[key])) {
             // Handle multi-select fields
             formDataToSubmit.append(key, formData[key].join(','));
-          } else if (key === 'image' && formData[key] instanceof File) {
-            // Append file directly
+          }else if (
+            ['image', 'whitePaper', 'social_media_image'].includes(key) &&
+            formData[key] instanceof File
+          ) {
             formDataToSubmit.append(key, formData[key]);
           } else {
             // Append other fields as strings

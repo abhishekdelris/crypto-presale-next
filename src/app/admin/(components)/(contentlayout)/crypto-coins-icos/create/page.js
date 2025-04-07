@@ -933,25 +933,25 @@
     
 //     // Tab 4 data
 //     one_usdt: '',
-//     total_supply_percent2: '',
-//     quantity_of_coin: '',
-//     ico_price2: '',
-//     where_to_buy2: '',
-//     dateStart: '',
-//     dateEnd: '',
-//     fund_asking_forFor: '',
-//     selectProjectType: '',
-//     selectIcoIdo: '',
-//     selectProjectType2: '',
+//     detail_total_supply: '',
+//     detail_qty_of_coin: '',
+//     detail_ico_price: '',
+//     detail_where_to_buy: '',
+//     detail_start_date: '',
+//     detail_end_date: '',
+//     detail_fund_asking_for: '',
+//     detail_accept_type: '',
+//     detail_ico_ido_type: '',
+//     detail_accept_type: '',
 //     selectaccept_type: '',
-//     selectis_review: '',
-//     tokenForSale: '',
-//     percentageForSupply: '',
+//     detail_is_review: '',
+//     detail_token_for_sale: '',
+//     detail_percentage_of_supply: '',
 //     privateSaleSelect: '',
-//     one_usdtValue: '',
-//     soft_cap2: '',
-//     hard_cap2: '',
-//     personal_cap2: ''
+//     detail_one_usdt: '',
+//     detail_soft_cap: '',
+//     detail_hard_cap: '',
+//     detail_personal_cap: ''
 //   });
 
 //   const handleChange = (e) => {
@@ -1646,54 +1646,50 @@ export default function create() {
     meta_description: '',
     imagePreview : '',
     // Tab 2 data - Various sale types
-    privateSale: {
-      private_sale_start_date: '',
+    private_sale_start_date: '',
       private_sale_end_date: '',
       private_sale_rate: '',
       private_sale_goal: '',
       private_sale_token_sold: '',
-      private_sale_where_buy: ''
-    },
-    preSale: {
+      private_sale_where_buy: '',
       pre_sale_start_date: '',
       pre_sale_end_date: '',
       pre_sale_rate: '',
       fundraisingGoal: '',
       pre_sale_token_sold: '',
-      pre_sale_where_buy: ''
-    },
-    publicSale: {
+      pre_sale_where_buy: '',
+   
+   
       public_sale_start_date: '',
       public_sale_end_date: '',
       public_sale_rate: '',
       public_sale_goal: '',
       public_sale_token_sold: '',
-      public_sale_where_buy: ''
-    },
-    icoSale: {
+      public_sale_where_buy: '',
+    
+    
       ico_sale_start_date: '',
       ico_sale_end_date: '',
       ico_sale_rate: '',
       ico_sale_goal: '',
       ico_sale_token_sold: '',
-      ico_sale_where_buy: ''
-    },
-    idoSale: {
+      ico_sale_where_buy: '',
+    
+   
       ido_sale_start_date: '',
       ido_sale_end_date: '',
       ido_sale_rate: '',
       ido_sale_goal: '',
       ido_sale_token_sold: '',
-      ido_sale_where_buy: ''
-    },
-    ieoSale: {
+      ido_sale_where_buy: '',
+   
       ieo_sale_start_date: '',
       ieo_sale_end_date: '',
       ieo_sale_rate: '',
       ieo_sale_goal: '',
       ieo_sale_token_sold: '',
-      ieo_sale_where_buy: ''
-    },
+      ieo_sale_where_buy: '',
+   
     
     // Tab 3 data
     article: '',
@@ -1711,67 +1707,66 @@ export default function create() {
     
     // Tab 4 data
     one_usdt: '',
-    total_supply_percent2: '',
-    quantity_of_coin: '',
-    ico_price2: '',
-    where_to_buy2: '',
-    dateStart: '',
-    dateEnd: '',
-    fund_asking_forFor: '',
-    selectProjectType: '',
-    selectIcoIdo: '',
-    selectProjectType2: '',
+    detail_total_supply: '',
+    detail_qty_of_coin: '',
+    detail_ico_price: '',
+    detail_where_to_buy: '',
+    detail_start_date: '',
+    detail_end_date: '',
+    detail_fund_asking_for: '',
+    detail_accept_type: '',
+    detail_ico_ido_type: '',
+    detail_accept_type: '',
     selectaccept_type: '',
-    selectis_review: '',
-    tokenForSale: '',
-    percentageForSupply: '',
+    detail_is_review: '',
+    detail_token_for_sale: '',
+    detail_percentage_of_supply: '',
     privateSaleSelect: '',
-    one_usdtValue: '',
-    soft_cap2: '',
-    hard_cap2: '',
-    personal_cap2: ''
+    detail_one_usdt: '',
+    detail_soft_cap: '',
+    detail_hard_cap: '',
+    detail_personal_cap: '' 
   });
+ 
+  
+    // State to track form data for each field set
+  const [fieldSets, setFieldSets] = useState([{ id: 0, ...formData }]);
+  const [nextId, setNextId] = useState(1);
 
   
-    // State to track multiple sets of fields
-    const [fieldSets, setFieldSets] = useState([0]);
-    const [nextId, setNextId] = useState(1);
+     // Function to add a new field set
+  const addNewFieldSet = () => {
+    setFieldSets([...fieldSets, { id: nextId, ...formData }]);
+    setNextId(nextId + 1);
+  };
   
-  
-    const addNewFieldSet = () => {
-      setFieldSets([...fieldSets, nextId]);
-      setNextId(nextId + 1);
-    };
-  
-    const removeFieldSet = (index) => {
-      const updatedFieldSets = fieldSets.filter((_, i) => i !== index);
-      setFieldSets(updatedFieldSets);
-    };
+     // Function to remove a field set
+  const removeFieldSet = (index) => {
+    const updatedFieldSets = fieldSets.filter((_, i) => i !== index);
+    setFieldSets(updatedFieldSets);
+  };
   
   
 
-     const handleChange = (e) => {
+     const handleChange = (e,index) => {
       const { name, value, type, files, checked } = e.target;
  
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value 
     });
-      // Create a copy of the form data and update the specific index
-      const updatedFormData = [...fieldSets];
-      
-      // If this index doesn't have form data yet, initialize it
-      if (!updatedFormData[index]) {
-        updatedFormData[index] = { ...formData };
-      }
-      
-      // Update the specific field
-      updatedFormData[index] = {
-        ...updatedFormData[index],
-        [name]: value
-      };
-      
-      setFieldSets(updatedFormData);
+   
+    
+    // Create a copy of the fieldSets array
+    const updatedFieldSets = [...fieldSets];
+    
+    // Update the specific field in the correct field set
+    updatedFieldSets[index] = {
+      ...updatedFieldSets[index],
+      [name]: value
+    };
+    
+    setFieldSets(updatedFieldSets);
   };
 
   // Handle SunEditor content change
@@ -1783,6 +1778,18 @@ export default function create() {
   };
 
 
+  // Navigation functions
+  const next = () => {
+    if (activeTab < 4) {
+      setActiveTab(activeTab + 1);
+    }
+  };
+
+  const back = () => {
+    if (activeTab > 0) {
+      setActiveTab(activeTab - 1);
+    }
+  };
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
@@ -1848,54 +1855,50 @@ export default function create() {
     meta_description: '',
     
     // Tab 2 data - Various sale types
-    privateSale: {
+   
       private_sale_start_date: '',
       private_sale_end_date: '',
       private_sale_rate: '',
       private_sale_goal: '',
       private_sale_token_sold: '',
-      private_sale_where_buy: ''
-    },
-    preSale: {
+      private_sale_where_buy: '',
+ 
+    
       pre_sale_start_date: '',
       pre_sale_end_date: '',
       pre_sale_rate: '',
-      fundraisingGoal: '',
+      pre_sale_goal: '',
       pre_sale_token_sold: '',
-      pre_sale_where_buy: ''
-    },
-    publicSale: {
+      pre_sale_where_buy: '',
+  
       public_sale_start_date: '',
       public_sale_end_date: '',
       public_sale_rate: '',
       public_sale_goal: '',
       public_sale_token_sold: '',
-      public_sale_where_buy: ''
-    },
-    icoSale: {
+      public_sale_where_buy: '',
+  
       ico_sale_start_date: '',
       ico_sale_end_date: '',
       ico_sale_rate: '',
       ico_sale_goal: '',
       ico_sale_token_sold: '',
-      ico_sale_where_buy: ''
-    },
-    idoSale: {
+      ico_sale_where_buy: '',
+ 
       ido_sale_start_date: '',
       ido_sale_end_date: '',
       ido_sale_rate: '',
       ido_sale_goal: '',
       ido_sale_token_sold: '',
-      ido_sale_where_buy: ''
-    },
-    ieoSale: {
+      ido_sale_where_buy: '',
+  
       ieo_sale_start_date: '',
       ieo_sale_end_date: '',
       ieo_sale_rate: '',
       ieo_sale_goal: '',
       ieo_sale_token_sold: '',
-      ieo_sale_where_buy: ''
-    },
+      ieo_sale_where_buy: '',
+ 
     
     // Tab 3 data
     article: '',
@@ -1913,25 +1916,25 @@ export default function create() {
     
     // Tab 4 data
     one_usdt: '',
-    total_supply_percent2: '',
-    quantity_of_coin: '',
-    ico_price2: '',
-    where_to_buy2: '',
-    dateStart: '',
-    dateEnd: '',
-    fund_asking_forFor: '',
-    selectProjectType: '',
-    selectIcoIdo: '',
-    selectProjectType2: '',
+    detail_total_supply: '',
+    detail_qty_of_coin: '',
+    detail_ico_price: '',
+    detail_where_to_buy: '',
+    detail_start_date: '',
+    detail_end_date: '',
+    detail_fund_asking_for: '',
+    detail_accept_type: '',
+    detail_ico_ido_type: '',
+    detail_accept_type: '',
     selectaccept_type: '',
-    selectis_review: '',
-    tokenForSale: '',
-    percentageForSupply: '',
+    detail_is_review: '',
+    detail_token_for_sale: '',
+    detail_percentage_of_supply: '',
     privateSaleSelect: '',
-    one_usdtValue: '',
-    soft_cap2: '',
-    hard_cap2: '',
-    personal_cap2: ''
+    detail_one_usdt: '',
+    detail_soft_cap: '',
+    detail_hard_cap: '',
+    detail_personal_cap: ''
   });
 }
 
@@ -2235,12 +2238,7 @@ export default function create() {
                               name="imageAltTitle"
                               className="form-control"
                             />
-                            <button
-                              type="button"
-                              className="btn btn-primary mt-2"
-                            >
-                              Browse
-                            </button>
+                          
                           </div>
                         </div>
 
@@ -2250,6 +2248,8 @@ export default function create() {
                               ICO Project Type:{" "}
                               <span className="text-danger">*</span>
                             </label>
+
+                         
                             <select
                               name="ico_project_id"
                               value={formData.ico_project_id}
@@ -2258,6 +2258,9 @@ export default function create() {
                               required
                             >
                               <option value="PRESALE">PRESALE</option>
+                              <option value="ICO">ICO</option>
+                              <option value="IDO">IDO</option>
+                              <option value="IEO">IEO</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -2406,6 +2409,7 @@ export default function create() {
                               name="whitePaper"
                               onChange={handleFileChange}
                               className="form-control"
+                              accept=".pdf,.doc,.docx"
                             />
                           </div>
                           <div className="col-md-6">
@@ -2417,13 +2421,9 @@ export default function create() {
                               name="social_media_image"
                               onChange={handleFileChange}
                               className="form-control"
+                              accept="image/*"
                             />
-                            <button
-                              type="button"
-                              className="btn btn-primary mt-2"
-                            >
-                              Browse
-                            </button>
+                           
                           </div>
                         </div>
 
@@ -2815,10 +2815,10 @@ export default function create() {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="button" className="btn">
                             Cancel
                           </button>
                         </div>
@@ -2838,8 +2838,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.privateSale.start_time}
+                              name="private_sale_start_date"
+                              value={formData.private_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2848,8 +2848,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.privateSale.end_time}
+                              name="private_sale_end_date"
+                              value={formData.private_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2858,8 +2858,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.privateSale.tokenSold}
+                              name="private_sale_token_sold"
+                              value={formData.private_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2868,8 +2868,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.privateSale.rate}
+                              name="private_sale_rate"
+                              value={formData.private_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2880,8 +2880,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.privateSale.fundraisingGoal}
+                              name="private_sale_goal"
+                              value={formData.private_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2890,8 +2890,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.privateSale.where_to_buy}
+                              name="private_sale_where_buy"
+                              value={formData.private_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2900,7 +2900,7 @@ export default function create() {
 
                         <div className="row mb-3">
                           <div lassName="col-md-12">
-                            <h5 className="fw-bold" s>
+                            <h5 className="fw-bold">
                               Pre Sale
                             </h5>
                           </div>
@@ -2908,8 +2908,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.preSale.start_time}
+                              name="pre_sale_start_date"
+                              value={formData.pre_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2918,8 +2918,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.preSale.end_time}
+                              name="pre_sale_end_date"
+                              value={formData.pre_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2928,8 +2928,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.preSale.tokenSold}
+                              name="pre_sale_token_sold"
+                              value={formData.pre_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2938,8 +2938,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.preSale.rate}
+                              name="pre_sale_rate"
+                              value={formData.pre_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2950,8 +2950,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.preSale.fundraisingGoal}
+                              name="pre_sale_goal"
+                              value={formData.pre_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2960,8 +2960,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.preSale.where_to_buy}
+                              name="pre_sale_where_buy"
+                              value={formData.pre_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2978,8 +2978,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.publicSale.start_time}
+                              name="public_sale_start_date"
+                              value={formData.public_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2988,8 +2988,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.publicSale.end_time}
+                              name="public_sale_end_date"
+                              value={formData.public_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -2998,8 +2998,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.publicSale.tokenSold}
+                              name="public_sale_token_sold"
+                              value={formData.public_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3008,8 +3008,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.publicSale.rate}
+                              name="public_sale_rate"
+                              value={formData.public_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3020,8 +3020,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.publicSale.fundraisingGoal}
+                              name="public_sale_goal"
+                              value={formData.public_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3030,8 +3030,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.publicSale.where_to_buy}
+                              name="public_sale_where_buy"
+                              value={formData.public_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3048,8 +3048,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.icoSale.start_time}
+                              name="ico_sale_start_date"
+                              value={formData.ico_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3058,8 +3058,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.icoSale.end_time}
+                              name="ico_sale_end_date"
+                              value={formData.ico_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3068,8 +3068,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.icoSale.tokenSold}
+                              name="ico_sale_token_sold"
+                              value={formData.ico_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3078,8 +3078,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.icoSale.rate}
+                              name="ico_sale_rate"
+                              value={formData.ico_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3090,8 +3090,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.icoSale.fundraisingGoal}
+                              name="ico_sale_goal"
+                              value={formData.ico_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3100,8 +3100,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.icoSale.where_to_buy}
+                              name="ico_sale_where_buy"
+                              value={formData.ico_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3118,8 +3118,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.idoSale.start_time}
+                              name="ido_sale_start_date"
+                              value={formData.ido_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3128,8 +3128,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.idoSale.end_time}
+                              name="ido_sale_end_date"
+                              value={formData.ido_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3138,8 +3138,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.idoSale.tokenSold}
+                              name="ido_sale_token_sold"
+                              value={formData.ido_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3148,8 +3148,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.idoSale.rate}
+                              name="ido_sale_rate"
+                              value={formData.ido_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3160,8 +3160,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.idoSale.fundraisingGoal}
+                              name="ido_sale_goal"
+                              value={formData.ido_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3170,8 +3170,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.idoSale.where_to_buy}
+                              name="ido_sale_where_buy"
+                              value={formData.ido_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3188,8 +3188,8 @@ export default function create() {
                             <label className="form-label">Start Date</label>
                             <input
                               type="date"
-                              name="start_time"
-                              value={formData.ieoSale.start_time}
+                              name="ieo_sale_start_date"
+                              value={formData.ieo_sale_start_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3198,8 +3198,8 @@ export default function create() {
                             <label className="form-label">End Date</label>
                             <input
                               type="date"
-                              name="end_time"
-                              value={formData.ieoSale.end_time}
+                              name="ieo_sale_end_date"
+                              value={formData.ieo_sale_end_date}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3208,8 +3208,8 @@ export default function create() {
                             <label className="form-label">Token Sold:</label>
                             <input
                               type="text"
-                              name="tokenSold"
-                              value={formData.ieoSale.tokenSold}
+                              name="ieo_sale_token_sold"
+                              value={formData.ieo_sale_token_sold}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3218,8 +3218,8 @@ export default function create() {
                             <label className="form-label">Rate:</label>
                             <input
                               type="text"
-                              name="rate"
-                              value={formData.ieoSale.rate}
+                              name="ieo_sale_rate"
+                              value={formData.ieo_sale_rate}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3230,8 +3230,8 @@ export default function create() {
                             </label>
                             <input
                               type="text"
-                              name="fundraisingGoal"
-                              value={formData.ieoSale.fundraisingGoal}
+                              name="ieo_sale_goal"
+                              value={formData.ieo_sale_goal}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3240,8 +3240,8 @@ export default function create() {
                             <label className="form-label">Where to buy</label>
                             <input
                               type="text"
-                              name="where_to_buy"
-                              value={formData.ieoSale.where_to_buy}
+                              name="ieo_sale_where_buy"
+                              value={formData.ieo_sale_where_buy}
                               onChange={handleChange}
                               className="form-control"
                             />
@@ -3249,10 +3249,10 @@ export default function create() {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="button" className="btn " onClick={back}>
                             Back
                           </button>
                         </div>
@@ -3441,10 +3441,10 @@ export default function create() {
                         </div>
 
                         <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            Save
+                          <button type="button" className="btn btn-primary" onClick={next}>
+                            Next
                           </button>
-                          <button type="reset" className="btn ">
+                          <button type="reset" className="btn " onClick={back}>
                             Back
                           </button>
                         </div>
@@ -3483,10 +3483,10 @@ export default function create() {
                                 <div className="col-md-2">
                                   <input
                                     type="number"
-                                    name="total_supply_percent2"
+                                    name="detail_total_supply"
                                     placeholder="Total Supply"
                                     value={
-                                      fieldSets[index]?.total_supply_percent2 ||
+                                      fieldSets[index]?.detail_total_supply ||
                                       ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3496,9 +3496,9 @@ export default function create() {
                                 <div className="col-md-3">
                                   <input
                                     type="number"
-                                    name="quantity_of_coin"
+                                    name="detail_qty_of_coin"
                                     value={
-                                      fieldSets[index]?.quantity_of_coin || ""
+                                      fieldSets[index]?.detail_qty_of_coin || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Quantity of coin"
@@ -3508,8 +3508,8 @@ export default function create() {
                                 <div className="col-md-3">
                                   <input
                                     type="text"
-                                    name="ico_price2"
-                                    value={fieldSets[index]?.ico_price2 || ""}
+                                    name="detail_ico_price"
+                                    value={fieldSets[index]?.detail_ico_price || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="ICO Price"
                                     className="form-control"
@@ -3518,9 +3518,9 @@ export default function create() {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="where_to_buy2"
+                                    name="detail_where_to_buy"
                                     value={
-                                      fieldSets[index]?.where_to_buy2 || ""
+                                      fieldSets[index]?.detail_where_to_buy || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Where to Buy"
@@ -3533,8 +3533,8 @@ export default function create() {
                                 <div className="col-md-2">
                                   <input
                                     type="date"
-                                    name="dateStart"
-                                    value={fieldSets[index]?.dateStart || ""}
+                                    name="detail_start_date"
+                                    value={fieldSets[index]?.detail_start_date || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                   />
@@ -3542,8 +3542,8 @@ export default function create() {
                                 <div className="col-md-2">
                                   <input
                                     type="date"
-                                    name="dateEnd"
-                                    value={fieldSets[index]?.dateEnd || ""}
+                                    name="detail_end_date"
+                                    value={fieldSets[index]?.detail_end_date || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                   />
@@ -3551,9 +3551,9 @@ export default function create() {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="fund_asking_forFor"
+                                    name="detail_fund_asking_for"
                                     value={
-                                      fieldSets[index]?.fund_asking_forFor || ""
+                                      fieldSets[index]?.detail_fund_asking_for || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     placeholder="Where to Buy"
@@ -3562,9 +3562,9 @@ export default function create() {
                                 </div>
                                 <div className="col-md-4">
                                   <select
-                                    name="selectProjectType"
+                                    name="detail_accept_type"
                                     value={
-                                      fieldSets[index]?.selectProjectType ||
+                                      fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3582,9 +3582,9 @@ export default function create() {
                               <div className="row mb-3">
                                 <div className="col-md-2">
                                   <select
-                                    name="selectIcoIdo"
+                                    name="detail_ico_ido_type"
                                     value={
-                                      fieldSets[index]?.selectIcoIdo ||
+                                      fieldSets[index]?.detail_ico_ido_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3599,9 +3599,9 @@ export default function create() {
                                 </div>
                                 <div className="col-md-2">
                                   <select
-                                    name="selectProjectType2"
+                                    name="detail_accept_type"
                                     value={
-                                      fieldSets[index]?.selectProjectType2 ||
+                                      fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3633,9 +3633,9 @@ export default function create() {
                                 </div>
                                 <div className="col-md-2">
                                   <select
-                                    name="selectis_review"
+                                    name="detail_is_review"
                                     value={
-                                      fieldSets[index]?.selectis_review ||
+                                      fieldSets[index]?.detail_is_review ||
                                       "Select Featured"
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3651,8 +3651,8 @@ export default function create() {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="tokenForSale"
-                                    value={fieldSets[index]?.tokenForSale || ""}
+                                    name="detail_token_for_sale"
+                                    value={fieldSets[index]?.detail_token_for_sale || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Token For Sale"
@@ -3664,9 +3664,9 @@ export default function create() {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="percentageForSupply"
+                                    name="detail_percentage_of_supply"
                                     value={
-                                      fieldSets[index]?.percentageForSupply ||
+                                      fieldSets[index]?.detail_percentage_of_supply ||
                                       ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
@@ -3694,9 +3694,9 @@ export default function create() {
                                 <div className="col-md-4">
                                   <input
                                     type="text"
-                                    name="one_usdtValue"
+                                    name="detail_one_usdt"
                                     value={
-                                      fieldSets[index]?.one_usdtValue || ""
+                                      fieldSets[index]?.detail_one_usdt || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
@@ -3709,8 +3709,8 @@ export default function create() {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="soft_cap2"
-                                    value={fieldSets[index]?.soft_cap2 || ""}
+                                    name="detail_soft_cap"
+                                    value={fieldSets[index]?.detail_soft_cap || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Soft Cap 2"
@@ -3719,8 +3719,8 @@ export default function create() {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="hard_cap2"
-                                    value={fieldSets[index]?.hard_cap2 || ""}
+                                    name="detail_hard_cap"
+                                    value={fieldSets[index]?.detail_hard_cap || ""}
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
                                     placeholder="Hard Cap 2"
@@ -3729,9 +3729,9 @@ export default function create() {
                                 <div className="col-3">
                                   <input
                                     type="text"
-                                    name="personal_cap2"
+                                    name="detail_personal_cap"
                                     value={
-                                      fieldSets[index]?.personal_cap2 || ""
+                                      fieldSets[index]?.detail_personal_cap || ""
                                     }
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-control"
@@ -3769,6 +3769,9 @@ export default function create() {
                         <div className="mb-3">
                           <button type="submit" className="btn btn-primary">
                             Submit
+                          </button>
+                          <button type="button" className="btn btn-secodry" onClick={back}>
+                            Back
                           </button>
                         </div>
                       </div>

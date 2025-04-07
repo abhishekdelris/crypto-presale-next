@@ -180,8 +180,8 @@ const CryptoCoins = () => {
 
     return (
         <Fragment>
-            <Seo title={"Crypto Coins"} />
-            <PageHeader title='Crypto Coins' item='Crypto Coins' active_item='All Crypto Coins' />
+            <Seo title={"Best Presale"} />
+            <PageHeader title='Best Presale' item='Best Presale' active_item='All Best Presale To Buy' />
             <ToastContainer />
 
             <Row className="row-sm">
@@ -189,7 +189,7 @@ const CryptoCoins = () => {
                     <Card className="custom-card">
                         <Card.Header className="border-bottom-0 pb-0">
                             <div className="d-flex justify-content-between align-items-center w-100">
-                                <label className="main-content-label my-auto mb-2">All Crypto Coins</label>
+                                <label className="main-content-label my-auto mb-2">All Best Presale To Buy</label>
                                 <div className="col-xl-9 col-lg-12 d-lg-flex justify-content-end align-items-center mt-xl-0">
                                     <button className="btn btn-primary me-2" onClick={handleAddPost}>ADD Post</button>
                                     <div className="d-flex mt-4 mt-lg-0">

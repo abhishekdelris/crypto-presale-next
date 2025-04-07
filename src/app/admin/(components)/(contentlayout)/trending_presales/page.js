@@ -34,12 +34,12 @@ const CryptoCoins = () => {
         try {
             const config = {
                 method: 'get',
-                url: '/api/admin/crypto_coins',
+                url: '/api/trending_presale',
             };
 
             const response = await axios.request(config);
             
-            setPosts(response.data.data);
+            setPosts(response.data.trending);
             setLoading(false);
         } catch (err) {
             setError(err);
@@ -137,7 +137,7 @@ const CryptoCoins = () => {
         const year = date.getFullYear();
       
         // Handle hours and minutes
-        let hours = date.getHours();
+        let hours = date.getHours(); 
         const minutes = String(date.getMinutes()).padStart(2, "0");
         const ampm = hours >= 12 ? "PM" : "AM";
       
@@ -180,8 +180,8 @@ const CryptoCoins = () => {
 
     return (
         <Fragment>
-            <Seo title={"Crypto Coins"} />
-            <PageHeader title='Crypto Coins' item='Crypto Coins' active_item='All Crypto Coins' />
+            <Seo title={"Trending Presale"} />
+            <PageHeader title='Trending Presale' item='Trending Presale' active_item='All Trending Presale' />
             <ToastContainer />
 
             <Row className="row-sm">
@@ -189,7 +189,7 @@ const CryptoCoins = () => {
                     <Card className="custom-card">
                         <Card.Header className="border-bottom-0 pb-0">
                             <div className="d-flex justify-content-between align-items-center w-100">
-                                <label className="main-content-label my-auto mb-2">All Crypto Coins</label>
+                                <label className="main-content-label my-auto mb-2">All Trending Presale</label>
                                 <div className="col-xl-9 col-lg-12 d-lg-flex justify-content-end align-items-center mt-xl-0">
                                     <button className="btn btn-primary me-2" onClick={handleAddPost}>ADD Post</button>
                                     <div className="d-flex mt-4 mt-lg-0">

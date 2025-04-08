@@ -193,7 +193,7 @@ export default async function HomePage() {
               <div className="full_presaletable">
                         <div className="main_flex topheader">
                             <h5 className="mb-0 fw-bold">New Coins</h5>
-                            <Link href="/listings" className="btn btn-link text-dark">View More</Link>
+                            <Link href="/presale" className="btn btn-link text-dark">View More</Link>
                         </div>
                         <div className="block_Table p-2">
                             
@@ -225,7 +225,7 @@ export default async function HomePage() {
               <div className="full_presaletable">
                         <div className="main_flex topheader">
                             <h5 className="mb-0 fw-bold">Trending Presales</h5>
-                            <Link href="/listings" className="btn btn-link text-dark">View More</Link>
+                            <Link href="/trending_presales" className="btn btn-link text-dark">View More</Link>
                         </div>
                         <div className="block_Table p-2">
                        { tradeData.map((data, index) => (
@@ -257,7 +257,7 @@ export default async function HomePage() {
           <div className="section-title d-flex justify-content-between">
               <h2 className="h4 mb-4">Best Presale to Buy</h2>
               <div className=''>
-              <Link href="/listings" className="btn btn-link text-dark font-weight-bold">View More</Link>
+              <Link href="/best-presale-to-buy" className="btn btn-link text-dark font-weight-bold">View More</Link>
               </div>
             </div>
             <div className='coinsblock'>
@@ -290,6 +290,13 @@ export default async function HomePage() {
     {/* <!-- end --> */}
     {/* <!-- third section --> */}
     <Promoted feturedData={feturedData}/>
+    <div className='container'>
+    <div className="section-title">
+              <h5 className="h4 fw-semibold">Best Crypto Presales 2024</h5>
+              <p>Looking for the best and newest crypto presales and ICOs to invest in? You're in the right place at Cryptopresale.net. We list the most exciting upcoming and active crypto presales of 2024. Our presales overview gives you all the key details. Whether you're new to crypto or a seasoned investor, Cryptopresale is your go-to for the top presale opportunities.</p>
+            </div>
+    </div>
+    
     <PresaleFilters />
    <Coin CoinData={CoinData}/>
     <FAQAccordion  faqData={faqData}/>
@@ -302,42 +309,3 @@ export default async function HomePage() {
    </>
   )
 }
-
-
-
-// <div className="main_flex mb-2">
-//                             {/* <CoinTracker coin="bitcoin" /> */}
-//                                 {/* <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20"/></span> goodcrypto</h6></Link>
-//                                 <span>Coin Ticker </span>
-//                                 <span>1 hour ago</span> */}
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'><h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>
-//                             <div className="main_flex mb-2">
-//                             <Link href="/profile_details" className='text_customization'> <h6 className="mb-0"><span className="border_circle"><Image src={altcoinImage} width="20" height="20" alt='coin Image'/></span> goodcrypto</h6></Link>
-//                            {/* <Image src={tradegraph} alt='tradegraph' height={20} width={50} /> */}
-//                                 <span>1 hour ago</span>
-//                             </div>

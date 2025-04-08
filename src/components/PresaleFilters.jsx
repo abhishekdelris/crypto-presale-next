@@ -32,10 +32,10 @@ function PresaleFilters() {
 
   return (
     <>
-      <div className="container">
+      <div className="container d-none">
         <div className="row">
           <div className="col-xl-12">
-            <div className="section-title">
+            <div className="section-title d-none">
               <h5 className="h4 fw-semibold">Best Crypto Presales 2024</h5>
               <p>Looking for the best and newest crypto presales and ICOs to invest in? You're in the right place at Cryptopresale.net. We list the most exciting upcoming and active crypto presales of 2024. Our presales overview gives you all the key details. Whether you're new to crypto or a seasoned investor, Cryptopresale is your go-to for the top presale opportunities.</p>
             </div>

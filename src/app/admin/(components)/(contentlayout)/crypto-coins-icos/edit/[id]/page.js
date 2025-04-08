@@ -927,8 +927,8 @@ if (file) {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                         </div>
@@ -945,8 +945,8 @@ if (file) {
                               <option value="Select Featured">
                                 Select Featured
                               </option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                           <div className="col-md-6">

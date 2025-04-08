@@ -247,7 +247,9 @@ model crypto_coins_icos {
   thumb                   String?            @db.VarChar(255)
   smallThumb              String?            @db.VarChar(255)
   trending_presale        trending_presale[]
-
+  ico_id               Int?               @default(0)
+  is_trending               Int?               @default(0)
+  is_bestpresale               Int?               @default(0)
   @@index([crypto_market_id], map: "crypto_market_id")
   @@index([slug], map: "slug_2")
 }

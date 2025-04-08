@@ -1807,7 +1807,165 @@ export default function create() {
      await submitGuestPost(formData);
   };
 
-
+  const launchpadOptions = [
+    { value: "", label: "Select Project Type" },
+    { value: "dao-maker", label: "DAO Maker Launchpad" },
+    { value: "bscpad", label: "BSCPad" },
+    { value: "trustswap", label: "TrustSwap" },
+    { value: "bullstarter", label: "BullStarter" },
+    { value: "occamrazer", label: "OccamRazer" },
+    { value: "polkastarter", label: "Polkastarter" },
+    { value: "starter", label: "Starter" },
+    { value: "pancakeswap", label: "PancakeSwap" },
+    { value: "paid-network", label: "PAID Network" },
+    { value: "launchpool", label: "Launchpool" },
+    { value: "red-kite", label: "Red Kite" },
+    { value: "trustpad", label: "TrustPad" },
+    { value: "enjinstarter", label: "Enjinstarter" },
+    { value: "zendit", label: "ZENDIT" },
+    { value: "poolz", label: "Poolz" },
+    { value: "seedify", label: "Seedify" },
+    { value: "gamefi", label: "GameFi" },
+    { value: "gamestarter", label: "Gamestarter" },
+    { value: "kommunitas", label: "Kommunitas" },
+    { value: "truepnl", label: "TruePNL" },
+    { value: "impossible-finance", label: "Impossible Finance" },
+    { value: "binstarter", label: "BinStarter" },
+    { value: "gagarin", label: "GAGARIN" },
+    { value: "firestarter", label: "FireStarter" },
+    { value: "spores-network", label: "Spores Network" },
+    { value: "occamrazer-2", label: "OccamRazer" },
+    { value: "tokensoft", label: "Tokensoft" },
+    { value: "gempad", label: "Gempad" },
+    { value: "gate-io", label: "Gate.io" },
+    { value: "pinksale-finance", label: "pinksale Finance" },
+    { value: "p2pb2b", label: "p2pb2b" },
+    { value: "ixirpad", label: "ixirpad" },
+    { value: "daostarter", label: "DaoStarter" },
+    { value: "binance", label: "Binance" },
+    { value: "kucoin", label: "Kucoin" },
+    { value: "coinlist", label: "Coinlist" },
+    { value: "crytfex", label: "Crytfex" },
+    { value: "southxchange", label: "SouthXchange" },
+    { value: "probit-global", label: "ProBit Global" },
+    { value: "latoken", label: "Latoken" },
+    { value: "peakdefi", label: "Peakdefi" },
+    { value: "x-starter", label: "x-starter" },
+    { value: "on-website", label: "On Website" },
+    { value: "iskra", label: "ISKRA" },
+    { value: "coinstore", label: "Coinstore" },
+    { value: "bscstation", label: "BSCStation" },
+    { value: "zelwin-finance", label: "ZELWIN Finance" },
+    { value: "bitmart-launchpad", label: "BitMart Launchpad" },
+    { value: "bitforex", label: "Bitforex" },
+    { value: "vindax", label: "Vindax" },
+    { value: "kanga-exchange", label: "Kanga Exchange" },
+    { value: "kingdomstarter", label: "KingdomStarter" },
+    { value: "xlaunchpad", label: "XLaunchpad" },
+    { value: "infinitypad", label: "InfinityPad" },
+    { value: "uplift", label: "Uplift" },
+    { value: "bitget", label: "Bitget" },
+    { value: "bybit", label: "Bybit" },
+    { value: "dextrade", label: "DexTrade" },
+    { value: "singularitydao", label: "SingularityDao" },
+    { value: "zyberswap", label: "ZyberSwap" },
+    { value: "razrfi-launchpad", label: "RazrFi Launchpad" },
+    { value: "bsclaunch", label: "BSClaunch" },
+    { value: "pancakeswap-2", label: "pancakeswap" },
+    { value: "finlaunch", label: "finlaunch" },
+    { value: "dao-maker-2", label: "Dao Maker" },
+    { value: "bullperks", label: "Bullperks" },
+    { value: "torkpad", label: "TorkPad" },
+    { value: "republic", label: "Republic" },
+    { value: "chaingpt", label: "Chaingpt" },
+    { value: "koistarter", label: "KOIStarter" },
+    { value: "indoex-io", label: "Indoex.io" },
+    { value: "matic-launchpad", label: "Matic Launchpad" },
+    { value: "bscs-launchpad", label: "BSCS Launchpad" },
+    { value: "bitlink-launchpad", label: "Bitlink LaunchPad" },
+    { value: "decubate", label: "Decubate" },
+    { value: "coinlist-launchpad", label: "Coinlist LaunchPad" },
+    { value: "bounce", label: "Bounce" },
+    { value: "wepad-launchpad", label: "Wepad Launchpad" },
+    { value: "synapse-network", label: "Synapse Network" },
+    { value: "tonup", label: "TonUP" },
+    { value: "impulse-finance", label: "Impulse Finance" },
+    { value: "bakeryswap", label: "BakerySwap" },
+    { value: "turtsat", label: "TurtSat" },
+    { value: "flybtc", label: "FLYBTC" },
+    { value: "ape-terminal", label: "Ape Terminal" },
+    { value: "aitech-pad", label: "AITECH Pad" },
+    { value: "moonstarter", label: "MoonStarter" },
+    { value: "fjord-foundry", label: "Fjord Foundry" },
+    { value: "starlaunch", label: "StarLaunch" },
+    { value: "dojoswap", label: "DojoSwap" },
+    { value: "solanium", label: "Solanium" },
+    { value: "moonedge", label: "MoonEdge" },
+    { value: "avalaunch", label: "Avalaunch" },
+    { value: "gamespad", label: "Gamespad" },
+    { value: "dexcheck", label: "Dexcheck" },
+    { value: "velocore", label: "Velocore" },
+    { value: "floorswap", label: "Floorswap" },
+    { value: "paragen", label: "Paragen" },
+    { value: "okx", label: "OKX" },
+    { value: "port3-network", label: "Port3 Network" },
+    { value: "turtsat-2", label: "TurtSat" },
+    { value: "cetus", label: "Cetus" },
+    { value: "spartadex", label: "SpartaDex" },
+    { value: "finceptor", label: "Finceptor" },
+    { value: "tenset-io", label: "TenseT.io" },
+    { value: "superlauncher", label: "SuperLauncher" },
+    { value: "bigone", label: "BigONE" },
+    { value: "ronin", label: "Ronin" },
+    { value: "brcstarter", label: "BRCStarter" },
+    { value: "arbipad", label: "Arbipad" },
+    { value: "seapad", label: "SeaPad" },
+    { value: "magic-eden", label: "Magic Eden" },
+    { value: "vent-finance", label: "Vent Finance" },
+    { value: "avalaunch-2", label: "Avalaunch" },
+    { value: "neolaunch", label: "neolaunch" },
+    { value: "trustfi", label: "Trustfi" },
+    { value: "de-fi-2-0", label: "De.Fi 2.0" },
+    { value: "openpad", label: "OpenPad" },
+    { value: "smithii", label: "Smithii" },
+    { value: "dyor", label: "DYOR" },
+    { value: "bitexen-global", label: "Bitexen Global" },
+    { value: "siriuspad", label: "Siriuspad" },
+    { value: "particle-network", label: "Particle Network" },
+    { value: "bhero", label: "BHero" },
+    { value: "tokenfi", label: "TokenFi" },
+    { value: "eclipsefi", label: "Eclipsefi" },
+    { value: "cryptohub", label: "CryptoHub" },
+    { value: "unicorn-hunter", label: "Unicorn Hunter" },
+    { value: "dappad", label: "Dappad" },
+    { value: "zenix-launcher", label: "Zenix Launcher" },
+    { value: "huostarter", label: "Huostarter" },
+    { value: "pattieswap", label: "PattieSwap" },
+    { value: "smithii-2", label: "Smithii" },
+    { value: "octavia", label: "Octavia" },
+    { value: "bit2me-global", label: "Bit2Me Global" },
+    { value: "operation-phoenix", label: "Operation Phoenix" },
+    { value: "ordify", label: "Ordify" },
+    { value: "kredict", label: "KREDICT" },
+    { value: "truepnl-2", label: "TruePNL" },
+    { value: "jupiter", label: "Jupiter" },
+    { value: "magic-square", label: "Magic Square" },
+    { value: "eeseeio", label: "eeseeio" },
+    { value: "dxsale", label: "DxSale" },
+    { value: "solsale", label: "Solsale" },
+    { value: "degenpad", label: "DegenPad" },
+    { value: "elixir-games", label: "Elixir Games" },
+    { value: "fantomstarter", label: "fantomstarter" },
+    { value: "blastup", label: "Blastup" },
+    { value: "axo", label: "axo" },
+    { value: "tonsale", label: "TONSALE" },
+    { value: "chainboost2", label: "chainboost2" },
+    { value: "app-alphamind-co", label: "app alphamind.co" },
+    { value: "bitstorage", label: "bitstorage" },
+    { value: "borgpad", label: "BorgPad" },
+    { value: "tokentool", label: "tokentool" },
+    { value: "truffle", label: "truffle" }
+  ];
    // Reset form handler
   const handleReset = () => {
     setFormData({
@@ -2249,7 +2407,7 @@ export default function create() {
                               <span className="text-danger">*</span>
                             </label>
 
-                         
+                           
                             <select
                               name="ico_project_id"
                               value={formData.ico_project_id}
@@ -2257,10 +2415,25 @@ export default function create() {
                               className="form-select"
                               required
                             >
-                              <option value="PRESALE">PRESALE</option>
-                              <option value="ICO">ICO</option>
-                              <option value="IDO">IDO</option>
-                              <option value="IEO">IEO</option>
+                              <option selected>Select ICO Project Type</option>
+                              <option value="1" >IDO</option>
+                              <option value="3" >ICO</option>
+                              <option value="4" >Token</option>
+                              <option value="5" >IEO</option>
+                              <option value="6" >Seed Sale</option>
+                              <option value="7" >Community Event</option>
+                              <option value="8" >Public Sale</option>
+                              <option value="12" >IFO</option>
+                              <option value="13" >Private Sale</option>
+                              <option value="14" >Crowdloan</option>
+                              <option value="15" >BEP-20</option>
+                              <option value="16" >NFT</option>
+                              <option value="17" >Protocol</option>
+                              <option value="18" >Airdrop</option>
+                              <option value="19" >Luna</option>
+                              <option value="20" >CIRX</option>
+                              <option value="21" >Base</option>
+                              <option value="22" >PRESALE</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -2268,16 +2441,48 @@ export default function create() {
                               Select Category:{" "}
                               <span className="text-danger">*</span>
                             </label>
+                         
                             <select
                               name="selectCategory"
                               className="form-select"
                               required
                             >
-                              <option value="Blockchain">Blockchain</option>
+                                <option selected>Select Category</option>
+                    <option value="26" >
+                MEME Token</option>
+                    <option value="1" >
+                NFT</option>
+                    <option value="4" >
+                Web3</option>
+                    <option value="7" >
+                Blockchain</option>
+                    <option value="30" >
+                Trading</option>
+                    <option value="36" >
+                DeFi</option>
+                    <option value="45" >
+                Metaverse</option>
+                    <option value="49" >
+                Marketplace</option>
+                    <option value="53" >
+                Marketing</option>
+                    <option value="54" >
+                Real World Asset</option>
+                    <option value="55" >
+                Social</option>
+                    <option value="63" >
+                Launchpad</option>
+                    <option value="64" >
+                Development</option>
+                    <option value="67" >
+                Gaming</option>
+                    <option value="87" >
+                artificial intelligence</option>
                             </select>
                           </div>
                         </div>
 
+                       
                         <div className="row mb-3">
                           <div className="col-md-6">
                             <label className="form-label">
@@ -2291,7 +2496,14 @@ export default function create() {
                               className="form-select"
                               required
                             >
-                              <option value="Protocol">Protocol</option>
+                              <option selected>Select Sub Category</option>
+                              <option value="E-Commerce">E-Commerce</option>
+                              <option value="Travelling">Travelling</option>
+                              <option value="Content">Content</option>
+                              <option value="Social_Media">Social Media</option>
+                              <option value="Video">Video</option>
+                              <option value="Music">Music</option>
+                              <option value="Fan_Base">Fan Base</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -2507,7 +2719,7 @@ export default function create() {
                             />
                           </div>
                         </div>
-
+                       
                         <div className="row mb-3">
                           <div className="col-md-6">
                             <label className="form-label">
@@ -2521,7 +2733,14 @@ export default function create() {
                               className="form-select"
                               required
                             >
+                              <option selected>Select Accept Type</option>
+                              <option value="USDT">USDT</option>
+                              <option value="BNB">BNB</option>
+                              <option value="ETH">ETH</option>
                               <option value="SOL">SOL</option>
+                              <option value="SUI">SUI</option>
+                              <option value="TRC">TRC</option>
+                              <option value="BTC">BTC</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -2641,14 +2860,21 @@ export default function create() {
                               <option value="No">No</option>
                             </select>
                           </div>
+                          
                           <div className="col-md-6">
                             <label className="form-label">Funding Stage:</label>
                             <select name="fundingStage" className="form-select">
+                              <option selected>Select Funding Stage</option>
+                              <option value="Privatesale">Privatesale</option>
                               <option value="Presale">Presale</option>
+                              <option value="Publicsale">Publicsale</option>
+                              <option value="ICO">ICO</option>
+                              <option value="IEO">IEO</option>
                             </select>
                           </div>
                         </div>
 
+                      
                         <div className="row mb-3">
                           <div className="form-group col-sm-12 col-xl-6">
                             <label className="form-label">Launchpad</label>
@@ -2658,7 +2884,11 @@ export default function create() {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="">Select</option>
+                              {launchpadOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
                             </select>
                           </div>
                           <div className="form-group col-sm-12 col-xl-6">
@@ -2723,14 +2953,17 @@ export default function create() {
                           {/* breadcrumbs Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
                             <label htmlFor="breadcrumbs">Is follow:</label>
-                            <input
-                              className="form-control"
+                           
+                             <select
                               name="breadcrumbs"
-                              type="text"
                               id="breadcrumbs"
                               value={formData.breadcrumbs}
                               onChange={handleChange}
-                            />
+                              className="form-select"
+                            >
+                              <option value="follow">Follow</option>
+                              <option value="not_follow">Not Follow</option>
+                            </select>
                           </div>
                         </div>
 
@@ -3571,10 +3804,27 @@ export default function create() {
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
-                                      Select Project type
+                                      Select ICO Project type
                                     </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                   
+                              <option value="1" >IDO</option>
+                              <option value="3" >ICO</option>
+                              <option value="4" >Token</option>
+                              <option value="5" >IEO</option>
+                              <option value="6" >Seed Sale</option>
+                              <option value="7" >Community Event</option>
+                              <option value="8" >Public Sale</option>
+                              <option value="12" >IFO</option>
+                              <option value="13" >Private Sale</option>
+                              <option value="14" >Crowdloan</option>
+                              <option value="15" >BEP-20</option>
+                              <option value="16" >NFT</option>
+                              <option value="17" >Protocol</option>
+                              <option value="18" >Airdrop</option>
+                              <option value="19" >Luna</option>
+                              <option value="20" >CIRX</option>
+                              <option value="21" >Base</option>
+                              <option value="22" >PRESALE</option>
                                   </select>
                                 </div>
                               </div>
@@ -3593,8 +3843,10 @@ export default function create() {
                                     <option value="Select Featured">
                                       Select Ico / Ido
                                     </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                              <option value={0}>ICO</option>
+                              <option value={1}>IDO</option>
+                              <option value={2}>IEO</option>
+                              <option value={3}>Presale</option>
                                   </select>
                                 </div>
                                 <div className="col-md-2">
@@ -3609,9 +3861,14 @@ export default function create() {
                                   >
                                     <option value="Select Featured">
                                       Select Project Type
-                                    </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    </option>        
+                                    <option value="DAOMakerLaunchpad">DAO Maker Launchpad </option>
+                                    <option value="BSCPad">BSCPad</option>
+                                    <option value="TrustSwap">TrustSwap</option>
+                                    <option value="BullStarter">BullStarter</option>
+                                    <option value="OccamRazer">OccamRazer</option>
+                                    <option value="Polkastarter">Polkastarter</option>
+                                   
                                   </select>
                                 </div>
                                 <div className="col-md-2">
@@ -3627,8 +3884,9 @@ export default function create() {
                                     <option value="Select Featured">
                                       Select Accept Type
                                     </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="USDT">USDT</option>  
+                                    <option value="Ethereum">Ethereum</option>
+                                    <option value="BNB">BNB</option>
                                   </select>
                                 </div>
                                 <div className="col-md-2">
@@ -3684,11 +3942,12 @@ export default function create() {
                                     onChange={(e) => handleChange(e, index)}
                                     className="form-select"
                                   >
-                                    <option value="Select Featured">
-                                      Private Sale Select
-                                    </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                  <option selected>Select Funding Stage</option>
+                              <option value="Privatesale">Privatesale</option>
+                              <option value="Presale">Presale</option>
+                              <option value="Publicsale">Publicsale</option>
+                              <option value="ICO">ICO</option>
+                              <option value="IEO">IEO</option>
                                   </select>
                                 </div>
                                 <div className="col-md-4">

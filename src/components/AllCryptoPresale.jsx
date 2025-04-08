@@ -48,7 +48,7 @@ export default async function AllCryptoPresale() {
         </p>
         
         {/* Promo Banner */}
-        <div className="banner text-white mb-4">
+        <div className="banner text-white d-none mb-4">
           <div className="banner-content d-flex justify-content-between align-items-center">
             <div className="banner-text">
               <h2 className="h4 mb-1">SEXP Presale</h2>

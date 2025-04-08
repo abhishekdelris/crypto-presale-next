@@ -215,7 +215,7 @@ const CryptoCoins = () => {
                         
                      
                         <Card.Body className="pt-2">
-            <div className="">
+           
   <table className="table even-tbl table-responsive border" id="cryptoNews-table">
     <thead>
       <tr>
@@ -289,7 +289,6 @@ const CryptoCoins = () => {
     </tbody>
   </table>
 
-</div>
 
             
              {/* Pagination Component */}

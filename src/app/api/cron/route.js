@@ -114,10 +114,10 @@ async function fetchAndInsertICOData() {
   try {
     // Get the latest ICO ID from your database
     const latestEntry = await prisma.crypto_coins_icos.findFirst({
-      orderBy: { id: "desc" },
+      orderBy: { ico_id: "desc" },
     });
 
-    const latestIcoId = latestEntry?.id || 0;
+    const latestIcoId = latestEntry?.ico_id || 0;
     console.log("Latest ICO ID:", latestIcoId);
 
     // Fetch new data from third-party API
@@ -136,19 +136,21 @@ async function fetchAndInsertICOData() {
     // Process and filter data
     const validDataInfo = data.data
       .filter((item) => item.approved_time) // Remove entries with missing `approved_time`
-      .map(({ crypto_coins_ico_details, ico_contract_address, ico_launchpad, ...rest }) => ({
+      .map(({ crypto_coins_ico_details, ico_contract_address,featured,like_count,is_review, ico_launchpad, ...rest }) => ({
         ...rest,
         approved_time: formatToISO(rest.approved_time),
         start_time: formatToISO(rest.start_time),
         end_time: formatToISO(rest.end_time),
         created_at: formatToISO(rest.created_at),
         updated_at: formatToISO(rest.updated_at),
+        is_trending: 0,       // default value
+        is_bestpresale: 0 
       }));
 
     // Insert only if new data exists
     if (validDataInfo.length > 0) {
       const result = await prisma.crypto_coins_icos.createMany({
-        data: validDataInfo,
+        data:validDataInfo,
         skipDuplicates: true,
       });
 

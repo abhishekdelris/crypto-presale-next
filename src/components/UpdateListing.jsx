@@ -127,165 +127,165 @@
 //     }
 //   };
 
-  // const launchpadOptions = [
-  //   { value: "", label: "Select Project Type" },
-  //   { value: "dao-maker", label: "DAO Maker Launchpad" },
-  //   { value: "bscpad", label: "BSCPad" },
-  //   { value: "trustswap", label: "TrustSwap" },
-  //   { value: "bullstarter", label: "BullStarter" },
-  //   { value: "occamrazer", label: "OccamRazer" },
-  //   { value: "polkastarter", label: "Polkastarter" },
-  //   { value: "starter", label: "Starter" },
-  //   { value: "pancakeswap", label: "PancakeSwap" },
-  //   { value: "paid-network", label: "PAID Network" },
-  //   { value: "launchpool", label: "Launchpool" },
-  //   { value: "red-kite", label: "Red Kite" },
-  //   { value: "trustpad", label: "TrustPad" },
-  //   { value: "enjinstarter", label: "Enjinstarter" },
-  //   { value: "zendit", label: "ZENDIT" },
-  //   { value: "poolz", label: "Poolz" },
-  //   { value: "seedify", label: "Seedify" },
-  //   { value: "gamefi", label: "GameFi" },
-  //   { value: "gamestarter", label: "Gamestarter" },
-  //   { value: "kommunitas", label: "Kommunitas" },
-  //   { value: "truepnl", label: "TruePNL" },
-  //   { value: "impossible-finance", label: "Impossible Finance" },
-  //   { value: "binstarter", label: "BinStarter" },
-  //   { value: "gagarin", label: "GAGARIN" },
-  //   { value: "firestarter", label: "FireStarter" },
-  //   { value: "spores-network", label: "Spores Network" },
-  //   { value: "occamrazer-2", label: "OccamRazer" },
-  //   { value: "tokensoft", label: "Tokensoft" },
-  //   { value: "gempad", label: "Gempad" },
-  //   { value: "gate-io", label: "Gate.io" },
-  //   { value: "pinksale-finance", label: "pinksale Finance" },
-  //   { value: "p2pb2b", label: "p2pb2b" },
-  //   { value: "ixirpad", label: "ixirpad" },
-  //   { value: "daostarter", label: "DaoStarter" },
-  //   { value: "binance", label: "Binance" },
-  //   { value: "kucoin", label: "Kucoin" },
-  //   { value: "coinlist", label: "Coinlist" },
-  //   { value: "crytfex", label: "Crytfex" },
-  //   { value: "southxchange", label: "SouthXchange" },
-  //   { value: "probit-global", label: "ProBit Global" },
-  //   { value: "latoken", label: "Latoken" },
-  //   { value: "peakdefi", label: "Peakdefi" },
-  //   { value: "x-starter", label: "x-starter" },
-  //   { value: "on-website", label: "On Website" },
-  //   { value: "iskra", label: "ISKRA" },
-  //   { value: "coinstore", label: "Coinstore" },
-  //   { value: "bscstation", label: "BSCStation" },
-  //   { value: "zelwin-finance", label: "ZELWIN Finance" },
-  //   { value: "bitmart-launchpad", label: "BitMart Launchpad" },
-  //   { value: "bitforex", label: "Bitforex" },
-  //   { value: "vindax", label: "Vindax" },
-  //   { value: "kanga-exchange", label: "Kanga Exchange" },
-  //   { value: "kingdomstarter", label: "KingdomStarter" },
-  //   { value: "xlaunchpad", label: "XLaunchpad" },
-  //   { value: "infinitypad", label: "InfinityPad" },
-  //   { value: "uplift", label: "Uplift" },
-  //   { value: "bitget", label: "Bitget" },
-  //   { value: "bybit", label: "Bybit" },
-  //   { value: "dextrade", label: "DexTrade" },
-  //   { value: "singularitydao", label: "SingularityDao" },
-  //   { value: "zyberswap", label: "ZyberSwap" },
-  //   { value: "razrfi-launchpad", label: "RazrFi Launchpad" },
-  //   { value: "bsclaunch", label: "BSClaunch" },
-  //   { value: "pancakeswap-2", label: "pancakeswap" },
-  //   { value: "finlaunch", label: "finlaunch" },
-  //   { value: "dao-maker-2", label: "Dao Maker" },
-  //   { value: "bullperks", label: "Bullperks" },
-  //   { value: "torkpad", label: "TorkPad" },
-  //   { value: "republic", label: "Republic" },
-  //   { value: "chaingpt", label: "Chaingpt" },
-  //   { value: "koistarter", label: "KOIStarter" },
-  //   { value: "indoex-io", label: "Indoex.io" },
-  //   { value: "matic-launchpad", label: "Matic Launchpad" },
-  //   { value: "bscs-launchpad", label: "BSCS Launchpad" },
-  //   { value: "bitlink-launchpad", label: "Bitlink LaunchPad" },
-  //   { value: "decubate", label: "Decubate" },
-  //   { value: "coinlist-launchpad", label: "Coinlist LaunchPad" },
-  //   { value: "bounce", label: "Bounce" },
-  //   { value: "wepad-launchpad", label: "Wepad Launchpad" },
-  //   { value: "synapse-network", label: "Synapse Network" },
-  //   { value: "tonup", label: "TonUP" },
-  //   { value: "impulse-finance", label: "Impulse Finance" },
-  //   { value: "bakeryswap", label: "BakerySwap" },
-  //   { value: "turtsat", label: "TurtSat" },
-  //   { value: "flybtc", label: "FLYBTC" },
-  //   { value: "ape-terminal", label: "Ape Terminal" },
-  //   { value: "aitech-pad", label: "AITECH Pad" },
-  //   { value: "moonstarter", label: "MoonStarter" },
-  //   { value: "fjord-foundry", label: "Fjord Foundry" },
-  //   { value: "starlaunch", label: "StarLaunch" },
-  //   { value: "dojoswap", label: "DojoSwap" },
-  //   { value: "solanium", label: "Solanium" },
-  //   { value: "moonedge", label: "MoonEdge" },
-  //   { value: "avalaunch", label: "Avalaunch" },
-  //   { value: "gamespad", label: "Gamespad" },
-  //   { value: "dexcheck", label: "Dexcheck" },
-  //   { value: "velocore", label: "Velocore" },
-  //   { value: "floorswap", label: "Floorswap" },
-  //   { value: "paragen", label: "Paragen" },
-  //   { value: "okx", label: "OKX" },
-  //   { value: "port3-network", label: "Port3 Network" },
-  //   { value: "turtsat-2", label: "TurtSat" },
-  //   { value: "cetus", label: "Cetus" },
-  //   { value: "spartadex", label: "SpartaDex" },
-  //   { value: "finceptor", label: "Finceptor" },
-  //   { value: "tenset-io", label: "TenseT.io" },
-  //   { value: "superlauncher", label: "SuperLauncher" },
-  //   { value: "bigone", label: "BigONE" },
-  //   { value: "ronin", label: "Ronin" },
-  //   { value: "brcstarter", label: "BRCStarter" },
-  //   { value: "arbipad", label: "Arbipad" },
-  //   { value: "seapad", label: "SeaPad" },
-  //   { value: "magic-eden", label: "Magic Eden" },
-  //   { value: "vent-finance", label: "Vent Finance" },
-  //   { value: "avalaunch-2", label: "Avalaunch" },
-  //   { value: "neolaunch", label: "neolaunch" },
-  //   { value: "trustfi", label: "Trustfi" },
-  //   { value: "de-fi-2-0", label: "De.Fi 2.0" },
-  //   { value: "openpad", label: "OpenPad" },
-  //   { value: "smithii", label: "Smithii" },
-  //   { value: "dyor", label: "DYOR" },
-  //   { value: "bitexen-global", label: "Bitexen Global" },
-  //   { value: "siriuspad", label: "Siriuspad" },
-  //   { value: "particle-network", label: "Particle Network" },
-  //   { value: "bhero", label: "BHero" },
-  //   { value: "tokenfi", label: "TokenFi" },
-  //   { value: "eclipsefi", label: "Eclipsefi" },
-  //   { value: "cryptohub", label: "CryptoHub" },
-  //   { value: "unicorn-hunter", label: "Unicorn Hunter" },
-  //   { value: "dappad", label: "Dappad" },
-  //   { value: "zenix-launcher", label: "Zenix Launcher" },
-  //   { value: "huostarter", label: "Huostarter" },
-  //   { value: "pattieswap", label: "PattieSwap" },
-  //   { value: "smithii-2", label: "Smithii" },
-  //   { value: "octavia", label: "Octavia" },
-  //   { value: "bit2me-global", label: "Bit2Me Global" },
-  //   { value: "operation-phoenix", label: "Operation Phoenix" },
-  //   { value: "ordify", label: "Ordify" },
-  //   { value: "kredict", label: "KREDICT" },
-  //   { value: "truepnl-2", label: "TruePNL" },
-  //   { value: "jupiter", label: "Jupiter" },
-  //   { value: "magic-square", label: "Magic Square" },
-  //   { value: "eeseeio", label: "eeseeio" },
-  //   { value: "dxsale", label: "DxSale" },
-  //   { value: "solsale", label: "Solsale" },
-  //   { value: "degenpad", label: "DegenPad" },
-  //   { value: "elixir-games", label: "Elixir Games" },
-  //   { value: "fantomstarter", label: "fantomstarter" },
-  //   { value: "blastup", label: "Blastup" },
-  //   { value: "axo", label: "axo" },
-  //   { value: "tonsale", label: "TONSALE" },
-  //   { value: "chainboost2", label: "chainboost2" },
-  //   { value: "app-alphamind-co", label: "app alphamind.co" },
-  //   { value: "bitstorage", label: "bitstorage" },
-  //   { value: "borgpad", label: "BorgPad" },
-  //   { value: "tokentool", label: "tokentool" },
-  //   { value: "truffle", label: "truffle" }
-  // ];
+//   const launchpadOptions = [
+//     { value: "", label: "Select Project Type" },
+//     { value: "dao-maker", label: "DAO Maker Launchpad" },
+//     { value: "bscpad", label: "BSCPad" },
+//     { value: "trustswap", label: "TrustSwap" },
+//     { value: "bullstarter", label: "BullStarter" },
+//     { value: "occamrazer", label: "OccamRazer" },
+//     { value: "polkastarter", label: "Polkastarter" },
+//     { value: "starter", label: "Starter" },
+//     { value: "pancakeswap", label: "PancakeSwap" },
+//     { value: "paid-network", label: "PAID Network" },
+//     { value: "launchpool", label: "Launchpool" },
+//     { value: "red-kite", label: "Red Kite" },
+//     { value: "trustpad", label: "TrustPad" },
+//     { value: "enjinstarter", label: "Enjinstarter" },
+//     { value: "zendit", label: "ZENDIT" },
+//     { value: "poolz", label: "Poolz" },
+//     { value: "seedify", label: "Seedify" },
+//     { value: "gamefi", label: "GameFi" },
+//     { value: "gamestarter", label: "Gamestarter" },
+//     { value: "kommunitas", label: "Kommunitas" },
+//     { value: "truepnl", label: "TruePNL" },
+//     { value: "impossible-finance", label: "Impossible Finance" },
+//     { value: "binstarter", label: "BinStarter" },
+//     { value: "gagarin", label: "GAGARIN" },
+//     { value: "firestarter", label: "FireStarter" },
+//     { value: "spores-network", label: "Spores Network" },
+//     { value: "occamrazer-2", label: "OccamRazer" },
+//     { value: "tokensoft", label: "Tokensoft" },
+//     { value: "gempad", label: "Gempad" },
+//     { value: "gate-io", label: "Gate.io" },
+//     { value: "pinksale-finance", label: "pinksale Finance" },
+//     { value: "p2pb2b", label: "p2pb2b" },
+//     { value: "ixirpad", label: "ixirpad" },
+//     { value: "daostarter", label: "DaoStarter" },
+//     { value: "binance", label: "Binance" },
+//     { value: "kucoin", label: "Kucoin" },
+//     { value: "coinlist", label: "Coinlist" },
+//     { value: "crytfex", label: "Crytfex" },
+//     { value: "southxchange", label: "SouthXchange" },
+//     { value: "probit-global", label: "ProBit Global" },
+//     { value: "latoken", label: "Latoken" },
+//     { value: "peakdefi", label: "Peakdefi" },
+//     { value: "x-starter", label: "x-starter" },
+//     { value: "on-website", label: "On Website" },
+//     { value: "iskra", label: "ISKRA" },
+//     { value: "coinstore", label: "Coinstore" },
+//     { value: "bscstation", label: "BSCStation" },
+//     { value: "zelwin-finance", label: "ZELWIN Finance" },
+//     { value: "bitmart-launchpad", label: "BitMart Launchpad" },
+//     { value: "bitforex", label: "Bitforex" },
+//     { value: "vindax", label: "Vindax" },
+//     { value: "kanga-exchange", label: "Kanga Exchange" },
+//     { value: "kingdomstarter", label: "KingdomStarter" },
+//     { value: "xlaunchpad", label: "XLaunchpad" },
+//     { value: "infinitypad", label: "InfinityPad" },
+//     { value: "uplift", label: "Uplift" },
+//     { value: "bitget", label: "Bitget" },
+//     { value: "bybit", label: "Bybit" },
+//     { value: "dextrade", label: "DexTrade" },
+//     { value: "singularitydao", label: "SingularityDao" },
+//     { value: "zyberswap", label: "ZyberSwap" },
+//     { value: "razrfi-launchpad", label: "RazrFi Launchpad" },
+//     { value: "bsclaunch", label: "BSClaunch" },
+//     { value: "pancakeswap-2", label: "pancakeswap" },
+//     { value: "finlaunch", label: "finlaunch" },
+//     { value: "dao-maker-2", label: "Dao Maker" },
+//     { value: "bullperks", label: "Bullperks" },
+//     { value: "torkpad", label: "TorkPad" },
+//     { value: "republic", label: "Republic" },
+//     { value: "chaingpt", label: "Chaingpt" },
+//     { value: "koistarter", label: "KOIStarter" },
+//     { value: "indoex-io", label: "Indoex.io" },
+//     { value: "matic-launchpad", label: "Matic Launchpad" },
+//     { value: "bscs-launchpad", label: "BSCS Launchpad" },
+//     { value: "bitlink-launchpad", label: "Bitlink LaunchPad" },
+//     { value: "decubate", label: "Decubate" },
+//     { value: "coinlist-launchpad", label: "Coinlist LaunchPad" },
+//     { value: "bounce", label: "Bounce" },
+//     { value: "wepad-launchpad", label: "Wepad Launchpad" },
+//     { value: "synapse-network", label: "Synapse Network" },
+//     { value: "tonup", label: "TonUP" },
+//     { value: "impulse-finance", label: "Impulse Finance" },
+//     { value: "bakeryswap", label: "BakerySwap" },
+//     { value: "turtsat", label: "TurtSat" },
+//     { value: "flybtc", label: "FLYBTC" },
+//     { value: "ape-terminal", label: "Ape Terminal" },
+//     { value: "aitech-pad", label: "AITECH Pad" },
+//     { value: "moonstarter", label: "MoonStarter" },
+//     { value: "fjord-foundry", label: "Fjord Foundry" },
+//     { value: "starlaunch", label: "StarLaunch" },
+//     { value: "dojoswap", label: "DojoSwap" },
+//     { value: "solanium", label: "Solanium" },
+//     { value: "moonedge", label: "MoonEdge" },
+//     { value: "avalaunch", label: "Avalaunch" },
+//     { value: "gamespad", label: "Gamespad" },
+//     { value: "dexcheck", label: "Dexcheck" },
+//     { value: "velocore", label: "Velocore" },
+//     { value: "floorswap", label: "Floorswap" },
+//     { value: "paragen", label: "Paragen" },
+//     { value: "okx", label: "OKX" },
+//     { value: "port3-network", label: "Port3 Network" },
+//     { value: "turtsat-2", label: "TurtSat" },
+//     { value: "cetus", label: "Cetus" },
+//     { value: "spartadex", label: "SpartaDex" },
+//     { value: "finceptor", label: "Finceptor" },
+//     { value: "tenset-io", label: "TenseT.io" },
+//     { value: "superlauncher", label: "SuperLauncher" },
+//     { value: "bigone", label: "BigONE" },
+//     { value: "ronin", label: "Ronin" },
+//     { value: "brcstarter", label: "BRCStarter" },
+//     { value: "arbipad", label: "Arbipad" },
+//     { value: "seapad", label: "SeaPad" },
+//     { value: "magic-eden", label: "Magic Eden" },
+//     { value: "vent-finance", label: "Vent Finance" },
+//     { value: "avalaunch-2", label: "Avalaunch" },
+//     { value: "neolaunch", label: "neolaunch" },
+//     { value: "trustfi", label: "Trustfi" },
+//     { value: "de-fi-2-0", label: "De.Fi 2.0" },
+//     { value: "openpad", label: "OpenPad" },
+//     { value: "smithii", label: "Smithii" },
+//     { value: "dyor", label: "DYOR" },
+//     { value: "bitexen-global", label: "Bitexen Global" },
+//     { value: "siriuspad", label: "Siriuspad" },
+//     { value: "particle-network", label: "Particle Network" },
+//     { value: "bhero", label: "BHero" },
+//     { value: "tokenfi", label: "TokenFi" },
+//     { value: "eclipsefi", label: "Eclipsefi" },
+//     { value: "cryptohub", label: "CryptoHub" },
+//     { value: "unicorn-hunter", label: "Unicorn Hunter" },
+//     { value: "dappad", label: "Dappad" },
+//     { value: "zenix-launcher", label: "Zenix Launcher" },
+//     { value: "huostarter", label: "Huostarter" },
+//     { value: "pattieswap", label: "PattieSwap" },
+//     { value: "smithii-2", label: "Smithii" },
+//     { value: "octavia", label: "Octavia" },
+//     { value: "bit2me-global", label: "Bit2Me Global" },
+//     { value: "operation-phoenix", label: "Operation Phoenix" },
+//     { value: "ordify", label: "Ordify" },
+//     { value: "kredict", label: "KREDICT" },
+//     { value: "truepnl-2", label: "TruePNL" },
+//     { value: "jupiter", label: "Jupiter" },
+//     { value: "magic-square", label: "Magic Square" },
+//     { value: "eeseeio", label: "eeseeio" },
+//     { value: "dxsale", label: "DxSale" },
+//     { value: "solsale", label: "Solsale" },
+//     { value: "degenpad", label: "DegenPad" },
+//     { value: "elixir-games", label: "Elixir Games" },
+//     { value: "fantomstarter", label: "fantomstarter" },
+//     { value: "blastup", label: "Blastup" },
+//     { value: "axo", label: "axo" },
+//     { value: "tonsale", label: "TONSALE" },
+//     { value: "chainboost2", label: "chainboost2" },
+//     { value: "app-alphamind-co", label: "app alphamind.co" },
+//     { value: "bitstorage", label: "bitstorage" },
+//     { value: "borgpad", label: "BorgPad" },
+//     { value: "tokentool", label: "tokentool" },
+//     { value: "truffle", label: "truffle" }
+//   ];
 
 //   return (
 //     <>
@@ -1043,254 +1043,254 @@
 //                             Country from Coin / Token Issued:
 //                             </label>
 //                             <select class="form-select form-control" aria-label="country-coin" id="country-coin" name="country">
-//                      <option value="">Please choose</option>
-//                                        <option value="Afghanistan">Afghanistan</option>
-//                                  <option value="Albania">Albania</option>
-//                                  <option value="Algeria">Algeria</option>
-//                                  <option value="American Samoa">American Samoa</option>
-//                                  <option value="Andorra">Andorra</option>
-//                                  <option value="Angola">Angola</option>
-//                                  <option value="Anguilla">Anguilla</option>
-//                                  <option value="Antarctica">Antarctica</option>
-//                                  <option value="Antigua And Barbuda">Antigua And Barbuda</option>
-//                                  <option value="Argentina">Argentina</option>
-//                                  <option value="Armenia">Armenia</option>
-//                                  <option value="Aruba">Aruba</option>
-//                                  <option value="Australia">Australia</option>
-//                                  <option value="Austria">Austria</option>
-//                                  <option value="Azerbaijan">Azerbaijan</option>
-//                                  <option value="Bahamas The">Bahamas The</option>
-//                                  <option value="Bahrain">Bahrain</option>
-//                                  <option value="Bangladesh">Bangladesh</option>
-//                                  <option value="Barbados">Barbados</option>
-//                                  <option value="Belarus">Belarus</option>
-//                                  <option value="Belgium">Belgium</option>
-//                                  <option value="Belize">Belize</option>
-//                                  <option value="Benin">Benin</option>
-//                                  <option value="Bermuda">Bermuda</option>
-//                                  <option value="Bhutan">Bhutan</option>
-//                                  <option value="Bolivia">Bolivia</option>
-//                                  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-//                                  <option value="Botswana">Botswana</option>
-//                                  <option value="Bouvet Island">Bouvet Island</option>
-//                                  <option value="Brazil">Brazil</option>
-//                                  <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-//                                  <option value="Brunei">Brunei</option>
-//                                  <option value="Bulgaria">Bulgaria</option>
-//                                  <option value="Burkina Faso">Burkina Faso</option>
-//                                  <option value="Burundi">Burundi</option>
-//                                  <option value="Cambodia">Cambodia</option>
-//                                  <option value="Cameroon">Cameroon</option>
-//                                  <option value="Canada">Canada</option>
-//                                  <option value="Cape Verde">Cape Verde</option>
-//                                  <option value="Cayman Islands">Cayman Islands</option>
-//                                  <option value="Central African Republic">Central African Republic</option>
-//                                  <option value="Chad">Chad</option>
-//                                  <option value="Chile">Chile</option>
-//                                  <option value="China">China</option>
-//                                  <option value="Christmas Island">Christmas Island</option>
-//                                  <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
-//                                  <option value="Colombia">Colombia</option>
-//                                  <option value="Comoros">Comoros</option>
-//                                  <option value="Republic Of The Congo">Republic Of The Congo</option>
-//                                  <option value="Democratic Republic Of The Congo">Democratic Republic Of The Congo</option>
-//                                  <option value="Cook Islands">Cook Islands</option>
-//                                  <option value="Costa Rica">Costa Rica</option>
-//                                  <option value="Cote D'Ivoire (Ivory Coast)">Cote D'Ivoire (Ivory Coast)</option>
-//                                  <option value="Croatia">Croatia</option>
-//                                  <option value="Cuba">Cuba</option>
-//                                  <option value="Cyprus">Cyprus</option>
-//                                  <option value="Czechia">Czechia</option>
-//                                  <option value="Denmark">Denmark</option>
-//                                  <option value="Djibouti">Djibouti</option>
-//                                  <option value="Dominica">Dominica</option>
-//                                  <option value="Dominican Republic">Dominican Republic</option>
-//                                  <option value="East Timor">East Timor</option>
-//                                  <option value="Ecuador">Ecuador</option>
-//                                  <option value="Egypt">Egypt</option>
-//                                  <option value="El Salvador">El Salvador</option>
-//                                  <option value="Equatorial Guinea">Equatorial Guinea</option>
-//                                  <option value="Eritrea">Eritrea</option>
-//                                  <option value="Estonia">Estonia</option>
-//                                  <option value="Ethiopia">Ethiopia</option>
-//                                  <option value="External Territories of Australia">External Territories of Australia</option>
-//                                  <option value="Falkland Islands">Falkland Islands</option>
-//                                  <option value="Faroe Islands">Faroe Islands</option>
-//                                  <option value="Fiji Islands">Fiji Islands</option>
-//                                  <option value="Finland">Finland</option>
-//                                  <option value="France">France</option>
-//                                  <option value="French Guiana">French Guiana</option>
-//                                  <option value="French Polynesia">French Polynesia</option>
-//                                  <option value="French Southern Territories">French Southern Territories</option>
-//                                  <option value="Gabon">Gabon</option>
-//                                  <option value="Gambia The">Gambia The</option>
-//                                  <option value="Georgia">Georgia</option>
-//                                  <option value="Germany">Germany</option>
-//                                  <option value="Ghana">Ghana</option>
-//                                  <option value="Gibraltar">Gibraltar</option>
-//                                  <option value="Greece">Greece</option>
-//                                  <option value="Greenland">Greenland</option>
-//                                  <option value="Grenada">Grenada</option>
-//                                  <option value="Guadeloupe">Guadeloupe</option>
-//                                  <option value="Guam">Guam</option>
-//                                  <option value="Guatemala">Guatemala</option>
-//                                  <option value="Guernsey and Alderney">Guernsey and Alderney</option>
-//                                  <option value="Guinea">Guinea</option>
-//                                  <option value="Guinea-Bissau">Guinea-Bissau</option>
-//                                  <option value="Guyana">Guyana</option>
-//                                  <option value="Haiti">Haiti</option>
-//                                  <option value="Heard and McDonald Islands">Heard and McDonald Islands</option>
-//                                  <option value="Honduras">Honduras</option>
-//                                  <option value="Hong Kong">Hong Kong</option>
-//                                  <option value="Hungary">Hungary</option>
-//                                  <option value="Iceland">Iceland</option>
-//                                  <option value="India">India</option>
-//                                  <option value="Indonesia">Indonesia</option>
-//                                  <option value="Iran">Iran</option>
-//                                  <option value="Iraq">Iraq</option>
-//                                  <option value="Ireland">Ireland</option>
-//                                  <option value="Israel">Israel</option>
-//                                  <option value="Italy">Italy</option>
-//                                  <option value="Jamaica">Jamaica</option>
-//                                  <option value="Japan">Japan</option>
-//                                  <option value="Jersey">Jersey</option>
-//                                  <option value="Jordan">Jordan</option>
-//                                  <option value="Kazakhstan">Kazakhstan</option>
-//                                  <option value="Kenya">Kenya</option>
-//                                  <option value="Kiribati">Kiribati</option>
-//                                  <option value="Korea North">Korea North</option>
-//                                  <option value="Korea South">Korea South</option>
-//                                  <option value="Kuwait">Kuwait</option>
-//                                  <option value="Kyrgyzstan">Kyrgyzstan</option>
-//                                  <option value="Laos">Laos</option>
-//                                  <option value="Latvia">Latvia</option>
-//                                  <option value="Lebanon">Lebanon</option>
-//                                  <option value="Lesotho">Lesotho</option>
-//                                  <option value="Liberia">Liberia</option>
-//                                  <option value="Libya">Libya</option>
-//                                  <option value="Liechtenstein">Liechtenstein</option>
-//                                  <option value="Lithuania">Lithuania</option>
-//                                  <option value="Luxembourg">Luxembourg</option>
-//                                  <option value="Macau S.A.R.">Macau S.A.R.</option>
-//                                  <option value="Macedonia">Macedonia</option>
-//                                  <option value="Madagascar">Madagascar</option>
-//                                  <option value="Malawi">Malawi</option>
-//                                  <option value="Malaysia">Malaysia</option>
-//                                  <option value="Maldives">Maldives</option>
-//                                  <option value="Mali">Mali</option>
-//                                  <option value="Malta">Malta</option>
-//                                  <option value="Man (Isle of)">Man (Isle of)</option>
-//                                  <option value="Marshall Islands">Marshall Islands</option>
-//                                  <option value="Martinique">Martinique</option>
-//                                  <option value="Mauritania">Mauritania</option>
-//                                  <option value="Mauritius">Mauritius</option>
-//                                  <option value="Mayotte">Mayotte</option>
-//                                  <option value="Mexico">Mexico</option>
-//                                  <option value="Micronesia">Micronesia</option>
-//                                  <option value="Moldova">Moldova</option>
-//                                  <option value="Monaco">Monaco</option>
-//                                  <option value="Mongolia">Mongolia</option>
-//                                  <option value="Montserrat">Montserrat</option>
-//                                  <option value="Morocco">Morocco</option>
-//                                  <option value="Mozambique">Mozambique</option>
-//                                  <option value="Myanmar">Myanmar</option>
-//                                  <option value="Namibia">Namibia</option>
-//                                  <option value="Nauru">Nauru</option>
-//                                  <option value="Nepal">Nepal</option>
-//                                  <option value="Netherlands Antilles">Netherlands Antilles</option>
-//                                  <option value="Netherlands">Netherlands</option>
-//                                  <option value="New Caledonia">New Caledonia</option>
-//                                  <option value="New Zealand">New Zealand</option>
-//                                  <option value="Nicaragua">Nicaragua</option>
-//                                  <option value="Niger">Niger</option>
-//                                  <option value="Nigeria">Nigeria</option>
-//                                  <option value="Niue">Niue</option>
-//                                  <option value="Norfolk Island">Norfolk Island</option>
-//                                  <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-//                                  <option value="Norway">Norway</option>
-//                                  <option value="Oman">Oman</option>
-//                                  <option value="Pakistan">Pakistan</option>
-//                                  <option value="Palau">Palau</option>
-//                                  <option value="Palestinian Territory Occupied">Palestinian Territory Occupied</option>
-//                                  <option value="Panama">Panama</option>
-//                                  <option value="Papua new Guinea">Papua new Guinea</option>
-//                                  <option value="Paraguay">Paraguay</option>
-//                                  <option value="Peru">Peru</option>
-//                                  <option value="Philippines">Philippines</option>
-//                                  <option value="Pitcairn Island">Pitcairn Island</option>
-//                                  <option value="Poland">Poland</option>
-//                                  <option value="Portugal">Portugal</option>
-//                                  <option value="Puerto Rico">Puerto Rico</option>
-//                                  <option value="Qatar">Qatar</option>
-//                                  <option value="Reunion">Reunion</option>
-//                                  <option value="Romania">Romania</option>
-//                                  <option value="Russia">Russia</option>
-//                                  <option value="Rwanda">Rwanda</option>
-//                                  <option value="Saint Helena">Saint Helena</option>
-//                                  <option value="Saint Kitts And Nevis">Saint Kitts And Nevis</option>
-//                                  <option value="Saint Lucia">Saint Lucia</option>
-//                                  <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-//                                  <option value="Saint Vincent And The Grenadines">Saint Vincent And The Grenadines</option>
-//                                  <option value="Samoa">Samoa</option>
-//                                  <option value="San Marino">San Marino</option>
-//                                  <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-//                                  <option value="Saudi Arabia">Saudi Arabia</option>
-//                                  <option value="Senegal">Senegal</option>
-//                                  <option value="Serbia">Serbia</option>
-//                                  <option value="Seychelles">Seychelles</option>
-//                                  <option value="Sierra Leone">Sierra Leone</option>
-//                                  <option value="Singapore">Singapore</option>
-//                                  <option value="Slovakia">Slovakia</option>
-//                                  <option value="Slovenia">Slovenia</option>
-//                                  <option value="Smaller Territories of the UK">Smaller Territories of the UK</option>
-//                                  <option value="Solomon Islands">Solomon Islands</option>
-//                                  <option value="Somalia">Somalia</option>
-//                                  <option value="South Africa">South Africa</option>
-//                                  <option value="South Georgia">South Georgia</option>
-//                                  <option value="South Sudan">South Sudan</option>
-//                                  <option value="Spain">Spain</option>
-//                                  <option value="Sri Lanka">Sri Lanka</option>
-//                                  <option value="Sudan">Sudan</option>
-//                                  <option value="Suriname">Suriname</option>
-//                                  <option value="Svalbard And Jan Mayen Islands">Svalbard And Jan Mayen Islands</option>
-//                                  <option value="Swaziland">Swaziland</option>
-//                                  <option value="Sweden">Sweden</option>
-//                                  <option value="Switzerland">Switzerland</option>
-//                                  <option value="Syria">Syria</option>
-//                                  <option value="Taiwan">Taiwan</option>
-//                                  <option value="Tajikistan">Tajikistan</option>
-//                                  <option value="Tanzania">Tanzania</option>
-//                                  <option value="Thailand">Thailand</option>
-//                                  <option value="Togo">Togo</option>
-//                                  <option value="Tokelau">Tokelau</option>
-//                                  <option value="Tonga">Tonga</option>
-//                                  <option value="Trinidad And Tobago">Trinidad And Tobago</option>
-//                                  <option value="Tunisia">Tunisia</option>
-//                                  <option value="Turkey">Turkey</option>
-//                                  <option value="Turkmenistan">Turkmenistan</option>
-//                                  <option value="Turks And Caicos Islands">Turks And Caicos Islands</option>
-//                                  <option value="Tuvalu">Tuvalu</option>
-//                                  <option value="Uganda">Uganda</option>
-//                                  <option value="Ukraine">Ukraine</option>
-//                                  <option value="United Arab Emirates">United Arab Emirates</option>
-//                                  <option value="United Kingdom">United Kingdom</option>
-//                                  <option value="United States">United States</option>
-//                                  <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
-//                                  <option value="Uruguay">Uruguay</option>
-//                                  <option value="Uzbekistan">Uzbekistan</option>
-//                                  <option value="Vanuatu">Vanuatu</option>
-//                                  <option value="Vatican City State (Holy See)">Vatican City State (Holy See)</option>
-//                                  <option value="Venezuela">Venezuela</option>
-//                                  <option value="Vietnam">Vietnam</option>
-//                                  <option value="Virgin Islands (British)">Virgin Islands (British)</option>
-//                                  <option value="Virgin Islands (US)">Virgin Islands (US)</option>
-//                                  <option value="Wallis And Futuna Islands">Wallis And Futuna Islands</option>
-//                                  <option value="Western Sahara">Western Sahara</option>
-//                                  <option value="Yemen">Yemen</option>
-//                                  <option value="Yugoslavia">Yugoslavia</option>
-//                                  <option value="Zambia">Zambia</option>
-//                                  <option value="Zimbabwe">Zimbabwe</option>
-//                                  <option value="Online Event">Online Event</option>
+                    //  <option value="">Please choose</option>
+                    //                    <option value="Afghanistan">Afghanistan</option>
+                    //              <option value="Albania">Albania</option>
+                    //              <option value="Algeria">Algeria</option>
+                    //              <option value="American Samoa">American Samoa</option>
+                    //              <option value="Andorra">Andorra</option>
+                    //              <option value="Angola">Angola</option>
+                    //              <option value="Anguilla">Anguilla</option>
+                    //              <option value="Antarctica">Antarctica</option>
+                    //              <option value="Antigua And Barbuda">Antigua And Barbuda</option>
+                    //              <option value="Argentina">Argentina</option>
+                    //              <option value="Armenia">Armenia</option>
+                    //              <option value="Aruba">Aruba</option>
+                    //              <option value="Australia">Australia</option>
+                    //              <option value="Austria">Austria</option>
+                    //              <option value="Azerbaijan">Azerbaijan</option>
+                    //              <option value="Bahamas The">Bahamas The</option>
+                    //              <option value="Bahrain">Bahrain</option>
+                    //              <option value="Bangladesh">Bangladesh</option>
+                    //              <option value="Barbados">Barbados</option>
+                    //              <option value="Belarus">Belarus</option>
+                    //              <option value="Belgium">Belgium</option>
+                    //              <option value="Belize">Belize</option>
+                    //              <option value="Benin">Benin</option>
+                    //              <option value="Bermuda">Bermuda</option>
+                    //              <option value="Bhutan">Bhutan</option>
+                    //              <option value="Bolivia">Bolivia</option>
+                    //              <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                    //              <option value="Botswana">Botswana</option>
+                    //              <option value="Bouvet Island">Bouvet Island</option>
+                    //              <option value="Brazil">Brazil</option>
+                    //              <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                    //              <option value="Brunei">Brunei</option>
+                    //              <option value="Bulgaria">Bulgaria</option>
+                    //              <option value="Burkina Faso">Burkina Faso</option>
+                    //              <option value="Burundi">Burundi</option>
+                    //              <option value="Cambodia">Cambodia</option>
+                    //              <option value="Cameroon">Cameroon</option>
+                    //              <option value="Canada">Canada</option>
+                    //              <option value="Cape Verde">Cape Verde</option>
+                    //              <option value="Cayman Islands">Cayman Islands</option>
+                    //              <option value="Central African Republic">Central African Republic</option>
+                    //              <option value="Chad">Chad</option>
+                    //              <option value="Chile">Chile</option>
+                    //              <option value="China">China</option>
+                    //              <option value="Christmas Island">Christmas Island</option>
+                    //              <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                    //              <option value="Colombia">Colombia</option>
+                    //              <option value="Comoros">Comoros</option>
+                    //              <option value="Republic Of The Congo">Republic Of The Congo</option>
+                    //              <option value="Democratic Republic Of The Congo">Democratic Republic Of The Congo</option>
+                    //              <option value="Cook Islands">Cook Islands</option>
+                    //              <option value="Costa Rica">Costa Rica</option>
+                    //              <option value="Cote D'Ivoire (Ivory Coast)">Cote D'Ivoire (Ivory Coast)</option>
+                    //              <option value="Croatia">Croatia</option>
+                    //              <option value="Cuba">Cuba</option>
+                    //              <option value="Cyprus">Cyprus</option>
+                    //              <option value="Czechia">Czechia</option>
+                    //              <option value="Denmark">Denmark</option>
+                    //              <option value="Djibouti">Djibouti</option>
+                    //              <option value="Dominica">Dominica</option>
+                    //              <option value="Dominican Republic">Dominican Republic</option>
+                    //              <option value="East Timor">East Timor</option>
+                    //              <option value="Ecuador">Ecuador</option>
+                    //              <option value="Egypt">Egypt</option>
+                    //              <option value="El Salvador">El Salvador</option>
+                    //              <option value="Equatorial Guinea">Equatorial Guinea</option>
+                    //              <option value="Eritrea">Eritrea</option>
+                    //              <option value="Estonia">Estonia</option>
+                    //              <option value="Ethiopia">Ethiopia</option>
+                    //              <option value="External Territories of Australia">External Territories of Australia</option>
+                    //              <option value="Falkland Islands">Falkland Islands</option>
+                    //              <option value="Faroe Islands">Faroe Islands</option>
+                    //              <option value="Fiji Islands">Fiji Islands</option>
+                    //              <option value="Finland">Finland</option>
+                    //              <option value="France">France</option>
+                    //              <option value="French Guiana">French Guiana</option>
+                    //              <option value="French Polynesia">French Polynesia</option>
+                    //              <option value="French Southern Territories">French Southern Territories</option>
+                    //              <option value="Gabon">Gabon</option>
+                    //              <option value="Gambia The">Gambia The</option>
+                    //              <option value="Georgia">Georgia</option>
+                    //              <option value="Germany">Germany</option>
+                    //              <option value="Ghana">Ghana</option>
+                    //              <option value="Gibraltar">Gibraltar</option>
+                    //              <option value="Greece">Greece</option>
+                    //              <option value="Greenland">Greenland</option>
+                    //              <option value="Grenada">Grenada</option>
+                    //              <option value="Guadeloupe">Guadeloupe</option>
+                    //              <option value="Guam">Guam</option>
+                    //              <option value="Guatemala">Guatemala</option>
+                    //              <option value="Guernsey and Alderney">Guernsey and Alderney</option>
+                    //              <option value="Guinea">Guinea</option>
+                    //              <option value="Guinea-Bissau">Guinea-Bissau</option>
+                    //              <option value="Guyana">Guyana</option>
+                    //              <option value="Haiti">Haiti</option>
+                    //              <option value="Heard and McDonald Islands">Heard and McDonald Islands</option>
+                    //              <option value="Honduras">Honduras</option>
+                    //              <option value="Hong Kong">Hong Kong</option>
+                    //              <option value="Hungary">Hungary</option>
+                    //              <option value="Iceland">Iceland</option>
+                    //              <option value="India">India</option>
+                    //              <option value="Indonesia">Indonesia</option>
+                    //              <option value="Iran">Iran</option>
+                    //              <option value="Iraq">Iraq</option>
+                    //              <option value="Ireland">Ireland</option>
+                    //              <option value="Israel">Israel</option>
+                    //              <option value="Italy">Italy</option>
+                    //              <option value="Jamaica">Jamaica</option>
+                    //              <option value="Japan">Japan</option>
+                    //              <option value="Jersey">Jersey</option>
+                    //              <option value="Jordan">Jordan</option>
+                    //              <option value="Kazakhstan">Kazakhstan</option>
+                    //              <option value="Kenya">Kenya</option>
+                    //              <option value="Kiribati">Kiribati</option>
+                    //              <option value="Korea North">Korea North</option>
+                    //              <option value="Korea South">Korea South</option>
+                    //              <option value="Kuwait">Kuwait</option>
+                    //              <option value="Kyrgyzstan">Kyrgyzstan</option>
+                    //              <option value="Laos">Laos</option>
+                    //              <option value="Latvia">Latvia</option>
+                    //              <option value="Lebanon">Lebanon</option>
+                    //              <option value="Lesotho">Lesotho</option>
+                    //              <option value="Liberia">Liberia</option>
+                    //              <option value="Libya">Libya</option>
+                    //              <option value="Liechtenstein">Liechtenstein</option>
+                    //              <option value="Lithuania">Lithuania</option>
+                    //              <option value="Luxembourg">Luxembourg</option>
+                    //              <option value="Macau S.A.R.">Macau S.A.R.</option>
+                    //              <option value="Macedonia">Macedonia</option>
+                    //              <option value="Madagascar">Madagascar</option>
+                    //              <option value="Malawi">Malawi</option>
+                    //              <option value="Malaysia">Malaysia</option>
+                    //              <option value="Maldives">Maldives</option>
+                    //              <option value="Mali">Mali</option>
+                    //              <option value="Malta">Malta</option>
+                    //              <option value="Man (Isle of)">Man (Isle of)</option>
+                    //              <option value="Marshall Islands">Marshall Islands</option>
+                    //              <option value="Martinique">Martinique</option>
+                    //              <option value="Mauritania">Mauritania</option>
+                    //              <option value="Mauritius">Mauritius</option>
+                    //              <option value="Mayotte">Mayotte</option>
+                    //              <option value="Mexico">Mexico</option>
+                    //              <option value="Micronesia">Micronesia</option>
+                    //              <option value="Moldova">Moldova</option>
+                    //              <option value="Monaco">Monaco</option>
+                    //              <option value="Mongolia">Mongolia</option>
+                    //              <option value="Montserrat">Montserrat</option>
+                    //              <option value="Morocco">Morocco</option>
+                    //              <option value="Mozambique">Mozambique</option>
+                    //              <option value="Myanmar">Myanmar</option>
+                    //              <option value="Namibia">Namibia</option>
+                    //              <option value="Nauru">Nauru</option>
+                    //              <option value="Nepal">Nepal</option>
+                    //              <option value="Netherlands Antilles">Netherlands Antilles</option>
+                    //              <option value="Netherlands">Netherlands</option>
+                    //              <option value="New Caledonia">New Caledonia</option>
+                    //              <option value="New Zealand">New Zealand</option>
+                    //              <option value="Nicaragua">Nicaragua</option>
+                    //              <option value="Niger">Niger</option>
+                    //              <option value="Nigeria">Nigeria</option>
+                    //              <option value="Niue">Niue</option>
+                    //              <option value="Norfolk Island">Norfolk Island</option>
+                    //              <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                    //              <option value="Norway">Norway</option>
+                    //              <option value="Oman">Oman</option>
+                    //              <option value="Pakistan">Pakistan</option>
+                    //              <option value="Palau">Palau</option>
+                    //              <option value="Palestinian Territory Occupied">Palestinian Territory Occupied</option>
+                    //              <option value="Panama">Panama</option>
+                    //              <option value="Papua new Guinea">Papua new Guinea</option>
+                    //              <option value="Paraguay">Paraguay</option>
+                    //              <option value="Peru">Peru</option>
+                    //              <option value="Philippines">Philippines</option>
+                    //              <option value="Pitcairn Island">Pitcairn Island</option>
+                    //              <option value="Poland">Poland</option>
+                    //              <option value="Portugal">Portugal</option>
+                    //              <option value="Puerto Rico">Puerto Rico</option>
+                    //              <option value="Qatar">Qatar</option>
+                    //              <option value="Reunion">Reunion</option>
+                    //              <option value="Romania">Romania</option>
+                    //              <option value="Russia">Russia</option>
+                    //              <option value="Rwanda">Rwanda</option>
+                    //              <option value="Saint Helena">Saint Helena</option>
+                    //              <option value="Saint Kitts And Nevis">Saint Kitts And Nevis</option>
+                    //              <option value="Saint Lucia">Saint Lucia</option>
+                    //              <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                    //              <option value="Saint Vincent And The Grenadines">Saint Vincent And The Grenadines</option>
+                    //              <option value="Samoa">Samoa</option>
+                    //              <option value="San Marino">San Marino</option>
+                    //              <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                    //              <option value="Saudi Arabia">Saudi Arabia</option>
+                    //              <option value="Senegal">Senegal</option>
+                    //              <option value="Serbia">Serbia</option>
+                    //              <option value="Seychelles">Seychelles</option>
+                    //              <option value="Sierra Leone">Sierra Leone</option>
+                    //              <option value="Singapore">Singapore</option>
+                    //              <option value="Slovakia">Slovakia</option>
+                    //              <option value="Slovenia">Slovenia</option>
+                    //              <option value="Smaller Territories of the UK">Smaller Territories of the UK</option>
+                    //              <option value="Solomon Islands">Solomon Islands</option>
+                    //              <option value="Somalia">Somalia</option>
+                    //              <option value="South Africa">South Africa</option>
+                    //              <option value="South Georgia">South Georgia</option>
+                    //              <option value="South Sudan">South Sudan</option>
+                    //              <option value="Spain">Spain</option>
+                    //              <option value="Sri Lanka">Sri Lanka</option>
+                    //              <option value="Sudan">Sudan</option>
+                    //              <option value="Suriname">Suriname</option>
+                    //              <option value="Svalbard And Jan Mayen Islands">Svalbard And Jan Mayen Islands</option>
+                    //              <option value="Swaziland">Swaziland</option>
+                    //              <option value="Sweden">Sweden</option>
+                    //              <option value="Switzerland">Switzerland</option>
+                    //              <option value="Syria">Syria</option>
+                    //              <option value="Taiwan">Taiwan</option>
+                    //              <option value="Tajikistan">Tajikistan</option>
+                    //              <option value="Tanzania">Tanzania</option>
+                    //              <option value="Thailand">Thailand</option>
+                    //              <option value="Togo">Togo</option>
+                    //              <option value="Tokelau">Tokelau</option>
+                    //              <option value="Tonga">Tonga</option>
+                    //              <option value="Trinidad And Tobago">Trinidad And Tobago</option>
+                    //              <option value="Tunisia">Tunisia</option>
+                    //              <option value="Turkey">Turkey</option>
+                    //              <option value="Turkmenistan">Turkmenistan</option>
+                    //              <option value="Turks And Caicos Islands">Turks And Caicos Islands</option>
+                    //              <option value="Tuvalu">Tuvalu</option>
+                    //              <option value="Uganda">Uganda</option>
+                    //              <option value="Ukraine">Ukraine</option>
+                    //              <option value="United Arab Emirates">United Arab Emirates</option>
+                    //              <option value="United Kingdom">United Kingdom</option>
+                    //              <option value="United States">United States</option>
+                    //              <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                    //              <option value="Uruguay">Uruguay</option>
+                    //              <option value="Uzbekistan">Uzbekistan</option>
+                    //              <option value="Vanuatu">Vanuatu</option>
+                    //              <option value="Vatican City State (Holy See)">Vatican City State (Holy See)</option>
+                    //              <option value="Venezuela">Venezuela</option>
+                    //              <option value="Vietnam">Vietnam</option>
+                    //              <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                    //              <option value="Virgin Islands (US)">Virgin Islands (US)</option>
+                    //              <option value="Wallis And Futuna Islands">Wallis And Futuna Islands</option>
+                    //              <option value="Western Sahara">Western Sahara</option>
+                    //              <option value="Yemen">Yemen</option>
+                    //              <option value="Yugoslavia">Yugoslavia</option>
+                    //              <option value="Zambia">Zambia</option>
+                    //              <option value="Zimbabwe">Zimbabwe</option>
+                    //              <option value="Online Event">Online Event</option>
 //                                  </select>
 //                           </div>
 //                         </div>
@@ -1348,13 +1348,13 @@
 //                             />
 //                           </div>
 //                           <div className="col-md-6 mb-3">
-//                             <label className="form-label">Fees</label>
+//                             <label className="form-label">ico_project_id</label>
 //                             <input
 //                               className="form-control"
 //                               required
 //                               type="number"
 //                               defaultValue
-//                               name="fees"
+//                               name="ico_project_id"
 //                             />
 //                           </div>
 //                         </div>
@@ -1515,7 +1515,7 @@
 //     // Pricing details
 //     price: "",
 //     currency: "USD",
-//     fees: "",
+//     ico_project_id: "",
     
 //     categories: {
 //       artificialIntelligence: false,
@@ -2223,13 +2223,13 @@
 //                             />
 //                           </div>
 //                           <div className="col-md-6 mb-3">
-//                             <label className="form-label">Fees</label>
+//                             <label className="form-label">ico_project_id</label>
 //                             <input
 //                               className="form-control"
 //                               required
 //                               type="number"
-//                               name="fees"
-//                               value={formData.fees}
+//                               name="ico_project_id"
+//                               value={formData.ico_project_id}
 //                               onChange={handleInputChange}
 //                             />
 //                           </div>
@@ -2303,22 +2303,26 @@
 "use client";
 import React, { useState,useEffect } from "react";
 import Link from "next/link";
+import { useParams, useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
+import dynamic from "next/dynamic";
+import "react-toastify/dist/ReactToastify.css";
+import "suneditor/dist/css/suneditor.min.css";
+import axios from 'axios';
 import { useAuth } from '../hooks/authContext';
-import {  useRouter } from 'next/navigation';
 
-function SubmitCoin() {
+function UpdateListing() {
   // State to track current tab
   const [currentTab, setCurrentTab] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
-   const { isLoggedIn, logout,user } = useAuth();
- const [loading, setLoading] = useState(true); 
-  const router = useRouter();
+  const { isLoggedIn, logout,user } = useAuth();
 
   const [formData, setFormData] = useState({
     // General ICO/IDO details
     fund_stage: "",
-    user_id : isLoggedIn ? user.id : "" || 0,
+    user_id : user.id || 0,
     launchpad: "",
     other_launchpad: "",
     type: "",
@@ -2346,7 +2350,7 @@ function SubmitCoin() {
     instagram: "",
     reddit: "",
     medium: "",
-    telegram: "", 
+    telegram: "",
     discord: "",
     
     // Contact and transaction details
@@ -2376,7 +2380,7 @@ function SubmitCoin() {
     // Pricing details
     price: "",
     currency: "USD",
-    fees: "",
+    ico_project_id: "",
     
     categories: {
       artificialIntelligence: false,
@@ -2405,18 +2409,128 @@ function SubmitCoin() {
     whitepaperLink: ""
   });
 
-  useEffect(() => {
-    if (isLoggedIn === false) {
-      router.push("/login");
-    } else {
-      setLoading(false);
-    }
-  }, [isLoggedIn, router]);
+  const [loading, setLoading] = useState(true); 
+  const params = useParams();
+  const router = useRouter();
+  const { id } = params;
 
-  if (loading) {
-    return <div>Loading...</div>; // You can replace this with a loader/spinner component
-  }
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        setLoading(true);
+        const response = await axios.get(`/api/admin/crypto_coins/${id}`);
+        console.log("API response data:", response.data);
+        
+        // Process image URL if it exists
+        const coinData = response.data.data;
+        
+        // Create a structured formData object from the response
+        const processedData = {
+          // General details
+          fund_stage: coinData.fund_stage || "",
+          launchpad: coinData.launchpad || "",
+          other_launchpad: coinData.other_launchpad || "",
+          type: coinData.type || "",
+          coin_name: coinData.coin_name || "",
+          alias: coinData.alias || "",
+          slug: coinData.slug || "",
+          image: coinData.image || null, // Store the image URL string here
+          start_time: coinData.start_time || "",
+          end_time: coinData.end_time || "",
+          total_coin: coinData.total_coin || "",
+          quantity_of_coin: coinData.quantity_of_coin || "",
+          ico_price: coinData.ico_price || "",
+          website: coinData.website || "",
+          soft_cap: coinData.soft_cap || "",
+          hard_cap: coinData.hard_cap || "",
+          personal_cap: coinData.personal_cap || "",
+          contract_address: coinData.contract_address || "",
+          description: coinData.description || "",
+          country: coinData.country || "",
+          where_to_buy: coinData.where_to_buy || "",
+          
+          // Social media links
+          social_media_url: coinData.social_media_url || "",
+          twitter: coinData.twitter || "",
+          instagram: coinData.instagram || "",
+          reddit: coinData.reddit || "",
+          medium: coinData.medium || "",
+          telegram: coinData.telegram || "",
+          discord: coinData.discord || "",
+          
+          // Contact and transaction details
+          user_contact_type: coinData.user_contact_type || "",
+          user_contact: coinData.user_contact || "",
+          ico_ido_type: coinData.ico_ido_type || "0",
+          plan: coinData.plan || "",
+          total_amount: coinData.total_amount || "",
+          trasaction_id: coinData.trasaction_id || "",
+          market_email: coinData.market_email || "",
+          wallet_address: coinData.wallet_address || "",
+          coin_token_address: coinData.coin_token_address || "",
+          coin_token: coinData.coin_token || "",
+          blockchain: coinData.blockchain || "",
+          
+          // Personal details
+          name: coinData.coin_name || "",
+          symbol: coinData.alias || "",
+          
+          // Company details
+          companyName: coinData.company_name || "",
+          companyEmail: coinData.company_email || coinData.market_email || "",
+          companyContact: coinData.company_contact || "",
+          companyAddress: coinData.company_address || "",
+          
+          // Pricing details
+          price: coinData.price || coinData.ico_price || "",
+          currency: coinData.currency || "USD",
+          ico_project_id: coinData.ico_project_id || "",
+          
+          // Parse categories from response or initialize empty
+          categories: {
+            artificialIntelligence: coinData.category_artificialIntelligence === "true",
+            gambling: coinData.category_gambling === "true",
+            nftPlatform: coinData.category_nftPlatform === "true",
+            other: coinData.category_other === "true",
+            defiv: coinData.category_defiv === "true",
+            gaming: coinData.category_gaming === "true",
+            playToEarn: coinData.category_playToEarn === "true",
+            pumpFunTokens: coinData.category_pumpFunTokens === "true",
+            fanToken: coinData.category_fanToken === "true",
+            memecoins: coinData.category_memecoins === "true",
+            utilityToken: coinData.category_utilityToken === "true"
+          },
+          
+          // Address details
+          websiteLink: coinData.website || "",
+          telegramLink: coinData.telegram || "",
+          xLink: coinData.twitter || "",
+          discordLink: coinData.discord || "",
+          youtubeLink: coinData.youtube || "",
+          facebookLink: coinData.facebook || "",
+          instagramLink: coinData.instagram || "",
+          redditLink: coinData.reddit || "",
+          mediumLink: coinData.medium || "",
+          whitepaperLink: coinData.white_paper_url || ""
+        };
+        
+        setFormData(processedData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching content:", error);
+        toast.error('Failed to fetch content');
+        setLoading(false);
+        // router.push('/admin/coins');
+      }
+    }
+    
+    if (id) {
+      fetchContent();
+    }
+  }, [id]);
+
   
+
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -2437,13 +2551,14 @@ function SubmitCoin() {
     }
   };
 
-  // Handle logo upload
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: file
-    });
+    if (file) {
+      setFormData({
+        ...formData,
+        image: file
+      });
+    }
   };
 
   // Navigation functions
@@ -2459,6 +2574,14 @@ function SubmitCoin() {
     }
   };
 
+    // Handle SunEditor content change
+    const handleEditorChange = (content) => {
+      setFormData((prev) => ({
+        ...prev,
+        description: content
+      }));
+    };
+
   // Function to generate a slug from the name
   const generateSlug = (name) => {
     return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -2473,18 +2596,21 @@ function SubmitCoin() {
     try {
       // Create a FormData object to handle the file upload
       const submitFormData = new FormData();
-      submitFormData.append("user_id", formData.user_id); 
+      
+      // Add listing ID for update
+      submitFormData.append("user_id", user_id);
+      submitFormData.append("ico_ido_id", id);
       // Add basic coin information
       submitFormData.append("coin_name", formData.name); 
       submitFormData.append("ticker", formData.symbol);
       submitFormData.append("description", formData.description);
       
-      // Generate slug if not provided
+      // Generate slug if not provided 
       const slug = formData.slug || generateSlug(formData.name);
       submitFormData.append("slug", slug);
       
-      // Add file if present
-      if (formData.image) {
+      // Add file only if a new one is selected
+      if (formData.image && typeof formData.image !== 'string') {
         submitFormData.append("image", formData.image);
       }
       
@@ -2529,43 +2655,48 @@ function SubmitCoin() {
       submitFormData.append("coin_token", formData.coin_token || "");
       submitFormData.append("blockchain", formData.blockchain || "");
       
-      // Add user ID if available (you might get this from authentication context)
-      // submitFormData.append("user_id", userId);
+      // Add categories
+      for (const category in formData.categories) {
+        if (formData.categories[category]) {
+          submitFormData.append(`category_${category}`, "true");
+        }
+      }
       
-      // Submit the form data to the API
       const response = await fetch('/api/submit_ico_request', {
         method: 'POST',
         body: submitFormData,
       });
+      // Submit the form data to the API for updating
+      
       
       const result = await response.json();
-      console.log("api is done");
       
       if (result.success) {
         setSubmitMessage({
           type: 'success',
-          message: result.message || 'Coin submitted successfully! Our team will review your submission.'
+          message: result.message || 'Coin updated successfully!'
         });
         
-        // Optionally reset form or redirect
-        // setFormData({ ... }); // Reset form
-        // window.location.href = '/submission-success'; // Redirect
+        // Redirect after successful update
+        setTimeout(() => {
+          router.push('/');
+        }, 2000);
       } else {
         setSubmitMessage({
           type: 'error',
-          message: result.message || 'Failed to submit the coin. Please try again.'
+          message: result.message || 'Failed to update the coin. Please try again.'
         });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error updating form:', error);
       setSubmitMessage({
         type: 'error',
-        message: 'An error occurred while submitting the form. Please try again.'
+        message: 'An error occurred while updating the form. Please try again.'
       });
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };  
 
   const launchpadOptions = [
     { value: 0, label: "Select Project Type" },
@@ -2660,8 +2791,7 @@ function SubmitCoin() {
     { value: 89, label: "ZeroSwap" },
     { value: 90, label: "truffle" }
   ];
-
-
+  
   return (
     <>
       <section className="brdcrumb">
@@ -2672,7 +2802,7 @@ function SubmitCoin() {
                 Home
               </Link>
             </li>
-            <li>Submit Coin</li>
+            <li>Update Listing Coin Request</li>
           </ul>
         </div>
       </section>
@@ -2683,7 +2813,7 @@ function SubmitCoin() {
               <div className="contact-us-form">
                 <div className="row">
                   <div className="col-xl-12 text-center">
-                    <h5 className="h2 fw-bold mb-4">Submit new coin</h5>
+                    <h5 className="h2 fw-bold mb-4">Update Listing Coin Request</h5>
                   </div>
                   
                   {/* Display submission message if available */}
@@ -2744,16 +2874,18 @@ function SubmitCoin() {
                                 <div className="confirm-identity">
                                   <div className="ci-user">
                                     <div className="ci-user-picture">
-                                      <img
-                                        src={
-                                          formData.image
-                                            ? URL.createObjectURL(formData.image)
-                                            : "/avtar.webp"
-                                        }
-                                        id="item-img-output"
-                                        className="imgpreviewPrf img-fluid"
-                                        alt="Logo preview"
-                                      />
+                                    <img
+  src={
+    formData.image 
+      ? (typeof formData.image === 'string' 
+         ? `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${formData.image}` // Use the URL directly if it's a string
+         : URL.createObjectURL(formData.image)) // Create URL for File object
+      : "/avtar.webp" // Default image
+  }
+  id="item-img-output"
+  className="imgpreviewPrf img-fluid"
+  alt="Logo preview"
+/>
                                     </div>
                                   </div>
                                   <div className="ci-user-btn mt-4">
@@ -2808,13 +2940,51 @@ function SubmitCoin() {
                             </div>
                             <div className="mb-2">
                               <label
+                                htmlFor="symbol"
+                                className="form-label mb-0"
+                              >
+                                Cryptocurrency Type: <sup className="text-danger fs-7">*</sup>
+                              </label>
+                              <select 
+                              name="type" 
+                              className="form-select form-control"
+                              value={formData.type}
+                              onChange={handleInputChange}
+                              required
+                            >
+                              <option value="">Select Crypto Currency</option>
+                              <option value="true">Coin</option>
+                              <option value="false">Token</option>
+                              </select>
+                             
+                            </div>
+                             <div className="mb-2">
+                              <label
                                 htmlFor="description"
                                 className="form-label mb-0"
                               >
                                 Description{" "}
                                 <sup className="text-danger fs-7">*</sup>
                               </label>
-                              <textarea
+                              <SunEditor
+  onChange={handleEditorChange}
+  className="form-control"
+  setContents={formData.description}
+  setOptions={{
+    placeholder: "Enter your text here!!!",
+    buttonList: [
+      ["undo", "redo"],
+      ["font", "fontSize"],
+      ["bold", "underline", "italic", "strike"],
+      ["fontColor", "hiliteColor"],
+      ["removeFormat"],
+      ["outdent", "indent"],
+      ["align", "list"],
+      ["link", "image"]
+    ]
+  }}
+/>
+                              {/* <textarea
                                 className="form-control"
                                 rows="2"
                                 name="description"
@@ -2823,7 +2993,7 @@ function SubmitCoin() {
                                 value={formData.description}
                                 onChange={handleInputChange}
                                 required
-                              ></textarea>
+                              ></textarea> */}
                             </div>
                           </div>
                           <div className="col-xl-12">
@@ -3153,7 +3323,7 @@ function SubmitCoin() {
                             </label>
                             <input
                               className="form-control"
-                              required
+                              
                               type="text"
                               placeholder="Soft cap"
                               name="soft_cap"
@@ -3167,7 +3337,7 @@ function SubmitCoin() {
                             </label>
                             <input
                               className="form-control"
-                              required
+                             
                               type="text"
                               placeholder="Hard cap"
                               name="hard_cap"
@@ -3181,7 +3351,7 @@ function SubmitCoin() {
                             </label>
                             <input
                               className="form-control"
-                              required
+                             
                               type="text"
                               placeholder="Personal cap"
                               name="personal_cap"
@@ -3251,7 +3421,7 @@ function SubmitCoin() {
                               value={formData.country}
                               onChange={handleInputChange}
                             >
-                                 <option value="">Please choose</option>
+                              <option value="">Please choose</option>
                                        <option value="Afghanistan">Afghanistan</option>
                                  <option value="Albania">Albania</option>
                                  <option value="Algeria">Algeria</option>
@@ -3499,6 +3669,7 @@ function SubmitCoin() {
                                  <option value="Zambia">Zambia</option>
                                  <option value="Zimbabwe">Zimbabwe</option>
                                  <option value="Online Event">Online Event</option>
+
                             </select>
                           </div>
                         </div>
@@ -3515,7 +3686,7 @@ function SubmitCoin() {
                             <label className="form-label">Price</label>
                             <input
                               className="form-control"
-                              required
+                              
                               type="number"
                               name="price"
                               value={formData.price}
@@ -3526,7 +3697,7 @@ function SubmitCoin() {
                             <label className="form-label">Currency</label>
                             <input
                               className="form-control"
-                              required
+                              
                               type="text"
                               defaultValue="USD"
                               name="currency"
@@ -3535,15 +3706,46 @@ function SubmitCoin() {
                             />
                           </div>
                           <div className="col-md-6 mb-3">
-                            <label className="form-label">Fees</label>
-                            <input
-                              className="form-control"
-                              required
-                              type="number"
-                              name="fees"
-                              value={formData.fees}
-                              onChange={handleInputChange}
-                            />
+                            <label className="form-label">Project Based On</label>
+                          
+
+<select class="form-select form-control" aria-label="project" id="project"  value={formData.ico_project_id} name="ico_project_id"  onChange={handleInputChange}>
+                     <option value="">Please choose</option>
+                                          <option value="1">Binance-Smart-Chain</option>
+                                          <option value="2">Ethereum</option>
+                                          <option value="5">Collectibles-Nfts</option>
+                                          <option value="7">Cardano-Ecosystem</option>
+                                          <option value="8">Play-To-Earn</option>
+                                          <option value="9">Interoperability</option>
+                                          <option value="10">Coinbase-Ventures-Portofolio</option>
+                                          <option value="11">OKExChain</option>
+                                          <option value="12">Gaming</option>
+                                          <option value="13">DeFi</option>
+                                          <option value="14">Solana Ecosystem</option>
+                                          <option value="15">Others</option>
+                                          <option value="16">Animoca Brands Portfolio</option>
+                                          <option value="17">Staking</option>
+                                          <option value="18">Quidd (Blockchain Service)</option>
+                                          <option value="19">izumi Finance</option>
+                                          <option value="20">Solice</option>
+                                          <option value="21">Calaxy</option>
+                                          <option value="22">KingdomX</option>
+                                          <option value="24">Terra</option>
+                                          <option value="25">Klaytn</option>
+                                          <option value="26">Polygon MATIC</option>
+                                          <option value="27">Arbitrum</option>
+                                          <option value="28">SUI</option>
+                                          <option value="29">Avalanche</option>
+                                          <option value="30">CIRX</option>
+                                          <option value="31">TRC20</option>
+                                          <option value="32">Multichain</option>
+                                          <option value="33">CratD2C Decentralized Autonomous Smart Chain</option>
+                                          <option value="34">TON Network</option>
+                                          <option value="35">base</option>
+                                          <option value="36">Coredao</option>
+                                          <option value="37">XRP</option>
+                                          <option value="38">immutable</option>
+                                       </select>
                        
                            </div>
                          </div>
@@ -3560,7 +3762,7 @@ function SubmitCoin() {
                             Thank you for submitting your coin to our platform.
                           </p>
                           <p>
-                            Our team will review your submission and will get 
+                            Our team will review your submission and will get
                             back to you soon.
                           </p>
                           <button
@@ -3609,4 +3811,4 @@ function SubmitCoin() {
   );
 }
 
-export default SubmitCoin;
+export default UpdateListing;

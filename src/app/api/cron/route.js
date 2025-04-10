@@ -114,10 +114,10 @@ async function fetchAndInsertICOData() {
   try {
     // Get the latest ICO ID from your database
     const latestEntry = await prisma.crypto_coins_icos.findFirst({
-      orderBy: { ico_id: "desc" },
+      orderBy: { id: "desc" },
     });
 
-    const latestIcoId = latestEntry?.ico_id || 0;
+    const latestIcoId = latestEntry?.ico_ido_id || 0;
     console.log("Latest ICO ID:", latestIcoId);
 
     // Fetch new data from third-party API
@@ -128,7 +128,8 @@ async function fetchAndInsertICOData() {
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
 
     const data = await response.json();
-
+   //console.log("datA IS requested....",data.data);
+   
     // Convert date strings to ISO format
     const formatToISO = (dateString) =>
       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
@@ -136,24 +137,25 @@ async function fetchAndInsertICOData() {
     // Process and filter data
     const validDataInfo = data.data
       .filter((item) => item.approved_time) // Remove entries with missing `approved_time`
-      .map(({ crypto_coins_ico_details, ico_contract_address,featured,like_count,is_review, ico_launchpad, ...rest }) => ({
+      .map(({ crypto_coins_ico_details, ico_contract_address, ico_launchpad, ...rest }) => ({
         ...rest,
         approved_time: formatToISO(rest.approved_time),
         start_time: formatToISO(rest.start_time),
         end_time: formatToISO(rest.end_time),
         created_at: formatToISO(rest.created_at),
         updated_at: formatToISO(rest.updated_at),
-        is_trending: 0,       // default value
-        is_bestpresale: 0 
+       
       }));
 
-    // Insert only if new data exists
+    
     if (validDataInfo.length > 0) {
       const result = await prisma.crypto_coins_icos.createMany({
         data:validDataInfo,
         skipDuplicates: true,
       });
-
+      
+      //console.log("data is present....",result);
+      
       console.log(`Inserted ${result.count} new records.`);
     } else {
       console.log("No new ICO data to insert.");

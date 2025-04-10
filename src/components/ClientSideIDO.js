@@ -195,6 +195,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
+import { useAuth } from '../hooks/authContext';
 import Link from 'next/link';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -207,6 +208,7 @@ export default function ClientSideIDO({ icoData }) {
   const [visibleData, setVisibleData] = useState(15);
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
+const { isLoggedIn, logout,user } = useAuth();
 
   const handleSelectChange = (event) => {
     setSelectedType(event.target.value);
@@ -311,8 +313,37 @@ export default function ClientSideIDO({ icoData }) {
     setVisibleData((prev) => prev + 15);
   };
   
+  const handleLike = async (ico_id, pre_like) => {
+    if (isLoggedIn===false) {
+      router.push("/login")
+      return;
+    }
+
+    const res = await fetch('/api/like_counts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ico_id,
+        user_id: user.id, // make sure user ID is part of session
+        pre_like,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert('Liked!');
+      router.refresh(); // Refresh page to get updated like count
+    } else {
+      alert(data.message);
+    }
+  };
+
+
   return (
-    <>
+    <> 
       {/* Filter Tabs */}
       <div className="btn-group mb-4">
         <button className="btn btn-light tab-button" onClick={() => router.push("/crypto-token-ico-ido-ieo-presale")}>All</button>
@@ -400,7 +431,9 @@ export default function ClientSideIDO({ icoData }) {
                   <td>{ico.ico_ido_type ===1 ? "IDO" : "presalse"}</td>
                   <td>{ "On Website"}</td>
                   <td>
-                    <button className="upvote-btn">
+                    <button className="upvote-btn" onClick={() =>
+                    handleLike(ico.id, ico.likes_counts || 0)
+                  }>
                       <i className="bi bi-hand-thumbs-up" /> {ico.likes_counts || 0}
                     </button>
                   </td>

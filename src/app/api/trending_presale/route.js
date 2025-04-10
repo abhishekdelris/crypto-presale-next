@@ -15,8 +15,8 @@ export async function GET(request) {
     
     // Modified query to sort by is_promoted (DESC) and price (DESC)
     let query = `
-      SELECT * FROM trending_presale 
-      WHERE 1=1
+      SELECT * FROM crypto_coins_icos 
+      WHERE is_trending = 1
       ORDER BY is_promoted DESC, total_coin DESC
     `;
     
@@ -32,7 +32,7 @@ export async function GET(request) {
     const trending = await prisma.$queryRawUnsafe(query, ...params);
     
     // Get total count for pagination metadata
-    const countQuery = `SELECT COUNT(*) as total FROM trending_presale WHERE 1=1`;
+    const countQuery = `SELECT COUNT(*) as total FROM crypto_coins_icos WHERE is_trending = 1`;
     const totalResult = await prisma.$queryRawUnsafe(countQuery);
     const totalTrending = parseInt(totalResult[0].total.toString());
     

@@ -10,12 +10,12 @@ export async function GET(req) {
     const authCookie = cookies?.split('; ').find(row => row.startsWith('auth='))?.split('=')[1];
 
     if (!authCookie) {
-      return NextResponse.json({ message: 'Not authenticated' }, { status: 401 });
+      return NextResponse.json({ message: 'Not authenticated' }, { status: 401 }); 
     }
 
     // Verify the JWT token
     const secret = process.env.JWT_SECRET || 'your-secret-key';
-    const decoded = jwt.verify(authCookie, secret);
+    const decoded = jwt.verify(authCookie, secret) || 0;
 
     // Check if token is expired
     if (Date.now() >= decoded.exp * 1000) {

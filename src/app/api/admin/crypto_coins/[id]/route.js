@@ -8,9 +8,10 @@ BigInt.prototype.toJSON = function() {
   return this.toString();
 };
 
-export async function PUT(request, { params }) {
+export async function PUT(request, context) {
   try {
-    const id = parseInt(params.id);
+    const { params } = context; // ✅ Extract after await context
+  const id = parseInt(params.id);
     const body = await request.json();
 
     // Check if the content exists

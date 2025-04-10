@@ -261,19 +261,25 @@ export default async function HomePage() {
               </div>
             </div>
             <div className='coinsblock'>
-              <ul>
+              <ul> 
                  
               {
         highlightData.map((coin, index) => (
-                <li key={coin.id || index}><div className="bg_Cat flex justify-center items-center rounded-3">
-                  <Image
+                <li key={coin.id || index}><div className="bg_Cat  rounded-3">
+                <div className='row'>
+                  <div className='col-4 '><Image
                                          src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${coin.image}` || altcoinImage}
                                          alt={coin.img_alt_title || "ICO Project"}
                                          width={38}
                                          height={38}
-                                       className="mx-auto rounded-circle"
-                                       />
-                           <label className='m-2' style={{fontSize : "14px"}}>{coin.name}</label>
+                                       className="mx-auto rounded-circle flex justify-center items-center"
+                                       /></div>
+                  <div className='col-8 '><label  className='flex justify-center items-center'>
+  {coin.name.split(" ").slice(0, 2).join(" ") + (coin.name.split(" ").length > 2 ? "..." : "")}
+</label></div>
+                </div>
+                  
+                          
                       </div></li>
                       ))}
                    

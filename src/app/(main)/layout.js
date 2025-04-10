@@ -11,7 +11,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { AuthProvider } from '../../hooks/authContext';
 import "@/app/api/cron/route"; // Import cron job so it starts
-
+// import { SessionProvider } from 'next-auth/react';
 
 export const metadata = {
   title: "Crypto Presale",
@@ -43,9 +43,11 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <Header />
         <main className='content121'>
+        {/* <SessionProvider> */}
         {children}
+        {/* </SessionProvider> */}
         </main>
-        
+      
         <Footer />
      
       
@@ -60,3 +62,4 @@ export default function RootLayout({ children }) {
   );
 }
   
+

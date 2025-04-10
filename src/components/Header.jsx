@@ -390,7 +390,9 @@ import Topbanner from "../images/topbanner.png"
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout,user } = useAuth();
+
+  
 
   return (
     <>

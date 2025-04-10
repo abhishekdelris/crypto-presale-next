@@ -964,6 +964,48 @@ if (file) {
                         </div>
 
                         <div className="row mb-3">
+                          <div className="col-md-4">
+                            <label className="form-label">Is Trending:</label>
+                            <select
+                              name="featured"
+                              value={formData.is_trending}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option value="Select Featured">
+                                Select Trending
+                              </option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Is Best Presale:</label>
+                            <select
+                              name="is_active"
+                              value={formData.is_bestpresale}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Is Promoted:</label>
+                            <select
+                              name="is_active"
+                              value={formData.is_promoted}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="row mb-3">
                           <div className="col-md-6">
                             <label className="form-label">Is guest:</label>
                             <select
@@ -1021,24 +1063,24 @@ if (file) {
                           </label>
                           <div>
                           <SunEditor
-                        onChange={handleEditorChange} 
-                      
-                        defaultValue={formData.description}
-                        setOptions={{
-                          height: 300,
-                          placeholder: "Enter your text here!!!",
-                          buttonList: [
-                            ["undo", "redo"],
-                            ["font", "fontSize"],
-                            ["bold", "underline", "italic", "strike"],
-                            ["fontColor", "hiliteColor"],
-                            ["removeFormat"],
-                            ["outdent", "indent"],
-                            ["align", "list"],
-                            ["link", "image"]
-                          ]
-                        }}
-                      />
+  onChange={handleEditorChange}
+  className="form-control"
+  setContents={formData.description}
+  setOptions={{
+    placeholder: "Enter your text here!!!",
+    buttonList: [
+      ["undo", "redo"],
+      ["font", "fontSize"],
+      ["bold", "underline", "italic", "strike"],
+      ["fontColor", "hiliteColor"],
+      ["removeFormat"],
+      ["outdent", "indent"],
+      ["align", "list"],
+      ["link", "image"]
+    ]
+  }}
+/>
+         
                           </div>
                         </div>
                         <div className="row ">

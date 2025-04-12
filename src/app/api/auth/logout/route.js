@@ -48,16 +48,28 @@
 //   );
 // }
 
+
 // app/api/auth/logout/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-export async function POST() {
-  // Clear the auth cookie using Next.js built-in cookies API
-  cookies().delete("auth");
+export async function POST(req) {
+  try {
+    // Clear the auth cookie using Next.js built-in cookies API
+    cookies().delete("auth");
 
-  return NextResponse.json(
-    { success: true, message: "Logged out successfully" },
-    { status: 200 }
-  );
+    // No need to handle the token here since it's stored in localStorage
+    // The client will handle clearing the token from localStorage
+
+    return NextResponse.json(
+      { success: true, message: "Logged out successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Logout error:", error);
+    return NextResponse.json(
+      { success: false, message: "Logout failed" },
+      { status: 500 }
+    );
+  }
 }

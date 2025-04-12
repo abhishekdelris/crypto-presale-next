@@ -211,55 +211,109 @@ BigInt.prototype.toJSON = function() {
   return this.toString();
 };
 
+// export async function GET(request) {
+//   try {
+//     // Extract URL parameters
+//     const { searchParams } = new URL(request.url);
+//     const skip = searchParams.get("skip")
+//       ? parseInt(searchParams.get("skip"))
+//       : null;
+//     const limit = searchParams.get("limit")
+//       ? parseInt(searchParams.get("limit"))
+//       : null;
+//     const ico_ido_type = parseInt(searchParams.get("ico_ido_type"));
+//     const type = searchParams.get("type");
+
+//     let query = `SELECT * FROM crypto_coins_icos WHERE is_review=1`;
+//     const params = [];
+    
+//     // Apply ico_ido_type filter
+//     if (!isNaN(ico_ido_type)) {
+//       query += ` AND ico_ido_type = ?`;
+//       params.push(ico_ido_type);
+//     }
+
+//     // Apply type filter (ongoing, upcoming, ended)
+//     const currentDate = new Date().toISOString().split("T")[0];
+
+//     if (type === "ongoing") {
+//       query += ` AND start_time <= ? AND end_time >= ?`;
+//       params.push(currentDate, currentDate);
+//     } else if (type === "upcoming") {
+//       query += ` AND start_time > ?`;
+//       params.push(currentDate);
+//     } else if (type === "ended") {
+//       query += ` AND end_time < ?`;
+//       params.push(currentDate);
+//     }
+
+//     // Add ordering
+//     query += ` ORDER BY created_at ASC`;
+
+//     // Add pagination only if both skip and limit are provided
+//     if (limit !== null && skip !== null) {
+//       query += ` LIMIT ? OFFSET ?`;
+//       params.push(limit, skip);
+//     }
+
+//     // Execute query using Prisma
+//     const coinIcos = await prisma.$queryRawUnsafe(query, ...params);
+
+//     // Return response
+//     return NextResponse.json({
+//       success: true,
+//       data: coinIcos
+//     });
+//   } catch (error) {
+//     console.error("API Error:", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         message: "An error occurred while fetching ICO/IDO data",
+//         error: error.message
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+
+
 export async function GET(request) {
   try {
-    // Extract URL parameters
     const { searchParams } = new URL(request.url);
-    const skip = searchParams.get("skip")
-      ? parseInt(searchParams.get("skip"))
-      : null;
-    const limit = searchParams.get("limit")
-      ? parseInt(searchParams.get("limit"))
-      : null;
+    const skip = searchParams.get("skip") ? parseInt(searchParams.get("skip")) : undefined;
+    const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")) : undefined;
     const ico_ido_type = parseInt(searchParams.get("ico_ido_type"));
     const type = searchParams.get("type");
 
-    let query = `SELECT * FROM crypto_coins_icos WHERE 1=1`;
-    const params = [];
-
-    // Apply ico_ido_type filter
-    if (!isNaN(ico_ido_type)) {
-      query += ` AND ico_ido_type = ?`;
-      params.push(ico_ido_type);
-    }
-
-    // Apply type filter (ongoing, upcoming, ended)
     const currentDate = new Date().toISOString().split("T")[0];
 
-    if (type === "ongoing") {
-      query += ` AND start_time <= ? AND end_time >= ?`;
-      params.push(currentDate, currentDate);
-    } else if (type === "upcoming") {
-      query += ` AND start_time > ?`;
-      params.push(currentDate);
-    } else if (type === "ended") {
-      query += ` AND end_time < ?`;
-      params.push(currentDate);
-    }
+    // Construct Prisma `where` clause
+    const where = {
+      is_review: 1,
+      ...(Number.isInteger(ico_ido_type) && { ico_ido_type: ico_ido_type }),
+      ...(type === "ongoing" && {
+        start_time: { lte: currentDate },
+        end_time: { gte: currentDate }
+      }),
+      ...(type === "upcoming" && {
+        start_time: { gt: currentDate }
+      }),
+      ...(type === "ended" && {
+        end_time: { lt: currentDate }
+      })
+    };
 
-    // Add ordering
-    query += ` ORDER BY created_at ASC`;
+    const coinIcos = await prisma.crypto_coins_icos.findMany({
+      where,
+      orderBy: { created_at: "asc" },
+      skip,
+      take: limit
+    });
 
-    // Add pagination only if both skip and limit are provided
-    if (limit !== null && skip !== null) {
-      query += ` LIMIT ? OFFSET ?`;
-      params.push(limit, skip);
-    }
-
-    // Execute query using Prisma
-    const coinIcos = await prisma.$queryRawUnsafe(query, ...params);
-
-    // Return response
     return NextResponse.json({
       success: true,
       data: coinIcos

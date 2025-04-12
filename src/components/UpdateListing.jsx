@@ -2563,7 +2563,7 @@ function UpdateListing() {
 
   // Navigation functions
   const next = () => {
-    if (currentTab < 5) {
+    if (currentTab < 4) {
       setCurrentTab(currentTab + 1);
     }
   };
@@ -2829,7 +2829,7 @@ function UpdateListing() {
                         {[
                           "Coin Details",
                           "Address Details",
-                          "Company Details",
+                          
                           "Listing Details",
                           "Pricing Details",
                           "Finish"
@@ -3172,7 +3172,7 @@ function UpdateListing() {
                       {/* Tab 3: Company Details */}
                       <div
                         className={`tab ${
-                          currentTab === 2 ? "d-block" : "d-none"
+                          currentTab === 12 ? "d-block" : "d-none"
                         }`}
                       >
                         <div className="mb-3">
@@ -3242,7 +3242,7 @@ function UpdateListing() {
                       {/* Tab 4: Listing Details */}
                       <div
                         className={`tab ${
-                          currentTab === 3 ? "d-block" : "d-none"
+                          currentTab === 2 ? "d-block" : "d-none"
                         }`}
                       >
                         <div className="row">
@@ -3678,7 +3678,7 @@ function UpdateListing() {
                       {/* Tab 5: Pricing Details */}
                       <div
                         className={`tab ${
-                          currentTab === 4 ? "d-block" : "d-none"
+                          currentTab === 3 ? "d-block" : "d-none"
                         }`}
                       >
                         <div className="row">
@@ -3753,7 +3753,7 @@ function UpdateListing() {
                              {/* Tab 6: Finish */}
                        <div
                         className={`tab ${
-                          currentTab === 5 ? "d-block" : "d-none"
+                          currentTab === 4 ? "d-block" : "d-none"
                         }`}
                       >
                         <div className="text-center">
@@ -3776,7 +3776,7 @@ function UpdateListing() {
                     </div>
 
                     {/* Navigation buttons - Only show if not on the final tab */}
-                    {currentTab !== 5 && (
+                    {currentTab !== 4 && (
                       <div className="text-end mt-4">
                         <div className="main_flex">
                           {currentTab > 0 && (

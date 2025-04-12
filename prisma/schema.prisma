@@ -54,13 +54,13 @@ model author_models {
   seo_title               String?   @db.VarChar(255)
   meta_keywords           String?   @db.VarChar(255)
   meta_description        String?   @db.Text
-  is_disclaimer           Boolean?  @default(false)
+  is_disclaimer           Int?  @default(0)
   invested_coins          String?   @db.LongText
   user_type               Int?      @default(0) @db.TinyInt
   on_time                 Int       @default(0)
   is_approved             Int       @default(0)
   order_by                Int       @default(0)
-  is_active               Boolean?  @default(false)
+  is_active               Int?  @default(0)
   status                  Int
   created_at              DateTime? @db.Timestamp(0)
   updated_at              DateTime? @db.Timestamp(0)
@@ -75,8 +75,8 @@ model contact_us {
   inquiry_type  String    @db.VarChar(50)
   message       String    @db.Text
   file          String?   @db.VarChar(100)
-  replied       Boolean   @default(false)
-  is_gt_inquiry Boolean?  @default(false)
+  replied       Int   @default(0)
+  is_gt_inquiry Int?  @default(0)
   url_any       String?   @db.VarChar(255)
   website_url   String?   @db.VarChar(100)
   twitter_id    String?   @db.VarChar(100)
@@ -97,7 +97,7 @@ model crypto_coins_icos {
   user_id                 BigInt?            @default(1)
   ico_ido_id              Int?
   submit_ico_id           Int?
-  type                    Boolean?
+  type                    Int?
   ico_ido_type            Int                @default(0)
   title                   String?            @db.VarChar(100)
   h1_title                String?            @db.VarChar(100)
@@ -108,7 +108,7 @@ model crypto_coins_icos {
   h6_title                String?            @db.VarChar(100)
   name                    String?            @db.VarChar(100)
   alias                   String?            @db.VarChar(255)
-  slug                    String?            @unique(map: "slug") @db.VarChar(150)
+  slug                    String?            @unique(map: "slug") @db.VarChar(255)
   interlink_id            Int?
   country                 String?            @db.VarChar(50)
   email                   String?            @db.VarChar(50)
@@ -136,7 +136,7 @@ model crypto_coins_icos {
   total_supply_percent    String?            @db.VarChar(255)
   ico_price               String?            @db.VarChar(50)
   accept_type             String?            @db.VarChar(50)
-  show_hide_price         Boolean            @default(false)
+  show_hide_price         Int            @default(0)
   fund_asking_for         String?            @db.VarChar(255)
   where_to_buy            String?            @db.Text
   timezone                String?            @db.Char(10)
@@ -175,7 +175,7 @@ model crypto_coins_icos {
   video                   String?            @db.VarChar(100)
   user_contact_type       String?            @db.VarChar(50)
   user_contact            String?            @db.VarChar(100)
-  is_guest                Boolean            @default(false)
+  is_guest                Int            @default(0)
   is_assign_cubs          Int                @default(0)
   fund_stage              String?            @db.VarChar(100)
   launchpad               Int?
@@ -246,10 +246,10 @@ model crypto_coins_icos {
   web_url                 String?            @db.VarChar(255)
   thumb                   String?            @db.VarChar(255)
   smallThumb              String?            @db.VarChar(255)
-  is_trending             Boolean?           @default(false)
-  is_bestpresale          Boolean?           @default(false)
+  is_trending             Int?           @default(0)
+  is_bestpresale          Int?           @default(0)
   ico_id                  Int?
-  is_promoted             Boolean?           @default(false)
+  is_promoted             Int?           @default(0)
   trending_presale        trending_presale[]
 
   @@index([crypto_market_id], map: "crypto_market_id")
@@ -323,8 +323,8 @@ model crypto_news {
   is_news_blog       Int       @default(0)
   is_paid            Int       @default(0)
   is_organic         Int       @default(0)
-  is_cryptotax       Boolean   @default(false)
-  is_seo_check       Boolean   @default(false)
+  is_cryptotax       Int   @default(0)
+  is_seo_check       Int   @default(0)
   publishedAt        Int?
   focus_keyword      String?   @db.VarChar(100)
   seo_title          String?   @db.VarChar(255)
@@ -357,6 +357,7 @@ model crypto_news {
   created_at         DateTime? @db.Timestamp(0)
   updated_at         DateTime? @db.Timestamp(0)
   deleted_at         DateTime? @db.Timestamp(0)
+  is_review          Int?  @default(0)
 
   @@index([alias], map: "alias")
   @@index([author], map: "author")
@@ -415,8 +416,8 @@ model crypto_news_draft {
   is_news_blog       Int?
   is_paid            Int?
   is_organic         Int?
-  is_cryptotax       Boolean?
-  is_seo_check       Boolean?
+  is_cryptotax       Int?
+  is_seo_check       Int?
   publishedAt        Int?
   focus_keyword      String?   @db.VarChar(100)
   seo_title          String?   @db.VarChar(255)
@@ -688,7 +689,7 @@ model trending_presale {
   user_id                 BigInt?            @default(1)
   ico_ido_id              Int?
   submit_ico_id           Int?
-  type                    Boolean?
+  type                    Int?
   ico_ido_type            Int                @default(0)
   title                   String?            @db.VarChar(100)
   h1_title                String?            @db.VarChar(100)
@@ -727,7 +728,7 @@ model trending_presale {
   total_supply_percent    String?            @db.VarChar(255)
   ico_price               String?            @db.VarChar(50)
   accept_type             String?            @db.VarChar(50)
-  show_hide_price         Boolean            @default(false)
+  show_hide_price         Int            @default(0)
   fund_asking_for         String?            @db.VarChar(255)
   where_to_buy            String?            @db.Text
   timezone                String?            @db.Char(10)
@@ -767,7 +768,7 @@ model trending_presale {
   video                   String?            @db.VarChar(100)
   user_contact_type       String?            @db.VarChar(50)
   user_contact            String?            @db.VarChar(100)
-  is_guest                Boolean            @default(false)
+  is_guest                Int            @default(0)
   is_assign_cubs          Int                @default(0)
   fund_stage              String?            @db.VarChar(100)
   launchpad               Int?
@@ -880,15 +881,15 @@ model users {
   referral_code           String?      @db.VarChar(255)
   referral_code_by        String?      @db.VarChar(255)
   facebook_url            String?      @db.VarChar(255)
-  is_facebook_verify      Boolean      @default(false)
+  is_facebook_verify      Int      @default(0)
   instagram_url           String?      @db.VarChar(255)
-  is_instagram_verify     Boolean      @default(false)
+  is_instagram_verify     Int      @default(0)
   telegram_url            String?      @db.VarChar(255)
-  is_telegram_verify      Boolean      @default(false)
+  is_telegram_verify      Int      @default(0)
   twitter_url             String?      @db.VarChar(255)
-  is_twitter_verify       Boolean      @default(false)
+  is_twitter_verify       Int      @default(0)
   reddit_url              String?      @db.VarChar(255)
-  is_reddit_verify        Boolean      @default(false)
+  is_reddit_verify        Int      @default(0)
   linkedin_url            String?      @db.VarChar(255)
   is_linkedin_verify      Int          @default(0)
   discord_url             String?      @db.VarChar(255)
@@ -926,8 +927,8 @@ model users {
   project_desc            String?      @db.Text
   marketing_services_desc String?      @db.Text
   total_giveaway_won      Float?       @default(0)
-  dark_mode               Boolean      @default(false)
-  active_status           Boolean      @default(false)
+  dark_mode               Int      @default(0)
+  active_status           Int      @default(0)
   messenger_color         String?      @db.VarChar(20)
   is_temporary            Int          @default(0)
   backend_mobile_number   String?      @db.VarChar(50)
@@ -982,7 +983,7 @@ model submit_ico {
   coin_name          String?   @db.VarChar(30)
   alias              String?   @db.VarChar(50)
   slug               String    @db.VarChar(100)
-  image              String?   @db.VarChar(100)
+  image              String?   @db.VarChar(255)
   start_time         DateTime? @db.Date
   end_time           DateTime? @db.Date
   total_coin         String?   @db.VarChar(100)

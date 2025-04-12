@@ -28,6 +28,9 @@ export async function PUT(request, context) {
         { status: 404 }
       );
     }
+    // Convert date strings to ISO format
+    const formatToISO = (dateString) =>
+      dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
 
     // Update the content
     const updatedContent = await prisma.crypto_coins_icos.update({
@@ -36,7 +39,7 @@ export async function PUT(request, context) {
         user_id: body.user_id ,
         ico_ido_id: body.ico_ido_id ,
         submit_ico_id: body.submit_ico_id ,
-        type: body.type ,
+        type: parseInt(body.type) || 0 ,
         ico_ido_type: parseInt(body.ico_ido_type) ,
         title: body.title,
         h1_title: body.h1_title ,
@@ -126,41 +129,41 @@ export async function PUT(request, context) {
         ticker: body.ticker ,
         blockchain: body.blockchain ,
         coin_token_address: body.coin_token_address ,
-        private_sale_start_date: body.private_sale_start_date ,
-        private_sale_end_date: body.private_sale_end_date ,
-        private_sale_token_sold: body.private_sale_token_sold ,
-        private_sale_rate: body.private_sale_rate || 0,
-        private_sale_goal: body.private_sale_goal ,
+        private_sale_start_date: formatToISO(body.private_sale_start_date) ,
+        private_sale_end_date: formatToISO(body.private_sale_end_date) ,
+        private_sale_token_sold: parseFloat(body.private_sale_token_sold) || null,
+        private_sale_rate: parseFloat(body.private_sale_rate) || null,
+        private_sale_goal: parseInt(body.private_sale_goal) || 0 ,
         private_sale_where_buy: body.private_sale_where_buy ,
-        pre_sale_start_date: body.pre_sale_start_date ,
-        pre_sale_end_date: body.pre_sale_end_date ,
-        pre_sale_token_sold: body.pre_sale_token_sold ,
-        pre_sale_rate: body.pre_sale_rate ,
-        pre_sale_goal: body.pre_sale_goal ,
+        pre_sale_start_date: formatToISO(body.pre_sale_start_date) ,
+        pre_sale_end_date: formatToISO(body.pre_sale_end_date) ,
+        pre_sale_token_sold: parseFloat(body.pre_sale_token_sold) || null ,
+        pre_sale_rate: parseFloat(body.pre_sale_rate) || null,
+        pre_sale_goal: parseInt(body.pre_sale_goal) || 0,
         pre_sale_where_buy: body.pre_sale_where_buy ,
-        public_sale_start_date: body.public_sale_start_date ,
-        public_sale_end_date: body.public_sale_end_date ,
-        public_sale_token_sold: body.public_sale_token_sold ,
-        public_sale_rate: body.public_sale_rate ,
-        public_sale_goal: body.public_sale_goal ,
+        public_sale_start_date: formatToISO(body.public_sale_start_date) ,
+        public_sale_end_date: formatToISO(body.public_sale_end_date) ,
+        public_sale_token_sold: parseFloat(body.public_sale_token_sold) || null ,
+        public_sale_rate: parseFloat(body.public_sale_rate) || null ,
+        public_sale_goal: parseInt(body.public_sale_goal) || 0,
         public_sale_where_buy: body.public_sale_where_buy ,
-        ico_sale_start_date: body.ico_sale_start_date ,
-        ico_sale_end_date: body.ico_sale_end_date ,
-        ico_sale_token_sold: body.ico_sale_token_sold ,
-        ico_sale_rate: body.ico_sale_rate ,
-        ico_sale_goal: body.ico_sale_goal ,
+        ico_sale_start_date: formatToISO(body.ico_sale_start_date) ,
+        ico_sale_end_date: formatToISO(body.ico_sale_end_date) ,
+        ico_sale_token_sold: parseFloat(body.ico_sale_token_sold) || null ,
+        ico_sale_rate: parseFloat(body.ico_sale_rate) || null ,
+        ico_sale_goal: parseInt(body.ico_sale_goal) || 0 ,
         ico_sale_where_buy: body.ico_sale_where_buy ,
-        ido_sale_start_date: body.ido_sale_start_date ,
-        ido_sale_end_date: body.ido_sale_end_date ,
-        ido_sale_token_sold: body.ido_sale_token_sold ,
-        ido_sale_rate: body.ido_sale_rate ,
-        ido_sale_goal: body.ido_sale_goal ,
+        ido_sale_start_date: formatToISO(body.ido_sale_start_date) ,
+        ido_sale_end_date: formatToISO(body.ido_sale_end_date) ,
+        ido_sale_token_sold: parseFloat(body.ido_sale_token_sold) || null ,
+        ido_sale_rate: parseFloat(body.ido_sale_rate) || null ,
+        ido_sale_goal: parseInt(body.ido_sale_goal) || 0,
         ido_sale_where_buy: body.ido_sale_where_buy ,
-        ieo_sale_start_date: body.ieo_sale_start_date ,
-        ieo_sale_end_date: body.ieo_sale_end_date ,
-        ieo_sale_token_sold: body.ieo_sale_token_sold ,
-        ieo_sale_rate: body.ieo_sale_rate ,
-        ieo_sale_goal: body.ieo_sale_goal ,
+        ieo_sale_start_date: formatToISO(body.ieo_sale_start_date) ,
+        ieo_sale_end_date: formatToISO(body.ieo_sale_end_date) ,
+        ieo_sale_token_sold: parseFloat(body.ieo_sale_token_sold) || null ,
+        ieo_sale_rate: parseFloat(body.ieo_sale_rate) || null ,
+        ieo_sale_goal: parseInt(body.ieo_sale_goal) || 0 ,
         ieo_sale_where_buy: body.ieo_sale_where_buy ,
         package: body.package ,
         contract_address: body.contract_address ,
@@ -182,6 +185,9 @@ export async function PUT(request, context) {
         web_url: body.web_url ,
         thumb: body.thumb ,
         smallThumb: body.smallThumb ,
+        is_trending: parseInt(body.is_trending) || 0,
+        is_bestpresale: parseInt(body.is_bestpresale) || 0,
+        is_promoted: parseInt(body.is_promoted) || 0,
         updated_at: new Date() // Assuming you have an updated_at field
       }
     });
@@ -205,6 +211,8 @@ export async function PUT(request, context) {
     await prisma.$disconnect();
   }
 }
+
+
 
 // import { NextResponse } from 'next/server';
 // import { PrismaClient } from '@prisma/client';

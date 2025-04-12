@@ -1609,6 +1609,7 @@ export default function create() {
     title: '',
     project_name: '',
     slug: '',
+    type: '',
     blockchain: '',
     h1_title: '',
     h2_title: '',
@@ -1620,6 +1621,7 @@ export default function create() {
     linkedin: '',
     country: '',
     whitePaper: null,
+    white_paper_url: '',
     social_media_image: null,
     start_time: '',
     end_time: '',
@@ -1635,8 +1637,9 @@ export default function create() {
     where_to_buy: '',
     likes_counts: '',
     is_review: '',
-    featured: '',
+    featured: '', 
     is_active: '',
+    quantity_of_coin: '',
     is_guest: '',
     launchpad: '',
     website: '',
@@ -1645,6 +1648,15 @@ export default function create() {
     meta_keywords: '',
     meta_description: '',
     imagePreview : '',
+    twitter: '',
+    raddit: '',
+    telegram: '',
+    telegram_group:'',
+    youtube_link: '',
+    instagram: '',
+    linkdin: '',
+    discord: '',
+    medium:'',
     // Tab 2 data - Various sale types
     private_sale_start_date: '',
       private_sale_end_date: '',
@@ -1689,7 +1701,9 @@ export default function create() {
       ieo_sale_goal: '',
       ieo_sale_token_sold: '',
       ieo_sale_where_buy: '',
-   
+      is_trending:'',
+      is_bestpresale: '',
+      is_promoted: '',
     
     // Tab 3 data
     article: '',
@@ -1808,172 +1822,108 @@ export default function create() {
   };
 
   const launchpadOptions = [
-    { value: "", label: "Select Project Type" },
-    { value: "dao-maker", label: "DAO Maker Launchpad" },
-    { value: "bscpad", label: "BSCPad" },
-    { value: "trustswap", label: "TrustSwap" },
-    { value: "bullstarter", label: "BullStarter" },
-    { value: "occamrazer", label: "OccamRazer" },
-    { value: "polkastarter", label: "Polkastarter" },
-    { value: "starter", label: "Starter" },
-    { value: "pancakeswap", label: "PancakeSwap" },
-    { value: "paid-network", label: "PAID Network" },
-    { value: "launchpool", label: "Launchpool" },
-    { value: "red-kite", label: "Red Kite" },
-    { value: "trustpad", label: "TrustPad" },
-    { value: "enjinstarter", label: "Enjinstarter" },
-    { value: "zendit", label: "ZENDIT" },
-    { value: "poolz", label: "Poolz" },
-    { value: "seedify", label: "Seedify" },
-    { value: "gamefi", label: "GameFi" },
-    { value: "gamestarter", label: "Gamestarter" },
-    { value: "kommunitas", label: "Kommunitas" },
-    { value: "truepnl", label: "TruePNL" },
-    { value: "impossible-finance", label: "Impossible Finance" },
-    { value: "binstarter", label: "BinStarter" },
-    { value: "gagarin", label: "GAGARIN" },
-    { value: "firestarter", label: "FireStarter" },
-    { value: "spores-network", label: "Spores Network" },
-    { value: "occamrazer-2", label: "OccamRazer" },
-    { value: "tokensoft", label: "Tokensoft" },
-    { value: "gempad", label: "Gempad" },
-    { value: "gate-io", label: "Gate.io" },
-    { value: "pinksale-finance", label: "pinksale Finance" },
-    { value: "p2pb2b", label: "p2pb2b" },
-    { value: "ixirpad", label: "ixirpad" },
-    { value: "daostarter", label: "DaoStarter" },
-    { value: "binance", label: "Binance" },
-    { value: "kucoin", label: "Kucoin" },
-    { value: "coinlist", label: "Coinlist" },
-    { value: "crytfex", label: "Crytfex" },
-    { value: "southxchange", label: "SouthXchange" },
-    { value: "probit-global", label: "ProBit Global" },
-    { value: "latoken", label: "Latoken" },
-    { value: "peakdefi", label: "Peakdefi" },
-    { value: "x-starter", label: "x-starter" },
-    { value: "on-website", label: "On Website" },
-    { value: "iskra", label: "ISKRA" },
-    { value: "coinstore", label: "Coinstore" },
-    { value: "bscstation", label: "BSCStation" },
-    { value: "zelwin-finance", label: "ZELWIN Finance" },
-    { value: "bitmart-launchpad", label: "BitMart Launchpad" },
-    { value: "bitforex", label: "Bitforex" },
-    { value: "vindax", label: "Vindax" },
-    { value: "kanga-exchange", label: "Kanga Exchange" },
-    { value: "kingdomstarter", label: "KingdomStarter" },
-    { value: "xlaunchpad", label: "XLaunchpad" },
-    { value: "infinitypad", label: "InfinityPad" },
-    { value: "uplift", label: "Uplift" },
-    { value: "bitget", label: "Bitget" },
-    { value: "bybit", label: "Bybit" },
-    { value: "dextrade", label: "DexTrade" },
-    { value: "singularitydao", label: "SingularityDao" },
-    { value: "zyberswap", label: "ZyberSwap" },
-    { value: "razrfi-launchpad", label: "RazrFi Launchpad" },
-    { value: "bsclaunch", label: "BSClaunch" },
-    { value: "pancakeswap-2", label: "pancakeswap" },
-    { value: "finlaunch", label: "finlaunch" },
-    { value: "dao-maker-2", label: "Dao Maker" },
-    { value: "bullperks", label: "Bullperks" },
-    { value: "torkpad", label: "TorkPad" },
-    { value: "republic", label: "Republic" },
-    { value: "chaingpt", label: "Chaingpt" },
-    { value: "koistarter", label: "KOIStarter" },
-    { value: "indoex-io", label: "Indoex.io" },
-    { value: "matic-launchpad", label: "Matic Launchpad" },
-    { value: "bscs-launchpad", label: "BSCS Launchpad" },
-    { value: "bitlink-launchpad", label: "Bitlink LaunchPad" },
-    { value: "decubate", label: "Decubate" },
-    { value: "coinlist-launchpad", label: "Coinlist LaunchPad" },
-    { value: "bounce", label: "Bounce" },
-    { value: "wepad-launchpad", label: "Wepad Launchpad" },
-    { value: "synapse-network", label: "Synapse Network" },
-    { value: "tonup", label: "TonUP" },
-    { value: "impulse-finance", label: "Impulse Finance" },
-    { value: "bakeryswap", label: "BakerySwap" },
-    { value: "turtsat", label: "TurtSat" },
-    { value: "flybtc", label: "FLYBTC" },
-    { value: "ape-terminal", label: "Ape Terminal" },
-    { value: "aitech-pad", label: "AITECH Pad" },
-    { value: "moonstarter", label: "MoonStarter" },
-    { value: "fjord-foundry", label: "Fjord Foundry" },
-    { value: "starlaunch", label: "StarLaunch" },
-    { value: "dojoswap", label: "DojoSwap" },
-    { value: "solanium", label: "Solanium" },
-    { value: "moonedge", label: "MoonEdge" },
-    { value: "avalaunch", label: "Avalaunch" },
-    { value: "gamespad", label: "Gamespad" },
-    { value: "dexcheck", label: "Dexcheck" },
-    { value: "velocore", label: "Velocore" },
-    { value: "floorswap", label: "Floorswap" },
-    { value: "paragen", label: "Paragen" },
-    { value: "okx", label: "OKX" },
-    { value: "port3-network", label: "Port3 Network" },
-    { value: "turtsat-2", label: "TurtSat" },
-    { value: "cetus", label: "Cetus" },
-    { value: "spartadex", label: "SpartaDex" },
-    { value: "finceptor", label: "Finceptor" },
-    { value: "tenset-io", label: "TenseT.io" },
-    { value: "superlauncher", label: "SuperLauncher" },
-    { value: "bigone", label: "BigONE" },
-    { value: "ronin", label: "Ronin" },
-    { value: "brcstarter", label: "BRCStarter" },
-    { value: "arbipad", label: "Arbipad" },
-    { value: "seapad", label: "SeaPad" },
-    { value: "magic-eden", label: "Magic Eden" },
-    { value: "vent-finance", label: "Vent Finance" },
-    { value: "avalaunch-2", label: "Avalaunch" },
-    { value: "neolaunch", label: "neolaunch" },
-    { value: "trustfi", label: "Trustfi" },
-    { value: "de-fi-2-0", label: "De.Fi 2.0" },
-    { value: "openpad", label: "OpenPad" },
-    { value: "smithii", label: "Smithii" },
-    { value: "dyor", label: "DYOR" },
-    { value: "bitexen-global", label: "Bitexen Global" },
-    { value: "siriuspad", label: "Siriuspad" },
-    { value: "particle-network", label: "Particle Network" },
-    { value: "bhero", label: "BHero" },
-    { value: "tokenfi", label: "TokenFi" },
-    { value: "eclipsefi", label: "Eclipsefi" },
-    { value: "cryptohub", label: "CryptoHub" },
-    { value: "unicorn-hunter", label: "Unicorn Hunter" },
-    { value: "dappad", label: "Dappad" },
-    { value: "zenix-launcher", label: "Zenix Launcher" },
-    { value: "huostarter", label: "Huostarter" },
-    { value: "pattieswap", label: "PattieSwap" },
-    { value: "smithii-2", label: "Smithii" },
-    { value: "octavia", label: "Octavia" },
-    { value: "bit2me-global", label: "Bit2Me Global" },
-    { value: "operation-phoenix", label: "Operation Phoenix" },
-    { value: "ordify", label: "Ordify" },
-    { value: "kredict", label: "KREDICT" },
-    { value: "truepnl-2", label: "TruePNL" },
-    { value: "jupiter", label: "Jupiter" },
-    { value: "magic-square", label: "Magic Square" },
-    { value: "eeseeio", label: "eeseeio" },
-    { value: "dxsale", label: "DxSale" },
-    { value: "solsale", label: "Solsale" },
-    { value: "degenpad", label: "DegenPad" },
-    { value: "elixir-games", label: "Elixir Games" },
-    { value: "fantomstarter", label: "fantomstarter" },
-    { value: "blastup", label: "Blastup" },
-    { value: "axo", label: "axo" },
-    { value: "tonsale", label: "TONSALE" },
-    { value: "chainboost2", label: "chainboost2" },
-    { value: "app-alphamind-co", label: "app alphamind.co" },
-    { value: "bitstorage", label: "bitstorage" },
-    { value: "borgpad", label: "BorgPad" },
-    { value: "tokentool", label: "tokentool" },
-    { value: "truffle", label: "truffle" }
+    { value: 0, label: "Select Project Type" },
+    { value: 1, label: "DAO Maker Launchpad" },
+    { value: 2, label: "BSCPad" },
+    { value: 3, label: "TrustSwap" },
+    { value: 4, label: "BullStarter" },
+    { value: 5, label: "Polkastarter" },
+    { value: 6, label: "Seedify" },
+    { value: 7, label: "RedKite" },
+    { value: 8, label: "Bounce" },
+    { value: 9, label: "Paid Ignition" },
+    { value: 10, label: "ChainBoost" },
+    { value: 11, label: "GameFi" },
+    { value: 12, label: "Trustpad" },
+    { value: 13, label: "Starter" },
+    { value: 14, label: "DuckSTARTER" },
+    { value: 15, label: "InfinityPad" },
+    { value: 16, label: "Binance" },
+    { value: 17, label: "Solstarter" },
+    { value: 18, label: "Solanium" },
+    { value: 19, label: "WeStarter" },
+    { value: 20, label: "BSClaunch" },
+    { value: 21, label: "MoonStarter" },
+    { value: 22, label: "ZENDIT" },
+    { value: 23, label: "KrystalGO" },
+    { value: 24, label: "Gamestarter" },
+    { value: 25, label: "Enjinstarter" },
+    { value: 26, label: "Oxbull" },
+    { value: 27, label: "SharkPad" },
+    { value: 28, label: "SafeLaunch" },
+    { value: 29, label: "PinkSale" },
+    { value: 30, label: "LaunchZone" },
+    { value: 31, label: "Poolz" },
+    { value: 32, label: "METAVPAD" },
+    { value: 33, label: "BinStarter" },
+    { value: 34, label: "Kommunitas" },
+    { value: 35, label: "TrustFi" },
+    { value: 36, label: "UpLift" },
+    { value: 37, label: "DAOStarter" },
+    { value: 38, label: "Synapse Network" },
+    { value: 39, label: "A2DAO" },
+    { value: 40, label: "GameZone" },
+    { value: 41, label: "MoonEdge" },
+    { value: 42, label: "Seeded Network" },
+    { value: 43, label: "TruePNL" },
+    { value: 44, label: "DxSale" },
+    { value: 45, label: "Prostarter" },
+    { value: 46, label: "SuperLauncher" },
+    { value: 47, label: "VentUp" },
+    { value: 48, label: "HAPI Launchpad" },
+    { value: 49, label: "Paragen" },
+    { value: 50, label: "Babylons" },
+    { value: 51, label: "TokenSoft" },
+    { value: 52, label: "CyberFi Samurai" },
+    { value: 53, label: "UniCrypt" },
+    { value: 54, label: "Launchpool" },
+    { value: 55, label: "Scaleswap" },
+    { value: 56, label: "Unicrypt Network" },
+    { value: 57, label: "Solcubator" },
+    { value: 58, label: "SolRazr" },
+    { value: 59, label: "TrustLaunch" }, 
+    { value: 60, label: "CardStarter" },
+    { value: 61, label: "AdaPad" },
+    { value: 62, label: "OccamRazer" },
+    { value: 63, label: "Vent Finance" },
+    { value: 64, label: "Trustpad Launchpad" },
+    { value: 65, label: "RoseonPad" },
+    { value: 66, label: "DAOlaunch" },
+    { value: 67, label: "GAGARIN" },
+    { value: 68, label: "NFTb" },
+    { value: 69, label: "Binance NFT" },
+    { value: 70, label: "Solanium Launchpad" },
+    { value: 71, label: "Binstarter Launchpad" },
+    { value: 72, label: "Occam.fi" },
+    { value: 73, label: "Paid Network" },
+    { value: 74, label: "Cardence" },
+    { value: 75, label: "Synapse Launchpad" },
+    { value: 76, label: "Krystal IDO" },
+    { value: 77, label: "Firestarter" },
+    { value: 78, label: "TronPad" },
+    { value: 79, label: "TronStarter" },
+    { value: 80, label: "Terra Virtua" },
+    { value: 81, label: "NFTLaunch" },
+    { value: 82, label: "Solstarter Launchpad" },
+    { value: 83, label: "BabylonDAO" },
+    { value: 84, label: "DAOLaunchpad" },
+    { value: 85, label: "Parastarter" },
+    { value: 86, label: "MISO" },
+    { value: 87, label: "SpacePad" },
+    { value: 88, label: "NovaLaunch" },
+    { value: 89, label: "ZeroSwap" },
+    { value: 90, label: "truffle" }
   ];
    // Reset form handler
   const handleReset = () => {
     setFormData({
       // Tab 1 data
     cryptoMarkets: '', 
-    ico_ido_type: 0,
+    ico_ido_type: '',
+    social_media_url,
     coin_token: '',
     title: '',
+    type : '',
     project_name: '',
     slug: '',
     blockchain: '',
@@ -2011,6 +1961,8 @@ export default function create() {
     seo_title: '', 
     meta_keywords: '',
     meta_description: '',
+    category_id: '',
+    telegram:'',
     
     // Tab 2 data - Various sale types
    
@@ -2167,7 +2119,7 @@ export default function create() {
                   <form onSubmit={handleSubmit}>
                     {/* Tab 1 Content */}
                     {activeTab === 1 && (
-                      <div className="mb-4">
+                      <div className="mb-4"> 
                         <div className="row mb-3">
                           <div className="form-group col-sm-12 col-xl-6">
                             <label className="form-label">
@@ -2175,14 +2127,14 @@ export default function create() {
                               <span className="text-danger">*</span>
                             </label>
                             <select
-                              name="coin_token"
-                              value={formData.coin_token}
+                              name="type"
+                              value={formData.type}
                               onChange={handleChange}
                               className="form-select"
                             >
                               <option selected>Select Coin/Token</option>
-                              <option value="coin">Coin</option>
-                              <option value="token">Token</option>
+                              <option value={1}>Coin</option>
+                              <option value={0}>Token</option>
                             </select>
                           </div>
                           <div className="form-group col-sm-12 col-xl-6">
@@ -2204,11 +2156,14 @@ export default function create() {
                           </div>
                         </div>
 
-                        <div className="mb-3">
+                      
+<div className='row mb-4'>
+                        <div className="form-group col-sm-12 col-xl-6">
                           <label className="form-label">
                             Title: <span className="text-danger">*</span>
+                           
                           </label>
-                          <input
+                          <input 
                             type="text"
                             name="title"
                             value={formData.title}
@@ -2218,7 +2173,53 @@ export default function create() {
                           />
                         </div>
 
-                        <div className="mb-3">
+                        <div className="form-group col-sm-12 col-xl-6">
+                        <label className="form-label">
+                            URL Slug: <span className="text-danger">*</span>
+                            <span className="form-text mb-1">  (No numbers and special characters are allowed, only
+                            lowercase letters are allowed.)</span>
+                          </label>
+                         
+                          <input
+                            type="text"
+                            name="slug"
+                            value={formData.slug}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                          />
+                        </div>
+                        </div>
+                        <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">Coin / Token Code:<span className="text-danger">*</span></label>
+                            <input
+                            type="text"
+                            name="alias"
+                            value={formData.alias}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                          />
+                                                          
+                          </div>
+                          <div className="col-md-6">
+                            <label className="form-label">Is Best Presale:</label>
+                            <select
+                              name="is_bestpresale"
+                              value={formData.is_bestpresale}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>Select your Best presale</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        </div>
+ 
+<div className="row mb-3">
+                        <div className="col-md-6">
                           <label className="form-label">
                             Project Name: <span className="text-danger">*</span>
                           </label>
@@ -2231,27 +2232,59 @@ export default function create() {
                             required
                           />
                         </div>
-
-                        <div className="mb-3">
-                          <label className="form-label">
-                            URL Slug: <span className="text-danger">*</span>
-                          </label>
-                          <div className="form-text mb-1">
-                            No numbers and special characters are allowed, only
-                            lowercase letters are allowed.
+                        <div className="col-md-6">
+                            <label className="form-label">Is Featured:</label>
+                            <select
+                              name="featured"
+                              value={formData.featured}
+                              onChange={handleChange}
+                              className="form-select form-control"
+                            >
+                              <option value="Select Featured">
+                                Select Featured
+                              </option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
                           </div>
-                          <input
-                            type="text"
-                            name="slug"
-                            value={formData.slug}
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                          />
+
+                          </div>
+
+                          <div className="row mb-3">
+                          <div className="col-md-6">
+                            <label className="form-label">Is Trending:</label>
+                            <select
+                              name="is_trending"
+                              value={formData.is_trending}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>
+                                Select Trending
+                              </option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        
+                          <div className="col-md-6">
+                            <label className="form-label">Is Promoted:</label>
+                            <select
+                              name="is_promoted"
+                              value={formData.is_promoted}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>Select Promoted</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
                         </div>
 
                         <div className="mb-3">
-                          <label className="form-label">
+                         
+                         <label className="form-label">
                             Blockchain And Contract Address:{" "}
                             <span
                               className="text-danger"
@@ -2261,10 +2294,14 @@ export default function create() {
                               only lowercase letters are allowed.
                             </span>{" "}
                           </label>
-                          <div className="input-group">
+                          <div className='row input-group'>
+                          <div className="col-md-6">
                             <select
-                              name="blockchainType"
-                              className="form-select w-25"
+                              
+                              name="blockchain"
+                              value={formData.blockchain}
+                              onChange={handleChange}
+                              className="form-select form-control"
                             >
                               <option selected>Select Blockchain</option>
                               <option value="Animoca Brands Portfolio">Animoca Brands Portfolio</option>
@@ -2279,18 +2316,23 @@ export default function create() {
                               <option value="Collectibles-Nfts"> Collectibles-Nfts</option>
 
                             </select>
-                           
+                            </div>
+                            
+                           <div className='col-md-4'>
                             <input
                               type="text"
-                              name="blockchain"
-                              value={formData.blockchain}
+                              name="contract_address"
+                              value={formData.contract_address}
                               onChange={handleChange}
                               className="form-control"
+                              placeholder='contract Address'
                             />
-                            <button type="button" className="btn btn-primary">
+                            </div>
+                            <div className='col-md-2'><button type="button" className="btn btn-primary">
                               Add
                             </button>
-                          </div>
+                            </div>
+                            </div>
                         </div>
 
                         <div className="row mb-3">
@@ -2401,7 +2443,7 @@ export default function create() {
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               ICO Project Type:{" "}
                               <span className="text-danger">*</span>
@@ -2436,15 +2478,17 @@ export default function create() {
                               <option value="22" >PRESALE</option>
                             </select>
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Select Category:{" "}
                               <span className="text-danger">*</span>
                             </label>
                          
                             <select
-                              name="selectCategory"
+                              name="category_id"
                               className="form-select"
+                              value={formData.category_id}
+                              onChange={handleChange}
                               required
                             >
                                 <option selected>Select Category</option>
@@ -2480,11 +2524,25 @@ export default function create() {
                 artificial intelligence</option>
                             </select>
                           </div>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Website: <span className="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="website"
+                              value={formData.website}
+                              onChange={handleChange}
+                              className="form-control"
+                              placeholder=""
+                              required
+                            />
+                          </div>
                         </div>
 
                        
                         <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Select Sub Category:{" "}
                               <span className="text-danger">*</span>
@@ -2506,96 +2564,148 @@ export default function create() {
                               <option value="Fan_Base">Fan Base</option>
                             </select>
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
-                              Website: <span className="text-danger">*</span>
+                            Social Media Link: <span className="text-danger">*</span>
                             </label>
                             <input
                               type="text"
-                              name="website"
-                              value={formData.website}
+                              name="social_media_url"
+                              value={formData.social_media_url}
                               onChange={handleChange}
                               className="form-control"
-                              placeholder="https://akptoken.com/..."
+                              placeholder="Enter your social media link"
                               required
+                            />
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Twitter:</label>
+                            <input
+                              type="text"
+                              name="twitter"
+                              value={formData.twitter}
+                              onChange={handleChange}
+                              placeholder="https://twitter.com"
+                              className="form-control"
                             />
                           </div>
                         </div>
 
                         {/* Social Media Links Section */}
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Twitter:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">Raddit:</label>
                             <input
                               type="text"
-                              name="twitter"
-                              placeholder="https://twitter.com/@akptoken"
+                              name="raddit"
+                              value={formData.raddit}
+                              onChange={handleChange}
+                              placeholder=""
                               className="form-control"
                             />
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Telegram Group:
                             </label>
                             <input
                               type="text"
-                              name="telegramGroup"
-                              placeholder="https://t.me/akp_token"
+                              name="telegram_group"
+                              placeholder=""
+                              value={formData.telegram_group}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
-                        </div>
-
-                        <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Telegram Channel:
                             </label>
                             <input
                               type="text"
-                              name="telegramChannel"
-                              placeholder="https://t.me/akppartitoken"
-                              className="form-control"
-                            />
-                          </div>
-                          <div className="col-md-6">
-                            <label className="form-label">YouTube link:</label>
-                            <input
-                              type="text"
-                              name="youtubeLink"
+                              name="telegram"
+                              placeholder=""
+                              value={formData.telegram}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Discord:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Medium:
+                            </label>
+                            <input
+                              type="text"
+                              name="medium"
+                              value={formData.medium}
+                              onChange={handleChange}
+                              placeholder=""
+                              className="form-control"
+                            />
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Discord:
+                            </label>
                             <input
                               type="text"
                               name="discord"
+                              value={formData.discord}
+                              onChange={handleChange}
+                              placeholder=""
                               className="form-control"
                             />
                           </div>
-                          <div className="col-md-6">
-                            <label className="form-label">Email:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">YouTube link:</label>
                             <input
                               type="text"
-                              name="email"
+                              name="youtube_link"
+                              value={formData.youtube_link}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
+                            <label className="form-label">Linkdin:</label>
+                            <input
+                              type="text"
+                              name="linkdin"
+                              value={formData.linkdin}
+                              onChange={handleChange}
+                              className="form-control"
+                            />  
+                          </div>
+                          <div className="col-md-4">
                             <label className="form-label">Instagram:</label>
                             <input
                               type="text"
                               name="instagram"
+                              value={formData.instagram}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Email:</label>
+                            <input
+                              type="text"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              className="form-control"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="row mb-3">
+                        
                           <div className="col-md-6">
                             <label className="form-label">
                               Country: <span className="text-danger">*</span>
@@ -2607,6 +2717,17 @@ export default function create() {
                               onChange={handleChange}
                               className="form-control"
                               required
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label className="form-label">White Paper Url:</label>
+                            <input
+                              type="text"
+                              name="white_paper_url"
+                              value={formData.white_paper_url}
+                              onChange={handleChange}
+                              className="form-control"
+                              
                             />
                           </div>
                         </div>
@@ -2625,17 +2746,14 @@ export default function create() {
                             />
                           </div>
                           <div className="col-md-6">
-                            <label className="form-label">
-                              Social Media Image:
-                            </label>
+                            <label className="form-label">Quantity of Coin / Token offered in ICO:<span className="text-danger">*</span></label>
                             <input
-                              type="file"
-                              name="social_media_image"
-                              onChange={handleFileChange}
+                              type="text"
+                              name="quantity_of_coin"
+                              value={formData.quantity_of_coin}
+                              onChange={handleChange}
                               className="form-control"
-                              accept="image/*"
                             />
-                           
                           </div>
                         </div>
 
@@ -2818,21 +2936,19 @@ export default function create() {
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Is Featured:</label>
+                        <div className="col-md-6">
+                            <label className="form-label">Is guest:</label>
                             <select
-                              name="featured"
-                              value={formData.featured}
+                              name="is_guest"
+                              value={formData.is_guest}
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Select Featured">
-                                Select Featured
-                              </option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
                             </select>
                           </div>
+                    
                           <div className="col-md-6">
                             <label className="form-label">Is Active:</label>
                             <select
@@ -2848,19 +2964,22 @@ export default function create() {
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Is guest:</label>
+                        
+                          <div className="form-group col-sm-12 col-xl-6">
+                            <label className="form-label">Launchpad</label>
                             <select
-                              name="is_guest"
-                              value={formData.is_guest}
+                              name="launchpad"
+                              value={formData.launchpad} 
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              {launchpadOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
                             </select>
                           </div>
-                          
                           <div className="col-md-6">
                             <label className="form-label">Funding Stage:</label>
                             <select name="fundingStage" className="form-select">
@@ -2876,38 +2995,8 @@ export default function create() {
 
                       
                         <div className="row mb-3">
-                          <div className="form-group col-sm-12 col-xl-6">
-                            <label className="form-label">Launchpad</label>
-                            <select
-                              name="coin_token"
-                              value={formData.launchpad}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              {launchpadOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-                            </select>
-                          </div>
-                          <div className="form-group col-sm-12 col-xl-6">
-                            <label className="form-label">
-                              Ico/Ido<span className="text-danger">*</span>
-                            </label>
-                            <select
-                              name="coin_token"
-                              value={formData.ico_ido_type}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option selected>Select ICO/IDO</option>
-                              <option value={0}>ICO</option>
-                              <option value={1}>IDO</option>
-                              <option value={2}>IEO</option>
-                              <option value={3}>Presale</option>
-                            </select>
-                          </div>
+                         
+                         
                         </div>
 
                         <div className="ql-wrapper ql-wrapper-demo mb-3">
@@ -2938,26 +3027,26 @@ export default function create() {
                         <div className="row ">
                           {/* article Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="article">
+                            <label htmlFor="finance">
                               decentralized finance:
                             </label>
                             <input
                               className="form-control"
-                              name="article"
+                              name="finance"
                               type="text"
-                              id="article"
-                              value={formData.article}
+                              id="finance"
+                              value={formData.finance}
                               onChange={handleChange}
                             />
                           </div>
                           {/* breadcrumbs Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="breadcrumbs">Is follow:</label>
+                            <label htmlFor="is_follow">Is follow:</label>
                            
                              <select
-                              name="breadcrumbs"
-                              id="breadcrumbs"
-                              value={formData.breadcrumbs}
+                              name="is_follow"
+                              id="is_follow"
+                              value={formData.is_follow}
                               onChange={handleChange}
                               className="form-select"
                             >
@@ -2984,15 +3073,17 @@ export default function create() {
                           </div>
                           {/* faq Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="faq">Is follow:</label>
-                            <input
-                              className="form-control"
-                              name="faq"
-                              type="text"
-                              id="faq"
-                              value={formData.faq}
+                            <label htmlFor="is_follow">Is follow:</label>
+                            <select
+                              name="is_follow"
+                              id="is_follow"
+                              value={formData.is_follow}
                               onChange={handleChange}
-                            />
+                              className="form-select"
+                            >
+                              <option value="follow">Follow</option>
+                              <option value="not_follow">Not Follow</option>
+                            </select>
                           </div>
                         </div>
 

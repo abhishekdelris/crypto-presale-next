@@ -43,10 +43,12 @@ export default function CryptoCoinEditPage() {
     cryptoMarkets: '', 
     ico_ido_type: '',
     coin_token: '',
+    type: '' ,
     title: '',
     project_name: '',
     slug: '',
     blockchain: '',
+    contract_address : '',
     h1_title: '',
     h2_title: '',
     image: null,
@@ -120,6 +122,12 @@ export default function CryptoCoinEditPage() {
       ieo_sale_goal: '',
       ieo_sale_token_sold: '',
       ieo_sale_where_buy: '',
+      is_trending:'',
+      is_bestpresale: '',
+      is_promoted: '',
+
+
+
    
     // Tab 3 data
     article: '',
@@ -237,6 +245,99 @@ export default function CryptoCoinEditPage() {
     // }
   
 
+    const launchpadOptions = [
+      { value: 0, label: "Select Project Type" },
+      { value: 1, label: "DAO Maker Launchpad" },
+      { value: 2, label: "BSCPad" },
+      { value: 3, label: "TrustSwap" },
+      { value: 4, label: "BullStarter" },
+      { value: 5, label: "Polkastarter" },
+      { value: 6, label: "Seedify" },
+      { value: 7, label: "RedKite" },
+      { value: 8, label: "Bounce" },
+      { value: 9, label: "Paid Ignition" },
+      { value: 10, label: "ChainBoost" },
+      { value: 11, label: "GameFi" },
+      { value: 12, label: "Trustpad" },
+      { value: 13, label: "Starter" },
+      { value: 14, label: "DuckSTARTER" },
+      { value: 15, label: "InfinityPad" },
+      { value: 16, label: "Binance" },
+      { value: 17, label: "Solstarter" },
+      { value: 18, label: "Solanium" },
+      { value: 19, label: "WeStarter" },
+      { value: 20, label: "BSClaunch" },
+      { value: 21, label: "MoonStarter" },
+      { value: 22, label: "ZENDIT" },
+      { value: 23, label: "KrystalGO" },
+      { value: 24, label: "Gamestarter" },
+      { value: 25, label: "Enjinstarter" },
+      { value: 26, label: "Oxbull" },
+      { value: 27, label: "SharkPad" },
+      { value: 28, label: "SafeLaunch" },
+      { value: 29, label: "PinkSale" },
+      { value: 30, label: "LaunchZone" },
+      { value: 31, label: "Poolz" },
+      { value: 32, label: "METAVPAD" },
+      { value: 33, label: "BinStarter" },
+      { value: 34, label: "Kommunitas" },
+      { value: 35, label: "TrustFi" },
+      { value: 36, label: "UpLift" },
+      { value: 37, label: "DAOStarter" },
+      { value: 38, label: "Synapse Network" },
+      { value: 39, label: "A2DAO" },
+      { value: 40, label: "GameZone" },
+      { value: 41, label: "MoonEdge" },
+      { value: 42, label: "Seeded Network" },
+      { value: 43, label: "TruePNL" },
+      { value: 44, label: "DxSale" },
+      { value: 45, label: "Prostarter" },
+      { value: 46, label: "SuperLauncher" },
+      { value: 47, label: "VentUp" },
+      { value: 48, label: "HAPI Launchpad" },
+      { value: 49, label: "Paragen" },
+      { value: 50, label: "Babylons" },
+      { value: 51, label: "TokenSoft" },
+      { value: 52, label: "CyberFi Samurai" },
+      { value: 53, label: "UniCrypt" },
+      { value: 54, label: "Launchpool" },
+      { value: 55, label: "Scaleswap" },
+      { value: 56, label: "Unicrypt Network" },
+      { value: 57, label: "Solcubator" },
+      { value: 58, label: "SolRazr" },
+      { value: 59, label: "TrustLaunch" },
+      { value: 60, label: "CardStarter" },
+      { value: 61, label: "AdaPad" },
+      { value: 62, label: "OccamRazer" },
+      { value: 63, label: "Vent Finance" },
+      { value: 64, label: "Trustpad Launchpad" },
+      { value: 65, label: "RoseonPad" },
+      { value: 66, label: "DAOlaunch" },
+      { value: 67, label: "GAGARIN" },
+      { value: 68, label: "NFTb" },
+      { value: 69, label: "Binance NFT" },
+      { value: 70, label: "Solanium Launchpad" },
+      { value: 71, label: "Binstarter Launchpad" },
+      { value: 72, label: "Occam.fi" },
+      { value: 73, label: "Paid Network" },
+      { value: 74, label: "Cardence" },
+      { value: 75, label: "Synapse Launchpad" },
+      { value: 76, label: "Krystal IDO" },
+      { value: 77, label: "Firestarter" },
+      { value: 78, label: "TronPad" },
+      { value: 79, label: "TronStarter" },
+      { value: 80, label: "Terra Virtua" },
+      { value: 81, label: "NFTLaunch" },
+      { value: 82, label: "Solstarter Launchpad" },
+      { value: 83, label: "BabylonDAO" },
+      { value: 84, label: "DAOLaunchpad" },
+      { value: 85, label: "Parastarter" },
+      { value: 86, label: "MISO" },
+      { value: 87, label: "SpacePad" },
+      { value: 88, label: "NovaLaunch" },
+      { value: 89, label: "ZeroSwap" },
+      { value: 90, label: "truffle" }
+    ];
    // Handle SunEditor content change
    const handleEditorChange = (content) => {
     setFormData((prev) => ({
@@ -271,10 +372,10 @@ if (file) {
     try {
       await axios.put(`/api/admin/crypto_coins/${id}`, formData);
       toast.success('Crypto Coin updated successfully');
-      router.push(`/admin/crypto-coins-icos/${formData.alias}/${id}`);
+      router.push(`/admin/crypto-coins-icos`);
     } catch (error) {
       toast.error('Failed to update content');
-    }
+    } 
   };
 
 
@@ -359,14 +460,14 @@ if (file) {
                               <span className="text-danger">*</span>
                             </label>
                             <select
-                              name="coin_token"
-                              value={formData.coin_token ? formData.coin_token : ''}
+                              name="type"
+                              value={formData.type ? formData.type : ''}
                               onChange={handleChange}
                               className="form-select"
                             >
                               <option selected>Select Coin/Token</option>
-                              <option value="coin">Coin</option>
-                              <option value="token">Token</option>
+                              <option value="true">Coin</option>
+                              <option value="false">Token</option>
                             </select>
                           </div>
                           <div className="form-group col-sm-12 col-xl-6">
@@ -388,11 +489,13 @@ if (file) {
                           </div>
                         </div>
 
-                        <div className="mb-3">
+
+<div className='row mb-4'>
+                        <div className="form-group col-sm-12 col-xl-6">
                           <label className="form-label">
                             Title: <span className="text-danger">*</span>
                           </label>
-                          <input
+                          <input 
                             type="text"
                             name="title"
                             value={formData.title}
@@ -402,28 +505,11 @@ if (file) {
                           />
                         </div>
 
-                        <div className="mb-3">
-                          <label className="form-label">
-                            Project Name: <span className="text-danger">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            name="project_name"
-                            value={formData.project_name}
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                          />
-                        </div>
-
-                        <div className="mb-3">
-                          <label className="form-label">
+                        <div className="form-group col-sm-12 col-xl-6">
+                        <label className="form-label">
                             URL Slug: <span className="text-danger">*</span>
                           </label>
-                          <div className="form-text mb-1">
-                            No numbers and special characters are allowed, only
-                            lowercase letters are allowed.
-                          </div>
+                         
                           <input
                             type="text"
                             name="slug"
@@ -433,48 +519,6 @@ if (file) {
                             required
                           />
                         </div>
-
-                        <div className="mb-3">
-                          <label className="form-label">
-                            Blockchain And Contract Address:{" "}
-                            <span
-                              className="text-danger"
-                              style={{ fontSize: "smaller" }}
-                            >
-                              * No numbers and special characters are allowed,
-                              only lowercase letters are allowed.
-                            </span>{" "}
-                          </label>
-                          <div className="input-group">
-                            <select
-                              name="blockchainType"
-                              className="form-select w-25"
-                            >
-                              <option selected>Select Blockchain</option>
-                              <option value="Animoca Brands Portfolio">Animoca Brands Portfolio</option>
-                              <option value="Arbitrum">Arbitrum</option>
-                              <option value="Avalanche">Avalanche</option>
-                              <option value="base"> base</option>
-                              <option value="Binance-Smart-Chain">Binance-Smart-Chain</option>
-                              <option value="Calaxy">Calaxy</option>
-                              <option value="Cardano-Ecosystem">Cardano-Ecosystem</option>
-                              <option value="CIRX">CIRX</option>
-                              <option value="Coinbase-Ventures-Portofolio">Coinbase-Ventures-Portofolio</option>
-                              <option value="Collectibles-Nfts"> Collectibles-Nfts</option>
-
-                            </select>
-                           
-                            <input
-                              type="text"
-                              name="blockchain"
-                              value={formData.blockchain}
-                              onChange={handleChange}
-                              className="form-control"
-                            />
-                            <button type="button" className="btn btn-primary">
-                              Add
-                            </button>
-                          </div>
                         </div>
 
                         <div className="row mb-3">
@@ -499,6 +543,137 @@ if (file) {
                             />
                           </div>
                         </div>
+
+                        <div className="row mb-3">
+                          <div className="col-md-4">
+                            <label className="form-label">Is Trending:</label>
+                            <select
+                              name="is_trending"
+                              value={formData.is_trending}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>
+                                Select Trending
+                              </option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Is Best Presale:</label>
+                            <select
+                              name="is_bestpresale"
+                              value={formData.is_bestpresale}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>Select your Best presale</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Is Promoted:</label>
+                            <select
+                              name="is_promoted"
+                              value={formData.is_promoted}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>Select Promoted</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="row mb-3">
+                        <div className="col-md-6">
+                          <label className="form-label">
+                            Project Name: <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="project_name"
+                            value={formData.project_name}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                          />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Is Featured:</label>
+                            <select
+                              name="featured"
+                              value={formData.featured}
+                              onChange={handleChange}
+                              className="form-select form-control"
+                            >
+                              <option value="Select Featured">
+                                Select Featured
+                              </option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+                          </div>
+
+                          </div>
+
+                        <div className="mb-3">
+                         
+                         <label className="form-label">
+                            Blockchain And Contract Address:{" "}
+                            <span
+                              className="text-danger"
+                              style={{ fontSize: "smaller" }}
+                            >
+                              * No numbers and special characters are allowed,
+                              only lowercase letters are allowed.
+                            </span>{" "}
+                          </label>
+                          <div className='row input-group'>
+                          <div className="col-md-6">
+                            <select
+                              
+                              name="blockchain"
+                              value={formData.blockchain}
+                              onChange={handleChange}
+                              className="form-select form-control"
+                            >
+                              <option selected>Select Blockchain</option>
+                              <option value="Animoca Brands Portfolio">Animoca Brands Portfolio</option>
+                              <option value="Arbitrum">Arbitrum</option>
+                              <option value="Avalanche">Avalanche</option>
+                              <option value="base"> base</option>
+                              <option value="Binance-Smart-Chain">Binance-Smart-Chain</option>
+                              <option value="Calaxy">Calaxy</option>
+                              <option value="Cardano-Ecosystem">Cardano-Ecosystem</option>
+                              <option value="CIRX">CIRX</option>
+                              <option value="Coinbase-Ventures-Portofolio">Coinbase-Ventures-Portofolio</option>
+                              <option value="Collectibles-Nfts"> Collectibles-Nfts</option>
+
+                            </select>
+                            </div>
+                            
+                           <div className='col-md-4'>
+                            <input
+                              type="text"
+                              name="contract_address"
+                              value={formData.contract_address}
+                              onChange={handleChange}
+                              className="form-control"
+                              placeholder='contract Address'
+                            />
+                            </div>
+                            <div className='col-md-2'><button type="button" className="btn btn-primary">
+                              Add
+                            </button>
+                            </div>
+                            </div>
+                        </div>
+
+                       
          {/* Image Field
                            <div className="form-group col-sm-12 col-xl-6">
                      <div className="form-label font-weight-normal">
@@ -597,7 +772,25 @@ if (file) {
                               className="form-select"
                               required
                             >
-                              <option value="PRESALE">PRESALE</option>
+                              <option selected>Select ICO Project Type</option>
+                              <option value="1" >IDO</option>
+                              <option value="3" >ICO</option>
+                              <option value="4" >Token</option>
+                              <option value="5" >IEO</option>
+                              <option value="6" >Seed Sale</option>
+                              <option value="7" >Community Event</option>
+                              <option value="8" >Public Sale</option>
+                              <option value="12" >IFO</option>
+                              <option value="13" >Private Sale</option>
+                              <option value="14" >Crowdloan</option>
+                              <option value="15" >BEP-20</option>
+                              <option value="16" >NFT</option>
+                              <option value="17" >Protocol</option>
+                              <option value="18" >Airdrop</option>
+                              <option value="19" >Luna</option>
+                              <option value="20" >CIRX</option>
+                              <option value="21" >Base</option>
+                              <option value="22" >PRESALE</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -610,7 +803,37 @@ if (file) {
                               className="form-select"
                               required
                             >
-                              <option value="Blockchain">Blockchain</option>
+                                <option selected>Select Category</option>
+                    <option value="26" >
+                MEME Token</option>
+                    <option value="1" >
+                NFT</option>
+                    <option value="4" >
+                Web3</option>
+                    <option value="7" >
+                Blockchain</option>
+                    <option value="30" >
+                Trading</option>
+                    <option value="36" >
+                DeFi</option>
+                    <option value="45" >
+                Metaverse</option>
+                    <option value="49" >
+                Marketplace</option>
+                    <option value="53" >
+                Marketing</option>
+                    <option value="54" >
+                Real World Asset</option>
+                    <option value="55" >
+                Social</option>
+                    <option value="63" >
+                Launchpad</option>
+                    <option value="64" >
+                Development</option>
+                    <option value="67" >
+                Gaming</option>
+                    <option value="87" >
+                artificial intelligence</option>
                             </select>
                           </div>
                         </div>
@@ -626,9 +849,16 @@ if (file) {
                               value={formData.sub_category_id}
                               onChange={handleChange}
                               className="form-select"
-                              required
+                              
                             >
-                              <option value="Protocol">Protocol</option>
+                              <option selected>Select Sub Category</option>
+                              <option value="E-Commerce">E-Commerce</option>
+                              <option value="Travelling">Travelling</option>
+                              <option value="Content">Content</option>
+                              <option value="Social_Media">Social Media</option>
+                              <option value="Video">Video</option>
+                              <option value="Music">Music</option>
+                              <option value="Fan_Base">Fan Base</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -641,8 +871,8 @@ if (file) {
                               value={formData.website}
                               onChange={handleChange}
                               className="form-control"
-                              placeholder="https://testfiled.com/..."
-                              required
+                              placeholder="Enter your website link"
+                              
                             />
                           </div>
                         </div>
@@ -723,7 +953,7 @@ if (file) {
                           </div>
                           <div className="col-md-6">
                             <label className="form-label">
-                              Country: <span className="text-danger">*</span>
+                              Country: 
                             </label>
                             <input
                               type="text"
@@ -731,7 +961,7 @@ if (file) {
                               value={formData.country}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                             
                             />
                           </div>
                         </div>
@@ -773,7 +1003,7 @@ if (file) {
                               value={formData.start_time}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                             
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -787,7 +1017,7 @@ if (file) {
                               value={formData.end_time}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -805,7 +1035,7 @@ if (file) {
                               value={formData.total_supply_percent}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col-md-6">
@@ -854,7 +1084,7 @@ if (file) {
                               value={formData.accept_type}
                               onChange={handleChange}
                               className="form-select"
-                              required
+                              
                             >
                               <option value="SOL">SOL</option>
                             </select>
@@ -870,7 +1100,7 @@ if (file) {
                               value={formData.ico_price}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -888,7 +1118,7 @@ if (file) {
                               value={formData.fund_asking_for}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -903,7 +1133,7 @@ if (file) {
                               value={formData.where_to_buy}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -934,19 +1164,17 @@ if (file) {
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Is Featured:</label>
+                        <div className="col-md-6">
+                            <label className="form-label">Is guest:</label>
                             <select
-                              name="featured"
-                              value={formData.featured}
+                              name="is_guest"
+                              value={formData.is_guest}
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Select Featured">
-                                Select Featured
-                              </option>
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
+                              <option selected>Select Guest</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -963,59 +1191,23 @@ if (file) {
                           </div>
                         </div>
 
-                        <div className="row mb-3">
-                          <div className="col-md-4">
-                            <label className="form-label">Is Trending:</label>
-                            <select
-                              name="featured"
-                              value={formData.is_trending}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option value="Select Featured">
-                                Select Trending
-                              </option>
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </div>
-                          <div className="col-md-4">
-                            <label className="form-label">Is Best Presale:</label>
-                            <select
-                              name="is_active"
-                              value={formData.is_bestpresale}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </div>
-                          <div className="col-md-4">
-                            <label className="form-label">Is Promoted:</label>
-                            <select
-                              name="is_active"
-                              value={formData.is_promoted}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </div>
-                        </div>
+                     
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Is guest:</label>
+                        
+                          <div className="form-group col-sm-12 col-xl-6">
+                            <label className="form-label">Launchpad</label> 
                             <select
-                              name="is_guest"
-                              value={formData.is_guest}
+                              name="launchpad"
+                              value={formData.launchpad}
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              {launchpadOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -1038,23 +1230,7 @@ if (file) {
                               <option value="">Select</option>
                             </select>
                           </div>
-                          <div className="form-group col-sm-12 col-xl-6">
-                            <label className="form-label">
-                              Ico/Ido<span className="text-danger">*</span>
-                            </label>
-                            <select
-                              name="coin_token"
-                              value={formData.ico_ido_type}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option selected>Select ICO/IDO</option>
-                              <option value={0}>ICO</option>
-                              <option value={1}>IDO</option>
-                              <option value={2}>IEO</option>
-                              <option value={3}>Presale</option>
-                            </select>
-                          </div>
+                       
                         </div>
 
                         <div className="ql-wrapper ql-wrapper-demo mb-3">
@@ -1105,8 +1281,8 @@ if (file) {
                               className="form-control"
                               name="breadcrumbs"
                               type="text"
-                              id="breadcrumbs"
-                              value={formData.breadcrumbs}
+                              id="is_follow"
+                              value={formData.is_follow}
                               onChange={handleChange}
                             />
                           </div>
@@ -1651,7 +1827,7 @@ if (file) {
                               value={formData.article}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1664,7 +1840,7 @@ if (file) {
                               value={formData.breadcrumbs}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -1680,7 +1856,7 @@ if (file) {
                               value={formData.discussion_forum}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1693,7 +1869,7 @@ if (file) {
                               value={formData.events}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -1709,7 +1885,7 @@ if (file) {
                               value={formData.faq}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1723,7 +1899,7 @@ if (file) {
                               value={formData.image_metadata}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -1740,7 +1916,7 @@ if (file) {
                               value={formData.new_article}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1754,7 +1930,7 @@ if (file) {
                               value={formData.paywalled_content}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -1770,7 +1946,7 @@ if (file) {
                               value={formData.product}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1784,7 +1960,7 @@ if (file) {
                               value={formData.organization}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -1800,7 +1976,7 @@ if (file) {
                               value={formData.review_snippets}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                           <div className="col mb-6">
@@ -1813,7 +1989,7 @@ if (file) {
                               value={formData.sitelinks}
                               onChange={handleChange}
                               className="form-control"
-                              required
+                              
                             />
                           </div>
                         </div>

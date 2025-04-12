@@ -8,6 +8,7 @@ BigInt.prototype.toJSON = function() {
   return this.toString();
 };
 
+
 export async function PUT(request, context) {
   try {
     const { params } = context; // ✅ Extract after await context
@@ -83,7 +84,7 @@ export async function PUT(request, context) {
         where_to_buy: body.where_to_buy2 || body.where_to_buy ,
         timezone: body.timezone ,
         description: body.description ,
-        featured: parseInt(body.featured) ,
+        featured: parseInt(body.featured) || 0,
         status: body.status ,
         affiliate: body.affiliate ,
         hide: body.hide ,
@@ -169,7 +170,7 @@ export async function PUT(request, context) {
         contract_address: body.contract_address ,
         other_launchpad: body.other_launchpad ,
         category_id: body.category_id ,
-        sub_category_id: body.sub_category_id ,
+        sub_category_id: parseInt(body.sub_category_id) || 0 ,
         seo_title: body.seo_title || body.title,
         meta_keywords: body.meta_keywords , 
         meta_description: body.meta_description ,
@@ -357,12 +358,53 @@ export async function PUT(request, context) {
 // }
 
 // GET route to fetch single content details
+// export async function GET(request, { params }) {
+//   try {
+//     const id = parseInt(params.id);
+
+//     const content = await prisma.crypto_coins_icos.findUnique({
+//       where: { id }
+//     });
+
+//     if (!content) {
+//       return NextResponse.json(
+//         {
+//           success: false,
+//           message: "Content not found"
+//         },
+//         { status: 404 }
+//       );
+//     }
+
+//     return NextResponse.json({
+//       success: true,
+//       data: content
+//     });
+//   } catch (error) {
+//     console.error("Error fetching content:", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         message: "Failed to fetch content",
+//         error: error.message || "Unknown error"
+//       },
+//       { status: 500 }
+//     );
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
+
 export async function GET(request, { params }) {
   try {
     const id = parseInt(params.id);
 
     const content = await prisma.crypto_coins_icos.findUnique({
       where: { id }
+    });
+
+    const cryptoDetails = await prisma.crypto_coins_icos_details.findMany({
+      where: { crypto_coins_icos_id: id }
     });
 
     if (!content) {
@@ -375,10 +417,17 @@ export async function GET(request, { params }) {
       );
     }
 
+    // Merge the content with details
+    const mergedContent = {
+      ...content,
+      details: cryptoDetails || {}
+    };
+
     return NextResponse.json({
       success: true,
-      data: content
+      data: mergedContent
     });
+
   } catch (error) {
     console.error("Error fetching content:", error);
     return NextResponse.json(

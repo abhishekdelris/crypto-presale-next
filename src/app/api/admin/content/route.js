@@ -200,7 +200,8 @@ export async function GET() {
       video: post.video || "",
       seo_title: post.seo_title || "",
       meta_keywords: post.meta_keywords || "",
-      meta_description: post.meta_description || ""
+      meta_description: post.meta_description || "",
+      is_review: post.is_review || 0
     }));
 
     // Return the formatted posts

@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect,useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Card, Col, Row, Modal, Button,Pagination } from "react-bootstrap";
@@ -20,17 +20,16 @@ const Content = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [postToDelete, setPostToDelete] = useState(null);
+    const [showActiveModal,setShowActiveModal] = useState(false); 
+    const [activePost,setActivePost] = useState(null);
 
     // Pagination states
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10); // Number of posts per page
  
 
-    useEffect(() => {
-        fetchPosts();
-    }, []);
-
-    const fetchPosts = async () => {
+  
+    const fetchPosts = useCallback(async () => {
         try {
             const config = {
                 method: 'get',
@@ -38,17 +37,22 @@ const Content = () => {
             };
 
             const response = await axios.request(config);
+            console.log("this is a content data....",response.data.data);
             
             setPosts(response.data.data);
             setLoading(false);
         } catch (err) {
             setError(err);
-            setLoading(false);
+            setLoading(false); 
             toast.error("Failed to fetch posts");
         }
-    };
+    }, []);
 
-   
+    useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts]);
+
+  
     
 
     const handleView = (post) => {
@@ -80,6 +84,30 @@ const Content = () => {
     
     const handleAddPost = () => {
         router.push("/admin/content/create");
+    } 
+
+    const handleActiveConfirm = async () => {
+        if (!activePost) return;
+
+        try {
+            await axios.put(`/api/admin/content/active/${activePost.id}`);
+            
+            // Remove the post from the local state
+            await fetchPosts();
+            
+            // Close the modal
+            setShowActiveModal(false);
+            
+            // Show success toast
+            toast.success("Post Active Update successfully");
+        } catch (err) {
+            toast.error("Failed to Active Update post");
+        }
+    };
+
+    const openActiveModal = (post) => {
+        setActivePost(post);
+        setShowActiveModal(true);
     }
 
     const openDeleteModal = (post) => {
@@ -246,7 +274,7 @@ const Content = () => {
               <i className="fa fa-pen-square" aria-hidden="true"></i>
               </button>
               <input type="hidden" data-label="Crypto News" data-title="(Intermediate) Which blockchain uses the DPoS mechanism? Ari Quiz" data-id="id,175147" data-table="crypto_news" className="DataValue" />
-              <button type="button" name="activeDeactive" className="btn btn-dark" value={1} title="Click to Deactivate"><i className="fa fa-check" aria-hidden="true" />                      </button>
+              { post.is_review === 1 ? <button type="button" name="activeDeactive" className="btn btn-dark" onClick={() => openActiveModal(post)} title="Click to Deactivate"><i className="fa fa-check" aria-hidden="true" /></button> : <button type="button" name="activeDeactive" className="btn btn-dark" onClick={() => openActiveModal(post)} title="Click to activate"><i className="fa fa-times" aria-hidden="true" />   </button> }
               <button type="submit" className="btn btn-danger btn-xs" onClick={() => openDeleteModal(post)} ><i className="fa fa-trash" aria-hidden="true" /></button>
             </div>
         
@@ -386,6 +414,23 @@ const Content = () => {
                     </Button>
                     <Button variant="danger" onClick={handleDeleteConfirm}>
                         Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showActiveModal} onHide={() => setShowActiveModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Active</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to Active the post "{activePost?.title}"?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowActiveModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleActiveConfirm}>
+                        Conform
                     </Button>
                 </Modal.Footer>
             </Modal>

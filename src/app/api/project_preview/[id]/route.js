@@ -84,6 +84,7 @@ export async function GET(request, { params }) {
     const post = await prisma.crypto_news.findFirst({
       where: {
         id: parseInt(id), // Convert string to integer
+        is_review:1,
         is_gabbar: 1
       }
     });

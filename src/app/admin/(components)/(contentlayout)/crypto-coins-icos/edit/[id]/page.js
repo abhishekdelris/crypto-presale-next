@@ -43,12 +43,11 @@ export default function CryptoCoinEditPage() {
     cryptoMarkets: '', 
     ico_ido_type: '',
     coin_token: '',
-    type: '' ,
     title: '',
     project_name: '',
     slug: '',
+    type: '',
     blockchain: '',
-    contract_address : '',
     h1_title: '',
     h2_title: '',
     image: null,
@@ -59,6 +58,7 @@ export default function CryptoCoinEditPage() {
     linkedin: '',
     country: '',
     whitePaper: null,
+    white_paper_url: '',
     social_media_image: null,
     start_time: '',
     end_time: '',
@@ -74,8 +74,9 @@ export default function CryptoCoinEditPage() {
     where_to_buy: '',
     likes_counts: '',
     is_review: '',
-    featured: '',
+    featured: '', 
     is_active: '',
+    quantity_of_coin: '',
     is_guest: '',
     launchpad: '',
     website: '',
@@ -84,9 +85,17 @@ export default function CryptoCoinEditPage() {
     meta_keywords: '',
     meta_description: '',
     imagePreview : '',
+    twitter: '',
+    raddit: '',
+    telegram: '',
+    telegram_group:'',
+    youtube_link: '',
+    instagram: '',
+    linkdin: '',
+    discord: '',
+    medium:'',
     // Tab 2 data - Various sale types
-  
-      private_sale_start_date: '',
+    private_sale_start_date: '',
       private_sale_end_date: '',
       private_sale_rate: '',
       private_sale_goal: '',
@@ -98,24 +107,31 @@ export default function CryptoCoinEditPage() {
       fundraisingGoal: '',
       pre_sale_token_sold: '',
       pre_sale_where_buy: '',
+   
+   
       public_sale_start_date: '',
       public_sale_end_date: '',
       public_sale_rate: '',
       public_sale_goal: '',
       public_sale_token_sold: '',
       public_sale_where_buy: '',
+    
+    
       ico_sale_start_date: '',
       ico_sale_end_date: '',
       ico_sale_rate: '',
       ico_sale_goal: '',
       ico_sale_token_sold: '',
       ico_sale_where_buy: '',
+    
+   
       ido_sale_start_date: '',
       ido_sale_end_date: '',
       ido_sale_rate: '',
       ido_sale_goal: '',
       ido_sale_token_sold: '',
       ido_sale_where_buy: '',
+   
       ieo_sale_start_date: '',
       ieo_sale_end_date: '',
       ieo_sale_rate: '',
@@ -125,10 +141,7 @@ export default function CryptoCoinEditPage() {
       is_trending:'',
       is_bestpresale: '',
       is_promoted: '',
-
-
-
-   
+    
     // Tab 3 data
     article: '',
     discussion_forum: '',
@@ -143,27 +156,27 @@ export default function CryptoCoinEditPage() {
     organization: '',
     sitelinks: '',
     
-     // Tab 4 data
-     one_usdt: '',
-     detail_total_supply: '',
-     detail_qty_of_coin: '',
-     detail_ico_price: '',
-     detail_where_to_buy: '',
-     detail_start_date: '',
-     detail_end_date: '',
-     detail_fund_asking_for: '',
-     detail_accept_type: '',
-     detail_ico_ido_type: '',
-     detail_accept_type: '',
-     selectaccept_type: '',
-     detail_is_review: '',
-     detail_token_for_sale: '',
-     detail_percentage_of_supply: '',
-     privateSaleSelect: '',
-     detail_one_usdt: '',
-     detail_soft_cap: '',
-     detail_hard_cap: '',
-     detail_personal_cap: ''
+    // Tab 4 data
+    one_usdt: '',
+    detail_total_supply: '',
+    detail_qty_of_coin: '',
+    detail_ico_price: '',
+    detail_where_to_buy: '',
+    detail_start_date: '',
+    detail_end_date: '',
+    detail_fund_asking_for: '',
+    detail_accept_type: '',
+    detail_ico_ido_type: '',
+    detail_accept_type: '',
+    selectaccept_type: '',
+    detail_is_review: '',
+    detail_token_for_sale: '',
+    detail_percentage_of_supply: '',
+    privateSaleSelect: '',
+    detail_one_usdt: '',
+    detail_soft_cap: '',
+    detail_hard_cap: '',
+    detail_personal_cap: '' 
   });
 
   const [loading, setLoading] = useState(true);
@@ -450,9 +463,9 @@ if (file) {
                   </ul>
 
                   <form onSubmit={handleSubmit}>
-                    {/* Tab 1 Content */}
-                    {activeTab === 1 && (
-                      <div className="mb-4">
+                  {/* Tab 1 Content */}
+                  {activeTab === 1 && (
+                      <div className="mb-4"> 
                         <div className="row mb-3">
                           <div className="form-group col-sm-12 col-xl-6">
                             <label className="form-label">
@@ -461,13 +474,13 @@ if (file) {
                             </label>
                             <select
                               name="type"
-                              value={formData.type ? formData.type : ''}
+                              value={formData.type}
                               onChange={handleChange}
                               className="form-select"
                             >
                               <option selected>Select Coin/Token</option>
-                              <option value="true">Coin</option>
-                              <option value="false">Token</option>
+                              <option value={1}>Coin</option>
+                              <option value={0}>Token</option>
                             </select>
                           </div>
                           <div className="form-group col-sm-12 col-xl-6">
@@ -489,11 +502,12 @@ if (file) {
                           </div>
                         </div>
 
-
+                      
 <div className='row mb-4'>
                         <div className="form-group col-sm-12 col-xl-6">
                           <label className="form-label">
                             Title: <span className="text-danger">*</span>
+                           
                           </label>
                           <input 
                             type="text"
@@ -508,6 +522,8 @@ if (file) {
                         <div className="form-group col-sm-12 col-xl-6">
                         <label className="form-label">
                             URL Slug: <span className="text-danger">*</span>
+                            <span className="form-text mb-1">  (No numbers and special characters are allowed, only
+                            lowercase letters are allowed.)</span>
                           </label>
                          
                           <input
@@ -520,47 +536,20 @@ if (file) {
                           />
                         </div>
                         </div>
-
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">H1 Title:</label>
+                        <div className="col-md-6">
+                            <label className="form-label">Coin / Token Code:<span className="text-danger">*</span></label>
                             <input
-                              type="text"
-                              name="h1_title"
-                              value={formData.h1_title}
-                              onChange={handleChange}
-                              className="form-control"
-                            />
+                            type="text"
+                            name="alias"
+                            value={formData.alias}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                          />
+                                                          
                           </div>
                           <div className="col-md-6">
-                            <label className="form-label">H2 Title:</label>
-                            <input
-                              type="text"
-                              name="h2_title"
-                              value={formData.h2_title}
-                              onChange={handleChange}
-                              className="form-control"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="row mb-3">
-                          <div className="col-md-4">
-                            <label className="form-label">Is Trending:</label>
-                            <select
-                              name="is_trending"
-                              value={formData.is_trending}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option selected>
-                                Select Trending
-                              </option>
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </div>
-                          <div className="col-md-4">
                             <label className="form-label">Is Best Presale:</label>
                             <select
                               name="is_bestpresale"
@@ -573,29 +562,16 @@ if (file) {
                               <option value={0}>No</option>
                             </select>
                           </div>
-                          <div className="col-md-4">
-                            <label className="form-label">Is Promoted:</label>
-                            <select
-                              name="is_promoted"
-                              value={formData.is_promoted}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option selected>Select Promoted</option>
-                              <option value={1}>Yes</option>
-                              <option value={0}>No</option>
-                            </select>
-                          </div>
                         </div>
-
-                        <div className="row mb-3">
+ 
+<div className="row mb-3">
                         <div className="col-md-6">
                           <label className="form-label">
                             Project Name: <span className="text-danger">*</span>
                           </label>
                           <input
                             type="text"
-                            name="project_name"
+                            name="project_name" 
                             value={formData.project_name}
                             onChange={handleChange}
                             className="form-control"
@@ -613,12 +589,44 @@ if (file) {
                               <option value="Select Featured">
                                 Select Featured
                               </option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
 
                           </div>
+
+                          <div className="row mb-3">
+                          <div className="col-md-6">
+                            <label className="form-label">Is Trending:</label>
+                            <select
+                              name="is_trending"
+                              value={formData.is_trending}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>
+                                Select Trending
+                              </option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        
+                          <div className="col-md-6">
+                            <label className="form-label">Is Promoted:</label>
+                            <select
+                              name="is_promoted"
+                              value={formData.is_promoted}
+                              onChange={handleChange}
+                              className="form-select"
+                            >
+                              <option selected>Select Promoted</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
+                            </select>
+                          </div>
+                        </div>
 
                         <div className="mb-3">
                          
@@ -673,7 +681,28 @@ if (file) {
                             </div>
                         </div>
 
-                       
+                        <div className="row mb-3">
+                          <div className="col-md-6">
+                            <label className="form-label">H1 Title:</label>
+                            <input
+                              type="text"
+                              name="h1_title"
+                              value={formData.h1_title}
+                              onChange={handleChange}
+                              className="form-control"
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label className="form-label">H2 Title:</label>
+                            <input
+                              type="text"
+                              name="h2_title"
+                              value={formData.h2_title}
+                              onChange={handleChange}
+                              className="form-control"
+                            />
+                          </div>
+                        </div>
          {/* Image Field
                            <div className="form-group col-sm-12 col-xl-6">
                      <div className="form-label font-weight-normal">
@@ -760,11 +789,13 @@ if (file) {
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               ICO Project Type:{" "}
                               <span className="text-danger">*</span>
                             </label>
+
+                           
                             <select
                               name="ico_project_id"
                               value={formData.ico_project_id}
@@ -793,14 +824,17 @@ if (file) {
                               <option value="22" >PRESALE</option>
                             </select>
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Select Category:{" "}
                               <span className="text-danger">*</span>
                             </label>
+                         
                             <select
-                              name="selectCategory"
+                              name="category_id"
                               className="form-select"
+                              value={formData.category_id}
+                              onChange={handleChange}
                               required
                             >
                                 <option selected>Select Category</option>
@@ -836,32 +870,7 @@ if (file) {
                 artificial intelligence</option>
                             </select>
                           </div>
-                        </div>
-
-                        <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">
-                              Select Sub Category:{" "}
-                              <span className="text-danger">*</span>
-                            </label>
-                            <select
-                              name="sub_category_id"
-                              value={formData.sub_category_id}
-                              onChange={handleChange}
-                              className="form-select"
-                              
-                            >
-                              <option selected>Select Sub Category</option>
-                              <option value="E-Commerce">E-Commerce</option>
-                              <option value="Travelling">Travelling</option>
-                              <option value="Content">Content</option>
-                              <option value="Social_Media">Social Media</option>
-                              <option value="Video">Video</option>
-                              <option value="Music">Music</option>
-                              <option value="Fan_Base">Fan Base</option>
-                            </select>
-                          </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Website: <span className="text-danger">*</span>
                             </label>
@@ -871,89 +880,181 @@ if (file) {
                               value={formData.website}
                               onChange={handleChange}
                               className="form-control"
-                              placeholder="Enter your website link"
-                              
+                              placeholder=""
+                              required
+                            />
+                          </div>
+                        </div>
+
+                       
+                        <div className="row mb-3">
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Select Sub Category:{" "}
+                              <span className="text-danger">*</span>
+                            </label>
+                            <select
+                              name="sub_category_id"
+                              value={formData.sub_category_id}
+                              onChange={handleChange}
+                              className="form-select"
+                              required
+                            >
+                              <option selected>Select Sub Category</option>
+                              <option value={1}>E-Commerce</option>
+                              <option value={2}>Travelling</option>
+                              <option value={3}>Content</option>
+                              <option value={4}>Social Media</option>
+                              <option value={5}>Video</option>
+                              <option value={6}>Music</option>
+                              <option value={7}>Fan Base</option>
+                            </select>
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                            Social Media Link: <span className="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="social_media_url"
+                              value={formData.social_media_url}
+                              onChange={handleChange}
+                              className="form-control"
+                              placeholder="Enter your social media link"
+                              required
+                            />
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Twitter:</label>
+                            <input
+                              type="text"
+                              name="twitter"
+                              value={formData.twitter}
+                              onChange={handleChange}
+                              placeholder="https://twitter.com"
+                              className="form-control"
                             />
                           </div>
                         </div>
 
                         {/* Social Media Links Section */}
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Twitter:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">Raddit:</label>
                             <input
                               type="text"
-                              name="twitter"
-                              placeholder="https://twitter.com/"
+                              name="raddit"
+                              value={formData.raddit}
+                              onChange={handleChange}
+                              placeholder=""
                               className="form-control"
                             />
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Telegram Group:
                             </label>
                             <input
                               type="text"
-                              name="telegramGroup"
-                              placeholder="https://testfiled.com/"
+                              name="telegram_group"
+                              placeholder=""
+                              value={formData.telegram_group}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
-                        </div>
-
-                        <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <label className="form-label">
                               Telegram Channel:
                             </label>
                             <input
                               type="text"
-                              name="telegramChannel"
-                              placeholder="https://t.me/testfiled"
-                              className="form-control"
-                            />
-                          </div>
-                          <div className="col-md-6">
-                            <label className="form-label">YouTube link:</label>
-                            <input
-                              type="text"
-                              name="youtubeLink"
+                              name="telegram"
+                              placeholder=""
+                              value={formData.telegram}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
-                            <label className="form-label">Discord:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Medium:
+                            </label>
+                            <input
+                              type="text"
+                              name="medium"
+                              value={formData.medium}
+                              onChange={handleChange}
+                              placeholder=""
+                              className="form-control"
+                            />
+                          </div>
+                          <div className="col-md-4">
+                            <label className="form-label">
+                              Discord:
+                            </label>
                             <input
                               type="text"
                               name="discord"
-                               className="form-control"
+                              value={formData.discord}
+                              onChange={handleChange}
+                              placeholder=""
+                              className="form-control"
                             />
                           </div>
-                          <div className="col-md-6">
-                            <label className="form-label">Email:</label>
+                          <div className="col-md-4">
+                            <label className="form-label">YouTube link:</label>
                             <input
                               type="text"
-                              name="email"
+                              name="youtube_link"
+                              value={formData.youtube_link}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
                         </div>
 
                         <div className="row mb-3">
-                          <div className="col-md-6">
+                          <div className="col-md-4">
+                            <label className="form-label">Linkdin:</label>
+                            <input
+                              type="text"
+                              name="linkdin"
+                              value={formData.linkdin}
+                              onChange={handleChange}
+                              className="form-control"
+                            />  
+                          </div>
+                          <div className="col-md-4">
                             <label className="form-label">Instagram:</label>
                             <input
                               type="text"
                               name="instagram"
+                              value={formData.instagram}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </div>
+                          <div className="col-md-4">
+                            <label className="form-label">Email:</label>
+                            <input
+                              type="text"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              className="form-control"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="row mb-3">
+                        
                           <div className="col-md-6">
                             <label className="form-label">
-                              Country: 
+                              Country: <span className="text-danger">*</span>
                             </label>
                             <input
                               type="text"
@@ -961,7 +1062,18 @@ if (file) {
                               value={formData.country}
                               onChange={handleChange}
                               className="form-control"
-                             
+                              required
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label className="form-label">White Paper Url:</label>
+                            <input
+                              type="text"
+                              name="white_paper_url"
+                              value={formData.white_paper_url}
+                              onChange={handleChange}
+                              className="form-control"
+                              
                             />
                           </div>
                         </div>
@@ -976,19 +1088,18 @@ if (file) {
                               name="whitePaper"
                               onChange={handleFileChange}
                               className="form-control"
+                              accept=".pdf,.doc,.docx"
                             />
                           </div>
                           <div className="col-md-6">
-                            <label className="form-label">
-                              Social Media Image:
-                            </label>
+                            <label className="form-label">Quantity of Coin / Token offered in ICO:<span className="text-danger">*</span></label>
                             <input
-                              type="file"
-                              name="social_media_image"
-                              onChange={handleFileChange}
+                              type="text"
+                              name="quantity_of_coin"
+                              value={formData.quantity_of_coin}
+                              onChange={handleChange}
                               className="form-control"
                             />
-                           
                           </div>
                         </div>
 
@@ -1003,7 +1114,7 @@ if (file) {
                               value={formData.start_time}
                               onChange={handleChange}
                               className="form-control"
-                             
+                              required
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -1017,7 +1128,7 @@ if (file) {
                               value={formData.end_time}
                               onChange={handleChange}
                               className="form-control"
-                              
+                              required
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -1035,7 +1146,7 @@ if (file) {
                               value={formData.total_supply_percent}
                               onChange={handleChange}
                               className="form-control"
-                              
+                              required
                             />
                           </div>
                           <div className="col-md-6">
@@ -1072,7 +1183,7 @@ if (file) {
                             />
                           </div>
                         </div>
-
+                       
                         <div className="row mb-3">
                           <div className="col-md-6">
                             <label className="form-label">
@@ -1084,9 +1195,16 @@ if (file) {
                               value={formData.accept_type}
                               onChange={handleChange}
                               className="form-select"
-                              
+                              required
                             >
+                              <option selected>Select Accept Type</option>
+                              <option value="USDT">USDT</option>
+                              <option value="BNB">BNB</option>
+                              <option value="ETH">ETH</option>
                               <option value="SOL">SOL</option>
+                              <option value="SUI">SUI</option>
+                              <option value="TRC">TRC</option>
+                              <option value="BTC">BTC</option>
                             </select>
                           </div>
                           <div className="col-md-6">
@@ -1100,7 +1218,7 @@ if (file) {
                               value={formData.ico_price}
                               onChange={handleChange}
                               className="form-control"
-                              
+                              required
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -1118,7 +1236,7 @@ if (file) {
                               value={formData.fund_asking_for}
                               onChange={handleChange}
                               className="form-control"
-                              
+                              required
                             />
                             <small className="form-text text-muted">TBA</small>
                           </div>
@@ -1133,7 +1251,7 @@ if (file) {
                               value={formData.where_to_buy}
                               onChange={handleChange}
                               className="form-control"
-                              
+                              required
                             />
                           </div>
                         </div>
@@ -1142,7 +1260,7 @@ if (file) {
                           <div className="col-md-6">
                             <label className="form-label">Likes Count:</label>
                             <input
-                              type="text"
+                              type="number"
                               name="likes_counts"
                               value={formData.likes_counts}
                               onChange={handleChange}
@@ -1172,11 +1290,11 @@ if (file) {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option selected>Select Guest</option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
+                    
                           <div className="col-md-6">
                             <label className="form-label">Is Active:</label>
                             <select
@@ -1185,21 +1303,19 @@ if (file) {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                         </div>
 
-                     
-
                         <div className="row mb-3">
                         
                           <div className="form-group col-sm-12 col-xl-6">
-                            <label className="form-label">Launchpad</label> 
+                            <label className="form-label">Launchpad</label>
                             <select
                               name="launchpad"
-                              value={formData.launchpad}
+                              value={formData.launchpad} 
                               onChange={handleChange}
                               className="form-select"
                             >
@@ -1213,24 +1329,20 @@ if (file) {
                           <div className="col-md-6">
                             <label className="form-label">Funding Stage:</label>
                             <select name="fundingStage" className="form-select">
+                              <option selected>Select Funding Stage</option>
+                              <option value="Privatesale">Privatesale</option>
                               <option value="Presale">Presale</option>
+                              <option value="Publicsale">Publicsale</option>
+                              <option value="ICO">ICO</option>
+                              <option value="IEO">IEO</option>
                             </select>
                           </div>
                         </div>
 
+                      
                         <div className="row mb-3">
-                          <div className="form-group col-sm-12 col-xl-6">
-                            <label className="form-label">Launchpad</label>
-                            <select
-                              name="coin_token"
-                              value={formData.launchpad}
-                              onChange={handleChange}
-                              className="form-select"
-                            >
-                              <option value="">Select</option>
-                            </select>
-                          </div>
-                       
+                         
+                         
                         </div>
 
                         <div className="ql-wrapper ql-wrapper-demo mb-3">
@@ -1238,53 +1350,55 @@ if (file) {
                             Description
                           </label>
                           <div>
-                          <SunEditor
-  onChange={handleEditorChange}
-  className="form-control"
-  setContents={formData.description}
-  setOptions={{
-    placeholder: "Enter your text here!!!",
-    buttonList: [
-      ["undo", "redo"],
-      ["font", "fontSize"],
-      ["bold", "underline", "italic", "strike"],
-      ["fontColor", "hiliteColor"],
-      ["removeFormat"],
-      ["outdent", "indent"],
-      ["align", "list"],
-      ["link", "image"]
-    ]
-  }}
-/>
-         
+                            <SunEditor
+                              onChange={handleEditorChange}
+                              defaultValue={formData.description}
+                              setOptions={{
+                                height: 300,
+                                placeholder: "Enter your text here!!!",
+                                buttonList: [
+                                  ["undo", "redo"],
+                                  ["font", "fontSize"],
+                                  ["bold", "underline", "italic", "strike"],
+                                  ["fontColor", "hiliteColor"],
+                                  ["removeFormat"],
+                                  ["outdent", "indent"],
+                                  ["align", "list"],
+                                  ["link", "image"]
+                                ]
+                              }}
+                            />
                           </div>
                         </div>
                         <div className="row ">
                           {/* article Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="article">
+                            <label htmlFor="finance">
                               decentralized finance:
                             </label>
                             <input
                               className="form-control"
-                              name="article"
+                              name="finance"
                               type="text"
-                              id="article"
-                              value={formData.article}
+                              id="finance"
+                              value={formData.finance}
                               onChange={handleChange}
                             />
                           </div>
                           {/* breadcrumbs Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="breadcrumbs">Is follow:</label>
-                            <input
-                              className="form-control"
-                              name="breadcrumbs"
-                              type="text"
+                            <label htmlFor="is_follow">Is follow:</label>
+                           
+                             <select
+                              name="is_follow"
                               id="is_follow"
                               value={formData.is_follow}
                               onChange={handleChange}
-                            />
+                              className="form-select"
+                            >
+                              <option value="follow">Follow</option>
+                              <option value="not_follow">Not Follow</option>
+                            </select>
                           </div>
                         </div>
 
@@ -1305,15 +1419,17 @@ if (file) {
                           </div>
                           {/* faq Field */}
                           <div className="form-group col-sm-12 col-lg-6 col-xl-6">
-                            <label htmlFor="faq">Is follow:</label>
-                            <input
-                              className="form-control"
-                              name="faq"
-                              type="text"
-                              id="faq"
-                              value={formData.faq}
+                            <label htmlFor="is_follow">Is follow:</label>
+                            <select
+                              name="is_follow"
+                              id="is_follow"
+                              value={formData.is_follow}
                               onChange={handleChange}
-                            />
+                              className="form-select"
+                            >
+                              <option value="follow">Follow</option>
+                              <option value="not_follow">Not Follow</option>
+                            </select>
                           </div>
                         </div>
 
@@ -1378,6 +1494,7 @@ if (file) {
                         </div>
                       </div>
                     )}
+
 
                    {/* Tab 2, 3, and 4 would go here, following the same pattern */}
                    {activeTab === 2 && (

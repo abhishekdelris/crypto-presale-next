@@ -15,7 +15,7 @@ export async function GET(request) {
     const skip = parseInt(searchParams.get("skip")) || 0;
     const limit = parseInt(searchParams.get("limit")) || 10;
 
-    let query = `SELECT * FROM crypto_coins_icos WHERE featured = 1`;
+    let query = `SELECT * FROM crypto_coins_icos WHERE is_review = 1 AND featured = 1`;
     const params = [];
 
     // Add pagination and ordering

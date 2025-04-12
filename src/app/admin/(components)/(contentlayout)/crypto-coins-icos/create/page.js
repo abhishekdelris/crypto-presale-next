@@ -2243,8 +2243,8 @@ export default function create() {
                               <option value="Select Featured">
                                 Select Featured
                               </option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
 
@@ -2554,14 +2554,14 @@ export default function create() {
                               className="form-select"
                               required
                             >
-                              <option selected>Select Sub Category</option>
-                              <option value="E-Commerce">E-Commerce</option>
-                              <option value="Travelling">Travelling</option>
-                              <option value="Content">Content</option>
-                              <option value="Social_Media">Social Media</option>
-                              <option value="Video">Video</option>
-                              <option value="Music">Music</option>
-                              <option value="Fan_Base">Fan Base</option>
+                             <option selected>Select Sub Category</option>
+                              <option value={1}>E-Commerce</option>
+                              <option value={2}>Travelling</option>
+                              <option value={3}>Content</option>
+                              <option value={4}>Social Media</option>
+                              <option value={5}>Video</option>
+                              <option value={6}>Music</option>
+                              <option value={7}>Fan Base</option>
                             </select>
                           </div>
                           <div className="col-md-4">
@@ -2914,7 +2914,7 @@ export default function create() {
                           <div className="col-md-6">
                             <label className="form-label">Likes Count:</label>
                             <input
-                              type="text"
+                              type="number"
                               name="likes_counts"
                               value={formData.likes_counts}
                               onChange={handleChange}
@@ -2929,8 +2929,8 @@ export default function create() {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                         </div>
@@ -2944,8 +2944,8 @@ export default function create() {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                     
@@ -2957,8 +2957,8 @@ export default function create() {
                               onChange={handleChange}
                               className="form-select"
                             >
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
+                              <option value={1}>Yes</option>
+                              <option value={0}>No</option>
                             </select>
                           </div>
                         </div>

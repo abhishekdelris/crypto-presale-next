@@ -81,12 +81,45 @@ export default function ContentEditPage() {
         console.log("this is a response data..........",response);
         
         setFormData(response.data.data);
+        const data = response.data.data;
+        setFormData({
+          title: data.title || '',
+          description: data.description || '',
+          alias: data.alias || '',
+          h1_title: data.h1_title || '',
+          h2_title: data.h2_title || '',
+          img_alt_title: data.img_alt_title || '',
+          is_gabbar: data.is_gabbar || '',
+          created_by: data.created_by || '',
+          author_name: data.author_name || '',
+          is_rss_feed: data.is_rss_feed || '', 
+          dynamic_rss_feed: data.dynamic_rss_feed || '',
+          image: data.image || '',
+          channel_id: data.channel_id || '',
+          publishedAt: data.publishedAt || '',
+          article: data.article || '',
+          breadcrumbs: data.breadcrumbs || '',
+          data_set: data.data_set || '',
+          discussion_forum: data.discussion_forum || '',
+          faq: data.faq || '',
+          image_metadata: data.image_metadata || '',
+          new_article: data.new_article || '',
+          paywalled_content: data.paywalled_content || '',
+          profile: data.profile || '',
+          organization: data.organization || '',
+          review_snippets: data.review_snippets || '',
+          sitelinks: data.sitelinks || '',
+          video: data.video || '',
+          seo_title: data.seo_title || '',
+          meta_keywords: data.meta_keywords || '',   
+          meta_description: data.meta_description || ''
+        })
         setLoading(false);
       } catch (error) {
         toast.error('Failed to fetch content');
         setLoading(false);
         router.push('/admin/content');
-      }
+      } 
     }
 
     if (id) {

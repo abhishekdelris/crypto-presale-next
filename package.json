@@ -37,6 +37,7 @@
     "croppie": "^2.6.5",
     "eslint": "^9.9.0",
     "font-awesome": "^4.7.0",
+    "formidable": "^3.5.2",
     "html-react-parser": "^5.2.2",
     "html-truncate": "^1.2.2",
     "iron-session": "^8.0.4",

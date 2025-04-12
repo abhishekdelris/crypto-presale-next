@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
+import { useRouter } from "next/navigation";
 import vactorbg from "../images/vector-row-bg.webp";
 import PresaleFilters from "./PresaleFilters";
 
 function Coin({ CoinData }) {
   // State for dropdown visibility
+    const router = useRouter();
   const [openDropdowns, setOpenDropdowns] = useState({
     chain: false,
     category: false,
@@ -186,7 +188,7 @@ function Coin({ CoinData }) {
               <h5 className="h4 fw-semibold">Best Crypto Presales 2024</h5>
               <p>Looking for the best and newest crypto presales and ICOs to invest in? You're in the right place at Cryptopresale.net. We list the most exciting upcoming and active crypto presales of 2024. Our presales overview gives you all the key details. Whether you're new to crypto or a seasoned investor, Cryptopresale is your go-to for the top presale opportunities.</p>
             </div>
-            <div className="filtertable">
+            <div className="filtertable d-none">
               {/* Chain Filter */}
               <div className="filterblock">
                 <label>Chain</label>
@@ -425,7 +427,7 @@ function Coin({ CoinData }) {
                       <th>Name</th> 
                       <th>Stage</th>
                       <th>Price</th>
-                      <th>Change 24h</th>
+                      <th>Fundraising Goal</th>
                       <th>Total Boosts</th>
                     </tr>
                   </thead>
@@ -450,7 +452,7 @@ function Coin({ CoinData }) {
                               ? `${coin.ico_price} (${coin.accept_type || "USDT"})`
                               : "N/A"}
                           </td>
-                          <td>Hardcap {formatNumber(coin.hard_cap)}</td>
+                          <td> {formatNumber(coin.fund_asking_for)}</td>
                           <td>
                             <div className="row">
                               <div className="col-sm-4">
@@ -479,7 +481,14 @@ function Coin({ CoinData }) {
                       )
                     }
                   </tbody> 
+                
                 </table>
+
+                <div className="text-center mt-4 mb-5">
+          <button className="btn bg-gradient px-4 text-light" onClick={() => {router.push('/presale')}}>
+            View More
+          </button>
+        </div>
               </div>
             </div>
           </div>

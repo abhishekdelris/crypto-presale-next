@@ -18,7 +18,7 @@ export const MENUITEMS = [
 	},
 	{
 		title: "Coin Management", icon: "fa fa-coins", type: "sub", active: false, selected: false,path: "/admin/crypto-coins-icos", dirchange: false, children: [
-			{ path: "/admin/crypto-coins-icos", type: "link", active: false, selected: false, dirchange: false, title: "Crypto News" }, 
+			{ path: "/admin/crypto-coins-icos", type: "link", active: false, selected: false, dirchange: false, title: "Crypto Coin icos" }, 
 		],
 	},
 	{

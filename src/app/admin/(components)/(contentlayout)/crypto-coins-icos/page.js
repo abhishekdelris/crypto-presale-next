@@ -6,6 +6,7 @@ import { Card, Col, Row, Modal, Button,Pagination } from "react-bootstrap";
 import PageHeader from "../../../../../../shared/layout-components/page-header/page-header";
 import Seo from "../../../../../../shared/layout-components/seo/seo";
 import Link from "next/link";
+import coinLogo from '@/images/altcoin.webp'
 const Select = dynamic(() => import("react-select"), { ssr: false });
 import dynamic from "next/dynamic";
 import { toast, ToastContainer } from 'react-toastify';
@@ -19,7 +20,7 @@ const CryptoCoins = () => {
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showActiveModal,setShowActiveModal] = useState(false);
+    const [showActiveModal,setShowActiveModal] = useState(false); 
     const [activePost,setActivePost] = useState(null);
     const [postToDelete, setPostToDelete] = useState(null);
 
@@ -64,11 +65,13 @@ const CryptoCoins = () => {
 
 
     const handleView = (post) => {
-        router.push(`/crypto-ico-details/${post.slug}`);
+        // router.push(`/crypto-ico-details/${post.slug}`);
+        window.open(`/crypto-ico-details/${post.slug}`, '_blank');
     };
  
     const handleEdit = (post) => {
-        router.push(`/admin/crypto-coins-icos/edit/${post.id}`);
+        // router.push(`/admin/crypto-coins-icos/edit/${post.id}`);
+        window.open(`/admin/crypto-coins-icos/edit/${post.id}`, '_blank');
     };
 
     const handleDeleteConfirm = async () => {
@@ -95,7 +98,7 @@ const CryptoCoins = () => {
         try {
             await axios.put(`/api/admin/crypto_coins/active/${activePost.id}`);
             
-            // Remove the post from the local state
+            // Remove the post from the local state 
             await fetchPosts();
             
             // Close the modal
@@ -272,16 +275,16 @@ const CryptoCoins = () => {
     <tbody>
         { currentPosts.map((post) => (
                 <tr key={post.id}>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td><Image src={ post.image ?  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}` : coinLogo} alt="image" width={100} height={100} className="img-fluid" /></td>
+                    <td><Image src={ post.image ?  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}` : coinLogo} alt="image" width={100} height={100} className="img-fluid"/></td>
                     <td>{handleType(post.type)}</td>       
         <td className="text-left text-nowrap">{post.name}</td>
         <td className="text-left">
-          <Link href={`/crypto-ico-details/${post.slug}`} >{post.title}</Link>
+          <Link href={`/crypto-ico-details/${post.slug}`} >{post.slug}</Link>
         </td>
         <td>{post.alias}</td>
         <td>{post.total_coin}</td>
-        <td>{formatISODate(post.updated_at)}</td>
+        <td>{formatISODate(post.created_at)}</td>
         <td>{post.start_time}</td>
         <td>
       <span className="text-green">{post.end_time}</span>

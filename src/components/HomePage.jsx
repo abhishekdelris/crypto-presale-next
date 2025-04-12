@@ -275,7 +275,8 @@ export default async function HomePage() {
                                        className="mx-auto rounded-circle flex justify-center items-center"
                                        /></div>
                   <div className='col-8 '><label  className='flex justify-center items-center'>
-  {coin.name.split(" ").slice(0, 2).join(" ") + (coin.name.split(" ").length > 2 ? "..." : "")}
+                    {coin.name}
+  {/* {coin.name.split(" ").slice(0, 2).join(" ") + (coin.name.split(" ").length > 2 ? "..." : "")} */}
 </label></div>
                 </div>
                   
@@ -303,7 +304,7 @@ export default async function HomePage() {
             </div>
     </div>
     
-    <PresaleFilters />
+    <PresaleFilters className='d-none'/>
    <Coin CoinData={CoinData}/>
     <FAQAccordion  faqData={faqData}/>
     {/* <!-- faq section --> */}

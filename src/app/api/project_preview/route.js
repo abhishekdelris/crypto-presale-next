@@ -61,6 +61,7 @@ export async function GET() {
     // Get guest posts from the database using Prisma instead of raw SQL
     const guestPosts = await prisma.crypto_news.findMany({
       where: {
+        is_review:1,
         is_gabbar: 1
       },
       orderBy: {

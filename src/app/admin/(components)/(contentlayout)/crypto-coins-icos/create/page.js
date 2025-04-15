@@ -6,7 +6,7 @@
 //   Row,
 //   ProgressBar,
 //   Button,
-//   Form,
+//   Form, 
 //   Dropdown,
 //   Table,
 //   Pagination,
@@ -1564,7 +1564,7 @@
 'use client';
 
 
-import React, { useState, Fragment } from "react";
+import React, { useState,useEffect, Fragment } from "react";
 import {
   Card,
   Col,
@@ -1591,6 +1591,7 @@ import Seo from "../../../../../../../shared/layout-components/seo/seo";
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 import dynamic from "next/dynamic";
 import { toast, ToastContainer } from "react-toastify";
+import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
 import "suneditor/dist/css/suneditor.min.css";
 // import { useRouter,Link } from "next/router";
@@ -1742,11 +1743,101 @@ export default function create() {
     detail_personal_cap: '' 
   });
  
-  
+  const [launchpads, setLaunchpads] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [subcategories, setSubcategories] = useState([]);
+  const [loading, setLoading] = useState(true);
     // State to track form data for each field set
   const [fieldSets, setFieldSets] = useState([{ id: 0, ...formData }]);
   const [nextId, setNextId] = useState(1);
 
+
+    useEffect(() => {
+      const fetchCategories = async () => {
+        try {
+          setLoading(true);
+          // Replace with your actual API endpoint
+          const response = await axios.get('/api/admin/categories');
+          
+          // Process the data
+          const data = response.data.data; 
+          
+          // Filter out parent categories (parent_id === 0)
+          const parentCategories = data.filter(item => item.parent_id === 0);
+          
+          setCategories(parentCategories);
+          setLoading(false);
+        } catch (err) {
+          setError('Failed to fetch category data');
+          setLoading(false);
+          console.error('Error fetching category data:', err);
+        }
+      };
+  
+      fetchCategories();
+    }, []);
+  
+    useEffect(() => {
+      // Update subcategories when a category is selected
+      if (selectedCategory === 0) {
+        setSubcategories([]);
+        return;
+      }
+  
+      const fetchSubcategories = async () => {
+        try {
+          // Replace with your actual API endpoint
+          const response = await axios.get('/api/admin/categories');
+          
+          // Process the data to get subcategories
+          const data = response.data.data;
+          
+          // Filter subcategories based on the selected parent category
+          const filteredSubcategories = data.filter(
+            item => item.parent_id === selectedCategory
+          );
+          
+          setSubcategories(filteredSubcategories);
+        } catch (err) {
+          console.error('Error fetching subcategories:', err);
+          setSubcategories([]);
+        }
+      };
+  
+      // Simulate API call - in a real app, you might want to have a specific endpoint for subcategories
+      fetchSubcategories();
+    }, [selectedCategory]);
+  
+    const handleCategoryChange = (e) => {
+      setSelectedCategory(parseInt(e.target.value));
+    };
+  
+  
+    useEffect(() => {
+      const fetchLaunchpads = async () => {
+        try {
+          setLoading(true);
+          // Replace with your actual API endpoint
+          const response = await axios.get('/api/admin/launchpad');
+          setLaunchpads(response.data.data);
+          setLoading(false);
+        } catch (err) {
+          setError('Failed to fetch launchpad data');
+          setLoading(false);
+          console.error('Error fetching launchpad data:', err);
+        }
+      };
+      fetchLaunchpads();
+    }, []);
+  
+const launchpadOptions = [
+  { value: 0, label: "Select Launchpad" },
+  ...launchpads.map(launchpad => ({
+    value: launchpad.id,
+    label: launchpad.title
+  }))
+];
   
      // Function to add a new field set
   const addNewFieldSet = () => {
@@ -1821,99 +1912,99 @@ export default function create() {
      await submitGuestPost(formData);
   };
 
-  const launchpadOptions = [
-    { value: 0, label: "Select Project Type" },
-    { value: 1, label: "DAO Maker Launchpad" },
-    { value: 2, label: "BSCPad" },
-    { value: 3, label: "TrustSwap" },
-    { value: 4, label: "BullStarter" },
-    { value: 5, label: "Polkastarter" },
-    { value: 6, label: "Seedify" },
-    { value: 7, label: "RedKite" },
-    { value: 8, label: "Bounce" },
-    { value: 9, label: "Paid Ignition" },
-    { value: 10, label: "ChainBoost" },
-    { value: 11, label: "GameFi" },
-    { value: 12, label: "Trustpad" },
-    { value: 13, label: "Starter" },
-    { value: 14, label: "DuckSTARTER" },
-    { value: 15, label: "InfinityPad" },
-    { value: 16, label: "Binance" },
-    { value: 17, label: "Solstarter" },
-    { value: 18, label: "Solanium" },
-    { value: 19, label: "WeStarter" },
-    { value: 20, label: "BSClaunch" },
-    { value: 21, label: "MoonStarter" },
-    { value: 22, label: "ZENDIT" },
-    { value: 23, label: "KrystalGO" },
-    { value: 24, label: "Gamestarter" },
-    { value: 25, label: "Enjinstarter" },
-    { value: 26, label: "Oxbull" },
-    { value: 27, label: "SharkPad" },
-    { value: 28, label: "SafeLaunch" },
-    { value: 29, label: "PinkSale" },
-    { value: 30, label: "LaunchZone" },
-    { value: 31, label: "Poolz" },
-    { value: 32, label: "METAVPAD" },
-    { value: 33, label: "BinStarter" },
-    { value: 34, label: "Kommunitas" },
-    { value: 35, label: "TrustFi" },
-    { value: 36, label: "UpLift" },
-    { value: 37, label: "DAOStarter" },
-    { value: 38, label: "Synapse Network" },
-    { value: 39, label: "A2DAO" },
-    { value: 40, label: "GameZone" },
-    { value: 41, label: "MoonEdge" },
-    { value: 42, label: "Seeded Network" },
-    { value: 43, label: "TruePNL" },
-    { value: 44, label: "DxSale" },
-    { value: 45, label: "Prostarter" },
-    { value: 46, label: "SuperLauncher" },
-    { value: 47, label: "VentUp" },
-    { value: 48, label: "HAPI Launchpad" },
-    { value: 49, label: "Paragen" },
-    { value: 50, label: "Babylons" },
-    { value: 51, label: "TokenSoft" },
-    { value: 52, label: "CyberFi Samurai" },
-    { value: 53, label: "UniCrypt" },
-    { value: 54, label: "Launchpool" },
-    { value: 55, label: "Scaleswap" },
-    { value: 56, label: "Unicrypt Network" },
-    { value: 57, label: "Solcubator" },
-    { value: 58, label: "SolRazr" },
-    { value: 59, label: "TrustLaunch" }, 
-    { value: 60, label: "CardStarter" },
-    { value: 61, label: "AdaPad" },
-    { value: 62, label: "OccamRazer" },
-    { value: 63, label: "Vent Finance" },
-    { value: 64, label: "Trustpad Launchpad" },
-    { value: 65, label: "RoseonPad" },
-    { value: 66, label: "DAOlaunch" },
-    { value: 67, label: "GAGARIN" },
-    { value: 68, label: "NFTb" },
-    { value: 69, label: "Binance NFT" },
-    { value: 70, label: "Solanium Launchpad" },
-    { value: 71, label: "Binstarter Launchpad" },
-    { value: 72, label: "Occam.fi" },
-    { value: 73, label: "Paid Network" },
-    { value: 74, label: "Cardence" },
-    { value: 75, label: "Synapse Launchpad" },
-    { value: 76, label: "Krystal IDO" },
-    { value: 77, label: "Firestarter" },
-    { value: 78, label: "TronPad" },
-    { value: 79, label: "TronStarter" },
-    { value: 80, label: "Terra Virtua" },
-    { value: 81, label: "NFTLaunch" },
-    { value: 82, label: "Solstarter Launchpad" },
-    { value: 83, label: "BabylonDAO" },
-    { value: 84, label: "DAOLaunchpad" },
-    { value: 85, label: "Parastarter" },
-    { value: 86, label: "MISO" },
-    { value: 87, label: "SpacePad" },
-    { value: 88, label: "NovaLaunch" },
-    { value: 89, label: "ZeroSwap" },
-    { value: 90, label: "truffle" }
-  ];
+  // const launchpadOptions = [
+  //   { value: 0, label: "Select Project Type" },
+  //   { value: 1, label: "DAO Maker Launchpad" },
+  //   { value: 2, label: "BSCPad" },
+  //   { value: 3, label: "TrustSwap" },
+  //   { value: 4, label: "BullStarter" },
+  //   { value: 5, label: "Polkastarter" },
+  //   { value: 6, label: "Seedify" },
+  //   { value: 7, label: "RedKite" },
+  //   { value: 8, label: "Bounce" },
+  //   { value: 9, label: "Paid Ignition" },
+  //   { value: 10, label: "ChainBoost" },
+  //   { value: 11, label: "GameFi" },
+  //   { value: 12, label: "Trustpad" },
+  //   { value: 13, label: "Starter" },
+  //   { value: 14, label: "DuckSTARTER" },
+  //   { value: 15, label: "InfinityPad" },
+  //   { value: 16, label: "Binance" },
+  //   { value: 17, label: "Solstarter" },
+  //   { value: 18, label: "Solanium" },
+  //   { value: 19, label: "WeStarter" },
+  //   { value: 20, label: "BSClaunch" },
+  //   { value: 21, label: "MoonStarter" },
+  //   { value: 22, label: "ZENDIT" },
+  //   { value: 23, label: "KrystalGO" },
+  //   { value: 24, label: "Gamestarter" },
+  //   { value: 25, label: "Enjinstarter" },
+  //   { value: 26, label: "Oxbull" },
+  //   { value: 27, label: "SharkPad" },
+  //   { value: 28, label: "SafeLaunch" },
+  //   { value: 29, label: "PinkSale" },
+  //   { value: 30, label: "LaunchZone" },
+  //   { value: 31, label: "Poolz" },
+  //   { value: 32, label: "METAVPAD" },
+  //   { value: 33, label: "BinStarter" },
+  //   { value: 34, label: "Kommunitas" },
+  //   { value: 35, label: "TrustFi" },
+  //   { value: 36, label: "UpLift" },
+  //   { value: 37, label: "DAOStarter" },
+  //   { value: 38, label: "Synapse Network" },
+  //   { value: 39, label: "A2DAO" },
+  //   { value: 40, label: "GameZone" },
+  //   { value: 41, label: "MoonEdge" },
+  //   { value: 42, label: "Seeded Network" },
+  //   { value: 43, label: "TruePNL" },
+  //   { value: 44, label: "DxSale" },
+  //   { value: 45, label: "Prostarter" },
+  //   { value: 46, label: "SuperLauncher" },
+  //   { value: 47, label: "VentUp" },
+  //   { value: 48, label: "HAPI Launchpad" },
+  //   { value: 49, label: "Paragen" },
+  //   { value: 50, label: "Babylons" },
+  //   { value: 51, label: "TokenSoft" },
+  //   { value: 52, label: "CyberFi Samurai" },
+  //   { value: 53, label: "UniCrypt" },
+  //   { value: 54, label: "Launchpool" },
+  //   { value: 55, label: "Scaleswap" },
+  //   { value: 56, label: "Unicrypt Network" },
+  //   { value: 57, label: "Solcubator" },
+  //   { value: 58, label: "SolRazr" },
+  //   { value: 59, label: "TrustLaunch" }, 
+  //   { value: 60, label: "CardStarter" },
+  //   { value: 61, label: "AdaPad" },
+  //   { value: 62, label: "OccamRazer" },
+  //   { value: 63, label: "Vent Finance" },
+  //   { value: 64, label: "Trustpad Launchpad" },
+  //   { value: 65, label: "RoseonPad" },
+  //   { value: 66, label: "DAOlaunch" },
+  //   { value: 67, label: "GAGARIN" },
+  //   { value: 68, label: "NFTb" },
+  //   { value: 69, label: "Binance NFT" },
+  //   { value: 70, label: "Solanium Launchpad" },
+  //   { value: 71, label: "Binstarter Launchpad" },
+  //   { value: 72, label: "Occam.fi" },
+  //   { value: 73, label: "Paid Network" },
+  //   { value: 74, label: "Cardence" },
+  //   { value: 75, label: "Synapse Launchpad" },
+  //   { value: 76, label: "Krystal IDO" },
+  //   { value: 77, label: "Firestarter" },
+  //   { value: 78, label: "TronPad" },
+  //   { value: 79, label: "TronStarter" },
+  //   { value: 80, label: "Terra Virtua" },
+  //   { value: 81, label: "NFTLaunch" },
+  //   { value: 82, label: "Solstarter Launchpad" },
+  //   { value: 83, label: "BabylonDAO" },
+  //   { value: 84, label: "DAOLaunchpad" },
+  //   { value: 85, label: "Parastarter" },
+  //   { value: 86, label: "MISO" },
+  //   { value: 87, label: "SpacePad" },
+  //   { value: 88, label: "NovaLaunch" },
+  //   { value: 89, label: "ZeroSwap" },
+  //   { value: 90, label: "truffle" }
+  // ];
    // Reset form handler
   const handleReset = () => {
     setFormData({
@@ -2459,23 +2550,23 @@ export default function create() {
                             >
                               <option selected>Select ICO Project Type</option>
                               <option value="1" >IDO</option>
-                              <option value="3" >ICO</option>
-                              <option value="4" >Token</option>
-                              <option value="5" >IEO</option>
-                              <option value="6" >Seed Sale</option>
-                              <option value="7" >Community Event</option>
-                              <option value="8" >Public Sale</option>
-                              <option value="12" >IFO</option>
-                              <option value="13" >Private Sale</option>
-                              <option value="14" >Crowdloan</option>
-                              <option value="15" >BEP-20</option>
-                              <option value="16" >NFT</option>
-                              <option value="17" >Protocol</option>
-                              <option value="18" >Airdrop</option>
-                              <option value="19" >Luna</option>
-                              <option value="20" >CIRX</option>
-                              <option value="21" >Base</option>
-                              <option value="22" >PRESALE</option>
+                              <option value="2" >ICO</option>
+                              <option value="3" >Token</option>
+                              <option value="4" >IEO</option>
+                              <option value="5" >Seed Sale</option>
+                              <option value="6" >Community Event</option>
+                              <option value="7" >Public Sale</option>
+                              <option value="8" >IFO</option>
+                              <option value="9" >Private Sale</option>
+                              <option value="10" >Crowdloan</option>
+                              <option value="11" >BEP-20</option>
+                              <option value="12" >NFT</option>
+                              <option value="13" >Protocol</option>
+                              <option value="14" >Airdrop</option>
+                              <option value="15" >Luna</option>
+                              <option value="16" >CIRX</option>
+                              <option value="17" >Base</option>
+                              <option value="18" >PRESALE</option>
                             </select>
                           </div>
                           <div className="col-md-4">
@@ -2487,43 +2578,19 @@ export default function create() {
                             <select
                               name="category_id"
                               className="form-select"
-                              value={formData.category_id}
-                              onChange={handleChange}
+                              value={selectedCategory}
+                              onChange={handleCategoryChange}
                               required
                             >
-                                <option selected>Select Category</option>
-                    <option value="26" >
-                MEME Token</option>
-                    <option value="1" >
-                NFT</option>
-                    <option value="4" >
-                Web3</option>
-                    <option value="7" >
-                Blockchain</option>
-                    <option value="30" >
-                Trading</option>
-                    <option value="36" >
-                DeFi</option>
-                    <option value="45" >
-                Metaverse</option>
-                    <option value="49" >
-                Marketplace</option>
-                    <option value="53" >
-                Marketing</option>
-                    <option value="54" >
-                Real World Asset</option>
-                    <option value="55" >
-                Social</option>
-                    <option value="63" >
-                Launchpad</option>
-                    <option value="64" >
-                Development</option>
-                    <option value="67" >
-                Gaming</option>
-                    <option value="87" >
-                artificial intelligence</option>
+                   <option value={0}>Select a Category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
                             </select>
                           </div>
+
                           <div className="col-md-4">
                             <label className="form-label">
                               Website: <span className="text-danger">*</span>
@@ -2541,7 +2608,7 @@ export default function create() {
                         </div>
 
                        
-                        <div className="row mb-3">
+                                <div className="row mb-3">
                           <div className="col-md-4">
                             <label className="form-label">
                               Select Sub Category:{" "}
@@ -2552,16 +2619,21 @@ export default function create() {
                               value={formData.sub_category_id}
                               onChange={handleChange}
                               className="form-select"
-                              required
+                              disabled={subcategories.length === 0}
+                              
                             >
-                             <option selected>Select Sub Category</option>
-                              <option value={1}>E-Commerce</option>
-                              <option value={2}>Travelling</option>
-                              <option value={3}>Content</option>
-                              <option value={4}>Social Media</option>
-                              <option value={5}>Video</option>
-                              <option value={6}>Music</option>
-                              <option value={7}>Fan Base</option>
+                               <option value={0}>
+              {selectedCategory === 0 
+                ? "Select a category first" 
+                : subcategories.length === 0 
+                  ? "No subcategories available" 
+                  : "Select a subcategory"}
+            </option>
+            {subcategories.map((subcategory) => (
+              <option key={subcategory.id} value={subcategory.id}>
+                {subcategory.title}
+              </option>
+            ))}
                             </select>
                           </div>
                           <div className="col-md-4">
@@ -2965,7 +3037,7 @@ export default function create() {
 
                         <div className="row mb-3">
                         
-                          <div className="form-group col-sm-12 col-xl-6">
+                        <div className="form-group col-sm-12 col-xl-6">
                             <label className="form-label">Launchpad</label>
                             <select
                               name="launchpad"

@@ -1730,3 +1730,19 @@ html, body, #__next, .layout121 {
 .table-manage {
   overflow: hidden;
 }
+
+.search-results-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-results-dropdown a:hover {
+  background-color: #f8f9fa;
+}
+
+/* For better mobile experience */
+@media (max-width: 991px) {
+  .search-results-dropdown {
+    max-height: 250px;
+  }
+}

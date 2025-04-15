@@ -8,7 +8,7 @@
 //   try {
 //     // Get specific guest post from database
 //     const result = await executeQuery({
-//       query: "SELECT * FROM `crypto_news` WHERE id = ? AND is_gabbar = 3",
+//       query: "SELECT * FROM `crypto_news` WHERE id = ? AND is_gabbar = 1",
 //       values: [id]
 //     });
     
@@ -77,15 +77,15 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function GET(request, { params }) {
-  const { id } = params;
+  const { slug } = params;
   
   try {
     // Get specific guest post from database using Prisma
     const post = await prisma.crypto_news.findFirst({
       where: {
-        id: parseInt(id), // Convert string to integer
+        slug: slug,
         is_review:1,
-        is_gabbar: 3
+        is_gabbar: 1
       }
     });
     
@@ -109,7 +109,7 @@ export async function GET(request, { params }) {
       author: post.author || 'Deepak Choudhary',
       date: formatDate(post.created_at || new Date()),
       likes: post.likes_counts || 0,
-      slug: post.alias || "abc",
+      slug: post.slug || "abc",
       // Add any additional fields needed for the detail page
       content: post.description || '',
       meta_title: post.meta_title || post.title,

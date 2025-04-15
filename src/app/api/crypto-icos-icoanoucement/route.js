@@ -293,6 +293,7 @@ export async function GET(request) {
 
     // Construct Prisma `where` clause
     const where = {
+      deleted_at: null,
       is_review: 1,
       ...(Number.isInteger(ico_ido_type) && { ico_ido_type: ico_ido_type }),
       ...(type === "ongoing" && {

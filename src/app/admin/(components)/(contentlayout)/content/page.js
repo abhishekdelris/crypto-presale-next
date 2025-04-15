@@ -2,7 +2,7 @@
 import { Fragment, useState, useEffect,useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Card, Col, Row, Modal, Button,Pagination } from "react-bootstrap";
+import { Card, Col, Row, Modal, Button,Pagination,Table } from "react-bootstrap";
 import PageHeader from "../../../../../../shared/layout-components/page-header/page-header";
 import Seo from "../../../../../../shared/layout-components/seo/seo";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
+import altcoinImage from "@/images/altcoin.webp"
 
 const Content = () => { 
     const router = useRouter();
@@ -219,7 +220,7 @@ const Content = () => {
                      
                         <Card.Body className="pt-2">
             <div className="">
-  <table className="table even-tbl table-responsive border" id="cryptoNews-table">
+  <Table bordered  responsive className="table even-tbl table-responsive border" id="cryptoNews-table">
     <thead>
       <tr>
         <th>Url to Image</th>
@@ -242,8 +243,20 @@ const Content = () => {
     <tbody>
         { currentPosts.map((post) => (
                 <tr key={post.id}>
-                    <td><Image src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td><Image src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td><Image src={
+                                post.image
+                               ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                                 ? post.image
+                                : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                               : altcoinImage
+                               } alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td><Image src={
+                                post.image
+                               ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                                 ? post.image
+                                : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                               : altcoinImage
+                               } alt="image" width={100} height={100} className="img-fluid"/></td>
                     <td>{post.author}</td>       
         <td className="text-left text-nowrap">{handleCreatedBy(post.createdby)}</td>
         <td className="text-left">
@@ -288,7 +301,7 @@ const Content = () => {
   </div>
   
     </tbody>
-  </table>
+  </Table>
 
 </div>
 

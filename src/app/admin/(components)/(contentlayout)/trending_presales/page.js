@@ -238,8 +238,20 @@ const CryptoCoins = () => {
     <tbody>
         { currentPosts.map((post) => (
                 <tr key={post.id}>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td><Image src={
+                                              post.image
+                                                ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                                                  ? post.image
+                                                  : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                                                : coinLogo
+                                            } alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td><Image src={
+                                              post.image
+                                                ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                                                  ? post.image
+                                                  : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                                                : coinLogo
+                                            } alt="image" width={100} height={100} className="img-fluid"/></td>
                     <td>{handleType(post.type)}</td>       
         <td className="text-left text-nowrap">{post.name}</td>
         <td className="text-left">

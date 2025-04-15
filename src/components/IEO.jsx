@@ -526,8 +526,8 @@ import ClientSideIEO from './ClientSideIEO';
 async function fetchICOData() {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?skip=0&limit=155&ico_ido_type=2", { //&type=ongoing
-      // cache: 'no-store' // Don't cache the response
-       next: { revalidate: 60 } 
+      cache: 'no-store' // Don't cache the response
+      //  next: { revalidate: 60 } 
     });
     
     if (!response.ok) {

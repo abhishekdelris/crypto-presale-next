@@ -55,15 +55,15 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
     return textContent.substring(0, maxLength) + "...";
   };
 
-  // Function to create a slug from the post title
-  const createSlug = (title) => {
-    return title
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-')     // Replace spaces with hyphens
-      .replace(/--+/g, '-')     // Replace multiple hyphens with single hyphen
-      .trim();                  // Trim leading/trailing spaces
-  };
+  // // Function to create a slug from the post title
+  // const createSlug = (title) => {
+  //   return title
+  //     .toLowerCase()
+  //     .replace(/[^\w\s-]/g, '') // Remove special characters
+  //     .replace(/\s+/g, '-')     // Replace spaces with hyphens
+  //     .replace(/--+/g, '-')     // Replace multiple hyphens with single hyphen
+  //     .trim();                  // Trim leading/trailing spaces
+  // };
 
   return (
     <div className="container my-5">
@@ -129,12 +129,12 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
           {currentPosts.length > 0 ? (
             <div className="row">
               {currentPosts.map((post) => {
-                const slug = createSlug(post.title);
+               
                 return (
                   <div key={post.id} className="col-md-6 mb-4">
                     <div className="blog-card">
                       {post.image && (
-                        <Link href={`/project_review/${slug}/${post.id}`}>
+                        <Link href={`/project_review/${post.slug}`}>
                           <Image 
                             src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} 
                             alt={post.title} 
@@ -151,7 +151,7 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
                         <small className="text-body-secondary">{formatDate(post.date)}</small>
                       </div>
                       <h5>
-                        <Link href={`/project_review/${slug}/${post.id}`} className="text-decoration-none link-customize">
+                        <Link href={`/project_review/${post.slug}`} className="text-decoration-none link-customize">
                           {post.title}
                         </Link>
                       </h5>

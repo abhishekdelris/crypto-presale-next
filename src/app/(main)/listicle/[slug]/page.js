@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 async function ListiclePostDetail({ params }) {
-  const { slug, id } = params;
-  const article = await fetchArticle(id);
+  const { slug } = params;
+  const article = await fetchArticle(slug);
   
   if (!article || !article.success) {
     return notFound();
@@ -28,7 +28,7 @@ async function ListiclePostDetail({ params }) {
                Listicle
               </Link>
             </li>
-            <li>{articleData.title}</li>
+            <li>{articleData.slug}</li>
           </ul>
         </div>
       </section>
@@ -74,8 +74,8 @@ async function ListiclePostDetail({ params }) {
 
 // Metadata generation
 export async function generateMetadata({ params }) {
-  const { id } = params;
-  const article = await fetchArticle(id);
+  const { slug } = params;
+  const article = await fetchArticle(slug);
   
   if (!article || !article.success) {
     return {
@@ -102,9 +102,9 @@ function getExcerpt(htmlContent, maxLength = 100) {
 }
 
 // Server-side data fetching for a single blog article
-async function fetchArticle(id) {
+async function fetchArticle(slug) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/listicle/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/listicle/${slug}`, {
       next: { revalidate: 3600 } // Revalidate every hour
     });
     

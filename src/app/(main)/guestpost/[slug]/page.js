@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 async function GuestPostDetail({ params }) {
-  const { slug, id } = params;
-  const post = await fetchPost(id);
+  const { slug } = params;
+  const post = await fetchPost(slug);
   
   if (!post || !post.success) {
     return notFound();
@@ -28,7 +28,7 @@ async function GuestPostDetail({ params }) {
                 Guest Posts
               </Link>
             </li>
-            <li>{postData.title}</li>
+            <li>{postData.slug}</li>
           </ul>
         </div>
       </section>
@@ -106,8 +106,8 @@ async function GuestPostDetail({ params }) {
 
 // Metadata generation
 export async function generateMetadata({ params }) {
-  const { id } = params;
-  const article = await fetchPost(id);
+  const { slug } = params;
+  const article = await fetchPost(slug);
   
   if (!article || !article.success) {
     return {
@@ -134,9 +134,9 @@ function getExcerpt(htmlContent, maxLength = 100) {
 }
 
 // Server-side data fetching for a single post
-async function fetchPost(id) {
+async function fetchPost(slug) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guestPost/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guestPost/${slug}`, {
       next: { revalidate: 3600 } // Revalidate every hour
     });
     

@@ -177,7 +177,7 @@ model crypto_coins_icos {
   user_contact            String?            @db.VarChar(100)
   is_guest                Int            @default(0)
   is_assign_cubs          Int                @default(0)
-  fund_stage              String?            @db.VarChar(100)
+  fund_stage              Int?            @default(0)
   launchpad               Int?
   total_amount            Float?
   wallet_address          String?            @db.VarChar(100)
@@ -607,6 +607,25 @@ model hierarchy_management {
   @@index([viewer_id], map: "viewer_id")
 }
 
+model highlighted_items {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  img         String    @db.Text
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+}
+
+model launchpad {
+  id            Int       @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  launchpad_url String?   @db.VarChar(255)
+  is_active     Int       @default(1)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+}
+
 model news_likes {
   id            Int       @id @default(autoincrement())
   news_id       Int?
@@ -678,9 +697,73 @@ model personal_access_tokens {
   @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
 }
 
+model project_categories {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  parent_id  Int       @default(0)
+  title      String    @db.VarChar(255)
+  is_active  Int       @default(1)
+  sequence   Int
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
 model roles {
   id       Int    @id @default(autoincrement())
   username String @unique(map: "username") @db.VarChar(50)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model submit_ico {
+  id                 Int       @id @default(autoincrement())
+  ico_ido_id         String?   @db.VarChar(100)
+  user_id            Int?
+  fund_stage         Int?
+  launchpad          Int?
+  other_launchpad    String?   @db.VarChar(30)
+  type               Int?
+  crypto_market_id   Int?
+  coin_name          String?   @db.VarChar(30)
+  alias              String?   @db.VarChar(50)
+  slug               String    @db.VarChar(100)
+  image              String?   @db.VarChar(255)
+  start_time         DateTime? @db.Date
+  end_time           DateTime? @db.Date
+  total_coin         String?   @db.VarChar(100)
+  quantity_of_coin   BigInt?
+  ico_price          String?   @db.VarChar(50)
+  website            String?   @db.VarChar(100)
+  ico_project_id     Int?
+  soft_cap           String?   @db.VarChar(100)
+  hard_cap           String?   @db.VarChar(100)
+  personal_cap       String?   @db.VarChar(100)
+  contract_address   String?   @db.VarChar(100)
+  description        String?   @db.LongText
+  country            String?   @db.VarChar(30)
+  where_to_buy       String?   @db.VarChar(100)
+  social_media_url   String?   @db.VarChar(100)
+  twitter            String?   @db.VarChar(100)
+  instagram          String?   @db.VarChar(100)
+  reddit             String?   @db.VarChar(100)
+  medium             String?   @db.VarChar(100)
+  telegram           String?   @db.VarChar(100)
+  discord            String?   @db.VarChar(100)
+  user_contact_type  String?   @db.VarChar(100)
+  user_contact       String?   @db.VarChar(100)
+  ico_ido_type       Int       @default(0)
+  plan               String?   @db.VarChar(50)
+  total_amount       Float?
+  trasaction_id      String?   @db.VarChar(100)
+  market_email       String?   @db.VarChar(100)
+  wallet_address     String?   @db.VarChar(100)
+  coin_token_address String?   @db.VarChar(100)
+  coin_token         String?   @db.VarChar(100)
+  blockchain         String?   @db.VarChar(100)
+  ticker             String?   @db.VarChar(100)
+  submit_flag        Int       @default(1)
+  created_at         DateTime  @default(now()) @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+  deleted_at         DateTime? @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -959,68 +1042,6 @@ model users {
   @@index([state_id], map: "state_id")
   @@index([updated_at], map: "updated_at")
   @@index([username], map: "username")
-}
-
-model highlighted_items {
-  id          Int       @id @default(autoincrement())
-  name        String    @db.VarChar(255)
-  img         String    @db.Text
-  title       String    @db.VarChar(255)
-  description String    @db.Text
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model submit_ico {
-  id                 Int       @id @default(autoincrement())
-  ico_ido_id         String?   @db.VarChar(100)
-  user_id            Int?
-  fund_stage         Int?
-  launchpad          Int?
-  other_launchpad    String?   @db.VarChar(30)
-  type               Int?
-  crypto_market_id   Int?
-  coin_name          String?   @db.VarChar(30)
-  alias              String?   @db.VarChar(50)
-  slug               String    @db.VarChar(100)
-  image              String?   @db.VarChar(255)
-  start_time         DateTime? @db.Date
-  end_time           DateTime? @db.Date
-  total_coin         String?   @db.VarChar(100)
-  quantity_of_coin   BigInt?
-  ico_price          String?   @db.VarChar(50)
-  website            String?   @db.VarChar(100)
-  ico_project_id     Int?
-  soft_cap           String?   @db.VarChar(100)
-  hard_cap           String?   @db.VarChar(100)
-  personal_cap       String?   @db.VarChar(100)
-  contract_address   String?   @db.VarChar(100)
-  description        String?   @db.LongText
-  country            String?   @db.VarChar(30)
-  where_to_buy       String?   @db.VarChar(100)
-  social_media_url   String?   @db.VarChar(100)
-  twitter            String?   @db.VarChar(100)
-  instagram          String?   @db.VarChar(100)
-  reddit             String?   @db.VarChar(100)
-  medium             String?   @db.VarChar(100)
-  telegram           String?   @db.VarChar(100)
-  discord            String?   @db.VarChar(100)
-  user_contact_type  String?   @db.VarChar(100)
-  user_contact       String?   @db.VarChar(100)
-  ico_ido_type       Int       @default(0)
-  plan               String?   @db.VarChar(50)
-  total_amount       Float?
-  trasaction_id      String?   @db.VarChar(100)
-  market_email       String?   @db.VarChar(100)
-  wallet_address     String?   @db.VarChar(100)
-  coin_token_address String?   @db.VarChar(100)
-  coin_token         String?   @db.VarChar(100)
-  blockchain         String?   @db.VarChar(100)
-  ticker             String?   @db.VarChar(100)
-  submit_flag        Int       @default(1)
-  created_at         DateTime  @default(now()) @db.Timestamp(0)
-  updated_at         DateTime? @db.Timestamp(0)
-  deleted_at         DateTime? @db.Timestamp(0)
 }
 
 enum admins_role {

@@ -2,7 +2,7 @@
 import { Fragment, useState, useEffect,useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Card, Col, Row, Modal, Button,Pagination } from "react-bootstrap";
+import { Card, Col, Row, Modal, Button,Pagination,Table } from "react-bootstrap";
 import PageHeader from "../../../../../../shared/layout-components/page-header/page-header";
 import Seo from "../../../../../../shared/layout-components/seo/seo";
 import Link from "next/link";
@@ -128,7 +128,11 @@ const CryptoCoins = () => {
    const filteredPosts = searchQuery 
    ? posts.filter(post => 
        post?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-       post?.author?.toLowerCase().includes(searchQuery.toLowerCase())
+       post?.author?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+       post?.slug?.toLowerCase().includes(searchQuery.toLowerCase())   ||
+       post?.alias?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+       post?.created_at?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+       post?.start_time?.toLowerCase().includes(searchQuery.toLowerCase())
      )
    : posts;
   
@@ -250,7 +254,7 @@ const CryptoCoins = () => {
                      
                         <Card.Body className="pt-2">
             <div className="">
-  <table className="table even-tbl table-responsive border" id="cryptoNews-table">
+  <Table  bordered  responsive  className="even-tbl" >
     <thead>
       <tr>
         <th>Coin / Token Image</th>
@@ -270,14 +274,26 @@ const CryptoCoins = () => {
         <th>Guest</th>
         <th>Is Review</th>
         <th colSpan={3}>Action</th>
-      </tr>
+      </tr> 
     </thead>
     <tbody>
         { currentPosts.map((post) => (
                 <tr key={post.id}>
-                    <td><Image src={ post.image ?  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}` : coinLogo} alt="image" width={100} height={100} className="img-fluid" /></td>
-                    <td><Image src={ post.image ?  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}` : coinLogo} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td>{handleType(post.type)}</td>       
+                    <td><Image src={
+                          post.image
+                            ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                              ? post.image
+                              : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                            : coinLogo
+                        } alt="image" width={100} height={100} className="img-fluid" /></td>
+                    <td><Image src={
+                          post.image
+                            ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+                              ? post.image
+                              : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+                            : coinLogo
+                        } alt="image" width={100} height={100} className="img-fluid"/></td>
+                    <td>{handleType(post.ico_ido_type)}</td>       
         <td className="text-left text-nowrap">{post.name}</td>
         <td className="text-left">
           <Link href={`/crypto-ico-details/${post.slug}`} >{post.slug}</Link>
@@ -292,7 +308,7 @@ const CryptoCoins = () => {
         <td>
             {post.is_guest===1 ? "Yes" : "No"}
           
-        </td>
+        </td> 
         <td>
           <strong className="text-green"> {post.is_review===1 ? "Yes" : "No"} </strong>
         </td>
@@ -321,7 +337,7 @@ const CryptoCoins = () => {
   </div>
   
     </tbody>
-  </table>
+  </Table>
 
 </div>
 

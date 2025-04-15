@@ -102,7 +102,7 @@ import cron from "node-cron";
 
 export const config = {
   runtime: "node", // Change from 'edge' to 'node'
-};
+}; 
 
 // Use a global instance of Prisma to prevent multiple connections
 const prisma = new PrismaClient();
@@ -114,10 +114,10 @@ async function fetchAndInsertICOData() {
   try {
     // Get the latest ICO ID from your database
     const latestEntry = await prisma.crypto_coins_icos.findFirst({
-      orderBy: { id: "desc" },
+      orderBy: { ico_id: "desc" },
     });
 
-    const latestIcoId = latestEntry?.ico_ido_id || 0;
+    const latestIcoId = parseInt(latestEntry?.ico_id) || 0;
     console.log("Latest ICO ID:", latestIcoId);
 
     // Fetch new data from third-party API
@@ -128,33 +128,66 @@ async function fetchAndInsertICOData() {
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
 
     const data = await response.json();
-   //console.log("datA IS requested....",data.data);
+  //  console.log("datA IS requested....",data.data);
    
     // Convert date strings to ISO format
     const formatToISO = (dateString) =>
       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
 
-    // Process and filter data
-    const validDataInfo = data.data
-      .filter((item) => item.approved_time) // Remove entries with missing `approved_time`
-      .map(({ crypto_coins_ico_details, ico_contract_address, ico_launchpad, ...rest }) => ({
-        ...rest,
-        approved_time: formatToISO(rest.approved_time),
-        start_time: formatToISO(rest.start_time),
-        end_time: formatToISO(rest.end_time),
-        created_at: formatToISO(rest.created_at),
-        updated_at: formatToISO(rest.updated_at),
-       
-      }));
+    
+    // // Process and filter data
+    // const validDataInfo = data.data
+    
+    //   .map(({ crypto_coins_ico_details, ico_contract_address,featured,web_url,likes_counts,is_review, ico_launchpad, ...rest }) => ({
+    //     ...rest,
+    //     approved_time: formatToISO(rest.approved_time),
+    //     start_time: formatToISO(rest.start_time),
+    //     end_time: formatToISO(rest.end_time),
+    //     created_at: formatToISO(rest.created_at),
+    //     updated_at: formatToISO(rest.updated_at),   
+    //     ico_id : id  
+    //   })); 
 
+    const validDataInfo = data.data.map((item) => {
+      const {
+        id,
+        approved_time,
+        start_time,
+        end_time,
+        created_at,
+        updated_at,
+        // Remove unwanted fields
+        crypto_coins_ico_details,
+        ico_contract_address,
+        featured,
+        web_url,
+        likes_counts,
+        is_review,
+        ico_launchpad,
+        ...rest
+      } = item;
+    
+      return {
+        ...rest, // contains fields like title, logo, etc.
+        ico_id: id,
+        approved_time: formatToISO(approved_time),
+        start_time: formatToISO(start_time),
+        end_time: formatToISO(end_time),
+        created_at: formatToISO(created_at),
+        updated_at: formatToISO(updated_at),
+      };
+    });
+    console.log("validDataInfo......",validDataInfo);
     
     if (validDataInfo.length > 0) {
       const result = await prisma.crypto_coins_icos.createMany({
         data:validDataInfo,
         skipDuplicates: true,
       });
+
+
       
-      //console.log("data is present....",result);
+      console.log("data is present....",result);
       
       console.log(`Inserted ${result.count} new records.`);
     } else {

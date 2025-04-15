@@ -73,6 +73,7 @@ export async function GET(request) {
       where: {
         is_review: 1,
         is_trending: 1,
+        deleted_at: null,
       },
       orderBy: [
         { is_promoted: "desc" },
@@ -92,7 +93,7 @@ export async function GET(request) {
 
     const totalPages = Math.ceil(totalTrending / limit);
 
-    return NextResponse.json({
+    return NextResponse.json({ 
       trending,
       pagination: {
         total: totalTrending,

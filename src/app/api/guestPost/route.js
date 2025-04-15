@@ -87,7 +87,7 @@
         author: post.author || 'Deepak Choudhary',
         date: formatDate(post.created_at || new Date()),
         likes: post.likes_counts || 0,
-        slug: post.alias || "abc",
+        slug: post.slug || "abc",
       }));
       
       // Return the formatted posts

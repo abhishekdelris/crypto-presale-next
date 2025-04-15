@@ -30,7 +30,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "suneditor/dist/css/suneditor.min.css";
 // import { useRouter,Link } from "next/router";
 import { useGuestPostSubmit } from "./useGuestPostSubmit";
-import RichTextEditor from "../../../../../../components/RichTextEditor";
+
 
 const Create = () => {
   const { submitGuestPost, isLoading } = useGuestPostSubmit();

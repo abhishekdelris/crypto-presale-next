@@ -5,24 +5,23 @@ import Coin from "./Coin";
 import Link from 'next/link';
 
 
-async function fetchCOINData() {
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?skip=0&limit=15", {   //&type=ongoing
-        // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
-        cache: 'no-store',
-      })
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.status}`);
-      }
-      
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching ICO data:", error);
-      return { data: [] }; // Return empty data in case of error
+async function fetchTrendingData() {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/trending_presale", {   //&type=ongoing
+      // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+      cache: 'no-store',
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
     }
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching ICO data:", error);
+    return { data: [] }; // Return empty data in case of error
   }
-
+} 
   async function fetchFaqData() {
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/faqs?page=2&limit=4", {   //&type=ongoing
@@ -38,11 +37,14 @@ async function fetchCOINData() {
     } catch (error) {
       console.error("Error fetching ICO data:", error);
       return { data: [] }; // Return empty data in case of error
-    }
+    } 
   }
 
 export default async function TrendingPresale() {
-    const CoinData = await fetchCOINData();
+  const trendingData = await fetchTrendingData();
+  const tradeData = trendingData.trending || []; 
+  console.log("this is a treanding data....",trendingData);
+  
     const faqData = await fetchFaqData();
   return (
     <>
@@ -74,7 +76,7 @@ export default async function TrendingPresale() {
      
       
         <PresaleFilters />
-   <Coin CoinData={CoinData}/>
+   <Coin CoinData={tradeData}/>
     <FAQAccordion  faqData={faqData}/>
     </div>
     </>

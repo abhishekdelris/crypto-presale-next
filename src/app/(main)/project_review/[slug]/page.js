@@ -116,8 +116,8 @@ function formatDate(dateString) {
  
 // Metadata generation
 export async function generateMetadata({ params }) {
-  const { id } = params;
-  const article = await fetchArticle(id);
+  const { slug } = params;
+  const article = await fetchArticle(slug);
   
   if (!article || !article.success) {
     return {
@@ -144,11 +144,11 @@ function getExcerpt(htmlContent, maxLength = 100) {
 }
 
 // Server-side data fetching for a single project review
-async function fetchArticle(id) {
+async function fetchArticle(slug) {
   try {
     const config = {
       method: 'get',
-      url: `${process.env.NEXT_PUBLIC_API_URL}/api/project_preview/${id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/api/project_preview/${slug}`,
       headers: {}
     };
     
@@ -176,8 +176,8 @@ async function fetchArticle(id) {
 
 // Default export for the page component
 export default async function ProjectReviewPostDetail({ params }) {
-  const { slug, id } = params;
-  const article = await fetchArticle(id);
+  const { slug} = params;
+  const article = await fetchArticle(slug);
   
   if (!article || !article.success) {
     return notFound();
@@ -200,7 +200,7 @@ export default async function ProjectReviewPostDetail({ params }) {
                 Project Review
               </Link>
             </li>
-            <li>{articleData.title}</li>
+            <li>{articleData.slug}</li>
           </ul>
         </div>
       </section>

@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
+import coinLogo from '@/images/altcoin.webp'
 
 const CryptoCoins = () => {
     const router = useRouter();
@@ -169,6 +170,19 @@ const CryptoCoins = () => {
         }
     };
 
+    const getImageUrl = (image) => {
+        const baseCDN = 'https://d3iuzwoiyg9qa8.cloudfront.net/';
+        const storagePath = 'https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/';
+        const altPath = 'https://another-backup-url.com/images/'; // if you have more fallbacks
+      
+        if (image.startsWith(baseCDN)) return image;
+        if (image.includes('/storage/')) return `${baseCDN}${image}`;
+        
+        // Fallback conditionally, you can add more logic here
+        return `${storagePath}${image}`;
+      };
+      
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -238,8 +252,23 @@ const CryptoCoins = () => {
     <tbody>
         { currentPosts.map((post) => (
                 <tr key={post.id}>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
-                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid"/></td>
+                   <td>
+  <Image
+    src={
+      post.image
+        ? post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/')
+          ? post.image
+          : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`
+        : coinLogo
+    }
+    alt="image"
+    width={100}
+    height={100}
+    className="img-fluid"
+  />
+</td>
+
+                    <td><Image src={post.image.startsWith('https://d3iuzwoiyg9qa8.cloudfront.net/') ? post.image :  `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} alt="image" width={100} height={100} className="img-fluid" /></td>
                     <td>{handleType(post.type)}</td>       
         <td className="text-left text-nowrap">{post.name}</td>
         <td className="text-left">

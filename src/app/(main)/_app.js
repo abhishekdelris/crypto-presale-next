@@ -68,8 +68,7 @@ function MyApp({ Component, pageProps }) {
   return isAdminRoute ? (
     <>
       <Head>
-        <title>Crypto Presale</title>
-        <meta name="description" content="Buy crypto in presale and get huge benefits." />
+        
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AdminHeader />
@@ -79,8 +78,7 @@ function MyApp({ Component, pageProps }) {
   ) : (
     <div className="layout121">
       <Head>
-        <title>Crypto Presale</title>
-        <meta name="description" content="Buy crypto in presale and get huge benefits." />
+       
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthProvider>

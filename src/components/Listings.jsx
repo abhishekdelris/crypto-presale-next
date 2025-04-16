@@ -26,6 +26,7 @@ async function fetchFaqData() {
 async function fetchFeturedData() {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/featured?skip=0", {   //&type=ongoing
+      cache: 'no-store',
       next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
     })
    

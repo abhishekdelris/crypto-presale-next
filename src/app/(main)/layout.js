@@ -13,17 +13,12 @@ import { AuthProvider } from '../../hooks/authContext';
 import "@/app/api/cron/route"; // Import cron job so it starts
 // import { SessionProvider } from 'next-auth/react';
 
-export const metadata = {
-  title: "Crypto Presale",
-  description: "Buy crypto in presale and get huge benefits.",
-};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <title>Crypto Presale</title>
-        <meta name="description" content="Buy crypto in presale and get huge benefits." />
+    
         <link rel="icon" href="/favicon.ico" />
       <link
             rel="stylesheet"

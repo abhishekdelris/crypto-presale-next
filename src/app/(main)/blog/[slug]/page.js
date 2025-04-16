@@ -107,7 +107,8 @@ function getExcerpt(htmlContent, maxLength = 100) {
 async function fetchArticle(slug) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/${slug}`, {
-      next: { revalidate: 3600 } // Revalidate every hour
+      cache: 'no-store',
+      // next: { revalidate: 3600 } // Revalidate every hour
     });
     
     if (!response.ok) {

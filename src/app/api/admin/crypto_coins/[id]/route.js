@@ -1,25 +1,237 @@
+// import { NextResponse } from "next/server";
+// import { PrismaClient } from "@prisma/client";
+// import fs from "fs";
+// import path from "path";
+
+// const prisma = new PrismaClient();
+// BigInt.prototype.toJSON = function() {
+//   return this.toString();
+// };
+
+
+// export async function PUT(request, context) {
+//   try {
+//     const { params } = context; // ✅ Extract after await context
+//   const id = parseInt(params.id);
+//     const body = await request.json();
+
+//     // Check if the content exists
+//     const existingContent = await prisma.crypto_coins_icos.findUnique({
+//       where: { id }
+//     });
+
+//     if (!existingContent) {
+//       return NextResponse.json(
+//         {
+//           success: false,
+//           message: "Content not found"
+//         },
+//         { status: 404 }
+//       );
+//     }
+//     // Convert date strings to ISO format
+//     const formatToISO = (dateString) =>
+//       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
+
+//     // Update the content
+//     const updatedContent = await prisma.crypto_coins_icos.update({
+//       where: { id },
+//       data: { 
+//         user_id: body.user_id ,
+//         ico_ido_id: body.ico_ido_id ,
+//         submit_ico_id: body.submit_ico_id ,
+//         type: parseInt(body.type) || 0 ,
+//         ico_ido_type: parseInt(body.ico_ido_type) ,
+//         title: body.title,
+//         h1_title: body.h1_title ,
+//         h2_title: body.h2_title ,
+//         h3_title: body.h3_title ,
+//         h4_title: body.h4_title ,
+//         h5_title: body.h5_title ,
+//         h6_title: body.h6_title ,
+//         name: body.name ,
+//         alias: body.alias,
+//         slug: body.slug,
+//         interlink_id: body.interlink_id ,
+//         country: body.country ,
+//         email: body.email ,
+//         image: body.image ,
+//         img_alt_title: body.img_alt_title ,
+//         ico_project_id: body.ico_project_id ,
+//         ico_project_type_id: body.ico_project_type_id ,
+//         website: body.website ,
+//         social_media_url: body.social_media_url ,
+//         twitter: body.twitter ,
+//         instagram: body.instagram ,
+//         medium: body.medium ,
+//         reddit: body.reddit ,
+//         telegram: body.telegram ,
+//         telegram_group: body.telegram_group ,
+//         discord: body.discord ,
+//         chat_url: body.chat_url ,
+//         white_paper_url: body.white_paper_url ,
+//         social_media_image: body.social_media_image ,
+//         start_time: body.dateStart || body.start_time ,
+//         end_time: body.dateEnd || body.end_time ,
+//         start_end_tba: body.start_end_tba ,
+//         total_coin: body.total_coin ,
+//         quantity_of_coin: body.quantity_of_coin ,
+//         total_supply_percent: body.total_supply_percent2 || body.total_supply_percent ,
+//         ico_price: body.ico_price2 || body.ico_price ,
+//         accept_type: body.selectaccept_type || body.accept_type ,
+//         show_hide_price: body.show_hide_price ,
+//         fund_asking_for: body.fund_asking_forFor || body.fund_asking_for ,
+//         where_to_buy: body.where_to_buy2 || body.where_to_buy ,
+//         timezone: body.timezone ,
+//         description: body.description ,
+//         featured: parseInt(body.featured) || 0,
+//         status: body.status ,
+//         affiliate: body.affiliate ,
+//         hide: body.hide ,
+//         crypto_market_id: body.crypto_market_id ,
+//         coin_name: body.coin_name ,
+//         participate_links: body.participate_links ,
+//         whitepaper: body.whitepaper ,
+//         soft_cap: body.soft_cap2 || body.soft_cap ,
+//         personal_cap: body.personal_cap2 || body.personal_cap ,
+//         hard_cap: body.hard_cap2 || body.hard_cap ,
+//         likes_counts: body.likes_counts ,
+//         youtube_link: body.youtube_link ,
+//         linkedin: body.linkedin ,
+//         plan: body.plan ,
+//         other_status: body.other_status ,
+//         article: body.article ,
+//         breadcrumbs: body.breadcrumbs,
+//         course_info: body.course_info,
+//         data_set: body.data_set,
+//         discussion_forum: body.discussion_forum,
+//         events: body.events,
+//         faq: body.faq,
+//         image_metadata: body.image_metadata,
+//         new_article: body.new_article ,
+//         paywalled_content: body.paywalled_content ,
+//         product: body.product ,
+//         profile: body.profile,
+//         organization: body.organization,
+//         review_snippets: body.review_snippets,
+//         sitelinks: body.sitelinks,
+//         video: body.video ,
+//         user_contact_type: body.user_contact_type ,
+//         user_contact: body.user_contact ,
+//         is_guest: parseInt(body.is_guest) || 0 ,
+//         is_assign_cubs: body.is_assign_cubs ,
+//         fund_stage: body.fund_stage ,
+//         launchpad: parseInt(body.launchpad) || 0 ,
+//         total_amount: body.total_amount ,
+//         wallet_address: body.wallet_address ,
+//         trasaction_id: body.trasaction_id ,
+//         market_email: body.market_email ,
+//         coin_token: body.coin_token ,
+//         ticker: body.ticker ,
+//         blockchain: body.blockchain ,
+//         coin_token_address: body.coin_token_address ,
+//         private_sale_start_date: formatToISO(body.private_sale_start_date) ,
+//         private_sale_end_date: formatToISO(body.private_sale_end_date) ,
+//         private_sale_token_sold: parseFloat(body.private_sale_token_sold) || null,
+//         private_sale_rate: parseFloat(body.private_sale_rate) || null,
+//         private_sale_goal: parseInt(body.private_sale_goal) || 0 ,
+//         private_sale_where_buy: body.private_sale_where_buy ,
+//         pre_sale_start_date: formatToISO(body.pre_sale_start_date) ,
+//         pre_sale_end_date: formatToISO(body.pre_sale_end_date) ,
+//         pre_sale_token_sold: parseFloat(body.pre_sale_token_sold) || null ,
+//         pre_sale_rate: parseFloat(body.pre_sale_rate) || null,
+//         pre_sale_goal: parseInt(body.pre_sale_goal) || 0,
+//         pre_sale_where_buy: body.pre_sale_where_buy ,
+//         public_sale_start_date: formatToISO(body.public_sale_start_date) ,
+//         public_sale_end_date: formatToISO(body.public_sale_end_date) ,
+//         public_sale_token_sold: parseFloat(body.public_sale_token_sold) || null ,
+//         public_sale_rate: parseFloat(body.public_sale_rate) || null ,
+//         public_sale_goal: parseInt(body.public_sale_goal) || 0,
+//         public_sale_where_buy: body.public_sale_where_buy ,
+//         ico_sale_start_date: formatToISO(body.ico_sale_start_date) ,
+//         ico_sale_end_date: formatToISO(body.ico_sale_end_date) ,
+//         ico_sale_token_sold: parseFloat(body.ico_sale_token_sold) || null ,
+//         ico_sale_rate: parseFloat(body.ico_sale_rate) || null ,
+//         ico_sale_goal: parseInt(body.ico_sale_goal) || 0 ,
+//         ico_sale_where_buy: body.ico_sale_where_buy ,
+//         ido_sale_start_date: formatToISO(body.ido_sale_start_date) ,
+//         ido_sale_end_date: formatToISO(body.ido_sale_end_date) ,
+//         ido_sale_token_sold: parseFloat(body.ido_sale_token_sold) || null ,
+//         ido_sale_rate: parseFloat(body.ido_sale_rate) || null ,
+//         ido_sale_goal: parseInt(body.ido_sale_goal) || 0,
+//         ido_sale_where_buy: body.ido_sale_where_buy ,
+//         ieo_sale_start_date: formatToISO(body.ieo_sale_start_date) ,
+//         ieo_sale_end_date: formatToISO(body.ieo_sale_end_date) ,
+//         ieo_sale_token_sold: parseFloat(body.ieo_sale_token_sold) || null ,
+//         ieo_sale_rate: parseFloat(body.ieo_sale_rate) || null ,
+//         ieo_sale_goal: parseInt(body.ieo_sale_goal) || 0 ,
+//         ieo_sale_where_buy: body.ieo_sale_where_buy ,
+//         package: body.package ,
+//         contract_address: body.contract_address ,
+//         other_launchpad: body.other_launchpad ,
+//         category_id: body.category_id ,
+//         sub_category_id: parseInt(body.sub_category_id) || 0 ,
+//         seo_title: body.seo_title || body.title,
+//         meta_keywords: body.meta_keywords , 
+//         meta_description: body.meta_description ,
+//         platform_json: body.platform_json,
+//         is_active: body.is_active ,
+//         is_review: parseInt(body.selectis_review) || parseInt(body.is_review) ,
+//         approved_by: body.approved_by ,
+//         approved_time: body.approved_time ,
+//         one_usdt: body.one_usdtValue || body.one_usdt ,
+//         project_website: body.project_website ,
+//         project_name: body.project_name ,
+//         update_status: body.update_status ,
+//         web_url: body.web_url ,
+//         thumb: body.thumb ,
+//         smallThumb: body.smallThumb ,
+//         is_trending: parseInt(body.is_trending) || 0,
+//         is_bestpresale: parseInt(body.is_bestpresale) || 0,
+//         is_promoted: parseInt(body.is_promoted) || 0,
+//         updated_at: new Date() // Assuming you have an updated_at field
+//       }
+//     });
+
+//     return NextResponse.json({
+//       success: true,
+//       message: "Crypto Coins updated successfully",
+//       data: updatedContent
+//     });
+//   } catch (error) {
+//     console.error("Error in Crypto Coins update:", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         message: "Failed to update Crypto Coins",
+//         error: error.message || "Unknown error"
+//       },
+//       { status: 500 }
+//     );
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
+
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import fs from "fs";
-import path from "path";
 
 const prisma = new PrismaClient();
 BigInt.prototype.toJSON = function() {
   return this.toString();
 };
 
-
 export async function PUT(request, context) {
   try {
-    const { params } = context; // ✅ Extract after await context
-  const id = parseInt(params.id);
+    const { params } = context;
+    const id = parseInt(params.id);
     const body = await request.json();
 
     // Check if the content exists
     const existingContent = await prisma.crypto_coins_icos.findUnique({
       where: { id }
     });
-
+    
     if (!existingContent) {
       return NextResponse.json(
         {
@@ -29,11 +241,17 @@ export async function PUT(request, context) {
         { status: 404 }
       );
     }
+
+    // Get existing details records
+    const existingContentDetails = await prisma.crypto_coins_icos_details.findMany({
+      where: { crypto_coins_icos_id: id }
+    });
+    
     // Convert date strings to ISO format
     const formatToISO = (dateString) =>
       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
 
-    // Update the content
+    // Update the main content
     const updatedContent = await prisma.crypto_coins_icos.update({
       where: { id },
       data: { 
@@ -193,6 +411,64 @@ export async function PUT(request, context) {
       }
     });
 
+    // Handle the details table correctly
+    if (existingContentDetails && existingContentDetails.length > 0) {
+      // Update existing details records
+      for (const detail of existingContentDetails) {
+        await prisma.crypto_coins_icos_details.update({
+          where: { id: detail.id },
+          data: {
+            detail_total_supply: body.detail_total_supply || '',
+            detail_qty_of_coin: body.detail_qty_of_coin || '',
+            detail_ico_price: body.detail_ico_price || '',
+            detail_where_to_buy: body.detail_where_to_buy || '',
+            detail_start_date: body.detail_start_date || '',
+            detail_end_date: body.detail_end_date || '',
+            detail_fund_asking_for: body.detail_fund_asking_for || '',
+            detail_accept_type: body.detail_accept_type || '',
+            detail_ico_ido_type: body.detail_ico_ido_type || '',
+            selectaccept_type: body.selectaccept_type || '',
+            detail_is_review: body.detail_is_review || '',
+            detail_token_for_sale: body.detail_token_for_sale || '',
+            detail_percentage_of_supply: body.detail_percentage_of_supply || '',
+            privateSaleSelect: body.privateSaleSelect || '',
+            detail_one_usdt: body.detail_one_usdt || '',
+            detail_soft_cap: body.detail_soft_cap || '',
+            detail_hard_cap: body.detail_hard_cap || '',
+            detail_personal_cap: body.detail_personal_cap || '',
+            updated_at: new Date()
+          }
+        });
+      }
+    } else {
+      // Create a new details record if none exists
+      await prisma.crypto_coins_icos_details.create({
+        data: {
+          crypto_coins_icos_id: id,
+          detail_total_supply: body.detail_total_supply || '',
+          detail_qty_of_coin: body.detail_qty_of_coin || '',
+          detail_ico_price: body.detail_ico_price || '',
+          detail_where_to_buy: body.detail_where_to_buy || '',
+          detail_start_date: body.detail_start_date || '',
+          detail_end_date: body.detail_end_date || '',
+          detail_fund_asking_for: body.detail_fund_asking_for || '',
+          detail_accept_type: body.detail_accept_type || '',
+          detail_ico_ido_type: body.detail_ico_ido_type || '',
+          selectaccept_type: body.selectaccept_type || '',
+          detail_is_review: body.detail_is_review || '',
+          detail_token_for_sale: body.detail_token_for_sale || '',
+          detail_percentage_of_supply: body.detail_percentage_of_supply || '',
+          privateSaleSelect: body.privateSaleSelect || '',
+          detail_one_usdt: body.detail_one_usdt || '',
+          detail_soft_cap: body.detail_soft_cap || '',
+          detail_hard_cap: body.detail_hard_cap || '',
+          detail_personal_cap: body.detail_personal_cap || '',
+          created_at: new Date(),
+          updated_at: new Date()
+        }
+      });
+    }
+    
     return NextResponse.json({
       success: true,
       message: "Crypto Coins updated successfully",
@@ -212,8 +488,6 @@ export async function PUT(request, context) {
     await prisma.$disconnect();
   }
 }
-
-
 
 // import { NextResponse } from 'next/server';
 // import { PrismaClient } from '@prisma/client';

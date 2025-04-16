@@ -11,7 +11,7 @@ async function getArticles() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/listicle`, {
       // Adding cache options
       cache: 'no-store', 
-      next: { revalidate: 60 } // Revalidate every hour
+      // next: { revalidate: 60 } // Revalidate every hour
     });
     
     if (!response.ok) {

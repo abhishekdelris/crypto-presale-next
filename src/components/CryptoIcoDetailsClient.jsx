@@ -495,12 +495,26 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                 </li>
                               )}
 
+{cryptoDetailsInfo.telegram_group && (
+                                <li className="mx-1">
+                                  <a
+                                    href={cryptoDetailsInfo.telegram_group}
+                                    className="tele-clr"
+                                    title="Telegram Group"
+                                    target="_blank"
+                                    rel="noopener"
+                                  >
+                                    <i className="fa-brands fa-telegram" />
+                                  </a>
+                                </li>
+                              )}
+
                               {cryptoDetailsInfo.telegram && (
                                 <li className="mx-1">
                                   <a
                                     href={cryptoDetailsInfo.telegram}
                                     className="tele-clr"
-                                    title="Telegram Group"
+                                    title="Telegram channel"
                                     target="_blank"
                                     rel="noopener"
                                   >

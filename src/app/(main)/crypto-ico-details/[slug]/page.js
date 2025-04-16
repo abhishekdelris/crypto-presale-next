@@ -904,7 +904,8 @@ export default async function CryptoIcoDetailsPage({ params }) {
 async function fetchCrypto_Detail(slug) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/crypto-icos-icoanoucement/${slug}`, {
-      next: { revalidate: 60 } 
+      cache: 'no-store',
+      // next: { revalidate: 60 } 
     });
        
     if (!response.ok) {
@@ -929,7 +930,8 @@ async function fetchCrypto_Detail(slug) {
 async function fetch_FaqData() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/faqs?page=2&limit=4`, {
-      next: { revalidate: 300 }
+      cache: 'no-store',
+      // next: { revalidate: 300 }
     });
     
     if (!response.ok) {

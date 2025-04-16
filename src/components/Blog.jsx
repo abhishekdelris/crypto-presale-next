@@ -55,7 +55,7 @@ async function fetchArticles() {
     // In App Router, you need to use the full URL
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/blog", { 
       cache: 'no-store', 
-      next: { revalidate: 60 } // Optional: Revalidate every hour
+      // next: { revalidate: 60 } // Optional: Revalidate every hour
     });
     
     if (!response.ok) {

@@ -1,3 +1,93 @@
+// import { NextResponse } from "next/server";
+// import { PrismaClient } from "@prisma/client";
+
+// const prisma = new PrismaClient();
+
+// BigInt.prototype.toJSON = function() {
+//   return this.toString();
+// };
+
+// // Helper function to parse dates in DD-MM-YYYY format
+// function parseCustomDateFormat(dateString) {
+//   if (!dateString) return null;
+  
+//   // Split the DD-MM-YYYY format
+//   const parts = dateString.split('-');
+//   if (parts.length !== 3) return null;
+  
+//   // Note: JavaScript months are 0-based, so we subtract 1 from the month
+//   return new Date(parts[2], parts[1] - 1, parts[0]);
+// }
+
+// export async function GET() {
+//   try {
+//     // Get current date information
+//     const now = new Date();
+//     const currentMonth = now.getMonth();
+//     const currentYear = now.getFullYear();
+    
+//     // Fetch all active ICOs
+//     const allICOs = await prisma.crypto_coins_icos.findMany({
+//       where: {
+//         deleted_at: null,
+//       },
+//       orderBy: {
+//         end_time: 'desc',
+//       },
+//     });
+    
+//     // Separate ICOs into current month and other months
+//     const currentMonthICOs = [];
+//     const otherICOs = [];
+    
+//     allICOs.forEach(ico => {
+//       // Parse the end_time that's in DD-MM-YYYY format
+//       const endTime = parseCustomDateFormat(ico.end_time);
+//       if (endTime && endTime.getMonth() === currentMonth && endTime.getFullYear() === currentYear) {
+//         currentMonthICOs.push(ico);
+//       } else {
+//         otherICOs.push(ico);
+//       }
+//     });
+    
+//     // Sort current month ICOs by end_time in descending order
+//     currentMonthICOs.sort((a, b) => {
+//       const dateA = parseCustomDateFormat(a.end_time);
+//       const dateB = parseCustomDateFormat(b.end_time);
+//       return dateB - dateA; // Descending order
+//     });
+    
+//     // Sort other ICOs by end_time in descending order
+//     otherICOs.sort((a, b) => {
+//       const dateA = parseCustomDateFormat(a.end_time);
+//       const dateB = parseCustomDateFormat(b.end_time);
+//       return dateB - dateA; // Descending order
+//     });
+    
+//     // Combine the arrays - current month ICOs first, then others
+//     const sortedICOs = [...currentMonthICOs, ...otherICOs];
+    
+//     // Return the formatted crypto coins
+//     return NextResponse.json({
+//       success: true,
+//       data: sortedICOs,
+//     });
+//   } catch (error) {
+//     console.error("Error fetching Crypto ico coins:", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         message: "Failed to fetch Crypto ico coins",
+//         error: error.message || "Unknown error"
+//       },
+//       { status: 500 }
+//     );
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
+
+//16-04
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
@@ -19,18 +109,52 @@ function parseCustomDateFormat(dateString) {
   return new Date(parts[2], parts[1] - 1, parts[0]);
 }
 
-export async function GET() {
+export async function GET(req) {
   try {
+    // Get URL from the request
+    const url = new URL(req.url);
+    
+    // Parse pagination parameters from query string
+    const page = parseInt(url.searchParams.get('page') || '1');
+    const limit = parseInt(url.searchParams.get('limit') || '10');
+    const search = url.searchParams.get('search') || '';
+    
+    // Calculate skip value for pagination
+    const skip = (page - 1) * limit;
+
     // Get current date information
     const now = new Date();
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
     
-    // Fetch all active ICOs
+    // Build search conditions
+    const searchConditions = search ? {
+      OR: [
+        { name: { contains: search } },
+       
+        { slug: { contains: search} },
+        { alias: { contains: search } },
+        { start_time: { contains: search } },
+        { end_time: { contains: search } }
+      ]
+    } : {};
+
+    // Get total count for pagination metadata with search filter
+    const totalCount = await prisma.crypto_coins_icos.count({
+      where: {
+        deleted_at: null,
+        ...searchConditions
+      }
+    });
+
+    // Fetch ICOs with pagination and search filter
     const allICOs = await prisma.crypto_coins_icos.findMany({
       where: {
         deleted_at: null,
+        ...searchConditions
       },
+      skip,
+      take: limit,
       orderBy: {
         end_time: 'desc',
       },
@@ -67,10 +191,23 @@ export async function GET() {
     // Combine the arrays - current month ICOs first, then others
     const sortedICOs = [...currentMonthICOs, ...otherICOs];
     
-    // Return the formatted crypto coins
+    // Calculate pagination metadata
+    const totalPages = Math.ceil(totalCount / limit);
+    const hasNextPage = page < totalPages;
+    const hasPrevPage = page > 1;
+    
+    // Return the formatted crypto coins with pagination metadata
     return NextResponse.json({
       success: true,
       data: sortedICOs,
+      pagination: {
+        total: totalCount,
+        currentPage: page,
+        totalPages,
+        limit,
+        hasNextPage,
+        hasPrevPage
+      }
     });
   } catch (error) {
     console.error("Error fetching Crypto ico coins:", error);

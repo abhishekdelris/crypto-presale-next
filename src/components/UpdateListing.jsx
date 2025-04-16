@@ -2415,6 +2415,12 @@ function UpdateListing() {
   const { id } = params;
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && !isLoggedIn) {
+      router.push('/login');
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     async function fetchContent() {
       try {
         setLoading(true);

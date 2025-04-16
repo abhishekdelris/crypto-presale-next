@@ -570,11 +570,10 @@ function Coin({ CoinData }) {
                 <div className="text-center mt-4 mb-5">
                   <button
                     className="btn bg-gradient px-4 text-light"
-                    onClick={() => {
-                      router.push("/presale");
-                    }}
+                   
                   >
-                    View More
+                    <Link href={"/crypto-token-ico-ido-ieo-presale"} className="text-light" style={{textDecorationLine : "none"}}>
+                    View More </Link>
                   </button>
                 </div>
               </div>

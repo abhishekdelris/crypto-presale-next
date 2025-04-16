@@ -438,7 +438,7 @@ h5 {
 
 .bg_Cat {
   background: #fff0d1;
-  padding: 5px;
+ 
   margin-right: 10px;
   position: relative;
   left: 0;
@@ -1186,7 +1186,7 @@ li.ftco-animate a:hover {
 
 button.btn-close {
   position: absolute;
-  right: 0;
+  right: 33px;
   background: #061e37;
   opacity: 1;
 }
@@ -1745,4 +1745,105 @@ html, body, #__next, .layout121 {
   .search-results-dropdown {
     max-height: 250px;
   }
+}
+
+
+/* Login Modal Styles */
+.login-modal .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-modal .modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.login-modal .modal-title p {
+  margin-bottom: 0;
+}
+
+.login-modal .btn-main {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.login-modal .btn-border {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.login-modal .btn-border:hover {
+  background-color: #f8f9fa;
+}
+
+.login-modal .btn-second_main {
+  background-color: #0d6efd; /* Or your primary color */
+  color: white;
+}
+
+.login-modal .btn-second_main:hover {
+  background-color: #0b5ed7;
+}
+
+.login-modal .btn-second_main:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.login-modal .textclr {
+  color: #0d6efd; /* Or your primary color */
+  text-decoration: none;
+}
+
+.login-modal .form-control {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.login-modal .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  border-color: #86b7fe;
+}
+
+/* Validation styles */
+.login-modal .form-control.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.login-modal .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.login-modal .invalid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.login-modal .alert {
+  border-radius: 8px;
+}
+
+/* Remember me checkbox styling */
+.login-modal .form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.login-modal .form-check-input:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }

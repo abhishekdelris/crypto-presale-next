@@ -11,6 +11,7 @@ import Coin from "./Coin";
 import Link from "next/link";
 import ImageUploader from "./ImageUploader";
 
+
 async function fetchHighlightedData() {
   try {
     const response = await fetch(
@@ -331,11 +332,12 @@ export default async function HomePage() {
                     {highlightData.map((coin, index) => (
                       <li key={coin.id || index}>
                         <div className="bg_Cat  rounded-3">
+                          <div className="">
                           <Link
                             href={`/crypto-ico-details/${coin.slug}`}
                             className="text_customization"
                           >
-                            <div className="row">
+                            <div className="row p-2">
                               <div className="col-4 ">
                                 <Image
                                   src={
@@ -362,6 +364,7 @@ export default async function HomePage() {
                               </div>
                             </div>
                           </Link>
+                          </div>
                         </div>
                       </li>
                     ))}
@@ -387,7 +390,7 @@ export default async function HomePage() {
             or a seasoned investor, Cryptopresale is your go-to for the top
             presale opportunities.
           </p>
-        </div>
+        </div> 
       </div>
 
      

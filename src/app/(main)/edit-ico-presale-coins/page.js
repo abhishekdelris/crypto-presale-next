@@ -6,8 +6,8 @@ import Link from 'next/link';
 async function fetchICOData() {
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?type=ongoing", {   //&type=ongoing
-        // cache: 'no-store' // Don't cache the response
-         next: { revalidate: 60 } 
+        cache: 'no-store' // Don't cache the response
+        //  next: { revalidate: 60 } 
       })
     
       if (!response.ok) {

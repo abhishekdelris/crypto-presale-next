@@ -1,5 +1,5 @@
 import React from 'react'
-import PresaleFilters from "./PresaleFilters";
+
 import FAQAccordion from "./FAQAccordion";
 import Coin from "./Coin";
 import Link from 'next/link';
@@ -75,7 +75,7 @@ export default async function TrendingPresale() {
  
      
       
-        <PresaleFilters />
+       
    <Coin CoinData={tradeData}/>
     <FAQAccordion  faqData={faqData}/>
     </div>

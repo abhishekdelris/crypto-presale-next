@@ -9,7 +9,7 @@ import Favorite from "./Favorite";
 import Promoted from "./Promoted";
 import Coin from "./Coin";
 import Link from "next/link";
-import ImageUploader from "./ImageUploader";
+
 
 
 async function fetchHighlightedData() {

@@ -4,7 +4,7 @@ import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
 import vactorbg from "../images/vector-row-bg.webp";
-import PresaleFilters from "./PresaleFilters";
+
 import Link from "next/link";
 
 function Coin({ CoinData }) {

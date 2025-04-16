@@ -1,18 +1,10 @@
-'use client'
+
 import Link from 'next/link'
-import React,{ useState, useEffect }from 'react'
-import LoginModal from './LoginModal';
+import React from 'react'
+
 
 function Favorite() {
-    const [showLoginModal, setShowLoginModal] = useState(false);
-    const handleOpenLoginModal = () => setShowLoginModal(true);
-    const handleCloseLoginModal = () => setShowLoginModal(false);
 
-    const handleLoginSuccess = (userData) => {
-        console.log('User logged in successfully:', userData);
-        // You can add custom logic here after successful login
-        // For example, update the UI to show the user is logged in
-      };
   return (
     <div>
        <section className="listingblock">
@@ -34,7 +26,7 @@ function Favorite() {
                             <h5 className="h3">View New Listings</h5><br/>
                             <p>Click the button below to view the New Listings!images
                                 These coins were just submitted.</p><br/>
-                                <button  onClick={handleOpenLoginModal}>clickMe</button>
+                               
                             <Link href="/listings" className="btn-main primary-btn shadow">View New Listings</Link>
                         </div>
                     </div>
@@ -49,11 +41,7 @@ function Favorite() {
                 </div>
             </div>
         </div>
-        <LoginModal 
-        show={showLoginModal} 
-        handleClose={handleCloseLoginModal}
-        onLoginSuccess={handleLoginSuccess}
-      />
+      
     </section>
     </div>
   )

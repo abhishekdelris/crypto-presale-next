@@ -1779,24 +1779,13 @@ html, body, #__next, .layout121 {
   background-color: #f8f9fa;
 }
 
-.login-modal .btn-second_main {
-  background-color: #0d6efd; /* Or your primary color */
-  color: white;
-}
 
-.login-modal .btn-second_main:hover {
-  background-color: #0b5ed7;
-}
 
 .login-modal .btn-second_main:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
 }
 
-.login-modal .textclr {
-  color: #0d6efd; /* Or your primary color */
-  text-decoration: none;
-}
 
 .login-modal .form-control {
   padding: 10px 15px;
@@ -1836,11 +1825,7 @@ html, body, #__next, .layout121 {
   border-radius: 8px;
 }
 
-/* Remember me checkbox styling */
-.login-modal .form-check-input:checked {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-}
+
 
 .login-modal .form-check-input:focus {
   border-color: #86b7fe;

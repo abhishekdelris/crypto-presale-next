@@ -14,7 +14,7 @@ export default function Header() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchRef = useRef(null);
-  const { isLoggedIn, logout, user } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
 
   // Handle click outside of search results
   useEffect(() => {
@@ -235,7 +235,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="/blog">
+                  <Link className="nav-link" href="/press_release">
                     Press Release
                   </Link>
                 </li>
@@ -332,7 +332,7 @@ export default function Header() {
             </form>
 
             {/* Conditional Auth Button: Sign In/Register or Logout */}
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <button onClick={logout} className="btn-main danger-btn me-2">
                 <span>Logout</span>
               </button>
@@ -362,7 +362,7 @@ export default function Header() {
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [suggestions, setSuggestions] = useState([]);
 //   const [showSuggestions, setShowSuggestions] = useState(false);
-//   const { isLoggedIn, logout } = useAuth();
+//   const { isAuthenticated, logout } = useAuth();
 //   const searchRef = useRef(null);
 
 //   // Filter coins based on search term
@@ -558,7 +558,7 @@ export default function Header() {
 //             </form>
 
 //             {/* Conditional Auth Button: Sign In/Register or Logout */}
-//             {isLoggedIn ? (
+//             {isAuthenticated ? (
 //               <button
 //                 onClick={logout}
 //                 className="btn-main danger-btn me-2"

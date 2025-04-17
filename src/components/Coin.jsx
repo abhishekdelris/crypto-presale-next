@@ -518,7 +518,7 @@ function Coin({ CoinData }) {
                               className="project-icon me-2"
                             />
                           </td>
-                          <td>{coin.name}</td>
+                          <td><Link href={`/crypto-ico-details/${coin.slug}`} className="text_customization"> {coin.name} </Link></td>
                           <td>{handleTypeValue(coin.ico_ido_type)}</td>
                           <td>
                             {coin.ico_price
@@ -540,7 +540,7 @@ function Coin({ CoinData }) {
                               </div>
                               <div className="col-sm-4">
                                 <button className="btn-main primary-btn small px-4 btn-second_main">
-                                  Hodl
+                                  fuel
                                 </button>
                               </div>
                               <div className="col-sm-4">

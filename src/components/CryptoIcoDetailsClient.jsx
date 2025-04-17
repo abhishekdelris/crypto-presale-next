@@ -45,6 +45,17 @@ const getImageUrl = (image) => {
     : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${image}`;
 };
 
+const now = new Date();
+
+const getIcoStatus = (item) => {
+  const start = new Date(item.start_time);
+  const end = new Date(item.end_time);
+
+  if (start > now) return "Upcoming";
+  if (end < now) return "Ended";
+  return "Ongoing";
+};
+
 // Client Component for crypto details
 export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
   const router = useRouter();
@@ -193,7 +204,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                         {formatDate(cryptoDetailsInfo.end_time)}
                       </p>
                       <span className="white-btn small-btn ms-3 px-3 rounded-5 border border-warning-subtle">
-                        {cryptoDetailsInfo.type === 1 ? "Upcoming" : "Ongoing"}
+                        {getIcoStatus(cryptoDetailsInfo)}
                       </span>
                     </div>
                   </button>

@@ -944,7 +944,7 @@ model users {
   name                    String
   dob                     DateTime?    @db.Date
   username                String?      @db.VarChar(255)
-  email                   String
+  email                   String       @unique
   is_email_verified       Int?         @default(0) @db.TinyInt
   email_send_count        Int          @default(0)
   avatar                  String?      @default("users/default.png")
@@ -1001,7 +1001,7 @@ model users {
   widget_key              String?      @db.VarChar(255)
   user_left_reason        String?      @db.VarChar(100)
   wallet_address          String?      @db.LongText
-  gender                  users_gender
+  gender                  String?       @db.VarChar(100)
   qualification           String?      @db.VarChar(255)
   user_from               Int          @default(0) @db.TinyInt
   profile_completion      Int?         @default(0)

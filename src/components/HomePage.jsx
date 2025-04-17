@@ -130,7 +130,7 @@ async function fetchFeturedData() {
       {
         //&type=ongoing
         next: { revalidate: 5, tags: ["featuredData"] } // ISR with tag
-      }
+      } 
     );
 
     if (!response.ok) {

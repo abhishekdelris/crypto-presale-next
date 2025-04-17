@@ -15,7 +15,7 @@ function UpdateListing() {
   const [currentTab, setCurrentTab] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
-  const { isLoggedIn, logout,user } = useAuth();
+  const { isAuthenticated, logout,user } = useAuth();
 
   const [formData, setFormData] = useState({
     // General ICO/IDO details
@@ -113,10 +113,10 @@ function UpdateListing() {
   const { id } = params;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !isLoggedIn) {
+    if (typeof window !== 'undefined' && !isAuthenticated) {
       router.push('/login');
     }
-  }, [isLoggedIn]);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     async function fetchContent() {
@@ -399,7 +399,7 @@ function UpdateListing() {
       });
     } finally {
       setIsSubmitting(false);
-    }
+    } 
   };  
 
   const launchpadOptions = [

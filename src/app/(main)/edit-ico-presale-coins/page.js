@@ -45,9 +45,9 @@ export default async function EditIcoPresaleCoins() {
               Update and enhance your project's visibility within the vibrant crypto community. 
               Edit your Presale, ICO, IDO, IEO listings now and pave the way for success in the fast-paced realm of digital currencies.
               </p></div>
-              <div className='col-4' style={{display: "grid"}}>
-                <button className='btn btn-primary btn-lg btn-block m-4'> + Add ICO</button>
-                <button className='btn btn-primary btn-lg btn-block m-4'>Edit you Presale</button>
+              <div className='col-4' >
+                <button className='btn-main primary-btn small px-4 btn-second_main m-2'> + Add ICO</button>
+                <button className='btn-main primary-btn small px-4 btn-second_main m-2'>Edit you Presale</button>
               </div>
            
           </div>

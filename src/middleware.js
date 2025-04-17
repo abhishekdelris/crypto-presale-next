@@ -92,3 +92,45 @@ export async function middleware(request) {
 // export const config = {
 //   matcher: ['/admin/:path*']
 // };
+
+
+import { NextResponse } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+
+export async function middleware(req) {
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const isAuthenticated = !!token;
+
+  // Get the pathname of the request
+  const path = req.nextUrl.pathname;
+
+  // Paths that are accessible for authenticated users only
+  const protectedPaths = ['/dashboard', '/profile', '/settings'];
+  const isProtectedPath = protectedPaths.some(pp => path.startsWith(pp));
+
+  // Paths that should redirect authenticated users (like login/signup pages)
+  const authPaths = ['/auth/signin', '/auth/signup'];
+  const isAuthPath = authPaths.some(ap => path === ap);
+
+  // Redirect authenticated users away from auth pages
+  if (isAuthenticated && isAuthPath) {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
+  }
+
+  // Redirect unauthenticated users away from protected pages
+  if (!isAuthenticated && isProtectedPath) {
+    return NextResponse.redirect(new URL('/auth/signin', req.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/settings/:path*',
+    '/auth/signin',
+    '/auth/signup'
+  ],
+};

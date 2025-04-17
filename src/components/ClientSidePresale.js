@@ -1,26 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../hooks/authContext";
 import Link from "next/link";
+import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import LoginModal from "./LoginModal"; 
+
 
 export default function ClientSideICO({ icoData }) {
   const [selectedType, setSelectedType] = useState("");
+  const [selectedLaunchpad, setSelectedLaunchpad] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [tempSearchQuery, setTempSearchQuery] = useState(""); // For immediate input changes
   const router = useRouter();
   const [visibleData, setVisibleData] = useState(15);
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const { isLoggedIn, logout, user } = useAuth();
+  const [launchpads, setLaunchpads] = useState([]);
+  const { isAuthenticated,  user } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [pendingLikeAction, setPendingLikeAction] = useState(null);
+  const [userLikes, setUserLikes] = useState({});
+
+  const handleOpenLoginModal = () => setShowLoginModal(true);
+  const handleCloseLoginModal = () => setShowLoginModal(false);
+
+ 
+
+  // Modified to handle pending like action after login
+  const handleLoginSuccess = (userData) => {
+    console.log('User logged in successfully:', userData);
+    handleCloseLoginModal();
+    
+    // Check if there was a pending like action
+    if (pendingLikeAction) {
+      handleLike(pendingLikeAction.ico_id, pendingLikeAction.pre_like);
+      setPendingLikeAction(null);
+    }
+  };
 
   const handleSelectChange = (event) => {
     setSelectedType(event.target.value);
+  };
+
+  const handleLaunchpadChange = (event) => {
+    setSelectedLaunchpad(Number(event.target.value));
   };
 
   const handleSearchInputChange = (event) => {
@@ -73,7 +103,7 @@ export default function ClientSideICO({ icoData }) {
     }
   }
 
-  // Filter the data based on search, type, and date range
+  // Filter the data based on search, type, launchpad and date range
   const filteredData = (icoData?.data || []).filter((ico) => {
     // Text search filter
     const matchesSearch =
@@ -100,6 +130,12 @@ export default function ClientSideICO({ icoData }) {
       matchesType = endTime < now;
     }
 
+    // Launchpad filter
+    let matchesLaunchpad = true;
+    if (selectedLaunchpad !== 0) {
+      matchesLaunchpad = ico.launchpad === selectedLaunchpad;
+    }
+
     // Date range filter
     let matchesDateRange = true;
     if (startDate && endDate) {
@@ -109,9 +145,12 @@ export default function ClientSideICO({ icoData }) {
       // Check if the ICO period overlaps with the selected date range
       matchesDateRange = icoStartDate <= endDate && icoEndDate >= startDate;
     }
-
     return (
-      ico.is_review === 1 && matchesSearch && matchesType && matchesDateRange
+      ico.is_review === 1 && 
+      matchesSearch && 
+      matchesType && 
+      matchesLaunchpad &&
+      matchesDateRange
     );
   });
 
@@ -126,33 +165,104 @@ export default function ClientSideICO({ icoData }) {
     setVisibleData((prev) => prev + 15);
   };
 
+  // Modified to show login modal instead of redirecting
   const handleLike = async (ico_id, pre_like) => {
-    if (isLoggedIn === false) {
-      router.push("/login");
+    if (!isAuthenticated) {
+      // Store the pending like action for after login
+      setPendingLikeAction({ ico_id, pre_like });
+      handleOpenLoginModal();
       return;
     }
 
-    const res = await fetch("/api/like_counts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ico_id,
-        user_id: user.id, // make sure user ID is part of session
-        pre_like
-      })
-    });
+    try {
+      const res = await fetch("/api/like_counts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ico_id,
+          user_id: user.id,
+          pre_like
+        })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      alert("Liked!");
-      router.refresh(); // Refresh page to get updated like count
-    } else {
-      alert(data.message);
+      if (data.success) {
+        // Update local state to show liked status
+        setUserLikes(prev => ({
+          ...prev,
+          [ico_id]: true
+        }));
+        
+        // Update the UI without full refresh
+        const updatedIcoData = { ...icoData };
+        const icoIndex = updatedIcoData.data.findIndex(ico => ico.id === ico_id);
+        if (icoIndex !== -1) {
+          updatedIcoData.data[icoIndex].likes_counts = data.new_count || (pre_like + 1);
+        }
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error liking ICO:", error);
+      alert("Failed to like. Please try again.");
     }
   };
+
+  // Fetch user likes when user is authenticated
+  useEffect(() => {
+    const fetchUserLikes = async () => {
+      if (isAuthenticated && user) {
+        try {
+          const res = await fetch(`/api/user_likes?user_id=${user.id}`);
+          const data = await res.json();
+          
+          if (data.success) {
+            // Convert array of liked ico_ids to an object for easier lookup
+            const likesObj = {};
+            data.likes.forEach(like => {
+              likesObj[like.ico_id] = true;
+            });
+            setUserLikes(likesObj);
+          }
+        } catch (error) {
+          console.error("Error fetching user likes:", error);
+        }
+      }
+    };
+    
+    fetchUserLikes();
+  }, [isAuthenticated, user]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchLaunchpads = async () => {
+      try {
+        setLoading(true);
+        // Replace with your actual API endpoint
+        const response = await axios.get('/api/admin/launchpad');
+        setLaunchpads(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch launchpad data');
+        setLoading(false);
+        console.error('Error fetching launchpad data:', err);
+      }
+    };
+    fetchLaunchpads();
+  }, []);
+
+  const launchpadOptions = [
+    { value: 0, label: "All Launchpads" },
+    ...launchpads.map(launchpad => ({
+      value: launchpad.id,
+      label: launchpad.title
+    }))
+  ];
 
   return (
     <>
@@ -190,48 +300,73 @@ export default function ClientSideICO({ icoData }) {
         </button>
       </div>
 
-      {/* Search Bar */}
-      <div className="row mb-4">
-        <div className="col-md-5">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search By Keyword..."
-            value={tempSearchQuery}
-            onChange={handleSearchInputChange}
-            onKeyPress={handleKeyPress}
-          />
-        </div>
-        <div className="col-md-3">
-          <select
-            value={selectedType}
-            onChange={handleSelectChange}
-            className="form-select"
-          >
-            <option value="">Select Type</option>
-            <option value="ongoing">Ongoing</option>
-            <option value="upcoming">Upcoming</option>
-            <option value="ended">Ended</option>
-          </select>
-        </div>
-        <div className="col-md-3">
-          <DatePicker
-            selectsRange={true}
-            startDate={startDate}
-            endDate={endDate}
-            className="form-select"
-            onChange={(update) => setDateRange(update)}
-            isClearable={true}
-            placeholderText="Select Date Range"
-          />
-        </div>
-        <div className="col-md-1">
-          <button className="btn btn-primary w-100" onClick={handleSearch}>
-            <i className="bi bi-search" />
-          </button>
-        </div>
-      </div>
-
+         {/* Search and Filter Bar */}
+               <div className="row mb-4">
+                 <div className="col-md-3">
+                   <input
+                     type="text"
+                     className="form-control"
+                     placeholder="Search By Keyword..."
+                     value={tempSearchQuery}
+                     onChange={handleSearchInputChange}
+                     onKeyPress={handleKeyPress}
+                   />
+                 </div>
+                
+                 <div className="col-md-3"> 
+                   <select
+                     value={selectedLaunchpad}
+                     onChange={handleLaunchpadChange}
+                     className="form-select mb-2"
+                   >
+                    {launchpadOptions.map((option) => (
+                       <option key={option.value} value={option.value}>
+                         {option.label}
+                       </option>
+                     ))}
+                   </select>
+                   
+                
+                 </div>
+                 <div className="col-md-2">
+                   <select
+                     value={selectedType}
+                     onChange={handleSelectChange}
+                     className="form-select"
+                   >
+                     <option value="">Select Type</option>
+                     <option value="ongoing">Ongoing</option>
+                     <option value="upcoming">Upcoming</option>
+                     <option value="ended">Ended</option>
+                   </select>
+                 </div>
+                 <div className="col-md-3">
+                   <DatePicker
+                     selectsRange={true}
+                     startDate={startDate}
+                     endDate={endDate}
+                     className="form-select"
+                     onChange={(update) => setDateRange(update)}
+                     isClearable={true}
+                     placeholderText="Select Date Range"
+                   />
+                 </div>
+                 <div className="col-md-1">
+                   <button className="btn btn-primary w-100" onClick={handleSearch}>
+                     <i className="bi bi-search" />
+                   </button>
+                 </div>
+               </div>
+         
+               {/* Results Summary */}
+               <div className="mb-3">
+                 <p>
+                   Showing {paginatedData.length} of {sortedData.length} results
+                   {selectedLaunchpad !== 0 && ` for ${launchpadOptions.find(o => o.value === selectedLaunchpad)?.label}`}
+                   {searchQuery && ` matching "${searchQuery}"`}
+                 </p>
+               </div> 
+   
       {/* ICO Table with Server-fetched Data */}
       <div className="table-responsive">
         <table className="table table-hover">
@@ -284,13 +419,15 @@ export default function ClientSideICO({ icoData }) {
                     </div>
                   </td>
                   <td>{ico.ico_ido_type === 3 ? "Presale" : "ICO"}</td>
-                  <td>{"On Website"}</td>
+                  <td>
+                    {launchpadOptions.find(option => option.value === ico.launchpad)?.label || 'On Website'}
+                  </td>
                   <td>
                     <button
-                      className="upvote-btn"
+                      className={`upvote-btn ${userLikes[ico.id] ? 'liked' : ''}`}
                       onClick={() => handleLike(ico.id, ico.likes_counts || 0)}
                     >
-                      <i className="bi bi-hand-thumbs-up" />{" "}
+                      <i className={`bi ${userLikes[ico.id] ? 'bi-hand-thumbs-up-fill text-primary' : 'bi-hand-thumbs-up'}`} />{" "}
                       {ico.likes_counts || 0}
                     </button>
                   </td>
@@ -333,14 +470,21 @@ export default function ClientSideICO({ icoData }) {
         </table>
       </div>
 
-      {/* Load More Button */}
-      {visibleData < sortedData.length && (
+       {/* Load More Button */}
+       {visibleData < sortedData.length && (
         <div className="text-center mt-4 mb-5">
           <button className="btn btn-primary px-4" onClick={handleLoadMore}>
             Load More
           </button>
         </div>
-      )}
+      )} 
+
+      {/* Login Modal */}
+      {showLoginModal && <LoginModal 
+  show={showLoginModal} 
+  handleClose={handleCloseLoginModal}  // or 'close' instead of 'handleClose'
+  onLoginSuccess={handleLoginSuccess}
+/>}
     </>
   );
 }

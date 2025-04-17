@@ -50,25 +50,72 @@
 
 
 // app/api/auth/logout/route.js
+// import { NextResponse } from "next/server";
+// import { cookies } from "next/headers";
+
+// export async function POST(req) {
+//   try {
+//     // Clear the auth cookie using Next.js built-in cookies API
+//     cookies().delete("auth");
+
+//     // No need to handle the token here since it's stored in localStorage
+//     // The client will handle clearing the token from localStorage
+
+//     return NextResponse.json(
+//       { success: true, message: "Logged out successfully" },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     console.error("Logout error:", error);
+//     return NextResponse.json(
+//       { success: false, message: "Logout failed" },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+// app/api/auth/logout/route.js
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../[...nextauth]/route";
 
-export async function POST(req) {
+export async function POST(request) {
   try {
-    // Clear the auth cookie using Next.js built-in cookies API
-    cookies().delete("auth");
-
-    // No need to handle the token here since it's stored in localStorage
-    // The client will handle clearing the token from localStorage
-
+    // Get current session
+    const session = await getServerSession(authOptions);
+    
+    if (!session) {
+      return NextResponse.json(
+        { message: "No active session to logout" },
+        { status: 200 }
+      );
+    }
+    
+    // Since NextAuth handles the actual session destruction via the /api/auth/signout endpoint,
+    // this API can be used for any additional logout operations you might need
+    
+    // For example, you could log the logout event
+    console.log(`User ${session.user.email} logged out at ${new Date().toISOString()}`);
+    
+    // Or perform additional cleanup operations
+    // await prisma.userActivity.create({
+    //   data: {
+    //     userId: session.user.id,
+    //     action: "LOGOUT",
+    //     timestamp: new Date()
+    //   }
+    // });
+    
     return NextResponse.json(
-      { success: true, message: "Logged out successfully" },
+      { message: "Logout successful" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Logout error:", error);
     return NextResponse.json(
-      { success: false, message: "Logout failed" },
+      { error: "Logout failed" },
       { status: 500 }
     );
   }

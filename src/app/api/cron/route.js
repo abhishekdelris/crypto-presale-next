@@ -177,7 +177,7 @@ async function fetchAndInsertICOData() {
         updated_at: formatToISO(updated_at),
       };
     });
-    console.log("validDataInfo......",validDataInfo);
+    // console.log("validDataInfo......",validDataInfo);
     
     if (validDataInfo.length > 0) {
       const result = await prisma.crypto_coins_icos.createMany({
@@ -187,7 +187,7 @@ async function fetchAndInsertICOData() {
 
 
       
-      console.log("data is present....",result);
+      // console.log("data is present....",result);
       
       console.log(`Inserted ${result.count} new records.`);
     } else {

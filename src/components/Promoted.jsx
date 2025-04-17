@@ -6,9 +6,34 @@ import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import vactorbg from "../images/vector-row-bg.webp";
 import Link from "next/link";
+import { useAuth } from '@/hooks/authContext';
+import { useRouter } from 'next/navigation';
+import LoginModal from "./LoginModal";
 
 function Promoted({ feturedData }) {
   const [selectedOption, setSelectedOption] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+      const router = useRouter();
+      const { login,isAuthenticated } = useAuth();
+      const [showLoginModal, setShowLoginModal] = useState(false);
+  
+      const handleOpenLoginModal = () => setShowLoginModal(true);
+      const handleCloseLoginModal = () => setShowLoginModal(false);
+
+  const handleSubmitForm = () => {
+    if(isAuthenticated) {
+      router.push('/submit_coin')
+    } else {
+      handleOpenLoginModal();
+    }
+  }
+
+  const handleLoginSuccess = (userData) => {
+    console.log('User logged in successfully:', userData);
+     router.push('/submit_coin');
+    // You can add custom logic here after successful login
+    // For example, update the UI to show the user is logged in
+  };
 
   const data = feturedData.data || [];
 
@@ -59,9 +84,9 @@ function Promoted({ feturedData }) {
             <div className="table_block">
               <div className="table_top main_flex">
                 <h6 className="h4 fw-semibold mb-0">Featured</h6>
-                <Link href="/submit_coin" className="btn btn-link text-presale">
+                <p onClick={handleSubmitForm} className="btn btn-link text-presale">
                   Your coin here? Contact us!
-                </Link>
+                </p>
               </div>
               <div className="table_main">
                 <div className="table-responsive">
@@ -100,7 +125,7 @@ function Promoted({ feturedData }) {
                                 className="project-icon me-2"
                               />
                             </td>
-                            <td>{item.name}</td>
+                            <td><Link href={`/crypto-ico-details/${item.slug}`} className="text_customization"> {item.name} </Link></td>
                             <td>{handleTypeValue(item.ico_ido_type)}</td>
                             <td>
                               {item.ico_price
@@ -122,7 +147,7 @@ function Promoted({ feturedData }) {
                                 </div>
                                 <div className="col-sm-4">
                                   <button className="btn-main primary-btn small px-4 btn-second_main">
-                                    Hodl
+                                  fuel
                                   </button>
                                 </div>
                                 <div className="col-sm-4">
@@ -144,7 +169,7 @@ function Promoted({ feturedData }) {
                             </td>
                             <td>
                             <div className="info-circle">
-                              <Link href={`/crypto-ico-details/${data.slug}`}>
+                              <Link href={`/crypto-ico-details/${item.slug}`}>
                                 <i className="fa-solid fa-arrow-up-right-from-square hyperlink"></i>
                               </Link>
                             </div>
@@ -167,6 +192,11 @@ function Promoted({ feturedData }) {
         </div>
       </div>
       <Image src={vactorbg} alt="vector" className="centertable" />
+      <LoginModal 
+        show={showLoginModal} 
+        handleClose={handleCloseLoginModal}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </section>
   );
 }

@@ -34,6 +34,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.5",
+    "bootstrap-select": "^1.13.18",
     "chart.js": "^4.4.8",
     "cookie": "^1.0.2",
     "croppie": "^2.6.5",

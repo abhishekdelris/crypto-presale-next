@@ -506,6 +506,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
 
+
 const CryptoCoins = () => {
     const router = useRouter();
     const [posts, setPosts] = useState([]);
@@ -527,7 +528,8 @@ const CryptoCoins = () => {
 
     // Debounce search to prevent too many API calls
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
-    
+
+  
     // Effect for debouncing search input
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -732,7 +734,9 @@ const CryptoCoins = () => {
                                                     <i className="fa fa-search"></i>
                                                 </button>
                                             </div>
+                                       
                                         </form>
+                                   
                                     </div>
                                 </div>
                             </div>

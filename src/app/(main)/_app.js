@@ -71,6 +71,7 @@ function MyApp({ Component, pageProps }) {
         
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <AdminHeader />
       <Component {...pageProps} />
       <AdminFooter />

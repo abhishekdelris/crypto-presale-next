@@ -8,6 +8,28 @@ import { Alert, Button, Card, Col, Nav, OverlayTrigger, Row, Tab, Tooltip, Form 
 import { useForm } from "react-hook-form";
 import { useAuth } from '../../hooks/admin_authContext';
 
+
+// Form validation schema
+// const validateForm = (values) => {
+//   const errors = {};
+  
+//   // Email validation
+//   if (!values.email) {
+//     errors.email = 'Email is required';
+//   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+//     errors.email = 'Email is invalid';
+//   }
+  
+//   // Password validation
+//   if (!values.password) {
+//     errors.password = 'Password is required';
+//   } else if (values.password.length < 6) {
+//     errors.password = 'Password must be at least 6 characters';
+//   }
+  
+//   return errors;
+// };
+
 export default function Home() {
 
   const { login } = useAuth();
@@ -53,6 +75,13 @@ export default function Home() {
 
   const onSubmit = async (data) => {
     try {
+      // const validationErrors = validateForm(formData);
+      // setError(validationErrors);
+      
+      // // If there are validation errors, don't submit
+      // if (Object.keys(validationErrors).length > 0) {
+      //   return;
+      // }
       console.log("login data...........!",data)
       await login(data?.email, data?.password);
       console.log("login successful.....!");

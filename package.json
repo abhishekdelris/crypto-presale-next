@@ -25,6 +25,7 @@
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.6",
     "@mui/x-tree-view": "^7.14.0",
+    "@popperjs/core": "^2.11.8",
     "@prisma/client": "^6.6.0",
     "@reduxjs/toolkit": "^2.2.7",
     "@upstash/qstash": "^2.7.23",
@@ -32,7 +33,7 @@
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.5",
     "chart.js": "^4.4.8",
     "cookie": "^1.0.2",
     "croppie": "^2.6.5",
@@ -73,7 +74,8 @@
     "sass": "^1.77.8",
     "simplebar-react": "^3.2.6",
     "suneditor": "^2.47.5",
-    "suneditor-react": "^3.6.1"
+    "suneditor-react": "^3.6.1",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.37.4",

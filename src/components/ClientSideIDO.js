@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import LoginModal from "./LoginModal";
 
+
 export default function ClientSideIDO({ icoData }) {
   const [selectedType, setSelectedType] = useState("");
   const [selectedLaunchpad, setSelectedLaunchpad] = useState(0);
@@ -23,7 +24,7 @@ export default function ClientSideIDO({ icoData }) {
   const [launchpads, setLaunchpads] = useState([]);
   const { isAuthenticated,  user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false); 
   const [pendingLikeAction, setPendingLikeAction] = useState(null);
   const [userLikes, setUserLikes] = useState({});
 
@@ -31,7 +32,10 @@ export default function ClientSideIDO({ icoData }) {
   const handleCloseLoginModal = () => setShowLoginModal(false);
 
  
+  
 
+
+  
   // Modified to handle pending like action after login
   const handleLoginSuccess = (userData) => {
     console.log('User logged in successfully:', userData);
@@ -393,7 +397,7 @@ export default function ClientSideIDO({ icoData }) {
                             ? ico.image.startsWith(
                                 "https://d3iuzwoiyg9qa8.cloudfront.net/"
                               )
-                              ? ico.image
+                              ? ico.image 
                               : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${ico.image}`
                             : altcoinImage
                         }
@@ -430,11 +434,16 @@ export default function ClientSideIDO({ icoData }) {
                     </button>
                   </td>
                   <td>
-                    {calculateSingleDateDifference(
-                      ico.start_time,
-                      ico.end_time
-                    ) || "N/A"}
-                  </td>
+  <span
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title={`Start from ${ico.start_time} to ${ico.end_time}`}
+    className="custom-tooltip"
+  >
+    {calculateSingleDateDifference(ico.start_time, ico.end_time) || "N/A"}
+  </span>
+</td>
+
                   <td>{formatNumber(ico.fund_asking_for) || "N/A"}</td>
                   <td>
                     {ico.ico_price

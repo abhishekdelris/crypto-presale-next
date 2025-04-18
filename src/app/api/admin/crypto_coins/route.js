@@ -105,8 +105,15 @@ function parseCustomDateFormat(dateString) {
   const parts = dateString.split('-');
   if (parts.length !== 3) return null;
   
-  // Note: JavaScript months are 0-based, so we subtract 1 from the month
-  return new Date(parts[2], parts[1] - 1, parts[0]);
+  const day = parseInt(parts[0]);
+  const month = parseInt(parts[1]) - 1; // JavaScript months are 0-based
+  const year = parseInt(parts[2]);
+  
+  // Validate date parts
+  if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+  if (day < 1 || day > 31 || month < 0 || month > 11 || year < 1900) return null;
+  
+  return new Date(year, month, day);
 }
 
 export async function GET(req) {
@@ -115,44 +122,89 @@ export async function GET(req) {
     const url = new URL(req.url);
     
     // Parse pagination parameters from query string
-    const page = parseInt(url.searchParams.get('page') || '1');
-    const limit = parseInt(url.searchParams.get('limit') || '10');
+    const page = Math.max(1, parseInt(url.searchParams.get('page') || '1'));
+    const limit = Math.max(1, parseInt(url.searchParams.get('limit') || '10'));
     const search = url.searchParams.get('search') || '';
+    const isReview = url.searchParams.get('isReview');
+    const startDate = url.searchParams.get('startDate');
+    const endDate = url.searchParams.get('endDate');
+    const uploadStartDate = url.searchParams.get('uploadStartDate');
+    const uploadEndDate = url.searchParams.get('uploadEndDate');
+    const ico_ido_type = url.searchParams.get('ico_ido_type');
+    const type = url.searchParams.get('type');
+    const isGuest = url.searchParams.get('isGuest');
+    const isFeatured = url.searchParams.get('isFeatured');
     
     // Calculate skip value for pagination
     const skip = (page - 1) * limit;
 
-    // Get current date information
+    // Get current date information for sorting
     const now = new Date();
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
     
-    // Build search conditions
-    const searchConditions = search ? {
-      OR: [
+    // Build where conditions
+    const whereConditions = { deleted_at: null };
+    
+    // Add search conditions if search parameter is provided
+    if (search) {
+      whereConditions.OR = [
         { name: { contains: search } },
-       
-        { slug: { contains: search} },
+        { slug: { contains: search } },
         { alias: { contains: search } },
         { start_time: { contains: search } },
         { end_time: { contains: search } }
-      ]
-    } : {};
-
-    // Get total count for pagination metadata with search filter
-    const totalCount = await prisma.crypto_coins_icos.count({
-      where: {
-        deleted_at: null,
-        ...searchConditions
+      ];
+    }
+    
+    // Add additional filter conditions if provided
+    if (isReview == 1) whereConditions.is_review = 1;
+    if (isReview == 0) whereConditions.is_review = 0;
+    
+    if (ico_ido_type) whereConditions.ico_ido_type = ico_ido_type;
+    if (type) whereConditions.type = type;
+    
+    if (isGuest == 1) whereConditions.is_guest = 1;
+    if (isGuest == 0) whereConditions.is_guest = 0;
+    
+    if (isFeatured == 1) whereConditions.featured = 1;
+    if (isFeatured == 0) whereConditions.featured = 0;
+    
+    // Handle date range filters for start and end dates
+    if (startDate && endDate) {
+      const parsedStartDate = parseCustomDateFormat(startDate);
+      const parsedEndDate = parseCustomDateFormat(endDate);
+      
+      if (parsedStartDate && parsedEndDate) {
+        // This assumes end_time is stored in DD-MM-YYYY format in the database
+        whereConditions.end_time = {
+          gte: startDate,
+          lte: endDate
+        };
       }
+    }
+    
+    // Handle date range filters for upload dates
+    if (uploadStartDate && uploadEndDate) {
+      const parsedUploadStartDate = parseCustomDateFormat(uploadStartDate);
+      const parsedUploadEndDate = parseCustomDateFormat(uploadEndDate);
+      
+      if (parsedUploadStartDate && parsedUploadEndDate) {
+        whereConditions.created_at = {
+          gte: parsedUploadStartDate,
+          lte: parsedUploadEndDate
+        };
+      }
+    }
+
+    // Get total count for pagination metadata with filters
+    const totalCount = await prisma.crypto_coins_icos.count({
+      where: whereConditions
     });
 
-    // Fetch ICOs with pagination and search filter
+    // Fetch ICOs with pagination and filters
     const allICOs = await prisma.crypto_coins_icos.findMany({
-      where: {
-        deleted_at: null,
-        ...searchConditions
-      },
+      where: whereConditions,
       skip,
       take: limit,
       orderBy: {
@@ -160,36 +212,36 @@ export async function GET(req) {
       },
     });
     
-    // Separate ICOs into current month and other months
-    const currentMonthICOs = [];
-    const otherICOs = [];
-    
-    allICOs.forEach(ico => {
-      // Parse the end_time that's in DD-MM-YYYY format
+    // Process ICOs for current month sorting
+    const processedICOs = allICOs.map(ico => {
       const endTime = parseCustomDateFormat(ico.end_time);
-      if (endTime && endTime.getMonth() === currentMonth && endTime.getFullYear() === currentYear) {
-        currentMonthICOs.push(ico);
-      } else {
-        otherICOs.push(ico);
-      }
+      return {
+        ...ico,
+        isCurrentMonth: endTime && 
+                        endTime.getMonth() === currentMonth && 
+                        endTime.getFullYear() === currentYear
+      };
     });
     
-    // Sort current month ICOs by end_time in descending order
-    currentMonthICOs.sort((a, b) => {
+    // Sort to prioritize current month ICOs first, then sort by end_time descending
+    const sortedICOs = processedICOs.sort((a, b) => {
+      // First sort by current month (true comes before false)
+      if (a.isCurrentMonth && !b.isCurrentMonth) return -1;
+      if (!a.isCurrentMonth && b.isCurrentMonth) return 1;
+      
+      // Then sort by end_time descending
       const dateA = parseCustomDateFormat(a.end_time);
       const dateB = parseCustomDateFormat(b.end_time);
+      
+      if (!dateA && !dateB) return 0;
+      if (!dateA) return 1;
+      if (!dateB) return -1;
+      
       return dateB - dateA; // Descending order
     });
     
-    // Sort other ICOs by end_time in descending order
-    otherICOs.sort((a, b) => {
-      const dateA = parseCustomDateFormat(a.end_time);
-      const dateB = parseCustomDateFormat(b.end_time);
-      return dateB - dateA; // Descending order
-    });
-    
-    // Combine the arrays - current month ICOs first, then others
-    const sortedICOs = [...currentMonthICOs, ...otherICOs];
+    // Remove the temporary isCurrentMonth property before sending the response
+    const cleanedICOs = sortedICOs.map(({ isCurrentMonth, ...rest }) => rest);
     
     // Calculate pagination metadata
     const totalPages = Math.ceil(totalCount / limit);
@@ -199,7 +251,7 @@ export async function GET(req) {
     // Return the formatted crypto coins with pagination metadata
     return NextResponse.json({
       success: true,
-      data: sortedICOs,
+      data: cleanedICOs,
       pagination: {
         total: totalCount,
         currentPage: page,
@@ -222,8 +274,7 @@ export async function GET(req) {
   } finally {
     await prisma.$disconnect();
   }
-}
-// import { NextResponse } from "next/server";
+}// import { NextResponse } from "next/server";
 // import { PrismaClient } from "@prisma/client";
 
 // const prisma = new PrismaClient();

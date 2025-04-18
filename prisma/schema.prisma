@@ -177,7 +177,7 @@ model crypto_coins_icos {
   user_contact            String?            @db.VarChar(100)
   is_guest                Int            @default(0)
   is_assign_cubs          Int                @default(0)
-  fund_stage              Int?            @default(0)
+  fund_stage              String?            @db.VarChar(100)
   launchpad               Int?
   total_amount            Float?
   wallet_address          String?            @db.VarChar(100)
@@ -616,6 +616,26 @@ model highlighted_items {
   created_at  DateTime? @default(now()) @db.Timestamp(0)
 }
 
+model ico_project_types {
+  id         Int       @id @default(autoincrement())
+  title      String    @db.VarChar(150)
+  is_active  Int       @default(1)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
+model ico_projects {
+  id         Int       @id @default(autoincrement())
+  title      String    @db.VarChar(1150)
+  symbol     String    @db.VarChar(100)
+  slug       String?   @db.VarChar(100)
+  is_active  Int       @default(1)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
 model launchpad {
   id            Int       @id @default(autoincrement())
   title         String    @db.VarChar(255)
@@ -944,7 +964,7 @@ model users {
   name                    String
   dob                     DateTime?    @db.Date
   username                String?      @db.VarChar(255)
-  email                   String       @unique
+  email                   String
   is_email_verified       Int?         @default(0) @db.TinyInt
   email_send_count        Int          @default(0)
   avatar                  String?      @default("users/default.png")
@@ -1001,7 +1021,7 @@ model users {
   widget_key              String?      @db.VarChar(255)
   user_left_reason        String?      @db.VarChar(100)
   wallet_address          String?      @db.LongText
-  gender                  String?       @db.VarChar(100)
+  gender                  users_gender
   qualification           String?      @db.VarChar(255)
   user_from               Int          @default(0) @db.TinyInt
   profile_completion      Int?         @default(0)

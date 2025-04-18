@@ -447,11 +447,15 @@ export default function ClientSideICO({ icoData }) {
                     </button>
                   </td>
                   <td>
-                    {calculateSingleDateDifference(
-                      ico.start_time,
-                      ico.end_time
-                    ) || "N/A"}
-                  </td>
+  <span
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title={`Start from ${ico.start_time} to ${ico.end_time}`}
+    className="custom-tooltip"
+  >
+    {calculateSingleDateDifference(ico.start_time, ico.end_time) || "N/A"}
+  </span>
+</td>
                   <td>{formatNumber(ico.fund_asking_for) || "N/A"}</td>
                   <td>
                     {ico.ico_price

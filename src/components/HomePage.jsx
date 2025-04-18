@@ -156,6 +156,11 @@ export default async function HomePage() {
 
   const tradeData = trendingData.trending || [];
   const highlightData = highlightedData.trending || [];
+  const sortedCoinData = CoinData.data.sort((a, b) => {
+    const dateA = new Date(a.created_at);
+    const dateB = new Date(b.created_at);
+    return dateB - dateA; // Descending order - newest first
+  });
   const sortedData = topCoinData.data.sort((a, b) => {
     const dateA = new Date(a.created_at);
     const dateB = new Date(b.created_at);
@@ -394,7 +399,7 @@ export default async function HomePage() {
       </div>
 
      
-      <Coin CoinData={CoinData} /> 
+      <Coin CoinData={sortedCoinData} /> 
       <FAQAccordion faqData={faqData} />
       {/* <!-- faq section --> */}
 

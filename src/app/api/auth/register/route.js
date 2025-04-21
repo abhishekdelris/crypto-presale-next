@@ -137,10 +137,11 @@ export async function POST(request) {
           name,
           email,
           password: hashedPassword,
-          is_active: 1,
+          is_active: 1, 
           is_email_verified: 0,
           email_send_count: 0,
           is_upload: 0,
+          created_at: new Date()
           
         }
       });

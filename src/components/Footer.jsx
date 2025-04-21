@@ -93,22 +93,28 @@ function Footer() {
               <h2 className="footer-heading">Follow us</h2>
               <ul className="ftco-footer-social p-0 main_flex_Gap">
                 <li className="ftco-animate">
-                  <Link href="#" title="Twitter">
+                  <Link href="https://x.com/CryptoPresaleX" title="Twitter">
                     <i className="fa-brands fa-x-twitter"></i>
                   </Link>
                 </li>
-                <li className="ftco-animate">
+                <li className="ftco-animate d-none">
                   <Link href="#" title="Facebook">
                     <i className="fa-brands fa-facebook-f"></i>
                   </Link>
                 </li>
-                <li className="ftco-animate">
+                {/* <li className="ftco-animate">
                   <Link href="#" title="Instagram">
                     <i className="fa-brands fa-instagram"></i>
                   </Link>
-                </li>
+                </li> */}
                 <li className="ftco-animate">
-                  <Link href="#" title="Linkedin">
+  <Link href="https://t.me/CryptoPresaleXYZ" title="Telegram">
+    <i className="fa-brands fa-telegram"></i>
+  </Link>
+</li>
+
+                <li className="ftco-animate">
+                  <Link href="https://www.linkedin.com/company/crypto-presale" title="Linkedin">
                     <i className="fa-brands fa-linkedin-in"></i>
                   </Link>
                 </li>

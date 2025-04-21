@@ -95,24 +95,140 @@
 // }
 
 
-// app/api/cron/route.js
+// // app/api/cron/route.js
+// import { NextResponse } from "next/server";
+// import { PrismaClient } from "@prisma/client";
+// import cron from "node-cron";
+
+// export const config = {
+//   runtime: "node", // Change from 'edge' to 'node'
+// }; 
+
+// // Use a global instance of Prisma to prevent multiple connections
+// const prisma = new PrismaClient();
+
+// // Function to fetch and insert ICO data
+// async function fetchAndInsertICOData() {
+//   console.log("Running scheduled task: Fetching ICO data...");
+
+//   try {
+//     // Get the latest ICO ID from your database
+//     const latestEntry = await prisma.crypto_coins_icos.findFirst({
+//       orderBy: { ico_id: "desc" },
+//     });
+
+//     const latestIcoId = parseInt(latestEntry?.ico_id) || 0;
+//     console.log("Latest ICO ID:", latestIcoId);
+
+//     // Fetch new data from third-party API
+//     const response = await fetch(
+//       `https://backend.coingabbar.com/api/v1/crypto-icos-icoanoucement?type=ongoing&ico_id=${latestIcoId}`
+//     );
+
+//     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
+
+//     const data = await response.json();
+//   //  console.log("datA IS requested....",data.data);
+   
+//     // Convert date strings to ISO format
+//     const formatToISO = (dateString) =>
+//       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
+
+    
+//     // // Process and filter data
+//     // const validDataInfo = data.data
+    
+//     //   .map(({ crypto_coins_ico_details, ico_contract_address,featured,web_url,likes_counts,is_review, ico_launchpad, ...rest }) => ({
+//     //     ...rest,
+//     //     approved_time: formatToISO(rest.approved_time),
+//     //     start_time: formatToISO(rest.start_time),
+//     //     end_time: formatToISO(rest.end_time),
+//     //     created_at: formatToISO(rest.created_at),
+//     //     updated_at: formatToISO(rest.updated_at),   
+//     //     ico_id : id  
+//     //   })); 
+
+//     const validDataInfo = data.data.map((item) => {
+//       const {
+//         id,
+//         approved_time,
+//         start_time,
+//         end_time,
+//         created_at,
+//         updated_at,
+//         fund_stage,
+//         // Remove unwanted fields
+//         crypto_coins_ico_details,
+//         ico_contract_address,
+//         featured,
+//         web_url,
+//         likes_counts,
+//         is_review,
+//         ico_launchpad,
+//         ...rest
+//       } = item;
+    
+//       return {
+//         ...rest, // contains fields like title, logo, etc.
+//         ico_id: id,
+//         fund_stage : String(fund_stage) || null,
+//         approved_time: formatToISO(approved_time),
+//         start_time: formatToISO(start_time),
+//         end_time: formatToISO(end_time),
+//         created_at: formatToISO(created_at),
+//         updated_at: formatToISO(updated_at),
+//       };
+//     });
+//     // console.log("validDataInfo......",validDataInfo);
+    
+//     if (validDataInfo.length > 0) {
+//       const result = await prisma.crypto_coins_icos.createMany({
+//         data:validDataInfo,
+//         skipDuplicates: true,
+//       });
+
+// 
+
+      
+//       // console.log("data is present....",result);
+      
+//       console.log(`Inserted ${result.count} new records.`);
+//     } else {
+//       console.log("No new ICO data to insert.");
+//     }
+//   } catch (error) {
+//     console.error("Error syncing ICO data:", error);
+//   }
+// }
+
+// // 🕒 Schedule Cron Job (Runs every hour)
+// cron.schedule("0 * * * *", fetchAndInsertICOData);
+
+// // cron.schedule("*/2 * * * *", fetchAndInsertICOData);
+
+
+// // 📌 API Route: Manually Trigger the Cron Job
+// export async function GET() {
+//   console.log("Manual cron execution triggered...");
+//   await fetchAndInsertICOData();
+//   return NextResponse.json({ message: "Cron job executed manually" });
+// }
+
+
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import cron from "node-cron";
 
 export const config = {
-  runtime: "node", // Change from 'edge' to 'node'
-}; 
+  runtime: "node",
+};
 
-// Use a global instance of Prisma to prevent multiple connections
 const prisma = new PrismaClient();
 
-// Function to fetch and insert ICO data
 async function fetchAndInsertICOData() {
   console.log("Running scheduled task: Fetching ICO data...");
 
   try {
-    // Get the latest ICO ID from your database
     const latestEntry = await prisma.crypto_coins_icos.findFirst({
       orderBy: { ico_id: "desc" },
     });
@@ -120,7 +236,6 @@ async function fetchAndInsertICOData() {
     const latestIcoId = parseInt(latestEntry?.ico_id) || 0;
     console.log("Latest ICO ID:", latestIcoId);
 
-    // Fetch new data from third-party API
     const response = await fetch(
       `https://backend.coingabbar.com/api/v1/crypto-icos-icoanoucement?type=ongoing&ico_id=${latestIcoId}`
     );
@@ -128,27 +243,15 @@ async function fetchAndInsertICOData() {
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
 
     const data = await response.json();
-  //  console.log("datA IS requested....",data.data);
-   
-    // Convert date strings to ISO format
+
     const formatToISO = (dateString) =>
       dateString && dateString.trim() !== "" ? new Date(dateString).toISOString() : null;
 
-    
-    // // Process and filter data
-    // const validDataInfo = data.data
-    
-    //   .map(({ crypto_coins_ico_details, ico_contract_address,featured,web_url,likes_counts,is_review, ico_launchpad, ...rest }) => ({
-    //     ...rest,
-    //     approved_time: formatToISO(rest.approved_time),
-    //     start_time: formatToISO(rest.start_time),
-    //     end_time: formatToISO(rest.end_time),
-    //     created_at: formatToISO(rest.created_at),
-    //     updated_at: formatToISO(rest.updated_at),   
-    //     ico_id : id  
-    //   })); 
+    // Arrays for main ICOs and their details
+    const validIcoData = [];
+    const validDetailsData = [];
 
-    const validDataInfo = data.data.map((item) => {
+    data.data.forEach((item) => {
       const {
         id,
         approved_time,
@@ -156,7 +259,7 @@ async function fetchAndInsertICOData() {
         end_time,
         created_at,
         updated_at,
-        // Remove unwanted fields
+        fund_stage,
         crypto_coins_ico_details,
         ico_contract_address,
         featured,
@@ -166,45 +269,56 @@ async function fetchAndInsertICOData() {
         ico_launchpad,
         ...rest
       } = item;
-    
-      return {
-        ...rest, // contains fields like title, logo, etc.
+
+      // Push main ICO data
+      validIcoData.push({
+        ...rest,
         ico_id: id,
+        fund_stage: String(fund_stage) || null,
         approved_time: formatToISO(approved_time),
         start_time: formatToISO(start_time),
         end_time: formatToISO(end_time),
         created_at: formatToISO(created_at),
         updated_at: formatToISO(updated_at),
-      };
-    });
-    // console.log("validDataInfo......",validDataInfo);
-    
-    if (validDataInfo.length > 0) {
-      const result = await prisma.crypto_coins_icos.createMany({
-        data:validDataInfo,
-        skipDuplicates: true,
       });
 
+      // Push details data (if available)
+      if (Array.isArray(crypto_coins_ico_details)) {
+        crypto_coins_ico_details.forEach((detail) => {
+          validDetailsData.push({
+            ...detail,
+            ico_id: id, // foreign key reference
+          });
+        });
+      }
+    });
 
-      
-      // console.log("data is present....",result);
-      
-      console.log(`Inserted ${result.count} new records.`);
-    } else {
-      console.log("No new ICO data to insert.");
+    // Insert ICOs
+    if (validIcoData.length > 0) {
+      const result = await prisma.crypto_coins_icos.createMany({
+        data: validIcoData,
+        skipDuplicates: true,
+      });
+      console.log(`Inserted ${result.count} ICO records.`);
+    }
+
+    // Insert ICO Details
+    if (validDetailsData.length > 0) {
+      const detailsResult = await prisma.crypto_coins_icos_details.createMany({
+        data: validDetailsData,
+        skipDuplicates: true,
+      });
+      console.log(`Inserted ${detailsResult.count} ICO detail records.`);
     }
   } catch (error) {
     console.error("Error syncing ICO data:", error);
   }
 }
 
-// 🕒 Schedule Cron Job (Runs every hour)
+// Schedule hourly
 cron.schedule("0 * * * *", fetchAndInsertICOData);
 
-// cron.schedule("*/2 * * * *", fetchAndInsertICOData);
-
-
-// 📌 API Route: Manually Trigger the Cron Job
+// Manual trigger
 export async function GET() {
   console.log("Manual cron execution triggered...");
   await fetchAndInsertICOData();

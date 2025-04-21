@@ -182,6 +182,7 @@ export default function CryptoCoinEditPage() {
   });
 
   const [launchpads, setLaunchpads] = useState([]);
+  const [blockchain, setBlockchain] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [subcategories, setSubcategories] = useState([]);
@@ -191,13 +192,50 @@ export default function CryptoCoinEditPage() {
   const router = useRouter();
   const { id } = params;
 
+  // useEffect(() => {
+  //   async function fetchContent() {
+  //     try {
+  //       const response = await axios.get(`/api/admin/crypto_coins/${id}`);
+  //       console.log("this is a response data..........",response);
+        
+  //       setFormData(response.data.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       toast.error('Failed to fetch content');
+  //       setLoading(false);
+  //       router.push('/admin/crypto-coins-icos');
+  //     }
+  //   }
+
+  //   if (id) {
+  //     fetchContent();
+  //   } 
+  // }, [id, router]);
+
   useEffect(() => {
     async function fetchContent() {
       try {
         const response = await axios.get(`/api/admin/crypto_coins/${id}`);
-        console.log("this is a response data..........",response);
+        console.log("this is a response data..........", response);
         
-        setFormData(response.data.data);
+        const coinData = response.data.data;
+        
+        // Set the main form data
+        setFormData(coinData);
+        
+        // Initialize fieldSets with details data if available
+        if (coinData.details && coinData.details.length > 0) {
+          const initialFieldSets = coinData.details.map((detail, index) => ({
+            id: index,
+            ...detail
+          }));
+          setFieldSets(initialFieldSets);
+          setNextId(coinData.details.length);
+        } else {
+          // If no details, initialize with empty fieldSet
+          setFieldSets([{ id: 0 }]);
+        }
+        
         setLoading(false);
       } catch (error) {
         toast.error('Failed to fetch content');
@@ -205,10 +243,10 @@ export default function CryptoCoinEditPage() {
         router.push('/admin/crypto-coins-icos');
       }
     }
-
+  
     if (id) {
       fetchContent();
-    } 
+    }
   }, [id, router]);
 
 
@@ -279,8 +317,31 @@ export default function CryptoCoinEditPage() {
 
   
      // Function to add a new field set
+  // const addNewFieldSet = () => {
+  //   setFieldSets([...fieldSets, { id: nextId, ...formData }]);
+  //   setNextId(nextId + 1);
+  // };
+
   const addNewFieldSet = () => {
-    setFieldSets([...fieldSets, { id: nextId, ...formData }]);
+    setFieldSets([...fieldSets, { 
+      id: nextId,
+      detail_total_supply: '',
+      detail_qty_of_coin: '',
+      detail_ico_price: '',
+      detail_where_to_buy: '',
+      detail_start_date: '',
+      detail_end_date: '',
+      detail_fund_asking_for: '',
+      detail_accept_type: '',
+      detail_ico_ido_type: '',
+      detail_is_review: '',
+      detail_token_for_sale: '',
+      detail_percentage_of_supply: '',
+      detail_one_usdt: '',
+      detail_soft_cap: '',
+      detail_hard_cap: '',
+      detail_personal_cap: ''
+    }]);
     setNextId(nextId + 1);
   };
   
@@ -291,25 +352,30 @@ export default function CryptoCoinEditPage() {
   };
   
   
-    const handleChange = (e) => {
-      const { name, value } = e.target; 
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
+   // For regular form fields
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData(prev => ({
+    ...prev,
+    [name]: value
+  }));
+};
 
-      // Create a copy of the fieldSets array
-    const updatedFieldSets = [...fieldSets];
-    
-    // Update the specific field in the correct field set
-    updatedFieldSets[index] = {
-      ...updatedFieldSets[index],
-      [name]: value
-    };
-    
-    setFieldSets(updatedFieldSets);
-    };
-
+// For fieldSet form fields
+const handleFieldSetChange = (e, index) => {
+  const { name, value } = e.target;
+  
+  // Create a copy of the fieldSets array
+  const updatedFieldSets = [...fieldSets];
+  
+  // Update the specific field in the correct field set
+  updatedFieldSets[index] = {
+    ...updatedFieldSets[index],
+    [name]: value
+  };
+  
+  setFieldSets(updatedFieldSets);
+};
     // Navigation functions
   const next = () => {
     if (activeTab < 4) {
@@ -342,7 +408,8 @@ export default function CryptoCoinEditPage() {
       };
       fetchLaunchpads();
     }, []);
-  
+
+      
 const launchpadOptions = [
   { value: 0, label: "Select Launchpad" },
   ...launchpads.map(launchpad => ({
@@ -351,6 +418,31 @@ const launchpadOptions = [
   }))
 ];
 
+
+useEffect(() => {
+  const fetchBlockchains = async () => {
+    try {
+      setLoading(true);
+      // Replace with your actual API endpoint
+      const response = await axios.get('/api/admin/ico_project?page=1&limit=100');
+      setBlockchain(response.data.data);
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to fetch blockchain data');
+      setLoading(false);
+      console.error('Error fetching blockchain data:', err);
+    }
+  };
+  fetchBlockchains();
+}, []);
+
+const blockchainOptions = [
+  { value: 0, label: "Select blockchain" },
+  ...blockchain.map(blockchain => ({
+    value: blockchain.id,
+    label: blockchain.title
+  }))
+];
    // Handle SunEditor content change
    const handleEditorChange = (content) => {
     setFormData((prev) => ({
@@ -375,18 +467,56 @@ if (file) {
 }
 };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+    
+  //   try {
+  //     await axios.put(`/api/admin/crypto_coins/${id}`, formData);
+  //     toast.success('Crypto Coin updated successfully');
+  //     router.push(`/admin/crypto-coins-icos`);
+  //   } catch (error) {
+  //     toast.error('Failed to update content');
+  //   } 
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
-      await axios.put(`/api/admin/crypto_coins/${id}`, formData);
+      // Prepare the details array from fieldSets
+      const details = fieldSets.map(fieldSet => ({
+        detail_total_supply: fieldSet.detail_total_supply,
+        detail_qty_of_coin: fieldSet.detail_qty_of_coin,
+        detail_ico_price: fieldSet.detail_ico_price,
+        detail_where_to_buy: fieldSet.detail_where_to_buy,
+        detail_start_date: fieldSet.detail_start_date,
+        detail_end_date: fieldSet.detail_end_date,
+        detail_fund_asking_for: fieldSet.detail_fund_asking_for,
+        detail_accept_type: fieldSet.detail_accept_type,
+        detail_ico_ido_type: fieldSet.detail_ico_ido_type,
+        detail_is_review: fieldSet.detail_is_review,
+        detail_token_for_sale: fieldSet.detail_token_for_sale,
+        detail_percentage_of_supply: fieldSet.detail_percentage_of_supply,
+        detail_one_usdt: fieldSet.detail_one_usdt,
+        detail_soft_cap: fieldSet.detail_soft_cap,
+        detail_hard_cap: fieldSet.detail_hard_cap,
+        detail_personal_cap: fieldSet.detail_personal_cap
+      }));
+       
+      // Create the data object with both form data and details
+      const updateData = {
+        ...formData,
+        details: details
+      };
+      
+      await axios.put(`/api/admin/crypto_coins/${id}`, updateData);
       toast.success('Crypto Coin updated successfully');
       router.push(`/admin/crypto-coins-icos`);
     } catch (error) {
       toast.error('Failed to update content');
+      console.error(error);
     } 
   };
-
 
 
   return (
@@ -645,18 +775,11 @@ if (file) {
                               onChange={handleChange}
                               className="form-select form-control"
                             >
-                              <option selected>Select Blockchain</option>
-                              <option value="Animoca Brands Portfolio">Animoca Brands Portfolio</option>
-                              <option value="Arbitrum">Arbitrum</option>
-                              <option value="Avalanche">Avalanche</option>
-                              <option value="base"> base</option>
-                              <option value="Binance-Smart-Chain">Binance-Smart-Chain</option>
-                              <option value="Calaxy">Calaxy</option>
-                              <option value="Cardano-Ecosystem">Cardano-Ecosystem</option>
-                              <option value="CIRX">CIRX</option>
-                              <option value="Coinbase-Ventures-Portofolio">Coinbase-Ventures-Portofolio</option>
-                              <option value="Collectibles-Nfts"> Collectibles-Nfts</option>
-
+                                  {blockchainOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
                             </select>
                             </div>
                             
@@ -2105,7 +2228,7 @@ if (file) {
                           <input
                             name="one_usdt"
                             type="text"
-                            value={formData.one_usdt}
+                            value={formData.one_usdt || ''}
                             onChange={handleChange}
                             className="form-control"
                           />
@@ -2128,17 +2251,14 @@ if (file) {
                                   </label>
                                 </div>
                                 <div className="col-md-2">
-                                  <input
-                                    type="number"
-                                    name="detail_total_supply"
-                                    placeholder="Total Supply"
-                                    value={
-                                      fieldSets[index]?.detail_total_supply ||
-                                      ""
-                                    }
-                                    onChange={(e) => handleChange(e, index)}
-                                    className="form-control"
-                                  />
+                                <input
+  type="number"
+  name="detail_total_supply"
+  placeholder="Total Supply"
+  value={fieldSets[index]?.detail_total_supply || ""}
+  onChange={(e) => handleFieldSetChange(e, index)}
+  className="form-control"
+/>
                                 </div>
                                 <div className="col-md-3">
                                   <input
@@ -2147,7 +2267,7 @@ if (file) {
                                     value={
                                       fieldSets[index]?.detail_qty_of_coin || ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     placeholder="Quantity of coin"
                                     className="form-control"
                                   />
@@ -2157,7 +2277,7 @@ if (file) {
                                     type="text"
                                     name="detail_ico_price"
                                     value={fieldSets[index]?.detail_ico_price || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     placeholder="ICO Price"
                                     className="form-control"
                                   />
@@ -2169,7 +2289,7 @@ if (file) {
                                     value={
                                       fieldSets[index]?.detail_where_to_buy || ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     placeholder="Where to Buy"
                                     className="form-control"
                                   />
@@ -2182,7 +2302,7 @@ if (file) {
                                     type="date"
                                     name="detail_start_date"
                                     value={fieldSets[index]?.detail_start_date || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                   />
                                 </div>
@@ -2191,7 +2311,7 @@ if (file) {
                                     type="date"
                                     name="detail_end_date"
                                     value={fieldSets[index]?.detail_end_date || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                   />
                                 </div>
@@ -2202,7 +2322,7 @@ if (file) {
                                     value={
                                       fieldSets[index]?.detail_fund_asking_for || ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     placeholder="Where to Buy"
                                     className="form-control"
                                   />
@@ -2214,7 +2334,7 @@ if (file) {
                                       fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
@@ -2234,14 +2354,16 @@ if (file) {
                                       fieldSets[index]?.detail_ico_ido_type ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
                                       Select Ico / Ido
                                     </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value={0}>Presale</option>
+                                    <option value={1}>ICO</option>
+                                    <option value={2}>IDO</option>
+                                    <option value={3}>IEO</option>
                                   </select>
                                 </div>
                                 <div className="col-md-2">
@@ -2251,7 +2373,7 @@ if (file) {
                                       fieldSets[index]?.detail_accept_type ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
@@ -2268,7 +2390,7 @@ if (file) {
                                       fieldSets[index]?.selectaccept_type ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
@@ -2285,14 +2407,14 @@ if (file) {
                                       fieldSets[index]?.detail_is_review ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
                                       Select Is Review
                                     </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value={1}>Yes</option> 
+                                    <option value={0}>No</option>
                                   </select>
                                 </div>
                                 <div className="col-md-4">
@@ -2300,7 +2422,7 @@ if (file) {
                                     type="text"
                                     name="detail_token_for_sale"
                                     value={fieldSets[index]?.detail_token_for_sale || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="Token For Sale"
                                   />
@@ -2316,7 +2438,7 @@ if (file) {
                                       fieldSets[index]?.detail_percentage_of_supply ||
                                       ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="Percentage For Supply"
                                   />
@@ -2328,7 +2450,7 @@ if (file) {
                                       fieldSets[index]?.privateSaleSelect ||
                                       "Select Featured"
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-select"
                                   >
                                     <option value="Select Featured">
@@ -2345,7 +2467,7 @@ if (file) {
                                     value={
                                       fieldSets[index]?.detail_one_usdt || ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="1 Usdt"
                                   />
@@ -2358,7 +2480,7 @@ if (file) {
                                     type="text"
                                     name="detail_soft_cap"
                                     value={fieldSets[index]?.detail_soft_cap || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="Soft Cap 2"
                                   />
@@ -2368,7 +2490,7 @@ if (file) {
                                     type="text"
                                     name="detail_hard_cap"
                                     value={fieldSets[index]?.detail_hard_cap || ""}
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="Hard Cap 2"
                                   />
@@ -2380,7 +2502,7 @@ if (file) {
                                     value={
                                       fieldSets[index]?.detail_personal_cap || ""
                                     }
-                                    onChange={(e) => handleChange(e, index)}
+                                    onChange={(e) => handleFieldSetChange(e, index)}
                                     className="form-control"
                                     placeholder="Personal Cap2"
                                   />

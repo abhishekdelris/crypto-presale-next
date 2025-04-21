@@ -412,62 +412,92 @@ export async function PUT(request, context) {
     });
 
     // Handle the details table correctly
-    if (existingContentDetails && existingContentDetails.length > 0) {
-      // Update existing details records
-      for (const detail of existingContentDetails) {
-        await prisma.crypto_coins_icos_details.update({
-          where: { id: detail.id },
-          data: {
-            detail_total_supply: body.detail_total_supply || '',
-            detail_qty_of_coin: body.detail_qty_of_coin || '',
-            detail_ico_price: body.detail_ico_price || '',
-            detail_where_to_buy: body.detail_where_to_buy || '',
-            detail_start_date: body.detail_start_date || '',
-            detail_end_date: body.detail_end_date || '',
-            detail_fund_asking_for: body.detail_fund_asking_for || '',
-            detail_accept_type: body.detail_accept_type || '',
-            detail_ico_ido_type: body.detail_ico_ido_type || '',
-            selectaccept_type: body.selectaccept_type || '',
-            detail_is_review: body.detail_is_review || '',
-            detail_token_for_sale: body.detail_token_for_sale || '',
-            detail_percentage_of_supply: body.detail_percentage_of_supply || '',
-            privateSaleSelect: body.privateSaleSelect || '',
-            detail_one_usdt: body.detail_one_usdt || '',
-            detail_soft_cap: body.detail_soft_cap || '',
-            detail_hard_cap: body.detail_hard_cap || '',
-            detail_personal_cap: body.detail_personal_cap || '',
-            updated_at: new Date()
-          }
-        });
+   // Handle the details table correctly
+if (body.details && Array.isArray(body.details)) {
+  // Delete existing details records
+  await prisma.crypto_coins_icos_details.deleteMany({
+    where: { crypto_coins_icos_id: id }
+  });
+  
+  // Create new details records for each entry in the array
+  for (const detail of body.details) {
+    await prisma.crypto_coins_icos_details.create({
+      data: {
+        crypto_coins_icos_id: id,
+        detail_total_supply: detail.detail_total_supply || '',
+        detail_qty_of_coin: detail.detail_qty_of_coin || '',
+        detail_ico_price: detail.detail_ico_price || '',
+        detail_where_to_buy: detail.detail_where_to_buy || '',
+        detail_start_date: detail.detail_start_date || '',
+        detail_end_date: detail.detail_end_date || '',
+        detail_fund_asking_for: detail.detail_fund_asking_for || '',
+        detail_accept_type: detail.detail_accept_type || '',
+        detail_ico_ido_type: detail.detail_ico_ido_type || '', 
+        detail_launchpad: parseInt(detail.detail_launchpad) || null,
+        detail_ico_project_type_id: parseInt(detail.detail_ico_project_type_id) || null,
+        detail_is_review: detail.detail_is_review || '',
+        detail_token_for_sale: detail.detail_token_for_sale || '',
+        detail_percentage_of_supply: detail.detail_percentage_of_supply || '',
+        detail_ico_stage: parseInt(detail.detail_ico_stage) || null,
+        detail_one_usdt: detail.detail_one_usdt || '',
+        detail_soft_cap: detail.detail_soft_cap || '',
+        detail_hard_cap: detail.detail_hard_cap || '',
+        detail_personal_cap: detail.detail_personal_cap || '',
+        created_at: new Date(),
+        updated_at: new Date()
       }
-    } else {
-      // Create a new details record if none exists
-      await prisma.crypto_coins_icos_details.create({
-        data: {
-          crypto_coins_icos_id: id,
-          detail_total_supply: body.detail_total_supply || '',
-          detail_qty_of_coin: body.detail_qty_of_coin || '',
-          detail_ico_price: body.detail_ico_price || '',
-          detail_where_to_buy: body.detail_where_to_buy || '',
-          detail_start_date: body.detail_start_date || '',
-          detail_end_date: body.detail_end_date || '',
-          detail_fund_asking_for: body.detail_fund_asking_for || '',
-          detail_accept_type: body.detail_accept_type || '',
-          detail_ico_ido_type: body.detail_ico_ido_type || '',
-          selectaccept_type: body.selectaccept_type || '',
-          detail_is_review: body.detail_is_review || '',
-          detail_token_for_sale: body.detail_token_for_sale || '',
-          detail_percentage_of_supply: body.detail_percentage_of_supply || '',
-          privateSaleSelect: body.privateSaleSelect || '',
-          detail_one_usdt: body.detail_one_usdt || '',
-          detail_soft_cap: body.detail_soft_cap || '',
-          detail_hard_cap: body.detail_hard_cap || '',
-          detail_personal_cap: body.detail_personal_cap || '',
-          created_at: new Date(),
-          updated_at: new Date()
-        }
-      });
+    });
+  }
+} else if (existingContentDetails && existingContentDetails.length > 0) {
+  // If no details array is provided but we have existing details, update the first one
+  await prisma.crypto_coins_icos_details.update({
+    where: { id: existingContentDetails[0].id },
+    data: {
+      detail_total_supply: body.detail_total_supply || '',
+      detail_qty_of_coin: body.detail_qty_of_coin || '',
+      detail_ico_price: body.detail_ico_price || '',
+      detail_where_to_buy: body.detail_where_to_buy || '',
+      detail_start_date: body.detail_start_date || '',
+      detail_end_date: body.detail_end_date || '',
+      detail_fund_asking_for: body.detail_fund_asking_for || '',
+      detail_accept_type: body.detail_accept_type || '',
+      detail_ico_ido_type: body.detail_ico_ido_type || '',
+      detail_is_review: body.detail_is_review || '',
+      detail_token_for_sale: body.detail_token_for_sale || '',
+      detail_percentage_of_supply: body.detail_percentage_of_supply || '',
+      detail_one_usdt: body.detail_one_usdt || '',
+      detail_soft_cap: body.detail_soft_cap || '',
+      detail_hard_cap: body.detail_hard_cap || '',
+      detail_personal_cap: body.detail_personal_cap || '',
+      updated_at: new Date()
     }
+  });
+} else if (body.detail_qty_of_coin || body.detail_ico_price) {
+  // Create a new details record if none exists but we have detail data
+  await prisma.crypto_coins_icos_details.create({
+    data: {
+      crypto_coins_icos_id: id,
+      detail_total_supply: body.detail_total_supply || '',
+      detail_qty_of_coin: body.detail_qty_of_coin || '',
+      detail_ico_price: body.detail_ico_price || '',
+      detail_where_to_buy: body.detail_where_to_buy || '',
+      detail_start_date: body.detail_start_date || '',
+      detail_end_date: body.detail_end_date || '',
+      detail_fund_asking_for: body.detail_fund_asking_for || '',
+      detail_accept_type: body.detail_accept_type || '',
+      detail_ico_ido_type: body.detail_ico_ido_type || '',
+      detail_is_review: body.detail_is_review || '',
+      detail_token_for_sale: body.detail_token_for_sale || '',
+      detail_percentage_of_supply: body.detail_percentage_of_supply || '',
+      detail_one_usdt: body.detail_one_usdt || '',
+      detail_soft_cap: body.detail_soft_cap || '',
+      detail_hard_cap: body.detail_hard_cap || '',
+      detail_personal_cap: body.detail_personal_cap || '',
+      created_at: new Date(),
+      updated_at: new Date()
+    }
+  });
+}
     
     return NextResponse.json({
       success: true,
@@ -690,7 +720,7 @@ export async function GET(request, { params }) {
         { status: 404 }
       );
     }
-
+ 
     // Merge the content with details
     const mergedContent = {
       ...content,

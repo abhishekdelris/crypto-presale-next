@@ -1,73 +1,87 @@
-import { verifyPassword, getUserByEmail } from "../../../../lib/auth";
-import { generateToken } from "../../../../lib/jwt";
-import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+
+const prisma = new PrismaClient();
 
 export async function POST(request) {
   try {
-    // Parse the request body
     const body = await request.json();
-    const { email, password } = body;
+    const { email } = body;
 
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: "Email and password are required" },
-        { status: 400 }
-      );
+    if (!email) {
+      return NextResponse.json({ success: false, message: 'Email is required' }, { status: 400 });
     }
 
-    // Get user from database
-    const user = await getUserByEmail(email);
+    const user = await prisma.users.findUnique({
+      where: { email: email.toLowerCase() },
+    });
+
+    // Don't reveal existence
     if (!user) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 }
-      );
+      return NextResponse.json({
+        success: true,
+        message: 'If an account with that email exists, a password reset link has been sent'
+      });
     }
 
-    // Verify password
-    const isValid = await verifyPassword(password, user.password);
-    if (!isValid) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 }
-      );
-    }
+    // Generate and hash reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    const tokenExpiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
-    // Generate JWT token
-    const token = generateToken({
-      id: user.id,
-      email: user.email,
-      name: user.name
+    await prisma.users.update({
+      where: { id: user.id },
+      data: {
+        token: hashedToken,
+        token_expired: tokenExpiry,
+      }, 
     });
 
-    // Create a new response
-    const response = NextResponse.json({
+    // Construct frontend reset link
+    const resetUrl = `${process.env.NEXTAUTH_URL}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`;
+
+    // Send reset email
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: parseInt(process.env.EMAIL_PORT),
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM,
+      to: email,
+      subject: 'Password Reset Request',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>Password Reset</h2>
+          <p>You requested a password reset. Click the button below to create a new password:</p>
+          <p>
+            <a href="${resetUrl}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;">
+              Reset Your Password
+            </a>
+          </p>
+          <p>This link will expire in 1 hour.</p>
+          <p>If you didn't request this, please ignore this email.</p>
+        </div>
+      `,
+    });
+
+    return NextResponse.json({
       success: true,
-      message: "Login successful",
-      token: token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name
-        // Exclude password
-      }
+      message: 'Password reset link sent to your email',
     });
-
-    // Set HTTP-only cookie
-    cookies().set({
-      name: "auth",
-      value: token,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 60 * 60 * 24 * 7, // 1 week
-      path: "/"
-    });
-
-    return response;
   } catch (error) {
-    console.error("Login error:", error);
-    return NextResponse.json({ error: "Failed to log in" }, { status: 500 });
+    console.error('Forgot password error:', error);
+    return NextResponse.json({
+      success: false,
+      message: 'An error occurred. Please try again later.'
+    }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }

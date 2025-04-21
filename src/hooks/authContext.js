@@ -182,10 +182,13 @@ export function AuthProvider({ children }) {
       if (!response.ok) {
         return { success: false, error: data.error };
       }
-
-      // Auto login after successful registration
-      const loginResult = await login(email, password);
-      return loginResult;
+     if(data.success) {
+      return { success: true };
+     }
+       
+      // // Auto login after successful registration
+      // const loginResult = await login(email, password);
+      // return loginResult;
     } catch (error) {
       return { success: false, error: "Registration failed" };
     }

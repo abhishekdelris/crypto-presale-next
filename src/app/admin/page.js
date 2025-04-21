@@ -71,7 +71,7 @@ export default function Home() {
       email: "adminnextjs@gmail.com",
       password: "1234567890"
     },
-  });
+  }); 
 
   const onSubmit = async (data) => {
     try {
@@ -83,8 +83,9 @@ export default function Home() {
       //   return;
       // }
       console.log("login data...........!",data)
-      await login(data?.email, data?.password);
+     const loginResponse =   await login(data?.email, data?.password);
       console.log("login successful.....!");
+
       return RouteChange();
      
       

@@ -61,7 +61,7 @@ model author_models {
   is_approved             Int       @default(0)
   order_by                Int       @default(0)
   is_active               Int?  @default(0)
-  status                  Int
+  status                  Int 
   created_at              DateTime? @db.Timestamp(0)
   updated_at              DateTime? @db.Timestamp(0)
   deleted_at              DateTime? @db.Timestamp(0)

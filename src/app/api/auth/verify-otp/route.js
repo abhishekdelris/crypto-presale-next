@@ -147,11 +147,11 @@ export async function POST(request) {
     <body>
         <div class="email-container">
             <div class="header">
-                <img src="https://cryptopresale.xyz/public/avtar.webp" alt="Crypto Presale Logo" />
+                <img src="https://cryptopresale.xyz/_next/static/media/presale.30642116.png" alt="Crypto Presale Logo" />
             </div>
             
             <div class="content">
-                <h1>Hello, User</h1>
+                <h1>Hello, ${otpRecord.name}</h1>
                 <p class="welcome-text">Thank you for Register on Crypto Presale</p>
                 
                 <p>Crypto presales are offering opportunities for early investment in various projects. emphasizing potential growth and innovative features like Layer 1 Web3 aggregation and DeFi wallet technology...</p>

@@ -121,7 +121,7 @@ export const MENUITEMS = [
 				active: false, 
 				selected: false, 
 				dirchange: false, 
-				title: "Crypto News" 
+				title: "Crypto coin icos" 
 			},
 			{ 
 				path: "/admin/launchpad", 

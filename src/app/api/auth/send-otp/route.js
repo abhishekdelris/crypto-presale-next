@@ -142,13 +142,113 @@ export async function POST(request) {
       to: email,
       subject: 'Your OTP Code',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>One-Time Password</h2>
-          <p>Your OTP code is:</p>
-          <h1 style="font-size: 32px; letter-spacing: 5px; background-color: #f4f4f4; padding: 10px; text-align: center;">${otp}</h1>
-          <p>This code will expire in 10 minutes.</p>
-          <p>If you did not request this code, please ignore this email.</p>
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your One-Time Password</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            background: linear-gradient(180deg,#0a2a4b,#04182d);
+            padding: 25px 30px;
+            text-align: center;
+        }
+        .header img {
+            height: 40px;
+        }
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 30px;
+        }
+        .otp-container {
+            background-color: #d1e8ff;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+        }
+        .otp-code {
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            color: #25283d;
+            margin: 15px 0;
+        }
+        .expiry {
+            background-color: #fff0d1;
+            border-left: 4px solid #ffd448;
+            padding: 12px 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #d1e8ff;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #3c3c3c;
+        }
+        .security-note {
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://cryptopresale.xyz/_next/static/media/presale.30642116.png" alt="Crypto Presale" />
         </div>
+        
+        <div class="content">
+            <p>Hello,</p>
+            <p>We received a request to reset your password. To complete this process, please use the following verification code:</p>
+            
+            <div class="otp-container">
+                <p>Your One-Time Password</p>
+                <div class="otp-code">${otp}</div>
+            </div>
+            
+            <div class="expiry">
+                <strong> Time sensitive:</strong> This code will expire in 10 minutes.
+            </div>
+            
+            <p>If you didn't request this code, please ignore this email </p>
+            <div class="security-note">
+                For your security, never share this code with anyone, including our support team. Our staff will never ask for your verification code.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Crypto Presale. All rights reserved.</p>
+            <p>This is an automated message, please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>
       `
     };
 

@@ -57,17 +57,141 @@ export async function POST(request) {
       to: email,
       subject: 'Password Reset Request',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Password Reset</h2>
-          <p>You requested a password reset. Click the button below to create a new password:</p>
-          <p>
-            <a href="${resetUrl}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;">
-              Reset Your Password
-            </a>
-          </p>
-          <p>This link will expire in 1 hour.</p>
-          <p>If you didn't request this, please ignore this email.</p>
-        </div>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(180deg,#0a2a4b,#04182d);
+            padding: 20px 0;
+        }
+        .content {
+            padding: 30px 20px;
+            background-color: #ffffff;
+        }
+        .footer {
+            background-color: #d1e8ff;
+            padding: 15px;
+            font-size: 12px;
+            color: #3c3c3c;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #fdc14b, #fdc84b);
+            color: #212529;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .info-text {
+            font-size: 14px;
+            color: #777777;
+        }
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+            .expiry {
+                background-color: #fff0d1;
+                border-left: 4px solid #ffd448;
+                padding: 12px 15px;
+                margin: 20px 0;
+                font-size: 14px;
+            }
+    </style>
+</head>
+<body>
+    <table class="email-container" style="border: 0px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);border-collapse: separate; border-spacing: 0; width: 100%;">
+        <tr>
+            <th></th>
+        </tr>
+        <!-- Header -->
+        <tr>
+            <td>
+                <table style="border: 0px; border-collapse: separate; border-spacing: 0; width: 100%;">
+                    <tr>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="header" style="text-align: center;">
+                            <div class="logo"><img src="https://cryptopresale.xyz/_next/static/media/presale.30642116.png" alt="Crypto Presale" /></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <!-- Main Content -->
+        <tr>
+            <td>
+                <table style="border: 0px; border-collapse: separate; border-spacing: 0; width: 100%;">
+                    <tr>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="content">
+                            <h2 style="color: #212529; margin-top: 0;">Password Reset Request</h2>
+                            <p>Hello,</p>
+                            <p>We received a request to reset your password. To create a new password, please click the button below:</p>
+                            
+                            <table style="border: 0px; border-collapse: separate; border-spacing: 0; width: 100%;">
+                                <tr>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <a href="${resetUrl}" class="button">Reset Your Password</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <div class="expiry">
+                                <strong>⏱️ Time sensitive:</strong> This link will expire in 1 hour for security reasons.
+                            </div>
+                            <p class="info-text">If you didn't request this password reset, please ignore this email or contact support if you have concerns about your account.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <!-- Footer -->
+        <tr>
+            <td>
+                <table style="border: 0px; border-collapse: separate; border-spacing: 0; width: 100%;">
+                    <tr>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="footer">
+                            <p>&copy;  2025 Crypto Presale. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
       `,
     });
 

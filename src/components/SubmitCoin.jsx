@@ -2,6 +2,7 @@
 import React, { useState,useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from '../hooks/authContext';
+import axios from 'axios';
 import {  useRouter } from 'next/navigation';
 
 function SubmitCoin() {
@@ -9,6 +10,7 @@ function SubmitCoin() {
   const [currentTab, setCurrentTab] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
+    const [launchpads, setLaunchpads] = useState([]);
    const { isLoggedIn, logout,user } = useAuth();
  const [loading, setLoading] = useState(true); 
   const router = useRouter();
@@ -102,6 +104,23 @@ function SubmitCoin() {
     mediumLink: "",
     whitepaperLink: ""
   });
+
+  useEffect(() => {
+    const fetchLaunchpads = async () => {
+      try {
+        setLoading(true);
+        // Replace with your actual API endpoint
+        const response = await axios.get('/api/admin/launchpad');
+        setLaunchpads(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        // setError('Failed to fetch launchpad data');
+        setLoading(false);
+        console.error('Error fetching launchpad data:', err);
+      }
+    };
+    fetchLaunchpads();
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn === false) {
@@ -264,99 +283,15 @@ function SubmitCoin() {
       setIsSubmitting(false);
     }
   };
+ 
+
 
   const launchpadOptions = [
-    { value: 0, label: "Select Project Type" },
-    { value: 1, label: "DAO Maker Launchpad" },
-    { value: 2, label: "BSCPad" },
-    { value: 3, label: "TrustSwap" },
-    { value: 4, label: "BullStarter" },
-    { value: 5, label: "Polkastarter" },
-    { value: 6, label: "Seedify" },
-    { value: 7, label: "RedKite" },
-    { value: 8, label: "Bounce" },
-    { value: 9, label: "Paid Ignition" },
-    { value: 10, label: "ChainBoost" },
-    { value: 11, label: "GameFi" },
-    { value: 12, label: "Trustpad" },
-    { value: 13, label: "Starter" },
-    { value: 14, label: "DuckSTARTER" },
-    { value: 15, label: "InfinityPad" },
-    { value: 16, label: "Binance" },
-    { value: 17, label: "Solstarter" },
-    { value: 18, label: "Solanium" },
-    { value: 19, label: "WeStarter" },
-    { value: 20, label: "BSClaunch" },
-    { value: 21, label: "MoonStarter" },
-    { value: 22, label: "ZENDIT" },
-    { value: 23, label: "KrystalGO" },
-    { value: 24, label: "Gamestarter" },
-    { value: 25, label: "Enjinstarter" },
-    { value: 26, label: "Oxbull" },
-    { value: 27, label: "SharkPad" },
-    { value: 28, label: "SafeLaunch" },
-    { value: 29, label: "PinkSale" },
-    { value: 30, label: "LaunchZone" },
-    { value: 31, label: "Poolz" },
-    { value: 32, label: "METAVPAD" },
-    { value: 33, label: "BinStarter" },
-    { value: 34, label: "Kommunitas" },
-    { value: 35, label: "TrustFi" },
-    { value: 36, label: "UpLift" },
-    { value: 37, label: "DAOStarter" },
-    { value: 38, label: "Synapse Network" },
-    { value: 39, label: "A2DAO" },
-    { value: 40, label: "GameZone" },
-    { value: 41, label: "MoonEdge" },
-    { value: 42, label: "Seeded Network" },
-    { value: 43, label: "TruePNL" },
-    { value: 44, label: "DxSale" },
-    { value: 45, label: "Prostarter" },
-    { value: 46, label: "SuperLauncher" },
-    { value: 47, label: "VentUp" },
-    { value: 48, label: "HAPI Launchpad" },
-    { value: 49, label: "Paragen" },
-    { value: 50, label: "Babylons" },
-    { value: 51, label: "TokenSoft" },
-    { value: 52, label: "CyberFi Samurai" },
-    { value: 53, label: "UniCrypt" },
-    { value: 54, label: "Launchpool" },
-    { value: 55, label: "Scaleswap" },
-    { value: 56, label: "Unicrypt Network" },
-    { value: 57, label: "Solcubator" },
-    { value: 58, label: "SolRazr" },
-    { value: 59, label: "TrustLaunch" },
-    { value: 60, label: "CardStarter" },
-    { value: 61, label: "AdaPad" },
-    { value: 62, label: "OccamRazer" },
-    { value: 63, label: "Vent Finance" },
-    { value: 64, label: "Trustpad Launchpad" },
-    { value: 65, label: "RoseonPad" },
-    { value: 66, label: "DAOlaunch" },
-    { value: 67, label: "GAGARIN" },
-    { value: 68, label: "NFTb" },
-    { value: 69, label: "Binance NFT" },
-    { value: 70, label: "Solanium Launchpad" },
-    { value: 71, label: "Binstarter Launchpad" },
-    { value: 72, label: "Occam.fi" },
-    { value: 73, label: "Paid Network" },
-    { value: 74, label: "Cardence" },
-    { value: 75, label: "Synapse Launchpad" },
-    { value: 76, label: "Krystal IDO" },
-    { value: 77, label: "Firestarter" },
-    { value: 78, label: "TronPad" },
-    { value: 79, label: "TronStarter" },
-    { value: 80, label: "Terra Virtua" },
-    { value: 81, label: "NFTLaunch" },
-    { value: 82, label: "Solstarter Launchpad" },
-    { value: 83, label: "BabylonDAO" },
-    { value: 84, label: "DAOLaunchpad" },
-    { value: 85, label: "Parastarter" },
-    { value: 86, label: "MISO" },
-    { value: 87, label: "SpacePad" },
-    { value: 88, label: "NovaLaunch" },
-    { value: 89, label: "ZeroSwap" },
-    { value: 90, label: "truffle" }
+    { value: 0, label: "Select Launchpad" },
+    ...launchpads.map(launchpad => ({
+      value: launchpad.id,
+      label: launchpad.title
+    }))
   ];
 
 
@@ -929,11 +864,11 @@ function SubmitCoin() {
                               onChange={handleInputChange}
                               className="form-select form-control"
                             >
-                              {launchpadOptions.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
+                               {launchpadOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
                             </select>
                           </div>
                           

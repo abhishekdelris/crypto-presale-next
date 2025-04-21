@@ -689,7 +689,7 @@ export async function POST(request) {
           .toLowerCase();
 
         // Format: uploads/march/2025/randomkey.webp
-        imageKey = `uploads/${year}/${month}/${randomKey}.${fileExtension}`;
+        imageKey = `content/${year}/${month}/${randomKey}.${fileExtension}`;
 
         // Upload to S3
         await s3Client.send(
@@ -742,7 +742,7 @@ export async function POST(request) {
       short_desc: postData.short_desc || null,
       description: postData.description,
       url: postData.url || "null",
-      image: postData.image || null,
+      image: imageKey || null,
       img_alt_title: postData.img_alt_title || null,
       is_thumb: postData.is_thumb || 0,
       urlToImage: postData.urlToImage || null,

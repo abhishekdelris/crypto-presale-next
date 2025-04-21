@@ -95,7 +95,7 @@ export async function POST(request) {
           .toLowerCase();
 
         // Format: uploads/year/month/randomkey.extension
-        imageKey = `uploads/${year}/${month}/${randomKey}.${fileExtension}`;
+        imageKey = `submit_ico/${year}/${month}/${randomKey}.${fileExtension}`;
 
         // Upload to S3
         await s3Client.send(
@@ -137,7 +137,7 @@ export async function POST(request) {
       coin_name,
       alias,
       slug,
-      image: imageUrl, // Use the S3 URL instead of the form field
+      image: imageKey, // Use the S3 URL instead of the form field
       start_time: start_time ? new Date(start_time) : null,
       end_time: end_time ? new Date(end_time) : null,
       total_coin,

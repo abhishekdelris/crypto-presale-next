@@ -1443,7 +1443,7 @@ export async function POST(request) {
         const month = now.toLocaleString("en-US", { month: "long" }).toLowerCase();
 
         // Format: uploads/year/month/randomkey.ext
-        const fileKey = `uploads/${year}/${month}/${randomKey}.${fileExtension}`;
+        const fileKey = `crypto_coin_icos/${year}/${month}/${randomKey}.${fileExtension}`;
 
         // Validate file type
         if (!allowedExtensions.includes(fileExtension)) {

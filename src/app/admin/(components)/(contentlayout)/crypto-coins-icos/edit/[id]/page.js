@@ -186,7 +186,7 @@ export default function CryptoCoinEditPage() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [subcategories, setSubcategories] = useState([]);
-
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const router = useRouter();

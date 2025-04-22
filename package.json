@@ -78,6 +78,7 @@
     "simplebar-react": "^3.2.6",
     "suneditor": "^2.47.5",
     "suneditor-react": "^3.6.1",
+    "yet-another-react-lightbox": "^3.22.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {

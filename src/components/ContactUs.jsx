@@ -239,7 +239,7 @@ function ContactUs() {
                       </div>
                       <div className="contact-item-content">
                         <h3>Email Address</h3>
-                        <p>resale@cryptopresale.xyz</p>
+                        <p>presale@cryptopresale.xyz</p> 
                       </div>
                     </div>
                   </div>

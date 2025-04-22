@@ -847,11 +847,11 @@ function SubmitCoin() {
                               onChange={handleInputChange}
                             >
                               <option value="">Select Funding Stage</option>
-                              <option value="1">Privatesale</option>
-                              <option value="2">Presale</option>
-                              <option value="3">Publicsale</option>
-                              <option value="4">ICO</option>
-                              <option value="5">IEO</option>
+                              <option value="0">Privatesale</option>
+                              <option value="1">Presale</option>
+                              <option value="2">Publicsale</option>
+                              <option value="3">ICO</option>
+                              <option value="4">IEO</option>
                             </select>
                           </div>
                           <div className="col-md-6 mb-3">

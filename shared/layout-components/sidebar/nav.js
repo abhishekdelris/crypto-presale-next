@@ -124,6 +124,14 @@ export const MENUITEMS = [
 				title: "Crypto coin icos" 
 			},
 			{ 
+				path: "/admin/registerNewCoins", 
+				type: "link", 
+				active: false, 
+				selected: false, 
+				dirchange: false, 
+				title: "registerNewCoins" 
+			}, 
+			{ 
 				path: "/admin/launchpad", 
 				type: "link", 
 				active: false, 

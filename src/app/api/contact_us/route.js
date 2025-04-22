@@ -11,7 +11,7 @@ export async function POST(req) {
         name: body.name,
         email: body.email,
         inquiry_type: body.inquiry_type,
-        mobile: body.mobile,
+        mobile: body.mobile || null,
         message: body.message,
         file: body.file || null,
         replied: body.replied ?? 0,

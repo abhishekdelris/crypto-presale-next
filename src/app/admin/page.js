@@ -124,7 +124,7 @@ export default function Home() {
 
                           <Col lg={6} xl={5} className="d-none d-lg-block text-center bg-primary details">
                             <div className="mt-5 pt-4 p-2 position-absolute">
-                              <Link scroll={false} href={"/admin/dashboard/"}><img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/logo.png`} className="header-brand-img mb-4" alt="logo" /></Link>
+                              <Link scroll={false} href={"/admin/dashboard/"}><img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/presale.png`} className="header-brand-img mb-4" alt="logo" /></Link>
                               <div className="clearfix"></div>
                               <img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/svgs/user.svg`} className="ht-100 mb-0" alt="user" />
                               <h5 className="mt-4">Create Your Account</h5>

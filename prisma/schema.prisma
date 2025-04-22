@@ -73,7 +73,7 @@ model contact_us {
   name          String    @db.VarChar(100)
   email         String    @db.VarChar(250)
   inquiry_type  String    @db.VarChar(50)
-  mobile       String    @db.VarChar(155)
+   mobile       String?    @db.VarChar(155)
   message       String    @db.Text
   file          String?   @db.VarChar(100)
   replied       Int?   @default(0)
@@ -741,7 +741,7 @@ model submit_ico {
   user_id            Int?
   fund_stage         Int?
   launchpad          Int?
-  other_launchpad    String?   @db.VarChar(30)
+  other_launchpad    String?   @db.VarChar(30) 
   type               Int?
   crypto_market_id   Int?
   coin_name          String?   @db.VarChar(30)

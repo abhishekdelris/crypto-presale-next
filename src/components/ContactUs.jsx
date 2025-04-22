@@ -13,7 +13,7 @@
 //       name: 'Jane Doe',
 //       email: 'jane@example.com',
 //       inquiry_type: 'Partnership',
-//       mobile: '9876543210',
+//       telegram_id: '9876543210',
 //       message: 'I would like to partner...',
 //       subject: 'Business Proposal',
 //     };
@@ -116,7 +116,7 @@
 //                 <input type="text" className="form-control" placeholder="Last Name" name />
 //               </div>
 //               <div className="col-xl-12 mb-4">
-//                 <input type="text" className="form-control" placeholder="Mobile No" name />
+//                 <input type="text" className="form-control" placeholder="telegram_id No" name />
 //               </div>
 //               <div className="col-xl-12 mb-4">
 //                 <input type="text" className="form-control" placeholder="Email Address" name />
@@ -140,14 +140,14 @@
 //   )
 // }
 
-// export default ContactUs
+// export default ContactUs 
 
 
 'use client';
 
 import React, { useState } from 'react'; 
 import Image from 'next/image';
-import phoneImage from "../images/phone.png";
+import phoneImage from "../images/telegram.png";
 import emailImage from "../images/email.png";
 import mapsImage from "../images/maps.png";
 import { toast, ToastContainer } from 'react-toastify';
@@ -158,7 +158,7 @@ function ContactUs() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobile: '',
+    telegram_id: '',
     message: '',
     subject: '',
     inquiry_type: 'General',
@@ -188,7 +188,7 @@ function ContactUs() {
         setFormData({
           name: '',
           email: '',
-          mobile: '',
+          telegram_id: '',
           message: '',
           subject: '',
           inquiry_type: 'General',
@@ -229,8 +229,8 @@ function ContactUs() {
                         <Image src={phoneImage} alt="Phone" />
                       </div>
                       <div className="contact-item-content">
-                        <h3>Phone Number</h3>
-                        <p>+91-9876543210</p>
+                        <h3>Telegram Contact</h3>
+                        <p>https://t.me/CryptoPresaleBD</p>
                       </div>
                     </div>
                     <div className="contact-info-item">
@@ -239,16 +239,16 @@ function ContactUs() {
                       </div>
                       <div className="contact-item-content">
                         <h3>Email Address</h3>
-                        <p>abc@example.com</p>
+                        <p>resale@cryptopresale.xyz</p>
                       </div>
                     </div>
                   </div>
-                  <div className="info-box-2 wow fadeInUp">
+                  <div className="info-box-2 wow fadeInUp d-none">
                     <div className="contact-info-item">
                       <div className="icon-box">
                         <Image src={mapsImage} alt="Map" />
                       </div>
-                      <div className="contact-item-content">
+                      <div className="contact-item-content ">
                         <h3>Address</h3>
                         <p>123 Creative Lane London, SW1A 1AA United Kingdom</p>
                       </div>
@@ -285,9 +285,9 @@ function ContactUs() {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Mobile No"
-                        name="mobile"
-                        value={formData.mobile}
+                        placeholder="Enter Your Telegram Id "
+                        name="telegram_id"
+                        value={formData.telegram_id}
                         onChange={handleChange}
                       />
                     </div>

@@ -38,12 +38,17 @@ async function fetchTrendingData() {
       console.error("Error fetching ICO data:", error);
       return { data: [] }; // Return empty data in case of error
     } 
-  }
+  } 
 
 export default async function TrendingPresale() {
   const trendingData = await fetchTrendingData();
   const tradeData = trendingData.trending || []; 
-  console.log("this is a treanding data....",trendingData);
+  // console.log("this is a treanding data....",trendingData);
+  const sortedCoinData = tradeData.sort((a, b) => {
+    const dateA = new Date(a.end_time);
+    const dateB = new Date(b.end_time); 
+    return  dateA - dateB; // Descending order - newest first
+  });
   
     const faqData = await fetchFaqData();
   return (
@@ -76,7 +81,7 @@ export default async function TrendingPresale() {
      
       
        
-   <Coin CoinData={tradeData}/>
+   <Coin CoinData={sortedCoinData}/>
     <FAQAccordion  faqData={faqData}/>
     </div>
     </>

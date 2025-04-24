@@ -59,7 +59,7 @@ const prisma = new PrismaClient();
 // }
 
 
-
+ 
 
 export async function GET(request) {
   try {
@@ -67,10 +67,11 @@ export async function GET(request) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
     const skip = (page - 1) * limit;
-
+   
     // Fetch trending ICOs with sorting
     const trending = await prisma.crypto_coins_icos.findMany({
       where: {
+      
         is_review: 1,
         is_trending: 1,
         deleted_at: null,
@@ -78,6 +79,7 @@ export async function GET(request) {
       orderBy: [
         { is_promoted: "desc" },
         { total_coin: "desc" },
+        
       ],
       skip,
       take: limit,

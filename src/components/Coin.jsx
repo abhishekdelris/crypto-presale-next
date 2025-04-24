@@ -26,13 +26,53 @@ function Coin({ CoinData }) {
     softCap: "All Caps",
     hardCap: "All Caps"
   });
-
+ 
   // State for filtered data
   const [filteredData, setFilteredData] = useState([]);
 
   // Get original data
   const data = CoinData.data || CoinData || [];
 
+  const formatToYYYYMMDD = (inputDate) => {
+    const date = new Date(inputDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const getTimeAgo = (timestamp) => {
+    if (!timestamp) return "Unknown time";
+   const formate =  formatToYYYYMMDD(timestamp)
+    const created = new Date(formate);
+    const now = new Date();
+  
+    if (isNaN(created)) return "Invalid date";
+  
+    const diffInMs = created - now;
+    const isFuture = diffInMs > 0;
+  
+    const absMinutes = Math.floor(Math.abs(diffInMs) / (1000 * 60));
+    const absHours = Math.floor(absMinutes / 60);
+    const absDays = Math.floor(absMinutes / (60 * 24));
+    const absWeeks = Math.floor(absDays / 7);
+    const absMonths = Math.floor(absDays / 30); // Approximation
+  
+    // const suffix = isFuture ? "from now" : "ago";
+  
+    if (absMinutes < 60) {
+      return `${absMinutes} minute${absMinutes !== 1 ? "s" : ""} `;
+    } else if (absHours < 24) {
+      return `${absHours} hour${absHours !== 1 ? "s" : ""} `;
+    } else if (absDays < 7) {
+      return `${absDays} day${absDays !== 1 ? "s" : ""} `;
+    } else if (absWeeks < 4) {
+      return `${absWeeks} week${absWeeks !== 1 ? "s" : ""} `;
+    } else {
+      return `${absMonths} month${absMonths !== 1 ? "s" : ""} `;
+    }
+  };
+  
   // Apply filters whenever filters or data changes
   useEffect(() => {
     applyFilters();
@@ -531,11 +571,18 @@ function Coin({ CoinData }) {
                           <td>
                             <div className="row">
                               <div className="col-sm-4">
-                                <span>
-                                  {calculateSingleDateDifference(
+                                
+                                <span
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title={`Start from ${formatToYYYYMMDD(coin.start_time)} to ${formatToYYYYMMDD(coin.end_time)}`}
+                      className="custom-tooltip"
+                    >
+                                  {getTimeAgo(coin.end_time)}
+                                  {/* {calculateSingleDateDifference(
                                     coin.start_time,
                                     coin.end_time
-                                  )}
+                                  )} */}
                                 </span>
                               </div>
                               <div className="col-sm-4">

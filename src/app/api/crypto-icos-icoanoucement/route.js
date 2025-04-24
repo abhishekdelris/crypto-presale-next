@@ -382,7 +382,7 @@ export async function GET(request) {
       where.launchpad = launchpad;
     }
 
-    // Add date range filter
+    // Add date range filter 
     if (start_date && end_date) {
       // Find ICOs that overlap with the selected date range
       // An ICO overlaps with the selected range if:
@@ -391,8 +391,8 @@ export async function GET(request) {
       where.OR = [
         {
           AND: [
-            { start_time: { lte: end_date } },
-            { end_time: { gte: start_date } }
+          
+            { end_time: { gte: currentDate } }
           ]
         }
       ];
@@ -404,8 +404,10 @@ export async function GET(request) {
     // Then get the filtered data
     const coinIcos = await prisma.crypto_coins_icos.findMany({
       where,
+     
       orderBy: [
         { featured: 'desc' }, // Featured items first
+        { end_time: 'asc' },
         { created_at: 'desc' } // Then by creation date (newest first)
       ],
       skip,

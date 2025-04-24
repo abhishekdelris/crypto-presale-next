@@ -155,13 +155,19 @@ export default async function HomePage() {
 
   const tradeData = trendingData.trending || [];
   const highlightData = highlightedData.trending || [];
+
+  const sortedFeturedData = feturedData.data.sort((a, b) => {
+    const dateA = new Date(a.end_time);
+    const dateB = new Date(b.end_time); 
+    return  dateA - dateB; // Descending order - newest first
+  });
   const sortedCoinData = CoinData.data.sort((a, b) => {
-    const dateA = new Date(a.created_at);
-    const dateB = new Date(b.created_at); 
-    return dateB - dateA; // Descending order - newest first
+    const dateA = new Date(a.end_time);
+    const dateB = new Date(b.end_time); 
+    return  dateA - dateB; // Descending order - newest first
   });
   const sortedData = topCoinData.data.sort((a, b) => {
-    const dateA = new Date(a.created_at);
+    const dateA = new Date(a.created_at); 
     const dateB = new Date(b.created_at);
     return dateB - dateA; // Descending order - newest first
   });
@@ -382,7 +388,7 @@ export default async function HomePage() {
 
       {/* <!-- end --> */}
       {/* <!-- third section --> */}
-      <Promoted feturedData={feturedData} />
+      <Promoted feturedData={sortedFeturedData} />
       <div className="container">
         <div className="section-title">
           <h5 className="h4 fw-semibold">Best Crypto Presales 2024</h5>

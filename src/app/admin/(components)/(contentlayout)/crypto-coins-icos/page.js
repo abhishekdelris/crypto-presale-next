@@ -1646,7 +1646,7 @@ const CryptoCoins = () => {
                                                     <td>{handleType(post.ico_ido_type)}</td>       
                                                     <td className="text-left text-nowrap">{post.name}</td>
                                                     <td className="text-left">
-                                                        <Link href={`/crypto-ico-details/${post.slug}`} target="_blank">{post.slug}</Link>
+                                                        <Link href={`/crypto-ico-details/${post.slug}`} target="_blank" rel="noopener noreferrer nofollow">{post.slug}</Link>
                                                     </td>
                                                     <td>{post.alias}</td>
                                                     <td>{post.total_coin}</td>

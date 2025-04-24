@@ -77,14 +77,13 @@ async function fetchFaqData() {
     return { data: [] }; // Return empty data in case of error
   }
 }
-async function fetchCOINData() {
+async function fetchCOINData() { 
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_API_URL +
-        "/api/crypto-icos-icoanoucement?skip=0&limit=15",
+        "/api/crypto-icos-icoanoucement?skip=0&limit=15&type=ongoing",
       {
-        //&type=ongoing
-        // next: { revalidate: 5, tags: ['featuredData'] }, // ISR with tag
+       
         cache: "no-store"
       }
     );
@@ -129,7 +128,7 @@ async function fetchFeturedData() {
       process.env.NEXT_PUBLIC_API_URL + "/api/featured?skip=0&limit=5",
       {
         //&type=ongoing
-        next: { revalidate: 5, tags: ["featuredData"] } // ISR with tag
+        next: { cache: "no-store", tags: ["featuredData"] } // ISR with tag
       } 
     );
 
@@ -158,7 +157,7 @@ export default async function HomePage() {
   const highlightData = highlightedData.trending || [];
   const sortedCoinData = CoinData.data.sort((a, b) => {
     const dateA = new Date(a.created_at);
-    const dateB = new Date(b.created_at);
+    const dateB = new Date(b.created_at); 
     return dateB - dateA; // Descending order - newest first
   });
   const sortedData = topCoinData.data.sort((a, b) => {
@@ -272,7 +271,7 @@ export default async function HomePage() {
                     <div className="main_flex topheader">
                       <h5 className="mb-0 fw-bold">Trending Presales</h5>
                       <Link
-                        href="/trending_presales"
+                        href="/trending-presales"
                         className="btn btn-link text-dark"
                       >
                         View More

@@ -17,7 +17,7 @@ function Footer() {
 
   const handleSubmitForm = () => {
     if (isAuthenticated) {
-      router.push("/submit_coin");
+      router.push("/submit-coin");
     } else {
       handleOpenLoginModal();
     }
@@ -25,7 +25,7 @@ function Footer() {
 
   const handleLoginSuccess = (userData) => {
     console.log("User logged in successfully:", userData);
-    router.push("/submit_coin");
+    router.push("/submit-coin");
     // You can add custom logic here after successful login
     // For example, update the UI to show the user is logged in
   };
@@ -52,7 +52,7 @@ function Footer() {
               <ul className="footermenu">
                 {/* <li> <Link href="/">Home</Link> </li> */}
                 <li>
-                  <Link className="d-block" href="/listings">
+                  <Link className="d-block" href="/">
                     New listings
                   </Link>
                 </li>
@@ -83,8 +83,8 @@ function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="d-block" href="/press_release">
-                    Blog
+                  <Link className="d-block" href="/project-review">
+                   Project Review
                   </Link>
                 </li>
               </ul>
@@ -93,7 +93,7 @@ function Footer() {
               <h2 className="footer-heading">Follow us</h2>
               <ul className="ftco-footer-social p-0 main_flex_Gap">
                 <li className="ftco-animate">
-                  <Link href="https://x.com/CryptoPresaleX" title="Twitter">
+                  <Link href="https://x.com/CryptoPresaleX" rel="noopener noreferrer nofollow" target="_blank" title="Twitter">
                     <i className="fa-brands fa-x-twitter"></i>
                   </Link>
                 </li>
@@ -108,13 +108,13 @@ function Footer() {
                   </Link>
                 </li> */}
                 <li className="ftco-animate">
-  <Link href="https://t.me/CryptoPresaleXYZ" title="Telegram">
+  <Link href="https://t.me/CryptoPresaleXYZ" target="_blank" rel="noopener noreferrer nofollow" title="Telegram">
     <i className="fa-brands fa-telegram"></i>
   </Link>
 </li>
 
                 <li className="ftco-animate">
-                  <Link href="https://www.linkedin.com/company/crypto-presale" title="Linkedin">
+                  <Link href="https://www.linkedin.com/company/crypto-presale" target="_blank" rel="noopener noreferrer nofollow" title="Linkedin">
                     <i className="fa-brands fa-linkedin-in"></i>
                   </Link>
                 </li>

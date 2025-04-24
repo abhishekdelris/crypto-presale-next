@@ -147,11 +147,11 @@ export const MENUITEMS = [
 		type: "sub", 
 		active: false, 
 		selected: false,
-		path: "/admin/trending_presales", 
+		path: "/admin/trending-presales", 
 		dirchange: false, 
 		children: [
 			{ 
-				path: "/admin/trending_presales", 
+				path: "/admin/trending-presales", 
 				type: "link", 
 				active: false, 
 				selected: false, 
@@ -166,11 +166,11 @@ export const MENUITEMS = [
 		type: "sub", 
 		active: false, 
 		selected: false,
-		path: "/admin/best_presale", 
+		path: "/admin/best-presale", 
 		dirchange: false, 
 		children: [
 			{ 
-				path: "/admin/best_presale", 
+				path: "/admin/best-presale", 
 				type: "link", 
 				active: false, 
 				selected: false, 
@@ -204,11 +204,11 @@ export const MENUITEMS = [
 		type: "sub", 
 		active: false, 
 		selected: false,
-		path: "/admin/project_categories", 
+		path: "/admin/project-categories", 
 		dirchange: false, 
 		children: [
 			{ 
-				path: "/admin/project_categories", 
+				path: "/admin/project-categories", 
 				type: "link", 
 				active: false, 
 				selected: false, 
@@ -246,7 +246,7 @@ export const MENUITEMS = [
 		dirchange: false, 
 		children: [
 			{ 
-				path: "/admin/ico_project", 
+				path: "/admin/ico-project", 
 				type: "link", 
 				active: false, 
 				selected: false, 
@@ -254,7 +254,7 @@ export const MENUITEMS = [
 				title: "ICO Project" 
 			}, 
 			{ 
-				path: "/admin/ico_project_type", 
+				path: "/admin/ico-project-type", 
 				type: "link", 
 				active: false, 
 				selected: false, 

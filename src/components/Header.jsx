@@ -67,6 +67,7 @@ export default function Header() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     // Implement your search submission logic here
+    setSearchQuery('')
     console.log("Searching for:", searchQuery);
     // You could redirect to a search results page
     // router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
@@ -225,7 +226,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="/project_review">
+                  <Link className="nav-link" href="/project-review">
                     Project Review
                   </Link>
                 </li>
@@ -235,7 +236,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="/press_release">
+                  <Link className="nav-link" href="/crypto-press-release">
                     Press Release
                   </Link>
                 </li>

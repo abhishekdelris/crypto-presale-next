@@ -22,7 +22,7 @@ function Promoted({ feturedData }) {
 
   const handleSubmitForm = () => {
     if(isAuthenticated) {
-      router.push('/submit_coin')
+      router.push('/submit-coin')
     } else {
       handleOpenLoginModal();
     }
@@ -30,7 +30,7 @@ function Promoted({ feturedData }) {
 
   const handleLoginSuccess = (userData) => {
     console.log('User logged in successfully:', userData);
-     router.push('/submit_coin');
+     router.push('/submit-coin');
     // You can add custom logic here after successful login
     // For example, update the UI to show the user is logged in
   };
@@ -68,7 +68,7 @@ function Promoted({ feturedData }) {
       case 1:
         return "IDO";
       case 2:
-        return "IEO";
+        return "IEO"; 
       case 3:
         return "Presale";
       default:
@@ -85,7 +85,7 @@ function Promoted({ feturedData }) {
               <div className="table_top main_flex">
                 <h6 className="h4 fw-semibold mb-0">Featured</h6>
                 <p onClick={handleSubmitForm} className="btn btn-link text-presale">
-                  Your coin here? Contact us!
+                  Submit your project!
                 </p>
               </div>
               <div className="table_main">
@@ -98,7 +98,7 @@ function Promoted({ feturedData }) {
                         <th>Name</th>
                         <th>Stage</th>
                         <th>Price</th>
-                        <th>Hardcap</th>
+                        <th>Fundraising Goal</th>
                         <th>Duration</th>
                         <th>Status</th>
                       </tr>
@@ -134,7 +134,7 @@ function Promoted({ feturedData }) {
                                   })`
                                 : "N/A"}
                             </td>
-                            <td>Hardcap {formatNumber(item.hard_cap)}</td>
+                            <td> {formatNumber(item.fund_asking_for)}</td>
                             <td>
                               <div className="row">
                                 <div className="col-sm-4">

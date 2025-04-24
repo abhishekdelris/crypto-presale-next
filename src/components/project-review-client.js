@@ -134,7 +134,7 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
                   <div key={post.id} className="col-md-6 mb-4">
                     <div className="blog-card">
                       {post.image && (
-                        <Link href={`/project_review/${post.slug}`}>
+                        <Link href={`/project-review/${post.slug}`}>
                           <Image 
                             src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} 
                             alt={post.title} 
@@ -151,7 +151,7 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
                         <small className="text-body-secondary">{formatDate(post.date)}</small>
                       </div>
                       <h5>
-                        <Link href={`/project_review/${post.slug}`} className="text-decoration-none link-customize">
+                        <Link href={`/project-review/${post.slug}`} className="text-decoration-none link-customize">
                           {post.title}
                         </Link>
                       </h5>

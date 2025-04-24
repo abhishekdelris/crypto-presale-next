@@ -1,11 +1,37 @@
 
+"use client";
+import React, { useState } from "react";
 import Link from 'next/link'
-import React from 'react'
-
+import { useRouter } from "next/navigation";
+import LoginModal from "./LoginModal";
+import { useAuth } from "@/hooks/authContext";
 
 function Favorite() {
+     const [isLoading, setIsLoading] = useState(false);
+      const router = useRouter();
+      const { login, isAuthenticated } = useAuth();
+      const [showLoginModal, setShowLoginModal] = useState(false);
+    
+      const handleOpenLoginModal = () => setShowLoginModal(true);
+      const handleCloseLoginModal = () => setShowLoginModal(false);
 
-  return (
+
+  const handleSubmitForm = () => {
+    if (isAuthenticated) {
+      router.push("/submit-coin");
+    } else {
+      handleOpenLoginModal();
+    }
+  };
+
+  const handleLoginSuccess = (userData) => {
+    console.log("User logged in successfully:", userData);
+    router.push("/submit-coin");
+    // You can add custom logic here after successful login
+    // For example, update the UI to show the user is logged in
+  };
+
+  return ( 
     <div>
        <section className="listingblock">
         <div className="container">
@@ -16,7 +42,7 @@ function Favorite() {
                             <h5 className="h3">Your Favorite Coin Missing?</h5>
                             <p>Can't find your coin? List your favorite coin now!
                                 Get your community to vote for your coin and gain exposure.</p>
-                            <Link href="/submit_coin" className="btn-main primary-btn shadow">Submit Coin</Link>
+                            <button  className="btn-main primary-btn shadow" onClick={handleSubmitForm}>Submit Coin</button>
                         </div>
                     </div>
                 </div>
@@ -27,7 +53,7 @@ function Favorite() {
                             <p>Click the button below to view the New Listings!images
                                 These coins were just submitted.</p><br/>
                                
-                            <Link href="/listings" className="btn-main primary-btn shadow">View New Listings</Link>
+                            <Link href="/" className="btn-main primary-btn shadow">View New Listings</Link>
                         </div>
                     </div>
                 </div>
@@ -43,8 +69,13 @@ function Favorite() {
         </div>
       
     </section>
+    <LoginModal
+          show={showLoginModal}
+          handleClose={handleCloseLoginModal}
+          onLoginSuccess={handleLoginSuccess}
+        />
     </div>
   )
 }
 
-export default Favorite
+export default Favorite 

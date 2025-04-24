@@ -5,11 +5,14 @@ import Link from 'next/link';
 import ClientSidePresale from './ClientSidePresale';
 
 // This is a Server Component that fetches data
-async function fetchICOData() {
+async function fetchInitialData() {
   try {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/crypto-icos-icoanoucement?skip=0&limit=155&ico_ido_type=3&type=ongoing", {
-      cache: 'no-store' // Don't cache the response
-      // next: { revalidate: 60 } 
+    // Default to "ongoing" type for initial load
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/crypto-icos-icoanoucement?skip=0&limit=15&ico_ido_type=3&type=ongoing`;
+    
+    const response = await fetch(apiUrl, {
+      cache: 'no-store', // Don't cache the response
+      next: { tags: ['idos'] } // Optional: Add tags for revalidation
     });
     
     if (!response.ok) {
@@ -18,14 +21,14 @@ async function fetchICOData() {
     
     return await response.json();
   } catch (error) {
-    console.error("Error fetching ICO data:", error);
-    return { data: [] }; // Return empty data in case of error
+    console.error("Error fetching IDO data:", error);
+    return { success: false, data: [], total: 0 }; // Return empty data in case of error
   }
 }
 
 export default async function CryptoPresale() {
   // Fetch data on the server
-  const icoData = await fetchICOData();
+  const initialData = await fetchInitialData();
   
   return (
     <>
@@ -64,7 +67,7 @@ export default async function CryptoPresale() {
         </div>
         
         {/* Client-side component for interactive elements */}
-        <ClientSidePresale icoData={icoData} />
+        <ClientSidePresale initialData={initialData.data || []} />
 
        
       </div>

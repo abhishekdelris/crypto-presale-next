@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "suneditor/dist/css/suneditor.min.css";
 import axios from 'axios';
 import { useAuth } from '../hooks/authContext';
+import SearchableDropdown from "./SearchableDropdown";
 
 function UpdateListing() {
   // State to track current tab
@@ -16,11 +17,13 @@ function UpdateListing() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
   const { isAuthenticated, logout,user } = useAuth();
-
+ const [launchpads, setLaunchpads] = useState([]);
+ const [projects, setProjects] = useState([]);
   const [formData, setFormData] = useState({
     // General ICO/IDO details
+    id: '',
     fund_stage: "",
-    user_id : user.id || 0,
+    
     launchpad: "",
     other_launchpad: "",
     type: "",
@@ -110,19 +113,28 @@ function UpdateListing() {
   const [loading, setLoading] = useState(true); 
   const params = useParams();
   const router = useRouter();
-  const { id } = params;
+  const { slug } = params;
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !isAuthenticated) {
-      router.push('/login');
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined' && !isAuthenticated) {
+  //     router.push('/login');
+  //   }
+  // }, [isAuthenticated]);
+
+
+  const formatToYYYYMMDD = (inputDate) => {
+    const date = new Date(inputDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
 
   useEffect(() => {
     async function fetchContent() {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/admin/crypto_coins/${id}`);
+        const response = await axios.get(`/api/admin/crypto_coins/${slug}`);
         console.log("API response data:", response.data);
         
         // Process image URL if it exists
@@ -130,7 +142,8 @@ function UpdateListing() {
         
         // Create a structured formData object from the response
         const processedData = {
-          // General details
+          // General details 
+          id : coinData.id || null,
           fund_stage: coinData.fund_stage || "",
           launchpad: coinData.launchpad || "",
           other_launchpad: coinData.other_launchpad || "",
@@ -139,8 +152,8 @@ function UpdateListing() {
           alias: coinData.alias || "",
           slug: coinData.slug || "",
           image: coinData.image || null, // Store the image URL string here
-          start_time: coinData.start_time || "",
-          end_time: coinData.end_time || "",
+          start_time: formatToYYYYMMDD(coinData.start_time) || "",
+          end_time: formatToYYYYMMDD(coinData.end_time) || "",
           total_coin: coinData.total_coin || "",
           quantity_of_coin: coinData.quantity_of_coin || "",
           ico_price: coinData.ico_price || "",
@@ -176,7 +189,7 @@ function UpdateListing() {
           blockchain: coinData.blockchain || "",
           
           // Personal details
-          name: coinData.coin_name || "",
+          name: coinData.name || "",
           symbol: coinData.alias || "",
           
           // Company details
@@ -188,7 +201,7 @@ function UpdateListing() {
           // Pricing details
           price: coinData.price || coinData.ico_price || "",
           currency: coinData.currency || "USD",
-          ico_project_id: coinData.ico_project_id || "",
+          ico_project_id: coinData.ico_project_id || coinData.ico_project_type_id || "",
           
           // Parse categories from response or initialize empty
           categories: {
@@ -228,10 +241,10 @@ function UpdateListing() {
       }
     }
     
-    if (id) {
+    if (slug) {
       fetchContent();
     }
-  }, [id]);
+  }, [slug]);
 
   
 
@@ -302,8 +315,8 @@ function UpdateListing() {
       const submitFormData = new FormData();
       
       // Add listing ID for update
-      submitFormData.append("user_id", user_id);
-      submitFormData.append("ico_ido_id", id);
+      submitFormData.append("user_id", user?.id);
+      submitFormData.append("ico_ido_id", formData.id);
       // Add basic coin information
       submitFormData.append("coin_name", formData.name); 
       submitFormData.append("ticker", formData.symbol);
@@ -402,100 +415,56 @@ function UpdateListing() {
     } 
   };  
 
-  const launchpadOptions = [
-    { value: 0, label: "Select Project Type" },
-    { value: 1, label: "DAO Maker Launchpad" },
-    { value: 2, label: "BSCPad" },
-    { value: 3, label: "TrustSwap" },
-    { value: 4, label: "BullStarter" },
-    { value: 5, label: "Polkastarter" },
-    { value: 6, label: "Seedify" },
-    { value: 7, label: "RedKite" },
-    { value: 8, label: "Bounce" },
-    { value: 9, label: "Paid Ignition" },
-    { value: 10, label: "ChainBoost" },
-    { value: 11, label: "GameFi" },
-    { value: 12, label: "Trustpad" },
-    { value: 13, label: "Starter" },
-    { value: 14, label: "DuckSTARTER" },
-    { value: 15, label: "InfinityPad" },
-    { value: 16, label: "Binance" },
-    { value: 17, label: "Solstarter" },
-    { value: 18, label: "Solanium" },
-    { value: 19, label: "WeStarter" },
-    { value: 20, label: "BSClaunch" },
-    { value: 21, label: "MoonStarter" },
-    { value: 22, label: "ZENDIT" },
-    { value: 23, label: "KrystalGO" },
-    { value: 24, label: "Gamestarter" },
-    { value: 25, label: "Enjinstarter" },
-    { value: 26, label: "Oxbull" },
-    { value: 27, label: "SharkPad" },
-    { value: 28, label: "SafeLaunch" },
-    { value: 29, label: "PinkSale" },
-    { value: 30, label: "LaunchZone" },
-    { value: 31, label: "Poolz" },
-    { value: 32, label: "METAVPAD" },
-    { value: 33, label: "BinStarter" },
-    { value: 34, label: "Kommunitas" },
-    { value: 35, label: "TrustFi" },
-    { value: 36, label: "UpLift" },
-    { value: 37, label: "DAOStarter" },
-    { value: 38, label: "Synapse Network" },
-    { value: 39, label: "A2DAO" },
-    { value: 40, label: "GameZone" },
-    { value: 41, label: "MoonEdge" },
-    { value: 42, label: "Seeded Network" },
-    { value: 43, label: "TruePNL" },
-    { value: 44, label: "DxSale" },
-    { value: 45, label: "Prostarter" },
-    { value: 46, label: "SuperLauncher" },
-    { value: 47, label: "VentUp" },
-    { value: 48, label: "HAPI Launchpad" },
-    { value: 49, label: "Paragen" },
-    { value: 50, label: "Babylons" },
-    { value: 51, label: "TokenSoft" },
-    { value: 52, label: "CyberFi Samurai" },
-    { value: 53, label: "UniCrypt" },
-    { value: 54, label: "Launchpool" },
-    { value: 55, label: "Scaleswap" },
-    { value: 56, label: "Unicrypt Network" },
-    { value: 57, label: "Solcubator" },
-    { value: 58, label: "SolRazr" },
-    { value: 59, label: "TrustLaunch" },
-    { value: 60, label: "CardStarter" },
-    { value: 61, label: "AdaPad" },
-    { value: 62, label: "OccamRazer" },
-    { value: 63, label: "Vent Finance" },
-    { value: 64, label: "Trustpad Launchpad" },
-    { value: 65, label: "RoseonPad" },
-    { value: 66, label: "DAOlaunch" },
-    { value: 67, label: "GAGARIN" },
-    { value: 68, label: "NFTb" },
-    { value: 69, label: "Binance NFT" },
-    { value: 70, label: "Solanium Launchpad" },
-    { value: 71, label: "Binstarter Launchpad" },
-    { value: 72, label: "Occam.fi" },
-    { value: 73, label: "Paid Network" },
-    { value: 74, label: "Cardence" },
-    { value: 75, label: "Synapse Launchpad" },
-    { value: 76, label: "Krystal IDO" },
-    { value: 77, label: "Firestarter" },
-    { value: 78, label: "TronPad" },
-    { value: 79, label: "TronStarter" },
-    { value: 80, label: "Terra Virtua" },
-    { value: 81, label: "NFTLaunch" },
-    { value: 82, label: "Solstarter Launchpad" },
-    { value: 83, label: "BabylonDAO" },
-    { value: 84, label: "DAOLaunchpad" },
-    { value: 85, label: "Parastarter" },
-    { value: 86, label: "MISO" },
-    { value: 87, label: "SpacePad" },
-    { value: 88, label: "NovaLaunch" },
-    { value: 89, label: "ZeroSwap" },
-    { value: 90, label: "truffle" }
-  ];
+    // Fetch launchpads
+    useEffect(() => {
+      const fetchLaunchpads = async () => {
+        try {
+          const response = await axios.get('/api/admin/launchpad');
+          const result = response.data.data || [];
+          const sortedData = result.sort((a, b) => 
+            a.title.localeCompare(b.title)
+          );
+          setLaunchpads(sortedData);
+        } catch (err) {
+          console.error('Error fetching launchpad data:', err);
+        }
+      };
+      fetchLaunchpads();
+    }, []);
+
+    const launchpadOptions = [
+      { value: 0, label: "All Launchpads" },
+      ...launchpads.map(launchpad => ({
+        value: launchpad.id,
+        label: launchpad.title
+      }))
+    ];
+
+       // Fetch projects
+       useEffect(() => {
+        const fetchProjects = async () => {
+          try {
+            const response = await axios.get('/api/ico-project');
+            const result = response.data.data || [];
+            const sortedData = result.sort((a, b) => 
+              a.title.localeCompare(b.title)
+            );
+            setProjects(sortedData);
+          } catch (err) {
+            console.error('Error fetching launchpad data:', err);
+          }
+        };
+        fetchProjects();
+      }, []); 
   
+      const projectOptions = [
+        { value: 0, label: "All Launchpads" },
+        ...projects.map(project => ({
+          value: project.id,
+          label: project.title
+        }))
+      ];
+
   return (
     <>
       <section className="brdcrumb">
@@ -534,7 +503,7 @@ function UpdateListing() {
                           "Coin Details",
                           "Address Details",
                           
-                          "Listing Details",
+                          "Listing Details", 
                           "Pricing Details",
                           "Finish"
                         ].map((tabName, index) => (
@@ -564,9 +533,8 @@ function UpdateListing() {
                         <div className="row">
                           <div className="col-xl-12 text-center w-75 m-auto">
                             <p className="fw-bold">
-                              Please complete the steps to add a new coin to
-                              Crypto Presale. After approval your project will
-                              be visible on our platform.
+                            Please complete the steps to update your coin listing on Crypto Presale.
+                             After approval, the changes will be reflected on our platform.
                             </p>
                           </div>
                           <div className="col-xl-4">
@@ -578,11 +546,16 @@ function UpdateListing() {
                                 <div className="confirm-identity">
                                   <div className="ci-user">
                                     <div className="ci-user-picture">
+                                 
                                     <img
   src={
     formData.image 
       ? (typeof formData.image === 'string' 
-         ? `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${formData.image}` // Use the URL directly if it's a string
+        ? formData.image.startsWith(
+          "https://d3iuzwoiyg9qa8.cloudfront.net/"
+        )
+        ? formData.image 
+        : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${formData.image}` // Use the URL directly if it's a string
          : URL.createObjectURL(formData.image)) // Create URL for File object
       : "/avtar.webp" // Default image
   }
@@ -657,8 +630,8 @@ function UpdateListing() {
                               required
                             >
                               <option value="">Select Crypto Currency</option>
-                              <option value="true">Coin</option>
-                              <option value="false">Token</option>
+                              <option value={1}>Coin</option>
+                              <option value={0}>Token</option>
                               </select>
                              
                             </div>
@@ -700,7 +673,7 @@ function UpdateListing() {
                               ></textarea> */}
                             </div>
                           </div>
-                          <div className="col-xl-12">
+                          <div className="col-xl-12 d-none">
                             <label>Categories (select at least one)*</label>
                             <div className="checkboxflex mb-2">
                               {[
@@ -1095,23 +1068,7 @@ function UpdateListing() {
                               <option value="5">IEO</option>
                             </select>
                           </div>
-                          <div className="col-md-6 mb-3">
-                            <label className="form-label text-capitalize">
-                              Launchpad
-                            </label>
-                            <select
-                              name="launchpad"
-                              value={formData.launchpad}
-                              onChange={handleInputChange}
-                              className="form-select form-control"
-                            >
-                              {launchpadOptions.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                         
                           
                           <div className="col-md-6 mb-3">
                             <label className="form-label text-capitalize">
@@ -1376,6 +1333,36 @@ function UpdateListing() {
 
                             </select>
                           </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label text-capitalize">
+                              Launchpad
+                            </label>
+                            {/* <select
+                              name="launchpad"
+                              value={formData.launchpad}
+                              onChange={handleInputChange}
+                              className="form-select form-control"
+                            >
+                              {launchpadOptions.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select> */}
+                           <SearchableDropdown
+  options={launchpadOptions}
+  placeholder="Select Launchpad"
+  handleData={(selected) => {
+    setFormData((prev) => ({
+      ...prev,
+      launchpad: selected.value,
+    }));
+  }}
+  value={launchpadOptions.find(opt => opt.value === formData.launchpad)}
+/>
+
+
+                          </div>
                         </div>
                       </div>
 
@@ -1411,9 +1398,20 @@ function UpdateListing() {
                           </div>
                           <div className="col-md-6 mb-3">
                             <label className="form-label">Project Based On</label>
-                          
+                            <SearchableDropdown
+  options={projectOptions}
+  placeholder="Select Project"
+  handleData={(selected) => {
+    setFormData((prev) => ({
+      ...prev,
+      ico_project_id: selected.value,
+    }));
+  }}
+  value={projectOptions.find(opt => opt.value === formData.ico_project_id)}
+/>
 
-<select class="form-select form-control" aria-label="project" id="project"  value={formData.ico_project_id} name="ico_project_id"  onChange={handleInputChange}>
+
+{/* <select class="form-select form-control" aria-label="project" id="project"  value={formData.} name="ico_project_id"  onChange={handleInputChange}>
                      <option value="">Please choose</option>
                                           <option value="1">Binance-Smart-Chain</option>
                                           <option value="2">Ethereum</option>
@@ -1449,7 +1447,7 @@ function UpdateListing() {
                                           <option value="36">Coredao</option>
                                           <option value="37">XRP</option>
                                           <option value="38">immutable</option>
-                                       </select>
+                                       </select> */}
                        
                            </div>
                          </div>

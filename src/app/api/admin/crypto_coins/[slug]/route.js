@@ -701,14 +701,14 @@ if (body.details && Array.isArray(body.details)) {
 
 export async function GET(request, { params }) {
   try {
-    const id = parseInt(params.id);
+    const slug = params.slug;
 
     const content = await prisma.crypto_coins_icos.findUnique({
-      where: { id }
+      where: { slug }
     });
 
     const cryptoDetails = await prisma.crypto_coins_icos_details.findMany({
-      where: { crypto_coins_icos_id: id }
+      where: { crypto_coins_icos_id: content.id }
     });
 
     if (!content) {

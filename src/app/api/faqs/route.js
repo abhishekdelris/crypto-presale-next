@@ -17,12 +17,9 @@ export async function GET(request) {
 
     // Query faqs with pagination and optional search
     const faqs = await prisma.faqs.findMany({
-      //   where: {
-      //     OR: [
-      //     //   { question: { contains: search, mode: 'insensitive' } },
-      //     //   { answer: { contains: search, mode: 'insensitive' } }
-      //     ]
-      //   },
+        where: {
+          deleted_at : null
+        },
       skip,
       take: limit,
       orderBy: { created_at: "desc" }
@@ -31,12 +28,13 @@ export async function GET(request) {
     // Get total count for pagination info
     const totalFaqs = await prisma.faqs.count(
       {
-        //   where: {
-        //     OR: [
-        //       { question: { contains: search, mode: 'insensitive' } },
-        //       { answer: { contains: search, mode: 'insensitive' } }
-        //     ]
-        //   }
+          where: {
+            deleted_at : null
+            // OR: [
+            //   { question: { contains: search, mode: 'insensitive' } },
+            //   { answer: { contains: search, mode: 'insensitive' } }
+            // ]
+          }
       }
     );
 

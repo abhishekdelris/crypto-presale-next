@@ -281,43 +281,141 @@ BigInt.prototype.toJSON = function() {
 
 
 
+// export async function GET(request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const skip = searchParams.get("skip") ? parseInt(searchParams.get("skip")) : undefined;
+//     const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")) : undefined;
+//     const ico_ido_type = parseInt(searchParams.get("ico_ido_type"));
+//     const type = searchParams.get("type") || "ongoing";
+
+//     const currentDate = new Date().toISOString().split("T")[0];
+
+//     // Construct Prisma `where` clause
+//     const where = {
+//       deleted_at: null,
+//       is_review: 1,
+//       ...(Number.isInteger(ico_ido_type) && { ico_ido_type: ico_ido_type }),
+//       ...(type === "ongoing" && {
+//         start_time: { lte: currentDate },
+//         end_time: { gte: currentDate }
+//       }),
+//       ...(type === "upcoming" && {
+//         start_time: { gt: currentDate }
+//       }),
+//       ...(type === "ended" && {
+//         end_time: { lt: currentDate }
+//       })
+//     };
+
+//     const coinIcos = await prisma.crypto_coins_icos.findMany({
+//       where,
+//       orderBy: { created_at: "asc" },
+//       skip,
+//       take: limit
+//     });
+
+//     return NextResponse.json({
+//       success: true,
+//       data: coinIcos
+//     });
+//   } catch (error) {
+//     console.error("API Error:", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         message: "An error occurred while fetching ICO/IDO data",
+//         error: error.message
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const skip = searchParams.get("skip") ? parseInt(searchParams.get("skip")) : undefined;
-    const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")) : undefined;
-    const ico_ido_type = parseInt(searchParams.get("ico_ido_type"));
-    const type = searchParams.get("type");
+    
+    // Extract all query parameters
+    const skip = searchParams.get("skip") ? parseInt(searchParams.get("skip")) : 0;
+    const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")) : 15;
+    const ico_ido_type = searchParams.get("ico_ido_type") ? parseInt(searchParams.get("ico_ido_type")) : undefined;
+    const type = searchParams.get("type") || undefined;
+    const search = searchParams.get("search") || undefined;
+    const launchpad = searchParams.get("launchpad") ? parseInt(searchParams.get("launchpad")) : undefined;
+    const start_date = searchParams.get("start_date") || undefined;
+    const end_date = searchParams.get("end_date") || undefined;
 
     const currentDate = new Date().toISOString().split("T")[0];
 
-    // Construct Prisma `where` clause
-    const where = {
+    // Base where clause
+    let where = {
       deleted_at: null,
       is_review: 1,
-      ...(Number.isInteger(ico_ido_type) && { ico_ido_type: ico_ido_type }),
-      ...(type === "ongoing" && {
-        start_time: { lte: currentDate },
-        end_time: { gte: currentDate }
-      }),
-      ...(type === "upcoming" && {
-        start_time: { gt: currentDate }
-      }),
-      ...(type === "ended" && {
-        end_time: { lt: currentDate }
-      })
     };
 
+    // Add ICO/IDO type filter
+    if (Number.isInteger(ico_ido_type)) {
+      where.ico_ido_type = ico_ido_type;
+    }
+
+    // Add type filter (ongoing, upcoming, ended)
+    if (type === "ongoing") {
+      where.start_time = { lte: currentDate };
+      where.end_time = { gte: currentDate };
+    } else if (type === "upcoming") {
+      where.start_time = { gt: currentDate };
+    } else if (type === "ended") {
+      where.end_time = { lt: currentDate };
+    }
+
+    // Add search filter
+    if (search) {
+      where.OR = [
+        { name: { contains: search } },
+        { alias: { contains: search } }
+      ];
+    }
+
+    // Add launchpad filter
+    if (Number.isInteger(launchpad) && launchpad !== 0) {
+      where.launchpad = launchpad;
+    }
+
+    // Add date range filter
+    if (start_date && end_date) {
+      // Find ICOs that overlap with the selected date range
+      // An ICO overlaps with the selected range if:
+      // - ICO start date is before or equal to the selected end date AND
+      // - ICO end date is after or equal to the selected start date
+      where.OR = [
+        {
+          AND: [
+            { start_time: { lte: end_date } },
+            { end_time: { gte: start_date } }
+          ]
+        }
+      ];
+    }
+
+    // First get total count
+    const totalCount = await prisma.crypto_coins_icos.count({ where });
+
+    // Then get the filtered data
     const coinIcos = await prisma.crypto_coins_icos.findMany({
       where,
-      orderBy: { created_at: "asc" },
+      orderBy: [
+        { featured: 'desc' }, // Featured items first
+        { created_at: 'desc' } // Then by creation date (newest first)
+      ],
       skip,
       take: limit
     });
 
     return NextResponse.json({
       success: true,
-      data: coinIcos
+      data: coinIcos,
+      total: totalCount
     });
   } catch (error) {
     console.error("API Error:", error);

@@ -315,7 +315,7 @@ export default function EditListings({ icoData }) {
   
   const handleSubmitForm = (icoId) => {
     if(isAuthenticated) {
-      router.push(`/update_request/${icoId}`);
+      router.push(`/update-request/${icoId}`);
     } else {
       handleOpenLoginModal(icoId);
     }
@@ -324,7 +324,7 @@ export default function EditListings({ icoData }) {
   const handleLoginSuccess = (userData) => {
     console.log('User logged in successfully:', userData);
     if (selectedIcoId) {
-      router.push(`/update_request/${selectedIcoId}`);
+      router.push(`/update-request/${selectedIcoId}`);
     }
     // You can add custom logic here after successful login
     // For example, update the UI to show the user is logged in
@@ -495,13 +495,22 @@ export default function EditListings({ icoData }) {
             </tr>
           </thead>
           <tbody>
-          {paginatedData.length > 0 ? (
+          {paginatedData.length > 0 ? ( 
               paginatedData.map((ico, index) => (
                 <tr key={ico.id || index}>
                   <td>
                     <div className="d-flex align-items-center">
+                     
                       <Image
-                        src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${ico.image}` || altcoinImage}
+                      src={
+                        ico.image
+                          ? ico.image.startsWith(
+                              "https://d3iuzwoiyg9qa8.cloudfront.net/"
+                            )
+                            ? ico.image 
+                            : `https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${ico.image}`
+                          : altcoinImage
+                      }
                         alt={ico.img_alt_title || "ICO Project"}
                         width={32}
                         height={32}
@@ -527,13 +536,13 @@ export default function EditListings({ icoData }) {
                   <td>
                     <div className="">
                       {isAuthenticated ? (
-                        <Link href={`/update_request/${ico.id}`}>
+                        <Link href={`/update-request/${ico.slug}`}>
                           <button className='btn btn-outline-warning'>edit</button>
                         </Link>
                       ) : (
                         <button 
                           className='btn btn-outline-warning' 
-                          onClick={() => handleOpenLoginModal(ico.id)}
+                          onClick={() => handleOpenLoginModal(ico.slug)}
                         >
                           edit
                         </button>

@@ -153,7 +153,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                             className="dropdown-item"
                             title="Google"
                             target="_blank"
-                            rel="noopener"
+                           rel="noopener noreferrer nofollow"
                           >
                             Google
                           </a>
@@ -168,14 +168,14 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
               <div className="d-flex align-items-center mt-2 gap-1">
                 <button
                   title="Submit ICO / IDO"
-                  onClick={() => handleNavigation("/submit_coin")}
+                  onClick={() => handleNavigation("/submit-coin")}
                   className="btn-main primary-btn small btn-second_main px-2 py-1"
                 >
                   Submit
                 </button>
                 <button
                   className="btn-main primary-btn small btn-second_main px-2 py-1"
-                  onClick={() => handleNavigation(`/update_request/${cryptoDetailsInfo.id}`)}
+                  onClick={() => handleNavigation(`/update-request/${cryptoDetailsInfo.id}`)}
                 >
                   Edit
                 </button>
@@ -241,7 +241,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                   title="Buy Now"
                                   className="text-decoration-none"
                                   target="_blank"
-                                  rel="noopener"
+                                 rel="noopener noreferrer nofollow"
                                 >
                                   <i className="fa-solid fa-link-slash me-2" />
                                   Buy Here
@@ -436,7 +436,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                               title="WHITE PAPER"
                               className="white-btn small-btn"
                               target="_blank"
-                              rel="noopener"
+                             rel="noopener noreferrer nofollow"
                             >
                               <i className="fa-regular fa-file-lines me-2 fw-normal" />
                               {cryptoDetailsInfo.name} WHITE PAPER
@@ -451,7 +451,8 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                               title="Visit Website"
                               className="white-btn small-btn"
                               target="_blank"
-                              rel="noopener"
+                              rel="noopener noreferrer nofollow"
+                             
                             >
                               <i className="fa-solid fa-link me-2" />
                               {cryptoDetailsInfo.name} Website
@@ -469,7 +470,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                   <a
                                     href={cryptoDetailsInfo.twitter}
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                     className="twitter-clr"
                                     title="Share on Twitter"
                                   >
@@ -483,7 +484,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                   <a
                                     href={cryptoDetailsInfo.discord}
                                     target="_blank"
-                                    rel="noopener"
+                                    rel="noopener noreferrer nofollow"
                                     className="discord-clr"
                                     title="Share on Discord"
                                   >
@@ -499,7 +500,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="youtube-clr"
                                     title="Share on Youtube"
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-youtube" />
                                   </a>
@@ -513,7 +514,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="tele-clr"
                                     title="Telegram Group"
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-telegram" />
                                   </a>
@@ -527,7 +528,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="tele-clr"
                                     title="Telegram channel"
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-telegram" />
                                   </a>
@@ -541,7 +542,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="facebook-clr"
                                     title="Facebook Page"
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-facebook" />
                                   </a>
@@ -555,7 +556,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="medium-clr"
                                     title="Medium Blog"
                                     target="_blank"
-                                    rel="noopener"
+                                    rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-medium" />
                                   </a>
@@ -569,7 +570,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="insta-clr"
                                     title="Instagram Page"
                                     target="_blank"
-                                    rel="noopener"
+                                    rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-instagram" />
                                   </a>
@@ -583,7 +584,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="reddit-clr"
                                     title="Reddit Community"
                                     target="_blank"
-                                    rel="noopener"
+                                   rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-reddit" />
                                   </a>
@@ -597,7 +598,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     className="linkedin-clr"
                                     title="LinkedIn Page"
                                     target="_blank"
-                                    rel="noopener"
+                                    rel="noopener noreferrer nofollow"
                                   >
                                     <i className="fa-brands fa-linkedin" />
                                   </a>

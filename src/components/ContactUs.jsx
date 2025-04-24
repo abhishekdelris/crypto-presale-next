@@ -225,6 +225,7 @@ function ContactUs() {
                 <div className="contact-info-box">
                   <div className="info-box-1 wow fadeInUp">
                     <div className="contact-info-item">
+                      <Link href="https://t.me/CryptoPresaleBD" target='_blank' rel="noopener noreferrer nofollow" title='telegram Contact' style={{color:"#020202",textDecoration:"none"}}>
                       <div className="icon-box">
                         <Image src={phoneImage} alt="Phone" />
                       </div>
@@ -232,15 +233,19 @@ function ContactUs() {
                         <h3>Telegram Contact</h3>
                         <p>https://t.me/CryptoPresaleBD</p>
                       </div>
+                      </Link>
                     </div>
                     <div className="contact-info-item">
+                       <Link href="mailto:presale@cryptopresale.xyz" target="_blank" rel="noopener noreferrer nofollow" title="mail" style={{color:"#020202",textDecoration: "none"}}>
                       <div className="icon-box">
                         <Image src={emailImage} alt="Email" />
                       </div>
-                      <div className="contact-item-content">
+                      
+                      <div className="contact-item-content"> 
                         <h3>Email Address</h3>
                         <p>presale@cryptopresale.xyz</p> 
                       </div>
+                      </Link>
                     </div>
                   </div>
                   <div className="info-box-2 wow fadeInUp d-none">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+// import { toast } from 'react-hot-toast';
 import {
   Card,
   Col,
@@ -29,7 +29,7 @@ import PageHeader from "../../../../../../../../shared/layout-components/page-he
 import Seo from "../../../../../../../../shared/layout-components/seo/seo";
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 import dynamic from "next/dynamic";
-// import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -179,7 +179,7 @@ const handleFileChange = (e) => {
   <>
    <Seo title={"Content"} />
       <PageHeader title="Content" item="Content" active_item="Edit Content" />
-      {/* <ToastContainer /> */}
+      <ToastContainer />
 
    
       <form onSubmit={handleSubmit}>

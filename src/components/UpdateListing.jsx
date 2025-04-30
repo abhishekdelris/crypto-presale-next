@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import "react-toastify/dist/ReactToastify.css";
 import "suneditor/dist/css/suneditor.min.css";
 import axios from 'axios';
-import { useAuth } from '../hooks/authContext';
+import { userAuth } from '../hooks/authContext';
 import SearchableDropdown from "./SearchableDropdown";
 
 function UpdateListing() {
@@ -16,7 +16,7 @@ function UpdateListing() {
   const [currentTab, setCurrentTab] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
-  const { isAuthenticated, logout,user } = useAuth();
+  const { isAuthenticated, logout,user } = userAuth();
  const [launchpads, setLaunchpads] = useState([]);
  const [projects, setProjects] = useState([]);
   const [formData, setFormData] = useState({

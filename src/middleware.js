@@ -68,7 +68,7 @@ export async function middleware(req) {
   const path = req.nextUrl.pathname;
   
   // Protected paths (require authentication)
-  const protectedPaths = ['/admin/dashboard', '/admin/crypto-coins-icos', '/admin/content'];
+  const protectedPaths = ['/admin/dashboard', '/admin/crypto-coins-icos'];
   const isProtectedPath = protectedPaths.some(pp => path === pp || path.startsWith(`${pp}/`));
   
   // Paths that should redirect authenticated users (like login pages)

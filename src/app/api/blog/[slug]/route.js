@@ -83,7 +83,7 @@ export async function GET(request, { params }) {
     // Get specific guest post from database using Prisma
     const post = await prisma.crypto_news.findFirst({
       where: {
-        slug: slug,
+        alias: slug,
         is_gabbar: 2,
         is_review:1,
       }
@@ -109,7 +109,7 @@ export async function GET(request, { params }) {
       author: post.author || "Deepak Choudhary",
       date: formatDate(post.created_at || new Date()),
       likes: post.likes_counts || 0,
-      slug: post.slug || "abc",
+      alias: post.alias || "abc",
       // Add any additional fields needed for the detail page
       content: post.description || "",
       meta_title: post.meta_title || post.title,

@@ -4,7 +4,7 @@
 // import Image from 'next/image';
 // import { useRouter } from 'next/navigation';
 // import googleImage from '../images/google.png';
-// import { useAuth } from '@/hooks/authContext';
+// import { userAuth } from '@/hooks/authContext';
 // import Link from 'next/link';
 
 // function Login() {
@@ -13,7 +13,7 @@
 //   const [error, setError] = useState(null);
 //   const router = useRouter();
 //   const [isLoading, setIsLoading] = useState(false);
-//   const { login } = useAuth();
+//   const { login } = userAuth();
  
 //   // const handleLogin = async (e) => {
 //   //   e.preventDefault();
@@ -129,7 +129,7 @@ import { useRouter } from 'next/navigation';
 import googleImage from '../images/google.png'; 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from '@/hooks/authContext';
+import { userAuth } from '@/hooks/authContext';
 import Link from 'next/link';
 
 function Login() {
@@ -140,7 +140,7 @@ function Login() {
   const [formError, setFormError] = useState(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { login,isAuthenticated } = useAuth();
+  const { login,isAuthenticated } = userAuth();
  
   // Form validation
   const validateEmail = (email) => {

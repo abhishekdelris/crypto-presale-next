@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
 import { Api, Category } from "@mui/icons-material";
 
-
+ 
 const CryptoCoins = () => {
     const [showData,setShowData] = useState([]);
      const [itemOffset, setItemOffset] = useState(0);

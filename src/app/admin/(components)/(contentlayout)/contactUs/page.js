@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
-
+ 
 const ContactUs = () => {
     const router = useRouter();
     const [posts, setPosts] = useState([]);

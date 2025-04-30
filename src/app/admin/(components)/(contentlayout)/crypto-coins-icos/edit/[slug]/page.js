@@ -52,7 +52,8 @@ export default function CryptoCoinEditPage() {
     h2_title: '',
     image: null,
     ico_project_id: '',
-    sub_category_id: '',
+    category_id : 0,
+    sub_category_id: 0,
     reddit: '',
     medium: '',
     linkedin: '',
@@ -190,7 +191,7 @@ export default function CryptoCoinEditPage() {
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const router = useRouter();
-  const { id } = params;
+  const { slug } = params;
 
   // useEffect(() => {
   //   async function fetchContent() {
@@ -215,7 +216,7 @@ export default function CryptoCoinEditPage() {
   useEffect(() => {
     async function fetchContent() {
       try {
-        const response = await axios.get(`/api/admin/crypto_coins/${id}`);
+        const response = await axios.get(`/api/admin/crypto_coins/${slug}`);
         console.log("this is a response data..........", response);
         
         const coinData = response.data.data;
@@ -244,10 +245,10 @@ export default function CryptoCoinEditPage() {
       }
     }
   
-    if (id) {
+    if (slug) {
       fetchContent();
     }
-  }, [id, router]);
+  }, [slug, router]);
 
 
   useEffect(() => {
@@ -307,6 +308,7 @@ export default function CryptoCoinEditPage() {
   }, [selectedCategory]);
 
   const handleCategoryChange = (e) => {
+ 
     setSelectedCategory(parseInt(e.target.value));
   };
 
@@ -509,7 +511,7 @@ if (file) {
         details: details
       };
       
-      await axios.put(`/api/admin/crypto_coins/${id}`, updateData);
+      await axios.put(`/api/admin/crypto_coins/${slug}`, updateData);
       toast.success('Crypto Coin updated successfully');
       router.push(`/admin/crypto-coins-icos`);
     } catch (error) {
@@ -518,6 +520,16 @@ if (file) {
     } 
   };
 
+  const handleSlugChange = (e) => {
+    // Remove all spaces and special characters, keep only lowercase letters
+    const validValue = e.target.value.replace(/[^a-z]/g, '');
+    
+    // Update your form state with the cleaned value
+    setFormData({
+      ...formData,
+      slug: validValue
+    });
+  };
 
   return (
     <>
@@ -656,7 +668,7 @@ if (file) {
                             type="text"
                             name="slug"
                             value={formData.slug}
-                            onChange={handleChange}
+                            onChange={handleSlugChange}
                             className="form-control"
                             required
                           />

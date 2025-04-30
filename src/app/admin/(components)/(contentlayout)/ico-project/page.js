@@ -28,7 +28,7 @@ const ICOProjects = () => {
     
     // Function to fetch data with server-side pagination and search
     const fetchProjects = async (page = 1, limit = itemsPerPage, search = searchQuery) => {
-        setLoading(true);
+        setLoading(true); 
         try {
             const response = await axios.get('/api/admin/ico_project', {
                 params: {

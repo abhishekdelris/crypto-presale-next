@@ -350,13 +350,13 @@ function Header({ local_varaiable, ThemeChanger }) {
 						{/* logo */}
 						<div className="header-element">
 							<div className="horizontal-logo">
-								<Link scroll={false} className="header-logo " href={"/dashboard"}>
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-logo.png`} alt="logo" className="desktop-logo" />
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-logo.png`} alt="logo" className="toggle-logo" />
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-dark.png`} alt="logo" className="desktop-dark" />
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-dark.png`} alt="logo" className="toggle-dark" />
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/desktop-white.png`} alt="logo" className="desktop-white" />
-									<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/brand-logos/toggle-white.png`} alt="logo" className="toggle-white" />
+								<Link scroll={false} className="header-logo " href={"/"}>
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/desktop-logo.png`} alt="logo" className="desktop-logo" />
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/toggle-logo.png`} alt="logo" className="toggle-logo" />
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/desktop-dark.png`} alt="logo" className="desktop-dark" />
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/toggle-dark.png`} alt="logo" className="toggle-dark" />
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/desktop-white.png`} alt="logo" className="desktop-white" />
+									<img src={`${process.env.NODE_ENV === "production" ? basePath : "/avtar.webp"}/assets/images/brand-logos/toggle-white.png`} alt="logo" className="toggle-white" />
 								</Link>
 							</div>
 						</div>
@@ -726,7 +726,7 @@ function Header({ local_varaiable, ThemeChanger }) {
 
 						{/* Profile */}
 						<Dropdown className="header-element header-profile">
-							<Dropdown.Toggle as='a' className="header-link" variant="" id="dropdown-basic">
+		 					<Dropdown.Toggle as='a' className="header-link" variant="" id="dropdown-basic">
 								<div className="d-flex align-items-center">
 									<div className="header-link-icon">
 										<img src={`${process.env.NODE_ENV === "production" ? basePath : ""}/assets/images/faces/1.jpg`} alt="img" width="32" height="32" className="rounded-circle" />

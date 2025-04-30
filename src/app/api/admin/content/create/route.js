@@ -103,7 +103,7 @@
 //       query,
 //       values
 //     });
-
+ 
 //     // Return success response with inserted ID
 //     return NextResponse.json({
 //       success: true,
@@ -689,7 +689,7 @@ export async function POST(request) {
           .toLowerCase();
 
         // Format: uploads/march/2025/randomkey.webp
-        imageKey = `content/${year}/${month}/${randomKey}.${fileExtension}`;
+        imageKey = `uploads/${year}/${month}/${randomKey}.${fileExtension}`;
 
         // Upload to S3
         await s3Client.send(
@@ -742,7 +742,7 @@ export async function POST(request) {
       short_desc: postData.short_desc || null,
       description: postData.description,
       url: postData.url || "null",
-      image: imageKey || null,
+      image: postData.image || null,
       img_alt_title: postData.img_alt_title || null,
       is_thumb: postData.is_thumb || 0,
       urlToImage: postData.urlToImage || null,

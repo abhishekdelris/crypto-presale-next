@@ -3,7 +3,7 @@
 // // import axios from 'axios';
 // // import { useRouter } from 'next/navigation';
 // // import Link from 'next/link';
-// // import { useAuth } from '@/hooks/authContext';
+// // import { userAuth } from '@/hooks/authContext';
 
 // // function Signup() {
 // //   const [name, setName] = useState('');
@@ -11,7 +11,7 @@
 // //   const [password, setPassword] = useState('');
 // //   const [confirmPassword, setConfirmPassword] = useState('');
 // //   const [isLoading, setIsLoading] = useState(false);
-// //   const { register } = useAuth();
+// //   const { register } = userAuth();
 // //   const [formData, setFormData] = useState({
 // //     name: '',
 // //     email: '',
@@ -122,7 +122,7 @@
 // import axios from 'axios';
 // import { useRouter } from 'next/navigation';
 // import Link from 'next/link';
-// import { useAuth } from '@/hooks/authContext';
+// import { userAuth } from '@/hooks/authContext';
 
 // function Signup() {
 //   const [formData, setFormData] = useState({
@@ -139,7 +139,7 @@
 //   const [showPassword, setShowPassword] = useState(false);
 // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-//   const { register } = useAuth();
+//   const { register } = userAuth();
 //   const router = useRouter();
   
 //   // Destructure form data for easier access
@@ -503,7 +503,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/authContext';
+import { userAuth } from '@/hooks/authContext';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -527,7 +527,7 @@ function Signup() {
   const [otpResendTimer, setOtpResendTimer] = useState(0); // Start at 0, not 60
   const [verifyingOtp, setVerifyingOtp] = useState(false);
 
-  const { register } = useAuth();
+  const { register } = userAuth();
   const router = useRouter();
   
   // Destructure form data for easier access

@@ -72,12 +72,12 @@ function ForgotPass() {
         body: JSON.stringify({ email })
       });
       
-      const data = await response.json();
+      const data = await response.json(); 
       
       if (data.success) {
         setMessage({ 
           type: 'success', 
-          text: 'Password reset link has been sent to your email address' 
+          text: data.message 
         });
         setEmail('');
       } else {

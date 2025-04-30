@@ -4,7 +4,7 @@
 // import Image from 'next/image';
 // import altcoinImage from "../images/altcoin.webp";
 // import { useRouter } from "next/navigation"; 
-// import { useAuth } from '../hooks/authContext';
+// import { userAuth } from '../hooks/authContext';
 // import Link from 'next/link';
 // import LoginModal from './LoginModal';
 
@@ -19,7 +19,7 @@
 //    const [selectedOption, setSelectedOption] = useState("");
 //       const [isLoading, setIsLoading] = useState(false);
      
-//         const { login,isAuthenticated,user } = useAuth();
+//         const { login,isAuthenticated,user } = userAuth();
 //         const [showLoginModal, setShowLoginModal] = useState(false);
     
 //         const handleOpenLoginModal = () => setShowLoginModal(true);
@@ -287,7 +287,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation"; 
-import { useAuth } from '../hooks/authContext';
+import { userAuth } from '../hooks/authContext';
 import Link from 'next/link';
 import LoginModal from './LoginModal';
 
@@ -300,10 +300,10 @@ export default function EditListings({ icoData }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [selectedOption, setSelectedOption] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
   const [selectedIcoId, setSelectedIcoId] = useState(null); // Store the selected ICO ID
      
-  const { login, isAuthenticated, user } = useAuth();
+  const { login, isAuthenticated, user } = userAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
     
   const handleOpenLoginModal = (icoId) => {

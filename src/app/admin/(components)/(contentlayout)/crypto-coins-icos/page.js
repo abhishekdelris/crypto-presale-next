@@ -1195,14 +1195,14 @@ const CryptoCoins = () => {
     };
 
     const handleEdit = (post) => {
-        window.open(`/admin/crypto-coins-icos/edit/${post.id}`, '_blank');
+        window.open(`/admin/crypto-coins-icos/edit/${post.slug}`, '_blank');
     };
 
     const handleDeleteConfirm = async () => {
         if (!postToDelete) return;
 
         try {
-            await axios.delete(`/api/admin/crypto_coins/${postToDelete.id}`);
+            await axios.delete(`/api/admin/crypto_coins/${postToDelete.slug}`);
             
             // Refresh data after deletion
             fetchPosts(currentPage, filterOptions);

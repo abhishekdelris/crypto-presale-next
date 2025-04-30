@@ -1,10 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import FAQAccordion from "./FAQAccordion";
 import altcoinImage from "@/images/altcoin.webp";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import Link from "next/link";
+import { userAuth } from "@/hooks/authContext";
+import { useRouter } from "next/navigation";
+import LoginModal from "./LoginModal";
 
 // Helper functions
 const formatNumberWithCommas = (number) => {
@@ -26,7 +29,7 @@ function formatDate(dateStr) {
   // If already in YYYY-MM-DD format, return as is
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     return dateStr;
-  }
+  } 
 
   // Otherwise, parse and format to YYYY-MM-DD
   const date = new Date(dateStr);
@@ -35,7 +38,7 @@ function formatDate(dateStr) {
   }
 
   return ""; // return empty if invalid date
-}
+} 
 
 const getImageUrl = (image) => {
   if (!image) return altcoinImage;
@@ -58,9 +61,67 @@ const getIcoStatus = (item) => {
 
 // Client Component for crypto details
 export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
-  const router = useRouter();
+
   const [copiedText, setCopiedText] = useState(false);
 
+   const router = useRouter();
+    const { login, isAuthenticated } = userAuth();
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [timeLeft, setTimeLeft] = useState('');
+  
+    const handleOpenLoginModal = () => setShowLoginModal(true);
+    const handleCloseLoginModal = () => setShowLoginModal(false);
+  
+    const handleSubmitForm = () => {
+      if (isAuthenticated) {
+        router.push("/submit-coin");
+      } else {
+        handleOpenLoginModal();
+      }
+    };
+    const handleEditForm = () => {
+      if (isAuthenticated) {
+        router.push(`/update-request/${cryptoDetailsInfo.slug}`);
+      } else {
+        handleOpenLoginModal();
+      }
+    };
+
+    const handleAdvertise = () => {
+      router.push('/advertise');
+    }
+  
+    const handleLoginSuccess = (userData) => {
+      console.log("User logged in successfully:", userData);
+      router.push("/submit-coin");
+      // You can add custom logic here after successful login
+      // For example, update the UI to show the user is logged in
+    };
+
+    const endTime = cryptoDetailsInfo.end_time;
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const now = new Date();
+        const end = new Date(endTime);
+        let diff = end - now;
+  
+        if (diff <= 0) {
+          setTimeLeft("00D : 00H : 00M : 00S");
+          clearInterval(interval);
+          return;
+        }
+  
+        const seconds = Math.floor((diff / 1000) % 60);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  
+        const format = (num) => String(num).padStart(2, '0');
+        setTimeLeft(`${format(days)}D : ${format(hours)}H : ${format(minutes)}M : ${format(seconds)}S`);
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }, [endTime]);
   // Calculate supply percentage
   const calculateSupplyPercentage = (quantity, total) => {
     if (quantity === "TBA" || !parseFloat(total)) return "TBA";
@@ -104,7 +165,362 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
 
   return (
     <section>
-      <div className="container">
+ <div className="container">
+        <div className="token-card">
+            {/*<!-- Token Header -->*/}
+            <div className="token-header">
+                <div className="token-logo">
+               
+                <Image
+                  src={getImageUrl(cryptoDetailsInfo.image)}
+                  className="object-fit-cover rounded-3 me-3 ico-detail-logo"
+                  alt={
+                    cryptoDetailsInfo.img_alt_title || cryptoDetailsInfo.name
+                  }
+                  title={
+                    cryptoDetailsInfo.img_alt_title || cryptoDetailsInfo.name
+                  }
+                  width={80}
+                  height={80}
+                />
+                </div>
+                <div className="token-title">
+                    <div className="token-name"><p className="mb-0">{cryptoDetailsInfo.name}  </p></div>
+                    <div className="token-symbol"><p>{cryptoDetailsInfo.alias}<span className="presale-badge">{getTokenType(cryptoDetailsInfo.ico_ido_type)}</span> </p></div>
+                    <div className="blockchain-badge">
+                        <p className="mb-0"> {cryptoDetailsInfo.ico_project_id || "Blockchain"} Blockchain</p>
+                    </div>
+              <div className="token-id">
+             
+                  <p className="mb-0">
+                    <span id="tokenId"> {cryptoDetailsInfo.contact_address || '7dJkUsopcNWWGCU4FULLTOKENID'} </span>
+                    <i className="fa-solid fa-copy copy-icon" id="copyIcon" onclick="copyTokenId()"></i>
+                  </p>
+                </div>
+                </div>
+                <div className="timer-section">
+                    <div className="presale-live"><p className="mb-0">Presale <span className="live-now">Live Now</span></p></div>
+                    <div className="countdown"><span>{timeLeft}</span></div> 
+                    <div className="dates"><span> {formatDate(cryptoDetailsInfo.start_time)} - {formatDate(cryptoDetailsInfo.end_time)}</span></div>
+                </div>
+            </div>
+            
+            {/*<!-- Action Buttons -->*/} 
+            <div className="action-buttons">
+              <div>  <button className="btn btn-outline-dark btn-sm action-btn me-2"  onClick={handleSubmitForm}>
+                    <i className="fa-solid fa-paper-plane me-1"></i> Submit
+                </button>
+              <button className="btn btn-outline-dark btn-sm action-btn me-2"   onClick={handleEditForm}>
+                    <i className="fa-solid fa-pen-to-square me-1"></i> Edit
+                </button> 
+                <button className="btn btn-outline-dark btn-sm action-btn" onClick={handleAdvertise}>
+                    <i className="fa-solid fa-bullhorn me-1"></i> Advertise
+                </button>
+                </div>
+                
+                <div className="text-end">
+                    
+                    <button className="buy-button me-2"><a   href={cryptoDetailsInfo.where_to_buy} className="link-customize457"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    >Buy Now</a></button>
+                     <button className="buy-button"><a   href={cryptoDetailsInfo.website} className="link-customize457"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    >Visit Website
+</a></button>
+                </div>
+            </div>
+            
+            {/*-- Tokonomics Section */} 
+            <div>
+                <div className="tokonomics-header">
+                    <div className="tokonomics-title"><span>Tokonomics</span></div>
+                    <div className="whitepaper-section">
+                        <span className="whitepaper-label">Whitepaper</span>
+                        <a href={cryptoDetailsInfo.white_paper_url} className="whitepaper-link">
+                            <i className="fa-regular fa-file-lines"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div className="tokonomics-container">
+                    <div className="row tokonomics-row pt-3">
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Category</span></div>
+                            <div className="tokonomics-value"><span>{cryptoDetailsInfo.category_id || " "}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Platform</span></div>
+                            <div className="tokonomics-value"><span>{cryptoDetailsInfo.launchpad || "On Website"}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>{getTokenType(cryptoDetailsInfo.ico_ido_type)} {" "}Price</span></div>
+                            <div className="tokonomics-value"><span>{cryptoDetailsInfo.ico_project_id || "Blockchain"}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div className="row tokonomics-row">
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Total supply</span></div>
+                            <div className="tokonomics-value"><span>{formatNumberWithCommas(
+                                  cryptoDetailsInfo.total_coin
+                                )} </span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span> Tokens for Sale</span></div>
+                            <div className="tokonomics-value"><span> {formatNumberWithCommas(
+                                  cryptoDetailsInfo.quantity_of_coin
+                                )}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>{" "}
+                             Price</span></div>
+                            <div className="tokonomics-value"><span> 
+                              {/* {formatPriceWithCurrency(
+                                  cryptoDetailsInfo.ico_price,
+                                  acceptType
+                                )} */}
+                                 {cryptoDetailsInfo.ico_price}
+                                </span></div>
+                        </div>
+                    </div>
+                    
+                    <div className="row tokonomics-row">
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Fundraising goal</span></div>
+                            <div className="tokonomics-value"><span> {formatNumberWithCommas(
+                                  cryptoDetailsInfo.fund_asking_for
+                                )}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>% of supply</span></div>
+                            <div className="tokonomics-value"><span>  {calculateSupplyPercentage(
+                                  cryptoDetailsInfo.quantity_of_coin,
+                                  cryptoDetailsInfo.total_coin
+                                )}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Accept Type</span></div>
+                            <div className="tokonomics-value"><span>{cryptoDetailsInfo.accept_type || "USDT"}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div className="row tokonomics-row">
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Hard Cap</span></div>
+                            <div className="tokonomics-value"><span> {formatPriceWithCurrency(
+                                  cryptoDetailsInfo.hard_cap,
+                                  acceptType
+                                )}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Soft Cap</span></div>
+                            <div className="tokonomics-value"><span>{formatPriceWithCurrency(
+                                  cryptoDetailsInfo.soft_cap,
+                                  acceptType
+                                )}</span></div>
+                        </div>
+                        <div className="col-4">
+                            <div className="tokonomics-label"><span>Personal Cap</span></div>
+                            <div className="tokonomics-value"><span>{formatPriceWithCurrency(
+                                  cryptoDetailsInfo.personal_cap,
+                                  acceptType
+                                )}</span></div>
+                        </div>
+                    </div>
+                </div>
+            
+            {/*!-- Footer with Social Media */}
+            <div className="social-footer">
+                <div className="socialfirst">
+                <div className="d-flex align-items-center">
+                    <div className="social-title me-2"><span>Social Media :-</span></div>
+                    <div className="social-icons">
+                      
+                        {cryptoDetailsInfo.twitter && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.twitter}
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                    className="twitter-clr"
+                                    title="Share on Twitter"
+                                  >
+                                    <i className="fa-brands fa-x-twitter" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.discord && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.discord}
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                    className="discord-clr"
+                                    title="Share on Discord"
+                                  >
+                                    <i className="fa-brands fa-discord" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.youtube_link && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.youtube_link}
+                                    className="youtube-clr"
+                                    title="Share on Youtube"
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-youtube" />
+                                  </a>
+                               
+                              )}
+
+{cryptoDetailsInfo.telegram_group && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.telegram_group}
+                                    className="tele-clr"
+                                    title="Telegram Group"
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-telegram" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.telegram && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.telegram}
+                                    className="tele-clr"
+                                    title="Telegram channel"
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-telegram" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.facebook && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.facebook}
+                                    className="facebook-clr"
+                                    title="Facebook Page"
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-facebook-f" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.medium && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.medium}
+                                    className="medium-clr"
+                                    title="Medium Blog"
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-medium" />
+                                  </a>
+                               
+                              )} 
+
+                              {cryptoDetailsInfo.instagram && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.instagram}
+                                    className="insta-clr"
+                                    title="Instagram Page"
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-instagram" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.reddit && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.reddit}
+                                    className="reddit-clr"
+                                    title="Reddit Community"
+                                    target="_blank"
+                                   rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-reddit" />
+                                  </a>
+                               
+                              )}
+
+                              {cryptoDetailsInfo.linkedin && (
+                                
+                                  <a
+                                    href={cryptoDetailsInfo.linkedin}
+                                    className="linkedin-clr"
+                                    title="LinkedIn Page"
+                                    target="_blank"
+                                    rel="noopener noreferrer nofollow"
+                                  >
+                                    <i className="fa-brands fa-linkedin" />
+                                  </a>
+                               
+                              )}
+                    </div>
+                </div>
+                    <div className="d-flex align-items-center d-none">
+                    <div className="social-title me-2"><span>Visit Website</span></div>
+                    <a href={cryptoDetailsInfo.website} className="website-link">{cryptoDetailsInfo.name}</a>
+                </div>
+            </div>
+                <div className="text-end d-none">
+                    
+                    <button className="buy-button"><a   href={cryptoDetailsInfo.where_to_buy} className="link-customize"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    >Buy Now</a></button>
+                </div>
+            </div>
+            
+            
+         
+        </div>
+    </div>
+    
+    {/* Project Description and FAQ */}
+    <div className="row">
+              <div className="col-12 my-2 text-center d-block"></div>
+              <div className="col-12 mb-3 mt-3 mt-lg-0">
+                <div>
+                  <h5 className="h4 heading-bdr-left">
+                    About {cryptoDetailsInfo.name} ({cryptoDetailsInfo.alias})
+                    Project
+                  </h5>
+                  <div
+                    className="details-page"
+                    dangerouslySetInnerHTML={{
+                      __html: cryptoDetailsInfo.description
+                    }}
+                  />
+                  <FAQAccordion faqData={faqData} />
+                </div>
+              </div>
+            </div>
+    </div>
+
+{/* old code  25-04-2025 */}
+      <div className="container d-none">
         <div className="row align-items-center">
           <div className="col-xl-12 col-md-12 col-sm-12 pb-3">
             <div className="text-center mb-3"></div>
@@ -471,7 +887,7 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
                                     href={cryptoDetailsInfo.twitter}
                                     target="_blank"
                                    rel="noopener noreferrer nofollow"
-                                    className="twitter-clr"
+                                  className="twitter-clr"
                                     title="Share on Twitter"
                                   >
                                     <i className="fa-brands fa-x-twitter" />
@@ -636,6 +1052,11 @@ export default function CryptoIcoDetailsClient({ cryptoDetailsInfo, faqData }) {
           </div>
         </div>
       </div>
+      <LoginModal
+          show={showLoginModal}
+          handleClose={handleCloseLoginModal}
+          onLoginSuccess={handleLoginSuccess}
+        />
     </section>
   );
 }

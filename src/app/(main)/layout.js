@@ -33,6 +33,8 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
         />
+        <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.css" rel="stylesheet" />
+
       </head>
       <body suppressHydrationWarning={true} className="layout121">
         <SessionProviderWrapper>

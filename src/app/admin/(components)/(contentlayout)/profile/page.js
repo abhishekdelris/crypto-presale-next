@@ -15,7 +15,7 @@ import Seo from "../../../../../../shared/layout-components/seo/seo";
 
 const Profile = () => {
 	const [open, setOpen] = useState(false);
-	return (
+	return ( 
 		<Fragment>
 			<Seo title={"Profile"} />
 			<PageHeader title='Profile' item='Pages' active_item='Profile' />

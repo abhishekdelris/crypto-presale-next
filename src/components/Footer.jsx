@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useAuth } from "@/hooks/authContext";
+import { userAuth } from "@/hooks/authContext";
 import { useRouter } from "next/navigation";
 import LoginModal from "./LoginModal";
 
@@ -9,7 +9,7 @@ function Footer() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated } = userAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleOpenLoginModal = () => setShowLoginModal(true);

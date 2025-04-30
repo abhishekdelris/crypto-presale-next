@@ -16,7 +16,7 @@ import { Api } from "@mui/icons-material";
 
 const CryptoCoins = () => {
     const [showData,setShowData] = useState([]);
-    const [itemOffset, setItemOffset] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
     const itemsPerpage = 15;
 

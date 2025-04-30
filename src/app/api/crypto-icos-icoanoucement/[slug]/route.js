@@ -25,14 +25,30 @@ export async function GET(request, { params }) {
       );
     }
 
+    const categoriesData = await prisma.project_categories.findUnique({
+      where: {
+        id: post.category_id,
+      },
+    });
+
+    const icoprojectData = await prisma.ico_projects.findUnique({
+      where: {
+        id: parseInt(post.ico_project_id),
+      },
+    });
     // Fetch related launchpad title
     const launchpadData = await prisma.launchpad.findUnique({
       where: {
         id: post.launchpad,
       },
-    });
+    }); 
 
+    console.log("categoriesData...",categoriesData);
+    console.log("icoprojectData...",icoprojectData);
+    console.log("launchpadData...",launchpadData);
     // Add launchpad title to post
+    post.ico_project_id = icoprojectData?.title || "blockchain";
+    post.category_id = categoriesData?.title || " ";
     post.launchpad = launchpadData?.title || "On Website";
 
     return NextResponse.json({

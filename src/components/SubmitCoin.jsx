@@ -1,7 +1,7 @@
 "use client";
 import React, { useState,useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from '../hooks/authContext';
+import { userAuth } from '../hooks/authContext';
 import axios from 'axios';
 import {  useRouter } from 'next/navigation';
 
@@ -11,7 +11,7 @@ function SubmitCoin() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', message: '' });
     const [launchpads, setLaunchpads] = useState([]);
-   const { isLoggedIn, logout,user } = useAuth();
+   const { isLoggedIn, logout,user } = userAuth();
  const [loading, setLoading] = useState(true); 
   const router = useRouter();
 

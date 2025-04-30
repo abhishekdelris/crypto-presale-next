@@ -265,7 +265,7 @@ function ContactUs() {
               <div className="col-xl-6">
                 <form className="contact-us-form" onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className="col-xl-6 mb-4">
+                    <div className="col-xl-12 mb-4">
                       <input
                         type="text"
                         className="form-control"
@@ -274,9 +274,9 @@ function ContactUs() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                      />
+                      /> 
                     </div>
-                    <div className="col-xl-6 mb-4">
+                    <div className="col-xl-12 mb-4">
                       <input
                         type="text"
                         className="form-control"

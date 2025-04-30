@@ -16,7 +16,7 @@ const Select = dynamic(() => import("react-select"), { ssr: false });
 
 const RegisterNewCoins = () => {
     const router = useRouter();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); 
     const [projects, setProjects] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);

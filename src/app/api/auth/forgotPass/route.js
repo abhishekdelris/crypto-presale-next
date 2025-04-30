@@ -22,7 +22,7 @@ export async function POST(request) {
     if (!user) {
       return NextResponse.json({
         success: true,
-        message: 'If an account with that email exists, a password reset link has been sent'
+        message: 'Email not found. Please register first.'
       });
     }
 

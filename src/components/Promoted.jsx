@@ -6,7 +6,7 @@ import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import vactorbg from "../images/vector-row-bg.webp";
 import Link from "next/link";
-import { useAuth } from '@/hooks/authContext';
+import { userAuth } from '@/hooks/authContext';
 import { useRouter } from 'next/navigation';
 import LoginModal from "./LoginModal";
 
@@ -14,7 +14,7 @@ function Promoted({ feturedData }) {
   const [selectedOption, setSelectedOption] = useState("");
     const [isLoading, setIsLoading] = useState(false);
       const router = useRouter();
-      const { login,isAuthenticated } = useAuth();
+      const { login,isAuthenticated } = userAuth();
       const [showLoginModal, setShowLoginModal] = useState(false);
   
       const handleOpenLoginModal = () => setShowLoginModal(true);
@@ -139,7 +139,8 @@ function Promoted({ feturedData }) {
                         <th>Stage</th>
                         <th>Price</th>
                         <th>Fundraising Goal</th>
-                        <th>Duration</th>
+                        <th>End In</th>
+                        <th>Total Boosts</th>
                         <th>Status</th>
                       </tr>
                     </thead>
@@ -176,8 +177,6 @@ function Promoted({ feturedData }) {
                             </td>
                             <td> {formatNumber(item.fund_asking_for)}</td>
                             <td>
-                              <div className="row">
-                                <div className="col-sm-4">
                                   <span 
                                    data-bs-toggle="tooltip"
                                    data-bs-placement="top"
@@ -186,8 +185,11 @@ function Promoted({ feturedData }) {
                                   >
                                     {getTimeAgo(item.end_time)}
                                   </span>
-                                </div>
-                                <div className="col-sm-4">
+                               </td>
+                            <td>
+                              <div className="row">
+                               
+                                <div className="col-sm-8">
                                   <button className="btn-main primary-btn small px-4 btn-second_main">
                                   fuel
                                   </button>

@@ -76,7 +76,7 @@ export async function GET() {
       author: post.author || "Deepak Choudhary",
       date: formatDate(post.created_at || new Date()),
       likes: post.likes_counts || 0,
-      slug: post.slug || "abc"
+      alias: post.alias || "abc"
     }));
 
     // Return the formatted posts

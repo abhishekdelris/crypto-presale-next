@@ -3,13 +3,15 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
+import { userAuth } from "@/hooks/authContext";
 import vactorbg from "../images/vector-row-bg.webp";
-
+import axios from 'axios';
 import Link from "next/link";
 
 function Coin({ CoinData }) {
   // State for dropdown visibility
   const router = useRouter();
+  const { isLoggedIn, logout,user } = userAuth();
   const [openDropdowns, setOpenDropdowns] = useState({
     chain: false,
     category: false,
@@ -29,6 +31,7 @@ function Coin({ CoinData }) {
  
   // State for filtered data
   const [filteredData, setFilteredData] = useState([]);
+  const [favoriteData,setFavoriteData] = useState([])
 
   // Get original data
   const data = CoinData.data || CoinData || [];
@@ -41,40 +44,41 @@ function Coin({ CoinData }) {
     return `${year}-${month}-${day}`;
   };
 
-  const getTimeAgo = (timestamp) => {
-    if (!timestamp) return "Unknown time";
-   const formate =  formatToYYYYMMDD(timestamp)
-    const created = new Date(formate);
-    const now = new Date();
+const getTimeAgo = (timestamp) => {
+  if (!timestamp) return "Unknown time";
   
-    if (isNaN(created)) return "Invalid date";
-  
-    const diffInMs = created - now;
-    const isFuture = diffInMs > 0;
-  
-    const absMinutes = Math.floor(Math.abs(diffInMs) / (1000 * 60));
-    const absHours = Math.floor(absMinutes / 60);
-    const absDays = Math.floor(absMinutes / (60 * 24));
-    const absWeeks = Math.floor(absDays / 7);
-    const absMonths = Math.floor(absDays / 30); // Approximation
-  
-    // const suffix = isFuture ? "from now" : "ago";
-  
-    if (absMinutes < 60) {
-      return `${absMinutes} minute${absMinutes !== 1 ? "s" : ""} `;
-    } else if (absHours < 24) {
-      return `${absHours} hour${absHours !== 1 ? "s" : ""} `;
-    } else if (absDays < 7) {
-      return `${absDays} day${absDays !== 1 ? "s" : ""} `;
-    } else if (absWeeks < 4) {
-      return `${absWeeks} week${absWeeks !== 1 ? "s" : ""} `;
-    } else {
-      return `${absMonths} month${absMonths !== 1 ? "s" : ""} `;
-    }
-  };
+  const formate = formatToYYYYMMDD(timestamp);
+  const created = new Date(formate);
+  const now = new Date();
+
+  if (isNaN(created)) return "Invalid date";
+
+  const diffInMs = created - now;
+  const isFuture = diffInMs > 0;
+
+  const absMinutes = Math.floor(Math.abs(diffInMs) / (1000 * 60));
+  const absHours = Math.floor(absMinutes / 60);
+  const absDays = Math.floor(absMinutes / (60 * 24));
+  const absWeeks = Math.floor(absDays / 7);
+
+  if (absMinutes < 60) {
+    return `${absMinutes} minute${absMinutes !== 1 ? "s" : ""} `;
+  } else if (absHours < 24) {
+    return `${absHours} hour${absHours !== 1 ? "s" : ""} `;
+  } else if (absDays < 7) {
+    return `${absDays} day${absDays !== 1 ? "s" : ""} `;
+  } else if (absDays < 30) { // yahan 30 days tak weeks show hoga
+    return `${absWeeks} week${absWeeks !== 1 ? "s" : ""} `;
+  } else {
+    const absMonths = Math.floor(absDays / 30);
+    return `${absMonths} month${absMonths !== 1 ? "s" : ""} `;
+  }
+};
+
   
   // Apply filters whenever filters or data changes
   useEffect(() => {
+    favoriteList();
     applyFilters();
   }, [filters, data]);
 
@@ -219,6 +223,47 @@ function Coin({ CoinData }) {
         return "Presale";
     }
   };
+
+  const favoriteList = async() => {
+    try {
+      const request = await axios.get(`/api/favoritelist/${user?.id}`)
+      const result = request.data;
+    if(result.success === true){
+      setFavoriteData(result.data);
+    }
+    } catch (error) {
+      console.log(error.message);
+    }
+  } 
+
+  const addFavourite = async(coin_id) => {
+    //console.log(user_id);
+    try {
+    //  if(!isLoggedIn){
+    //  return router.push("/login")
+    //}
+    const data = {
+      ico_id:coin_id,
+      user_id: user?.id
+    }
+    const response = await axios.post("/api/favoritelist/create",data);
+    const result = response.data;
+    if(result.success === true){
+      alert("the coin is added on favourite list");
+      favoriteList();
+    }
+    else{
+      alert("already in your list")
+    }
+    } catch (error) {
+      console.log(error.message);
+    }
+    
+  } 
+  const favouriteTest = (id) => {
+    console.log(favoriteData)
+    return favoriteData.some(item => item.ico_id === id);
+  }
 
   return (
     <>
@@ -532,6 +577,7 @@ function Coin({ CoinData }) {
                       <th>Stage</th>
                       <th>Price</th>
                       <th>Fundraising Goal</th>
+                      <th>End In</th>
                       <th>Total Boosts</th>
                       <th>Status</th>
                     </tr>
@@ -569,9 +615,7 @@ function Coin({ CoinData }) {
                           </td>
                           <td> {formatNumber(coin.fund_asking_for)}</td>
                           <td>
-                            <div className="row">
-                              <div className="col-sm-4">
-                                
+                     
                                 <span
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
@@ -584,14 +628,18 @@ function Coin({ CoinData }) {
                                     coin.end_time
                                   )} */}
                                 </span>
-                              </div>
-                              <div className="col-sm-4">
+                             
+                          </td>
+                          <td>
+                            <div className="row">
+                            
+                              <div className="col-sm-8">
                                 <button className="btn-main primary-btn small px-4 btn-second_main">
                                   fuel
                                 </button>
                               </div>
-                              <div className="col-sm-4">
-                                <i className="fa-regular fa-star"></i>
+                              <div className="col-sm-4" onClick={()=>addFavourite(coin.id)}>
+                                {favoriteData.some(item => item.ico_id === coin.id)?(<i className="fa-solid fa-star"></i>):(<i className="fa-regular fa-star"></i>)}
                               </div>
                             </div>
                           </td>

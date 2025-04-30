@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Link from 'next/link'
 import { useRouter } from "next/navigation";
 import LoginModal from "./LoginModal";
-import { useAuth } from "@/hooks/authContext";
+import { userAuth } from "@/hooks/authContext";
 
 function Favorite() {
      const [isLoading, setIsLoading] = useState(false);
       const router = useRouter();
-      const { login, isAuthenticated } = useAuth();
+      const { login, isAuthenticated } = userAuth();
       const [showLoginModal, setShowLoginModal] = useState(false);
     
       const handleOpenLoginModal = () => setShowLoginModal(true);

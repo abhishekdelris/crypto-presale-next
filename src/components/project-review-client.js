@@ -55,8 +55,8 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
     return textContent.substring(0, maxLength) + "...";
   };
 
-  // // Function to create a slug from the post title
-  // const createSlug = (title) => {
+  // // Function to create a alias from the post title
+  // const createalias = (title) => {
   //   return title
   //     .toLowerCase()
   //     .replace(/[^\w\s-]/g, '') // Remove special characters
@@ -134,7 +134,7 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
                   <div key={post.id} className="col-md-6 mb-4">
                     <div className="blog-card">
                       {post.image && (
-                        <Link href={`/project-review/${post.slug}`}>
+                        <Link href={`/project-review/${post.alias}`}>
                           <Image 
                             src={`https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/${post.image}`} 
                             alt={post.title} 
@@ -151,7 +151,7 @@ export default function ProjectReviewClient({ initialPosts, initialError, catego
                         <small className="text-body-secondary">{formatDate(post.date)}</small>
                       </div>
                       <h5>
-                        <Link href={`/project-review/${post.slug}`} className="text-decoration-none link-customize">
+                        <Link href={`/project-review/${post.alias}`} className="text-decoration-none link-customize">
                           {post.title}
                         </Link>
                       </h5>

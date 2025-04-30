@@ -223,13 +223,13 @@ BigInt.prototype.toJSON = function() {
 
 export async function PUT(request, context) {
   try {
-    const { params } = context;
-    const id = parseInt(params.id);
+    const { params } =  context;
+    const slug = params.slug;
     const body = await request.json();
 
     // Check if the content exists
     const existingContent = await prisma.crypto_coins_icos.findUnique({
-      where: { id }
+      where: { slug }
     });
     
     if (!existingContent) {
@@ -244,7 +244,7 @@ export async function PUT(request, context) {
 
     // Get existing details records
     const existingContentDetails = await prisma.crypto_coins_icos_details.findMany({
-      where: { crypto_coins_icos_id: id }
+      where: { crypto_coins_icos_id: existingContent?.id }
     });
     
     // Convert date strings to ISO format
@@ -253,7 +253,7 @@ export async function PUT(request, context) {
 
     // Update the main content
     const updatedContent = await prisma.crypto_coins_icos.update({
-      where: { id },
+      where: { slug },
       data: { 
         user_id: body.user_id ,
         ico_ido_id: body.ico_ido_id ,
@@ -416,14 +416,14 @@ export async function PUT(request, context) {
 if (body.details && Array.isArray(body.details)) {
   // Delete existing details records
   await prisma.crypto_coins_icos_details.deleteMany({
-    where: { crypto_coins_icos_id: id }
+    where: { crypto_coins_icos_id: existingContent?.id }
   });
   
   // Create new details records for each entry in the array
   for (const detail of body.details) {
     await prisma.crypto_coins_icos_details.create({
       data: {
-        crypto_coins_icos_id: id,
+        crypto_coins_icos_id: existingContent?.id,
         detail_total_supply: detail.detail_total_supply || '',
         detail_qty_of_coin: detail.detail_qty_of_coin || '',
         detail_ico_price: detail.detail_ico_price || '',
@@ -476,7 +476,7 @@ if (body.details && Array.isArray(body.details)) {
   // Create a new details record if none exists but we have detail data
   await prisma.crypto_coins_icos_details.create({
     data: {
-      crypto_coins_icos_id: id,
+      crypto_coins_icos_id: existingContent?.id,
       detail_total_supply: body.detail_total_supply || '',
       detail_qty_of_coin: body.detail_qty_of_coin || '',
       detail_ico_price: body.detail_ico_price || '',
@@ -708,7 +708,7 @@ export async function GET(request, { params }) {
     });
 
     const cryptoDetails = await prisma.crypto_coins_icos_details.findMany({
-      where: { crypto_coins_icos_id: content.id }
+      where: { crypto_coins_icos_id: content?.id }
     });
 
     if (!content) {
@@ -794,11 +794,11 @@ export async function GET(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const id = parseInt(params.id);
+    const slug = params.slug;
 
     // Check if the content exists and is not already deleted
     const existingContent = await prisma.crypto_coins_icos.findUnique({
-      where: { id }
+      where: { slug }
     });
 
     if (!existingContent || existingContent.deleted_at) {
@@ -813,7 +813,7 @@ export async function DELETE(request, { params }) {
 
     // Perform soft delete by setting deleted_at to current timestamp
     await prisma.crypto_coins_icos.update({
-      where: { id },
+      where: { slug },
       data: {
         deleted_at: new Date()
       }

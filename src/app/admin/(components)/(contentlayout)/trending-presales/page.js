@@ -15,7 +15,7 @@ import Image from "next/image";
 const CryptoCoins = () => {
     const router = useRouter();
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);

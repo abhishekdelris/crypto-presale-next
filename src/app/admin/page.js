@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import { Alert, Button, Card, Col, Nav, OverlayTrigger, Row, Tab, Tooltip, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useAuth } from '../../hooks/admin_authContext';
+import { adminAuth } from '../../hooks/admin_authContext';
 
 
 // Form validation schema
@@ -32,7 +32,7 @@ import { useAuth } from '../../hooks/admin_authContext';
 
 export default function Home() {
 
-  const { login } = useAuth();
+  const { login } = adminAuth();
 
   const [passwordshow, setpasswordshow] = useState(false);
   const [passwordshow1, setpasswordshow1] = useState(false);

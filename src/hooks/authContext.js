@@ -140,17 +140,18 @@ export function AuthProvider({ children }) {
   const { data: session, status } = useSession();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
-
   useEffect(() => {
     if (status === 'loading') {
       setLoading(true);
     } else {
       setUser(session?.user || null);
+      setIsAuthenticated(!!session?.user); // Update this
       setLoading(false);
     }
   }, [session, status]);
-
+  
   const login = async (email, password) => {
     try {
       const result = await signIn('credentials', {
@@ -162,7 +163,7 @@ export function AuthProvider({ children }) {
       if (result?.error) {
         return { success: false, error: result.error };
       }
-      
+      setIsAuthenticated(true);
       return { success: true };
     } catch (error) {
       return { success: false, error: "Login failed" };
@@ -196,12 +197,14 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await signOut({ redirect: false });
-    // router.push('/login');
+    setUser(null);
+    setIsAuthenticated(false);
+    router.refresh(); // Or manually reload data/context
   };
 
   const checkAuthStatus = () => {
     return {
-      isAuthenticated: !!user,
+      isAuthenticated,
       loading,
       user
     };
@@ -214,7 +217,7 @@ export function AuthProvider({ children }) {
     register,
     logout,
     checkAuthStatus,
-    isAuthenticated: !!user
+    isAuthenticated,
   };
 
   return (
@@ -224,4 +227,4 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const userAuth = () => useContext(AuthContext);

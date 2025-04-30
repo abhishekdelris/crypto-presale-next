@@ -11,8 +11,8 @@ import { useRouter } from "next/navigation";
 function GuestPostClient({ posts }) {
   const router = useRouter();
   
-  // Function to create a slug from the post title
-  // const createSlug = (title) => {
+  // Function to create a alias from the post title
+  // const createalias = (title) => {
   //   return title
   //     .toLowerCase()
   //     .replace(/[^\w\s-]/g, '') // Remove special characters
@@ -21,9 +21,9 @@ function GuestPostClient({ posts }) {
   //     .trim();                  // Trim leading/trailing spaces
   // };
 
-  const truncateDescription = (html, slug, id, length = 150) => {
+  const truncateDescription = (html, alias, id, length = 150) => {
     if (!html) return '';
-    return truncate(html, length, { ellipsis: `... <a href=/guestpost/${slug}>Read More</a>` });
+    return truncate(html, length, { ellipsis: `... <a href=/guestpost/${alias}>Read More</a>` });
   };
 
   return (
@@ -38,7 +38,7 @@ function GuestPostClient({ posts }) {
               className="card" 
               key={post.id} 
               onClick={() => {
-                router.push(`/guestpost/${post.slug}`);
+                router.push(`/guestpost/${post.alias}`);
               }}
             >
               <Image
@@ -54,7 +54,7 @@ function GuestPostClient({ posts }) {
                   <span>By {post.author}</span>
                 </div>
                 <h3 className="card-title">
-                  <Link href={`/guestpost/${post.slug}`} className="link-customize">
+                  <Link href={`/guestpost/${post.alias}`} className="link-customize">
                     {post.title}
                   </Link>
                 </h3>
@@ -81,7 +81,7 @@ function GuestPostClient({ posts }) {
                   />
                   <div>
                     <h2 className="featured-title card-title">
-                      <Link href={`/guestpost/${post.slug}`} className="link-customize">
+                      <Link href={`/guestpost/${post.alias}`} className="link-customize">
                         {post.title}
                       </Link>
                     </h2>
@@ -91,10 +91,10 @@ function GuestPostClient({ posts }) {
                   </div>
                 </div>
                 <div className="featured-content">
-                  <Link href={`/guestpost/${post.slug}`} className="link-customize">
+                  <Link href={`/guestpost/${post.alias}`} className="link-customize">
                     <p
                       className="featured-description"
-                      dangerouslySetInnerHTML={{ __html: truncateDescription(post.description, post.slug, post.id) }}
+                      dangerouslySetInnerHTML={{ __html: truncateDescription(post.description, post.alias, post.id) }}
                     />
                   </Link>
                 </div>

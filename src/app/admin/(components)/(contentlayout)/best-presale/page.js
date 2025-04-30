@@ -10,7 +10,7 @@ import coinLogo from '@/images/altcoin.webp';
 const Select = dynamic(() => import("react-select"), { ssr: false });
 import dynamic from "next/dynamic";
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
 import Image from "next/image";
 
 const BestPresale = () => {

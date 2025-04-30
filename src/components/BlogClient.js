@@ -24,7 +24,7 @@ function BlogClient({ featuredArticle, sidebarArticles, latestArticles }) {
                 width={600}
                 height={400}
               />
-              <Link href={`/blog/${featuredArticle?.slug}`} className="link-customize">
+              <Link href={`/blog/${featuredArticle?.alias}`} className="link-customize">
                 <h2 className="news-title">{featuredArticle?.title}</h2>
               </Link>
                           
@@ -44,7 +44,7 @@ function BlogClient({ featuredArticle, sidebarArticles, latestArticles }) {
             <div className="row mb-4 manage_box_border" key={index}>
               <div className="col-8">
                 <h3 className="article-title">
-                  <Link href={`/blog/${article.slug}`} className="link-customize">
+                  <Link href={`/blog/${article.alias}`} className="link-customize">
                     {article?.title}
                   </Link>
                 </h3>
@@ -96,7 +96,7 @@ function BlogClient({ featuredArticle, sidebarArticles, latestArticles }) {
                 /> 
                 <div className="card-body p-3">
                   <h5 className="news-title1 mb-2">
-                    <Link href={`/blog/${article.slug}`} className="link-customize">
+                    <Link href={`/blog/${article.alias}`} className="link-customize">
                       {article?.title}
                     </Link>
                   </h5>

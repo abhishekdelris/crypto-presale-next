@@ -166,7 +166,7 @@ export async function GET() {
         ? formatISODate(post.created_at)
         : formatISODate(new Date()),
       likes: post.likes_counts || 0,
-      slug: post.alias || "abc",
+      alias: post.alias || "abc",
       seo: post.is_seo_check || 0,
       gabbarnews: post.is_gabbar || 1,
       lan: post.lang || "en",

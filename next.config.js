@@ -22,16 +22,16 @@
 // module.exports = nextConfig;
 
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "development";
 
 const nextConfig = {
   // Comment this line when not building the project
-  
+  trailingSlash: false, // ❌ disables automatic trailing slash
   typescript: {
     ignoreBuildErrors: true,
   },
   reactStrictMode: true,
-  trailingSlash: true,
+
   basePath: isProd ? "" : undefined,
   assetPrefix: isProd ? "" : undefined,
   images: {
@@ -39,7 +39,8 @@ const nextConfig = {
     unoptimized: true,
     loader: "imgix",
     path: "/",
-  }
+  },
+ 
 };
 
 module.exports = nextConfig;

@@ -95,7 +95,7 @@ export async function POST(request) {
     
     // Since NextAuth handles the actual session destruction via the /api/auth/signout endpoint,
     // this API can be used for any additional logout operations you might need
-    
+  
     // For example, you could log the logout event
     console.log(`User ${session.user.email} logged out at ${new Date().toISOString()}`);
     

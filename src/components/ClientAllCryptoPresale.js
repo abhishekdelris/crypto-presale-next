@@ -4,7 +4,7 @@
 // import Image from "next/image";
 // import altcoinImage from "../images/altcoin.webp";
 // import { useRouter } from "next/navigation";
-// import { useAuth } from "../hooks/authContext";
+// import { userAuth } from "../hooks/authContext";
 // import Link from "next/link";
 // import axios from 'axios';
 // import DatePicker from "react-datepicker";
@@ -21,7 +21,7 @@
 //   const [dateRange, setDateRange] = useState([null, null]);
 //   const [startDate, endDate] = dateRange;
 //   const [launchpads, setLaunchpads] = useState([]);
-//   const { isAuthenticated,  user } = useAuth();
+//   const { isAuthenticated,  user } = userAuth();
 //   const [isLoading, setIsLoading] = useState(false);
 //   const [showLoginModal, setShowLoginModal] = useState(false);
 //   const [pendingLikeAction, setPendingLikeAction] = useState(null);
@@ -517,7 +517,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import altcoinImage from "../images/altcoin.webp";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../hooks/authContext";
+import { userAuth } from "../hooks/authContext";
 import Link from "next/link";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
@@ -535,7 +535,7 @@ export default function ClientAllCryptoPresale({ initialData }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [launchpads, setLaunchpads] = useState([]);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = userAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [pendingLikeAction, setPendingLikeAction] = useState(null);

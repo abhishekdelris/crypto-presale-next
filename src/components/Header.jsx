@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { Badge, Button, Card, Dropdown, DropdownDivider, Form, InputGroup, ListGroup, Nav, NavLink, Offcanvas, OverlayTrigger, ProgressBar, Tab, Tooltip } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaSearch } from "react-icons/fa";
 import Logos from "../images/presale.png";
-import { useAuth } from "../hooks/authContext";
+import { userAuth } from "../hooks/authContext";
 import Topbanner from "../images/topbanner.png";
 import coinImage from "@/images/altcoin.webp";
 
@@ -14,7 +15,7 @@ export default function Header() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchRef = useRef(null);
-  const { isAuthenticated, logout, user } = useAuth();
+  const { isAuthenticated, logout, user } = userAuth();
 
   // Handle click outside of search results
   useEffect(() => {
@@ -328,15 +329,46 @@ export default function Header() {
                       </Link>
                     ))}
                   </div>
-                )}
+                )} 
               </div>
             </form>
 
             {/* Conditional Auth Button: Sign In/Register or Logout */}
             {isAuthenticated ? (
-              <button onClick={logout} className="btn-main danger-btn me-2">
-                <span>Logout</span>
-              </button>
+              <>
+              <Dropdown className="header-element header-profile">
+                          <Dropdown.Toggle as='a' className="header-link" variant="" id="dropdown-basic">
+                            <div className="d-flex align-items-center">
+                              <div className="header-link-icon">
+                                <img src={`${process.env.NODE_ENV === "production" ? "/avtar.webp" : "/avtar.webp"}`} alt="img" width="32" height="32" className="rounded-circle" />
+                              </div>
+                              <div className="d-none">
+                                <p className="fw-semibold mb-0">Angelica</p>
+                                <span className="op-7 fw-normal d-block fs-11">Web Designer</span>
+                              </div>
+                            </div>
+                          </Dropdown.Toggle>
+            
+                          <Dropdown.Menu className="main-header-dropdown pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end">
+                            <div className="header-navheading border-bottom d-none">
+                              <h6 className="main-notification-title">Sonia Taylor</h6>
+                              <p className="main-notification-text mb-0">Web Designer</p>
+                            </div>
+                            <Dropdown.Item scroll={false} as={Link} href={`/profile/${user?.id}`} className="d-flex"><i className="fe fe-user fs-16 align-middle me-2"></i>Profile</Dropdown.Item>
+                            <Dropdown.Item scroll={false} as={Link} href={`/favouritelisting`} className="d-flex "><i className="fe fe-inbox fs-16 align-middle me-2"></i>Favoritelist </Dropdown.Item>
+                            <Dropdown.Item scroll={false} as={Link} href={"#!"} className=" d-none border-block-end"><i className="fe fe-compass fs-16 align-middle me-2"></i>Activity</Dropdown.Item>
+                            <Dropdown.Item scroll={false} as={Link} href={"#!"} className="d-none"><i className="fe fe-settings fs-16 align-middle me-2"></i>Settings</Dropdown.Item>
+                            <Dropdown.Item scroll={false} as={Link} href={"#!"} className="d-none"><i className="fe fe-headphones fs-16 align-middle me-2"></i>Support</Dropdown.Item>
+                            {/* <Dropdown.Item scroll={false} as={Link}  className="d-flex" onClick={logout}><i className="fe fe-power fs-16 align-middle me-2"></i>Log Out</Dropdown.Item> */}
+                            <Dropdown.Item className="d-flex" onClick={logout}>
+  <i className="fe fe-power fs-16 align-middle me-2"></i>Log Out
+</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+            </>
+              // <button onClick={logout} className="btn-main danger-btn me-2">
+              //   <span>Logout</span>
+              // </button>
             ) : (
               <Link href="/login" className="btn-main primary-btn me-2">
                 <span>Sign In/Register</span>
@@ -355,7 +387,7 @@ export default function Header() {
 // import Image from "next/image";
 // import { FaBars, FaSearch } from "react-icons/fa";
 // import Logos from "../images/presale.png";
-// import { useAuth } from '../hooks/authContext';
+// import { userAuth } from '../hooks/authContext';
 // import Topbanner from "../images/topbanner.png"
 
 // export default function Header({ coinData = [] }) {
@@ -363,7 +395,7 @@ export default function Header() {
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [suggestions, setSuggestions] = useState([]);
 //   const [showSuggestions, setShowSuggestions] = useState(false);
-//   const { isAuthenticated, logout } = useAuth();
+//   const { isAuthenticated, logout } = userAuth();
 //   const searchRef = useRef(null);
 
 //   // Filter coins based on search term

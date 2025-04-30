@@ -88,7 +88,7 @@ export default function ListicleClient({ initialArticles, initialError }) {
                   />
                 )}
                 <h5 className="mt-3">
-                  <Link href={`/listicle/${article.slug}`} className="link-customize">
+                  <Link href={`/listicle/${article.alias}`} className="link-customize">
                     {article.title}
                   </Link>
                 </h5>

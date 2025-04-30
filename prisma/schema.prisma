@@ -1065,6 +1065,18 @@ model users {
   @@index([username], map: "username")
 }
 
+
+model favorites_icos {
+  id           Int  @id @default(autoincrement()) @db.UnsignedInt
+  user_id      Int
+  watchlist_id Int? @db.UnsignedInt
+  ico_id       Int?
+ 
+  @@index([ico_id], map: "coin_id")
+  @@index([user_id], map: "user_id")
+  @@index([watchlist_id], map: "watchlist_id")
+}
+
 enum admins_role {
   admin
   super_admin
